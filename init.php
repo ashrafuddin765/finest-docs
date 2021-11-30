@@ -30,6 +30,7 @@ if ( file_exists( FINEST_DOCS_INC . 'Post_types.php' ) ) {
 }
 require_once  FINEST_DOCS_INC . 'Admin.php';
 require_once  FINEST_DOCS_INC . 'Ajax.php';
+require_once  FINEST_DOCS_INC . 'Frontend.php';
 
 // Load the Functions
 if ( file_exists( FINEST_DOCS_INC . 'option-style.php' ) ) {
