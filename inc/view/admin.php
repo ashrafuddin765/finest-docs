@@ -16,7 +16,7 @@
                 <span class="finestdocs-row-actions">
                     <a target="_blank" :href="viewurl + doc.post.id" title="<?php esc_attr_e( 'Preview the doc', 'finestdocs' ); ?>"><span class="dashicons dashicons-external"></span></a>
                     <span v-if="doc.post.caps.delete" class="finestdocs-btn-remove" v-on:click="removeDoc(index, docs)" title="<?php esc_attr_e( 'Delete this doc', 'finestdocs' ); ?>"><span class="dashicons dashicons-trash"></span></span>
-                    <span class="finestdocs-btn-reorder"><span class="dashicons dashicons-menu"></span></span>
+                    <!-- <span class="finestdocs-btn-reorder"><span class="dashicons dashicons-menu"></span></span> -->
                 </span>
             </h3>
 
@@ -28,7 +28,7 @@
                             <span v-else>{{ section.post.title }}<span v-if="section.post.status != 'publish'" class="doc-status">{{ section.post.status }}</span> <span v-if="section.child.length > 0" class="count">{{ section.child.length }}</span></span>
 
                             <span class="actions finestdocs-row-actions">
-                                <span class="finestdocs-btn-reorder" title="<?php esc_attr_e( 'Re-order this section', 'finestdocs' ); ?>"><span class="dashicons dashicons-menu"></span></span>
+                                <!-- <span class="finestdocs-btn-reorder" title="<?php esc_attr_e( 'Re-order this section', 'finestdocs' ); ?>"><span class="dashicons dashicons-menu"></span></span> -->
                                 <a target="_blank" :href="viewurl + section.post.id" title="<?php esc_attr_e( 'Preview the section', 'finestdocs' ); ?>"><span class="dashicons dashicons-external"></span></a>
                                 <span class="finestdocs-btn-remove" v-if="section.post.caps.delete" v-on:click="removeSection(index, doc.child)" title="<?php esc_attr_e( 'Delete this section', 'finestdocs' ); ?>"><span class="dashicons dashicons-trash"></span></span>
                                 <span class="add-article" v-on:click="addArticle(section,$event)" title="<?php esc_attr_e( 'Add a new article', 'finestdocs' ); ?>"><span class="dashicons dashicons-plus-alt"></span></span>
@@ -43,7 +43,7 @@
                                     <span v-else>{{ article.post.title }}</span>
 
                                     <span class="actions finestdocs-row-actions">
-                                        <span class="finestdocs-btn-reorder"><span class="dashicons dashicons-menu"></span></span>
+                                        <!-- <span class="finestdocs-btn-reorder"><span class="dashicons dashicons-menu"></span></span> -->
                                         <a target="_blank" :href="viewurl + article.post.id" title="<?php esc_attr_e( 'Preview the article', 'finestdocs' ); ?>"><span class="dashicons dashicons-external"></span></a>
                                         <span class="finestdocs-btn-remove" v-if="article.post.caps.delete" v-on:click="removeArticle(index, section.child)" title="<?php esc_attr_e( 'Delete this article', 'finestdocs' ); ?>"><span class="dashicons dashicons-trash"></span></span>
                                     </span>

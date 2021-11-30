@@ -13,6 +13,8 @@ class Admin {
             return;
 
         }
+        wp_enqueue_style( 'admin-style', FINEST_DOCS_ASSETS_CSS . 'admin.css' );
+
         wp_enqueue_script( 'vue', 'https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js', [], time(), true );
         wp_enqueue_script( 'sweetalert', FINEST_DOCS_ASSETS_JS . 'sweetalert.min.js', ['jquery'], time(), true );
         wp_enqueue_script( 'finestdocs-frontentd-script', FINEST_DOCS_ASSETS_JS . 'frontend.js', ['jquery', 'jquery-ui-sortable', 'wp-util'], time(), true );

@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: FinestDocs
-Plugin URI: https://github.com/masumskaib396/finest-docs
+Plugin URI: https://github.com/ashrafuddin765/finest-docs
 Description: WooCommerce Quick View plugin is a simple and clean design.
 Version: 1.1.0
 Author: FinestWP
