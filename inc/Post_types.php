@@ -10,7 +10,7 @@ class Post_Types {
      *
      * @var string
      */
-    private $post_type = 'docs';
+    private $post_type = 'finest-docs';
 
     /**
      * Initialize the class

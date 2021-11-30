@@ -41,14 +41,15 @@ class Frontend {
 
         $file = FINEST_DOCS_TEMPLATE . 'single-docs.php';
 
-        if ( file_exists($file) ) {
+        if ( file_exists($file) && 'finest-docs' == get_post_type() && is_single() ) {
             $template = $file;
-            include $template;
-
+            // include $template;
         }
+        
         
         return $template;
     }
+    
 }
 
 $frontend = new Frontend();
