@@ -30,12 +30,20 @@ require_once  FINEST_DOCS_INC . 'Admin.php';
 require_once  FINEST_DOCS_INC . 'Ajax.php';
 require_once  FINEST_DOCS_INC . 'Frontend.php';
 require_once  FINEST_DOCS_INC . 'functions.php';
+require_once  FINEST_DOCS_INC . 'shortcode.php';
 
 // Load the Functions
 if ( file_exists( FINEST_DOCS_INC . 'option-style.php' ) ) {
 	require_once  FINEST_DOCS_INC . 'option-style.php';
 }
+
+if ( file_exists( FINEST_LIB . 'settings.php' ) ) {
+	require_once  FINEST_LIB . 'settings.php';
+}
+
 // Load the Settings Options
 if ( file_exists( FINEST_DOCS_INC . 'customizer/config.php' ) ) {
 	require_once  FINEST_DOCS_INC . 'customizer/config.php';
 }
+
+
