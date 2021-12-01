@@ -12,7 +12,7 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'sidebar_settings_area',
 	'label'       => esc_html__( 'Sidebar Left Or Right', 'finest-docs' ),
 	'section'     => 'general_settings',
-	'default'     => 'option-1',
+	'default'     => 'left',
 	'priority'    => 10,
 	'multiple'    => 1,
 	'choices'     => [
@@ -20,6 +20,7 @@ Kirki::add_field( 'docs_panel', [
 		'right' => esc_html__( 'Right', 'finest-docs' ),
 		
 	],
+	
 ] );
 
 
