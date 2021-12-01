@@ -3,7 +3,6 @@
 ?>
 <?php while ( have_posts() ) {
         the_post(); ?>
-
         <div class="finest-single-wrap">
         <?php finest_get_template_part( 'finest-docs', 'sidebar' ); ?>
             <div class="finest-single-content">
@@ -13,6 +12,8 @@
                         <?php the_title( '<h1 class="entry-title" itemprop="headline">', '</h1>' ); ?>
                     </header>
                 <div class="entry-content" itemprop="articleBody">
+
+                <div class="autoc" data-stopat='h6' data-offset='1'></div>
                 <?php
                      the_content( sprintf(
                         /* translators: %s: Name of current post. */

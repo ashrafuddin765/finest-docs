@@ -12,7 +12,7 @@ function fqv_register_script(){
 
 	// Enqueue All Js file
 	
-	wp_enqueue_script('finest-docs-core', FINEST_DOCS_ASSETS_JS . 'docs-core.js', array('jquery'), FINEST_DOCS_VERSION ,true);
+	wp_enqueue_script('finest-docs-core', FINEST_DOCS_ASSETS_JS . 'finest-docs.js', array('jquery'), FINEST_DOCS_VERSION ,true);
 
 };
 add_action( 'wp_enqueue_scripts', 'fqv_register_script' );

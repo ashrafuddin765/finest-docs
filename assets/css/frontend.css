@@ -21,3 +21,7 @@
 .finest-single-wrap .finest-single-content ul.finest-breadcrumb li {
     display: inline;
 }
+
+.finest-nav-list>li.page_item_has_children:not(.current_page_item) >.children {
+    display: none;
+}
