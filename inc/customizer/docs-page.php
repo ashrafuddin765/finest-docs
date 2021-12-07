@@ -23,7 +23,7 @@ Kirki::add_field( 'docs_panel', [
 
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'slider',
-	'settings'    => 'slider_setting',
+	'settings'    => 'docs_page_width',
 	'label'       => esc_html__( 'Content Area Width', 'finest-docs' ),
 	'section'     => 'docs_page',
 	'default'     => 75,
@@ -31,6 +31,15 @@ Kirki::add_field( 'docs_panel', [
 		'min'  => 0,
 		'max'  => 100,
 		'step' => 1,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-single-wrap .finest-single-content',
+			'function' => 'css',
+			'property' => 'width',
+			'units'    => '%',
+		],
 	],
 ] );
 
@@ -44,18 +53,25 @@ Kirki::add_field( 'docs_panel', [
 	'choices'     => [
 		'alpha' => true,
 	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.ast-separate-container .finest-docs.ast-article-single:not(.ast-related-post)',
+			'function' => 'css',
+			'property' => 'background-color',
+		],
+	]
 ] );
 
 // padding
-
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'dimensions',
-	'settings'    => 'content_area_padding',
+	'settings'    => 'docs_padding',
 	'label'       => esc_html__( 'Padding', 'finest-docs' ),
 	'section'     => 'docs_page',
 	'default'     => [
 		'padding-top'    => '0px',
-		'padding-bottom' => 'px',
+		'padding-bottom' => '0px',
 		'padding-left'   => '0px',
 		'padding-right'  => '0px',
 	],
@@ -67,10 +83,19 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'content_area_radius',
 	'label'       => esc_html__( 'Radius', 'finest-docs' ),
 	'section'     => 'docs_page',
-	'default'     => 10,
+	'default'     => 0,
 	'choices'     => [
 		'min'  => 0,
 		'max'  => 100,
 		'step' => 1,
 	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.ast-separate-container .finest-docs.ast-article-single:not(.ast-related-post)',
+			'function' => 'css',
+			'property' => 'border-radius',
+			'units'    => 'px',
+		],
+	]
 ] );

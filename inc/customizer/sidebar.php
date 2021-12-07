@@ -46,11 +46,20 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'sidebar_width_setting',
 	'label'       => esc_html__( 'Sidebar Area Width', 'finest-docs' ),
 	'section'     => 'doc_sidebar',
-	'default'     => 35,
+	'default'     => 25,
 	'choices'     => [
 		'min'  => 0,
 		'max'  => 100,
 		'step' => 1,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-single-wrap .finest-sidebar',
+			'function' => 'css',
+			'property' => 'width',
+			'units'    => '%',
+		],
 	],
 ] );
 
@@ -60,10 +69,18 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'sidebar_backgound',
 	'label'       => __( 'Background Color', 'finest-docs' ),
 	'section'     => 'doc_sidebar',
-	'default'     => '#ffffff',
+	'default'     => '#F8F8FA',
 	'choices'     => [
 		'alpha' => true,
 	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-single-wrap .finest-sidebar',
+			'function' => 'css',
+			'property' => 'background-color',
+		],
+	]
 ] );
 
 // padding
@@ -75,7 +92,7 @@ Kirki::add_field( 'docs_panel', [
 	'section'     => 'doc_sidebar',
 	'default'     => [
 		'padding-top'    => '0px',
-		'padding-bottom' => 'px',
+		'padding-bottom' => '0px',
 		'padding-left'   => '0px',
 		'padding-right'  => '0px',
 	],
@@ -87,10 +104,19 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'sidebar_border_radius',
 	'label'       => esc_html__( 'Radius', 'finest-docs' ),
 	'section'     => 'doc_sidebar',
-	'default'     => 10,
+	'default'     => 0,
 	'choices'     => [
 		'min'  => 0,
 		'max'  => 100,
 		'step' => 1,
 	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-single-wrap .finest-sidebar',
+			'function' => 'css',
+			'property' => 'border-radius',
+			'units'    => 'px',
+		],
+	]
 ] );
