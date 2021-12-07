@@ -19,13 +19,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 //Set plugin version constant.
 define( 'FINEST_DOCS_VERSION', '1.1.0');
-
+define( 'FINEST_PLUGIN_NAME', 'FinestDocs');
 define( 'FINEST_DOCS_INC', plugin_dir_path( __FILE__ ) . 'inc/' );
+define( 'FINEST_DOCS_DIR', plugin_dir_path( __FILE__ ) . '/' );
 define( 'FINEST_DOCS_TEMPLATE', plugin_dir_path( __FILE__ ) . 'templates/' );
 define( 'FINEST_DOCS_MAIN', trailingslashit( plugin_dir_path( __FILE__ ) ) );
 define( 'FINEST_DOCS_ASSETS_CSS', plugins_url( 'assets/css/', __FILE__ ));
 define( 'FINEST_DOCS_ASSETS_JS',  plugins_url( 'assets/js/', __FILE__ ));
 define( 'FINEST_LIB', plugin_dir_path( __FILE__ ) . 'lib/' );
+
 
 
 
