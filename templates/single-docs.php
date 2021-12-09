@@ -17,7 +17,7 @@
                     </header>
                     <div class="entry-content" itemprop="articleBody">
 
-                        <div class="autoc" data-stopat='h2' data-offset='1'></div>
+                       
                         <?php
                             the_content( sprintf(
                                 /* translators: %s: Name of current post. */
@@ -35,9 +35,11 @@
                     <?php } ?>
                 </article><!-- #post-## -->
             </div><!-- .finest-single-content -->
-            <?php if ( 'right' == $sidebar && 'none' != $sidebar ): ?>
-            <?php finest_get_template_part( 'finest-docs', 'sidebar' ); ?> 
-            <?php endif; ?>
+             <div class="finest-autoc-wrap" >
+                <div class="autoc" data-stopat='h2' data-offset='1'></div>
+             </div>
+           
+            
         </div><!-- .finest-single-wrap -->
 
     <?php } ?>

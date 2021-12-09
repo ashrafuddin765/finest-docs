@@ -5,7 +5,7 @@
     init: function () {
       this.toc();
 
-      $('ul.finest-nav-list .page_item_has_children> a').append('<span class="toggle-menu dashicons dashicons-arrow-right-alt2"></span>');
+      $('ul.finest-nav-list .page_item_has_children> a').append('<span class="toggle-menu dashicons dashicons-arrow-up-alt2"></span>');
 
 
       $('ul.finest-nav-list .page_item_has_children').on(
@@ -34,7 +34,7 @@
     toc: function () {
 
       var $autoc = $(".autoc");
-      var $content = $autoc.parent();
+      var $content = $('.entry-content');
       var stopAt = $autoc.data("stopat");
       var hs = [];
       switch (stopAt) {

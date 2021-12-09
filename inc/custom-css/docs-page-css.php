@@ -12,7 +12,7 @@
         $fmc_dynamic_css .= "\n";
     }
     if($docs_bgc){
-        $fmc_dynamic_css .= '.ast-separate-container .finest-docs.ast-article-single:not(.ast-related-post) { background-color:' . esc_attr( $docs_bgc ) .' } ';
+        $fmc_dynamic_css .= ' { background-color:' . esc_attr( $docs_bgc ) .' } ';
         $fmc_dynamic_css .= "\n";
     }
     if( $docspadding ){
