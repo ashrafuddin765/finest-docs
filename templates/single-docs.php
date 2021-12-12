@@ -1,14 +1,11 @@
 <?php 
     get_header(); 
-    $sidebar = get_theme_mod('sidebar_settings_area', 'left');
+    
 ?>
 <?php while ( have_posts() ) {
         the_post(); ?>
         <div class="finest-single-wrap">
-            <?php if ( 'left' == $sidebar && 'none' != $sidebar ): ?>
             <?php finest_get_template_part( 'finest-docs', 'sidebar' ); ?> 
-            <?php endif; ?>
-
             <div class="finest-single-content">
                 <?php finest_breadcrumbs(); ?>
                 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemscope >

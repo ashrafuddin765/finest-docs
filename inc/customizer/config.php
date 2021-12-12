@@ -13,8 +13,8 @@ if (function_exists('kirki')) {
 	}
 
 	//docs-pages
-	if ( file_exists(  FINEST_DOCS_INC . 'customizer/docs-page.php' ) ) {
-		require_once(  FINEST_DOCS_INC . 'customizer/docs-page.php' );
+	if ( file_exists(  FINEST_DOCS_INC . 'customizer/single-docs-page.php' ) ) {
+		require_once(  FINEST_DOCS_INC . 'customizer/single-docs-page.php' );
 	}
 
 	// sidebar
