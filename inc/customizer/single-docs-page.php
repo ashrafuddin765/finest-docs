@@ -26,7 +26,7 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'single_page_width',
 	'label'       => esc_html__( 'Content Area Width', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => 75,
+	'default'     => 50,
 	'choices'     => [
 		'min'  => 0,
 		'max'  => 100,
@@ -56,7 +56,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.ast-separate-container .finest-docs.ast-article-single:not(.ast-related-post)',
+			'element'  => '.finest-single-wrap .finest-single-content',
 			'function' => 'css',
 			'property' => 'background-color',
 		],
@@ -90,7 +90,7 @@ Kirki::add_field( 'docs_panel', [
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'title_font_size',
-	'label'       => esc_html__( 'Title Font Size', 'finest-docs' ),
+	'label'       => esc_html__( 'Post Title Font Size', 'finest-docs' ),
 	'section'     => 'single_page',
 	'default'     => 28,
 	'choices'     => [
@@ -101,9 +101,9 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-single-content .entry-content h2',
 			'function' => 'css',
-			'property' => 'width',
+			'property' => 'font-size',
 			'units'    => 'px',
 		],
 	],
@@ -111,8 +111,8 @@ Kirki::add_field( 'docs_panel', [
 
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'color',
-	'settings'    => 'content_title_color',
-	'label'       => __( 'Content Title Color', 'finest-docs' ),
+	'settings'    => 'post_title_color',
+	'label'       => __( 'Post Title Color', 'finest-docs' ),
 	'section'     => 'single_page',
 	'default'     => '#000',
 	'choices'     => [
@@ -121,9 +121,10 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-single-content .entry-content h2',
 			'function' => 'css',
 			'property' => 'color',
+
 		],
 	]
 ] );
@@ -131,15 +132,15 @@ Kirki::add_field( 'docs_panel', [
 // title margin
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'dimensions',
-	'settings'    => 'content_title_margin',
+	'settings'    => 'post_title_margin',
 	'label'       => esc_html__( 'Margin', 'finest-docs' ),
 	'section'     => 'single_page',
 	'default'     => [
 		'margin-top'    => '0px',
-		'margin-bottom' => '0px',
-		'margin-left'   => '0px',
-		'margin-right'  => '0px',
-	],
+		'margin-right' => '0px',
+		'margin-bottom'   => '0px',
+		'margin-left'  => '0px',
+	], 
 ] );
 
 //entry content
@@ -166,9 +167,9 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-single-content .entry-content p',
 			'function' => 'css',
-			'property' => 'width',
+			'property' => 'font-size',
 			'units'    => 'px',
 		],
 	],
@@ -186,7 +187,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-single-content .entry-content p',
 			'function' => 'css',
 			'property' => 'color',
 		],
@@ -197,13 +198,14 @@ Kirki::add_field( 'docs_panel', [
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'dimensions',
 	'settings'    => 'desc_content_margin',
-	'label'       => esc_html__( 'Margin', 'finest-docs' ),
+	'label'       => esc_html__( 'Contetn Margin', 'finest-docs' ),
 	'section'     => 'single_page',
 	'default'     => [
 		'margin-top'    => '0px',
-		'margin-bottom' => '0px',
-		'margin-left'   => '0px',
 		'margin-right'  => '0px',
+		'margin-bottom' => '0px',
+		'margin-left'   => '0px'
+		
 	],
 ] );
 
@@ -229,9 +231,9 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-single-content ul.finest-breadcrumb li a,.finest-single-content ul.finest-breadcrumb li .current',
 			'function' => 'css',
-			'property' => '',
+			'property' => 'font-size',
 			'units'    => 'px',
 		],
 	],
@@ -239,7 +241,7 @@ Kirki::add_field( 'docs_panel', [
 
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'color',
-	'settings'    => 'content_bread_color',
+	'settings'    => 'bread_font_color',
 	'label'       => __( 'Breadcrumb Font Color', 'finest-docs' ),
 	'section'     => 'single_page',
 	'default'     => '#000',
@@ -249,7 +251,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-single-content ul.finest-breadcrumb li a',
 			'function' => 'css',
 			'property' => 'color',
 		],
@@ -268,7 +270,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-single-content ul.finest-breadcrumb li a:hover',
 			'function' => 'css',
 			'property' => 'color',
 		],
@@ -287,7 +289,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-single-content ul.finest-breadcrumb li .current',
 			'function' => 'css',
 			'property' => 'color',
 		],
@@ -306,7 +308,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => 'ul.finest-breadcrumb li .dashicons',
 			'function' => 'css',
 			'property' => 'color',
 		],
@@ -327,9 +329,9 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => 'ul.finest-breadcrumb li .dashicons',
 			'function' => 'css',
-			'property' => '',
+			'property' => 'font-size',
 			'units'    => 'px',
 		],
 	],
@@ -348,7 +350,7 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'docs_table_width',
 	'label'       => esc_html__( 'Content Area Width', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => 75,
+	'default'     => 25,
 	'choices'     => [
 		'min'  => 0,
 		'max'  => 100,
@@ -357,7 +359,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-autoc-wrap',
 			'function' => 'css',
 			'property' => 'width',
 			'units'    => '%',
@@ -377,7 +379,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-autoc-wrap',
 			'function' => 'css',
 			'property' => 'background-color',
 		],
@@ -391,9 +393,9 @@ Kirki::add_field( 'docs_panel', [
 	'section'     => 'single_page',
 	'default'     => [
 		'padding-top'    => '0px',
-		'padding-bottom' => '0px',
-		'padding-left'   => '0px',
-		'padding-right'  => '0px',
+		'padding-right' => '0px',
+		'padding-bottom'   => '0px',
+		'padding-left'  => '0px',
 	],
 ] );
 
@@ -402,7 +404,7 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'table_content_radius',
 	'label'       => esc_html__( 'Content Area Radius', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => 28,
+	'default'     => 0,
 	'choices'     => [
 		'min'  => 0,
 		'max'  => 100,
@@ -411,9 +413,9 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-autoc-wrap',
 			'function' => 'css',
-			'property' => 'width',
+			'property' => 'border-radius',
 			'units'    => 'px',
 		],
 	],
@@ -433,7 +435,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-autoc-wrap .autoc ul li a',
 			'function' => 'css',
 			'property' => 'width',
 			'units'    => '%',
@@ -447,14 +449,14 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'table_title_color',
 	'label'       => __( 'Title Color', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => '#ffffff',
+	'default'     => '#000000',
 	'choices'     => [
 		'alpha' => true,
 	],
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-autoc-wrap .autoc ul li a',
 			'function' => 'css',
 			'property' => 'color',
 		],
@@ -466,49 +468,31 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'table_title_hover_color',
 	'label'       => __( 'Title Hover Color', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => '#ffffff',
+	'default'     => '#000000',
 	'choices'     => [
 		'alpha' => true,
 	],
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-autoc-wrap .autoc ul li a:hover',
 			'function' => 'css',
 			'property' => 'color',
 		],
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
-	'type'        => 'color',
-	'settings'    => 'table_title_active_color',
-	'label'       => __( 'Title Active Color', 'finest-docs' ),
-	'section'     => 'single_page',
-	'default'     => '#ffffff',
-	'choices'     => [
-		'alpha' => true,
-	],
-	'transport' => 'postMessage',
-	'js_vars'   => [
-		[
-			'element'  => '',
-			'function' => 'css',
-			'property' => 'color',
-		],
-	]
-] );
 
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'dimensions',
-	'settings'    => 'table_margin',
+	'settings'    => 'table_title_margin',
 	'label'       => esc_html__( 'Title Margin', 'finest-docs' ),
 	'section'     => 'single_page',
 	'default'     => [
 		'margin-top'    => '0px',
-		'margin-bottom' => '0px',
-		'margin-left'   => '0px',
-		'margin-right'  => '0px',
+		'margin-right' => '0px',
+		'margin-bottom'   => '0px',
+		'margin-left'  => '0px',
 	],
 ] );
 

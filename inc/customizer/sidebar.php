@@ -113,6 +113,15 @@ Kirki::add_field( 'docs_panel', [
 		'max'  => 100,
 		'step' => 1,
 	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-sidebar .widget-title',
+			'function' => 'css',
+			'property' => 'font-size',
+			'units'    => 'px',
+		],
+	]
 ] );
 
 Kirki::add_field( 'docs_panel', [
@@ -120,14 +129,14 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'cate_title_color',
 	'label'       => __( 'Category Title Color', 'finest-docs' ),
 	'section'     => 'doc_sidebar',
-	'default'     => '#fff',
+	'default'     => '#000000',
 	'choices'     => [
 		'alpha' => true,
 	],
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-sidebar .widget-title',
 			'function' => 'css',
 			'property' => 'color',
 		],
@@ -145,6 +154,15 @@ Kirki::add_field( 'docs_panel', [
 		'max'  => 100,
 		'step' => 1,
 	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-sidebar ul li a',
+			'function' => 'css',
+			'property' => 'font-size',
+			'units'    => 'px',
+		],
+	]
 ] );
 
 Kirki::add_field( 'docs_panel', [
@@ -152,16 +170,17 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'single_category_color',
 	'label'       => __( 'Category Color', 'finest-docs' ),
 	'section'     => 'doc_sidebar',
-	'default'     => '#fff',
+	'default'     => '#000000',
 	'choices'     => [
 		'alpha' => true,
 	],
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-sidebar ul li a',
 			'function' => 'css',
 			'property' => 'color',
+			
 		],
 	]
 ] );
@@ -171,14 +190,14 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'single_category_hover_color',
 	'label'       => __( 'Category Hover Color', 'finest-docs' ),
 	'section'     => 'doc_sidebar',
-	'default'     => '#fff',
+	'default'     => '#000000',
 	'choices'     => [
 		'alpha' => true,
 	],
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-sidebar ul li a:hover',
 			'function' => 'css',
 			'property' => 'color',
 		],
@@ -190,14 +209,14 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'single_category_active_color',
 	'label'       => __( 'Category Active Color', 'finest-docs' ),
 	'section'     => 'doc_sidebar',
-	'default'     => '#fff',
+	'default'     => '#000000',
 	'choices'     => [
 		'alpha' => true,
 	],
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-sidebar ul li.current-menu-item',
 			'function' => 'css',
 			'property' => 'color',
 		],
@@ -219,7 +238,6 @@ Kirki::add_field( 'docs_panel', [
 
 // subcategory
 
-
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'subcate_font_size',
@@ -231,6 +249,15 @@ Kirki::add_field( 'docs_panel', [
 		'max'  => 100,
 		'step' => 1,
 	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-sidebar ul li ul.children li a',
+			'function' => 'css',
+			'property' => 'font-size',
+			'units'    => 'px',
+		],
+	]
 ] );
 
 Kirki::add_field( 'docs_panel', [
@@ -238,14 +265,14 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'sub_single_category_color',
 	'label'       => __( 'Sub Category Color', 'finest-docs' ),
 	'section'     => 'doc_sidebar',
-	'default'     => '#fff',
+	'default'     => '#000000',
 	'choices'     => [
 		'alpha' => true,
 	],
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-sidebar ul li ul.children li a',
 			'function' => 'css',
 			'property' => 'color',
 		],
@@ -257,38 +284,20 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'sub_category_hover_color',
 	'label'       => __( 'SubCategory Hover Color', 'finest-docs' ),
 	'section'     => 'doc_sidebar',
-	'default'     => '#fff',
+	'default'     => '#000000',
 	'choices'     => [
 		'alpha' => true,
 	],
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-sidebar ul li ul.children li a:hover',
 			'function' => 'css',
 			'property' => 'color',
 		],
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
-	'type'        => 'color',
-	'settings'    => 'sub_category_active_color',
-	'label'       => __( 'Sub Category Active Color', 'finest-docs' ),
-	'section'     => 'doc_sidebar',
-	'default'     => '#fff',
-	'choices'     => [
-		'alpha' => true,
-	],
-	'transport' => 'postMessage',
-	'js_vars'   => [
-		[
-			'element'  => '',
-			'function' => 'css',
-			'property' => 'color',
-		],
-	]
-] );
 
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'dimensions',
