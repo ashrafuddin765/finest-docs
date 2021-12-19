@@ -12,12 +12,12 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'docs_category_layout',
 	'label'       => esc_html__( 'Select Layout', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => 'left',
+	'default'     => 'icon',
 	'priority'    => 10,
 	'choices'     => [
-		'left'   => plugin_dir_url( __FILE__ ) . '/assets/img/single-layout-1.png',
-		'center' => get_template_directory_uri() . '/assets/img/single-layout-2.png',
-		'right'  => '/assets/img/single-layout-3.png',
+		'icon'   => FINEST_DOCS_ASSETS_ASSETS . 'menu-icon.png',
+		'without-icon' => FINEST_DOCS_ASSETS_ASSETS . 'menu.png',
+		
 	],
 ] );
 
