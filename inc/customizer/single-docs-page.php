@@ -437,8 +437,8 @@ Kirki::add_field( 'docs_panel', [
 		[
 			'element'  => '.finest-autoc-wrap .autoc ul li a',
 			'function' => 'css',
-			'property' => 'width',
-			'units'    => '%',
+			'property' => 'font-size',
+			'units'    => 'px',
 		],
 	],
 ] );
