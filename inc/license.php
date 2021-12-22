@@ -1,10 +1,10 @@
 <?php
 
-namespace FinestDevs;
+namespace FinestDocs;
 
 use ErrorException;
 
-if ( !class_exists( 'FinestDdevs\License' ) ) {
+if ( !class_exists( 'FinestDocs\License' ) ) {
 
     /**
      * License Manager for WooCommerce SDK to let communication with the API
@@ -137,6 +137,25 @@ if ( !class_exists( 'FinestDdevs\License' ) ) {
 
         }
 
+        public static function init(
+            $plugin_name,
+            $server_url,
+            $customer_key,
+            $customer_secret,
+            $product_ids,
+            $license_options,
+            $valid_object,
+            $ttl ) {
+            return new self( $plugin_name,
+                $server_url,
+                $customer_key,
+                $customer_secret,
+                $product_ids,
+                $license_options,
+                $valid_object,
+                $ttl 
+            );
+        }
         /**
          * HTTP Request call
          *
@@ -152,7 +171,8 @@ if ( !class_exists( 'FinestDdevs\License' ) ) {
         private function call( $endpoint, $method = 'GET', $args = '' ) {
 
             # Populate the correct endpoint for the API request
-            $url = "{$this->api_url}{$endpoint}?consumer_key={$this->customer_key}&consumer_secret={$this->customer_secret}";
+            $client_url =  urlencode(home_url());
+            $url = "{$this->api_url}{$endpoint}?consumer_key={$this->customer_key}&consumer_secret={$this->customer_secret}&url={$client_url}";
 
             # Create header
             $headers = [
@@ -171,6 +191,7 @@ if ( !class_exists( 'FinestDdevs\License' ) ) {
             if ( !empty( $args ) ) {
                 $wp_args['body'] = $args;
             }
+            
 
             # Make the call and store the response in $res
             $res = wp_remote_request( $url, $wp_args );
@@ -179,7 +200,7 @@ if ( !class_exists( 'FinestDdevs\License' ) ) {
             if ( !is_wp_error( $res ) && ( $res['response']['code'] == 200 || $res['response']['code'] == 201 ) ) {
                 return json_decode( $res['body'], TRUE );
             } elseif ( is_wp_error( $res ) ) {
-                return $res;
+                return (array) $res;
             } else {
                 $response = json_decode( $res['body'], TRUE );
                 return $response;
@@ -200,13 +221,14 @@ if ( !class_exists( 'FinestDdevs\License' ) ) {
             $license = null;
             if ( !empty( $license_key ) ) {
                 $response = $this->call( "licenses/activate/{$license_key}" );
-                if ( isset( $response['success'] ) && $response['success'] === true ) {
+                if ( is_array($response) && isset( $response['success'] ) && $response['success'] === true ) {
                     $license                           = $response['data'];
                     $this->valid_status['is_valid']    = true;
                     $this->valid_status['license_key'] = $license_key;
                     update_option( $this->valid_object, $this->valid_status );
 
                 } else {
+
                     $this->valid_status['is_valid']       = false;
                     $this->valid_status['error']          = $response['message'];
                     $this->valid_status['nextValidation'] = time();
@@ -246,7 +268,7 @@ if ( !class_exists( 'FinestDdevs\License' ) ) {
          * @since 1.0.0
          *
          */
-        public function validate_status( $license_key = '' ) {
+        public function validate_status( $license_key ) {
 
             # Generic valid result
             $valid_result = [
@@ -274,8 +296,7 @@ if ( !class_exists( 'FinestDdevs\License' ) ) {
                 } else {
                     try {
                         $response = $this->call( "licenses/{$license_key}" );
-                        if ( isset( $response['success'] ) && $response['success'] === true ) {
-
+                        if (is_array($response) && isset( $response['success'] ) && $response['success'] === true ) {
                             # Calculate license expiration date
                             $this->valid_status['valid_until'] = ( $response['data']['expiresAt'] !== null ) ? strtotime( $response['data']['expiresAt'] ) : null;
 
@@ -293,9 +314,11 @@ if ( !class_exists( 'FinestDdevs\License' ) ) {
                                 $valid_result['error']    = '';
                                 $ttl                      = $this->ttl;
                             }
-
+                            
+                        }elseif(is_array($response) && 'fdl_rest_domain_error' == $response['code']){
+                            $valid_result['error'] = __( $response['message'], $this->plugin_name );
                         }
-
+                        
                     } catch ( ErrorException $exception ) {
                         $valid_result['error'] = $exception->getMessage();
                     }
@@ -326,10 +349,10 @@ if ( !class_exists( 'FinestDdevs\License' ) ) {
         // create custom plugin settings menu
         function create_license_menu( $parent_menu = '' ) {
             if ( !empty( $parent_menu ) ) {
-                add_submenu_page( $parent_menu, __( 'Finest License', 'finest-docs' ), __( 'Finest License', 'finest-docs' ), 'manage_options', 'finest-license', [$this, 'license_settings_page'] );
+                add_submenu_page( $parent_menu, __( 'Finest License', 'finest-mini-cart-pro' ), __( 'Finest License', 'finest-mini-cart-pro' ), 'manage_options', 'finest-license', [$this, 'license_settings_page'] );
             } else {
                 // create new top-level menu
-                // add_menu_page( FINEST_PLUGIN_NAME, 'Finest License', 'administrator', __FILE__, [$this, 'license_settings_page'] );
+                // add_menu_page( $this->plugin_name, 'Finest License', 'administrator', __FILE__, [$this, 'license_settings_page'] );
 
             }
         }
@@ -353,7 +376,7 @@ if ( !class_exists( 'FinestDdevs\License' ) ) {
             ?>
             <div class="wrap">
 
-            <h1><?php esc_html_e( FINEST_PLUGIN_NAME, 'finestdocs' )?></h1>
+            <h1><?php esc_html_e( $this->plugin_name, 'finest-mini-cart-pro' )?></h1>
             <?php if ( $this->is_activated() ): ?>
                 <strong style='color:green'><?php echo esc_html_e( 'License Activated', $this->plugin_name ) ?></strong>
                 <?php else: ?>
@@ -362,9 +385,9 @@ if ( !class_exists( 'FinestDdevs\License' ) ) {
             <form method="post" action="">
                     <input type="text" name="<?php echo $this->valid_object ?>" value="<?php echo esc_attr( $license ); ?>" required />
                     <?php if ( !$this->is_activated() ): ?>
-                    <button type="submit" name="activate"><?php esc_html_e( 'Activate', 'finestdocs' )?></button>
+                    <button type="submit" name="activate"><?php esc_html_e( 'Activate', 'finest-mini-cart-pro' )?></button>
                     <?php else: ?>
-                    <button type="submit" name="deactivate"><?php esc_html_e( 'Deactivate', 'finestdocs' )?></button>
+                    <button type="submit" name="deactivate"><?php esc_html_e( 'Deactivate', 'finest-mini-cart-pro' )?></button>
                     <?php endif;?>
 
             </form>

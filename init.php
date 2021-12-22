@@ -4,6 +4,9 @@
 *  Register CSS
 *
 */
+
+use Finestics\Insights;
+
 function fqv_register_script(){
 
 	// Enqueue All css
@@ -25,7 +28,7 @@ add_action( 'wp_enqueue_scripts', 'fqv_register_script' );
 // Load the Functions
 require_once  FINEST_DOCS_INC . 'license.php';
 
-$sdk_license = new FinestDevs\License( 
+$sdk_license =  FinestDocs\License::init( 
 	'FinestDocs',   // The plugin name is used to manage internationalization
 	'https://grayic.com/plugintest', //Replace with the URL of your license server (without the trailing slash)
 	'ck_c293e33b48c85dd9ddef489a5d88adbb19f39108', //Customer key created in the license server
@@ -41,6 +44,7 @@ global $sdk_license;
 
 
 
+require_once  FINEST_DOCS_INC . 'Finestics/Client.php';
 require_once  FINEST_DOCS_INC . 'functions.php';
 if ( file_exists( FINEST_DOCS_INC . 'Post_types.php' ) ) {
 	require_once  FINEST_DOCS_INC . 'Post_types.php';
@@ -66,6 +70,8 @@ if ( file_exists( FINEST_DOCS_INC . 'customizer/config.php' ) ) {
 	require_once  FINEST_DOCS_INC . 'customizer/config.php';
 }
 
+$init_finestics = new Finestics\Client( 'FinestDocs', 'FinestDocs', FINEST_DOCS_FILE );
+$init_finestics->insights()->init();
 
 
 // Register and load the widget
