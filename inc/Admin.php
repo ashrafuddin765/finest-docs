@@ -37,16 +37,23 @@ class Admin {
 
     public function admin_menu() {
         global $sdk_license;
-            add_menu_page( __( 'FinestDocs', 'finest-docs' ), __( 'Finestdocs', 'finest-docs' ), 'manage_options', 'finest-docs', [$this, 'page_index'], 'dashicons-media-document', 48 );
+            add_menu_page( __( 'FinestDocs', 'finest-docs' ), __( 'Finestdocs', 'finest-docs' ), 'manage_options', 'finest-docs', [$this, 'doc_page'], 'dashicons-media-document', 48 );
 
-            add_submenu_page( 'finest-docs', __( 'Docs', 'finest-docs' ), __( 'Docs', 'finest-docs' ), 'manage_options', 'finest-docs', [$this, 'page_index'] );
+            add_submenu_page( 'finest-docs', __( 'Docs', 'finest-docs' ), __( 'Docs', 'finest-docs' ), 'manage_options', 'finest-docs', [$this, 'doc_page'] );
+
             add_submenu_page( 'finest-docs', __( 'Tags', 'finest-docs' ), __( 'Tags', 'finest-docs' ), 'manage_categories', 'edit-tags.php?taxonomy=doc-tag&post_type=finest-docs' );
+
+            add_submenu_page( 'finest-docs', __( 'Settings', 'finest-docs' ), __( 'Settings', 'finest-docs' ), 'manage_options', 'finest-settings', [$this, 'settings_page'] );
+
             $sdk_license->create_license_menu('finest-docs');
 
     }
 
-    public function page_index() {
+    public function doc_page() {
         include 'view/admin.php';
+    }
+    public function settings_page() {
+        include 'view/settings.php';
     }
 
 }

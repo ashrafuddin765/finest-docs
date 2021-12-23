@@ -48,17 +48,76 @@ Kirki::add_field( 'docs_panel', [
 	],
 ] );
 
-// border_radius
-// border_radius
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'color',
+	'settings'    => 'archive_title_color',
+	'label'       => __( 'Archive Title Color', 'finest-docs' ),
+	'section'     => 'docs_archive',
+	'default'     => '#0088CC',
+	'choices'     => [
+		'alpha' => true,
+	],
+] );
+
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'slider',
-	'settings'    => 'archive_border_radius',
-	'label'       => esc_html__( 'Radius', 'finest-docs' ),
+	'settings'    => 'archive_title_font_size',
+	'label'       => esc_html__( 'Archive Title Font Size', 'finest-docs' ),
 	'section'     => 'docs_archive',
-	'default'     => 10,
+	'default'     => 42,
 	'choices'     => [
 		'min'  => 0,
 		'max'  => 100,
 		'step' => 1,
+	],
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'dimensions',
+	'settings'    => 'archive_title_margin',
+	'label'       => esc_html__( 'Dimension Control', 'finest-docs' ),
+	'section'     => 'docs_archive',
+	'default'     => [
+		'padding-top'    => '0px',
+		'padding-bottom' => '0px',
+		'padding-left'   => '0px',
+		'padding-right'  => '0px',
+	],
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'color',
+	'settings'    => 'archive_desc_color',
+	'label'       => __( 'Description Color', 'finest-docs' ),
+	'section'     => 'docs_archive',
+	'default'     => '#0088CC',
+	'choices'     => [
+		'alpha' => true,
+	],
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'slider',
+	'settings'    => 'archive_desc_font_size',
+	'label'       => esc_html__( 'Description Font size', 'finest-docs' ),
+	'section'     => 'docs_archive',
+	'default'     => 42,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
+	],
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'dimensions',
+	'settings'    => 'archive_desc_margin',
+	'label'       => esc_html__( 'Archive Description Margin', 'finest-docs' ),
+	'section'     => 'docs_archive',
+	'default'     => [
+		'padding-top'    => '0px',
+		'padding-bottom' => '0px',
+		'padding-left'   => '0px',
+		'padding-right'  => '0px',
 	],
 ] );

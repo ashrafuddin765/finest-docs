@@ -28,6 +28,30 @@ Kirki::add_field( 'docs_panel', [
 
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'slider',
+	'settings'    => 'heading_font_size',
+	'label'       => esc_html__( 'Heading Font size', 'finest-docs' ),
+	'section'     => 'docs_serach',
+	'default'     => 12,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
+	],
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'color',
+	'settings'    => 'search_heading_color',
+	'label'       => __( 'Search Heading Color', 'finest-docs' ),
+	'section'     => 'docs_serach',
+	'default'     => '#0088CC',
+	'choices'     => [
+		'alpha' => true,
+	],
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'slider',
 	'settings'    => 'search_width',
 	'label'       => esc_html__( 'Search Width', 'finest-docs' ),
 	'section'     => 'docs_serach',
@@ -45,6 +69,30 @@ Kirki::add_field( 'docs_panel', [
 	'label'       => esc_html__( 'Search Height', 'finest-docs' ),
 	'section'     => 'docs_serach',
 	'default'     => 42,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
+	],
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'color',
+	'settings'    => 'search_filed_color',
+	'label'       => __( 'Search Text Color', 'finest-docs' ),
+	'section'     => 'docs_serach',
+	'default'     => '#0088CC',
+	'choices'     => [
+		'alpha' => true,
+	],
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'slider',
+	'settings'    => 'search_field_size',
+	'label'       => esc_html__( 'Search Field Font size', 'finest-docs' ),
+	'section'     => 'docs_serach',
+	'default'     => 10,
 	'choices'     => [
 		'min'  => 0,
 		'max'  => 100,

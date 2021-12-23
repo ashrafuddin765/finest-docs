@@ -46,6 +46,7 @@ global $sdk_license;
 
 require_once  FINEST_DOCS_INC . 'Finestics/Client.php';
 require_once  FINEST_DOCS_INC . 'functions.php';
+require_once  FINEST_DOCS_INC . 'Walker/Finest_Walker.php';
 if ( file_exists( FINEST_DOCS_INC . 'Post_types.php' ) ) {
 	require_once  FINEST_DOCS_INC . 'Post_types.php';
 }
