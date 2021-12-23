@@ -174,11 +174,15 @@ class Finest_walker extends Walker {
                 $attributes .= ' ' . $attr . '="' . $value . '"';
             }
         }
+
+        $doc_icon_meta = get_post_meta( $page->ID, 'fd_doc_icon', true );
+        $doc_icon = !empty($doc_icon_meta) ? '<img src="'.esc_url( $doc_icon_meta ).'"' : '';
  
         $output .= $indent . sprintf(
-            '<li%s><a%s> ok %s%s%s</a>',
+            '<li%s><a%s> %s %s%s%s</a>',
             $css_classes,
             $attributes,
+            $doc_icon,
             $args['link_before'],
             /** This filter is documented in wp-includes/post-template.php */
             apply_filters( 'the_title', $page->post_title, $page->ID ),

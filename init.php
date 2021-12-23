@@ -51,6 +51,7 @@ if ( file_exists( FINEST_DOCS_INC . 'Post_types.php' ) ) {
 	require_once  FINEST_DOCS_INC . 'Post_types.php';
 }
 require_once  FINEST_DOCS_INC . 'Admin.php';
+require_once  FINEST_DOCS_INC . 'Metabox.php';
 require_once  FINEST_DOCS_INC . 'Admin.php';
 require_once  FINEST_DOCS_INC . 'Ajax.php';
 require_once  FINEST_DOCS_INC . 'Frontend.php';
@@ -80,3 +81,20 @@ function wpb_load_widget() {
     register_widget( 'Widget' );
 }
 add_action( 'widgets_init', 'wpb_load_widget' );
+
+
+function cc_mime_types($mimes) {
+	$mimes['svg'] = 'image/svg+xml';
+	return $mimes;
+  }
+  add_filter('upload_mimes', 'cc_mime_types');
+
+  function fix_svg_thumb_display() {
+	echo '
+	  td.media-icon img[src$=".svg"], img[src$=".svg"].attachment-post-thumbnail { 
+		width: 100% !important; 
+		height: auto !important; 
+	  }
+	';
+  }
+  add_action('admin_head', 'fix_svg_thumb_display');

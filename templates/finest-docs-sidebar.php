@@ -27,7 +27,7 @@ $children = wp_list_pages( [
     'post_type'   => 'finest-docs',
     // 'link_after' => '<span class="toggle-menu dashicons dashicons-arrow-up-alt2"></span>',
     'link_before' => $link_before,
-    // 'walker' => new Finest_walker()
+    'walker' => new Finest_walker()
 ] );
 ?>
     <?php if ( $enabled_multidoc ): ?>
