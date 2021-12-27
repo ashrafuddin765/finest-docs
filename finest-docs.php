@@ -30,10 +30,11 @@ define( 'FINEST_DOCS_ASSETS_JS',  plugins_url( 'assets/js/', __FILE__ ));
 define( 'FINEST_DOCS_ASSETS_ASSETS',  plugins_url( 'assets/img/', __FILE__ ));
 define( 'FINEST_LIB', plugin_dir_path( __FILE__ ) . 'lib/' );
 
+add_action( 'init', 'init' );
 
-
-
-
+function init(){
+    // fd_duplicator(20);
+}
 
 // // Load the library
 // if ( file_exists( FINEST_DOCS_MAIN . 'lib/settings.php' ) ) {
