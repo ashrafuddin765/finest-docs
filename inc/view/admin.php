@@ -38,7 +38,6 @@
                             stroke="#111827" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
 
-
                     {{ doc.post.title }}<span v-if="doc.post.status != 'publish'"
                         class="doc-status">{{ doc.post.status }}</span></a>
                 <span v-else>{{ doc.post.title }}<span v-if="doc.post.status != 'publish'"
