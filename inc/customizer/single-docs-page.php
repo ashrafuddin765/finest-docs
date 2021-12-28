@@ -12,7 +12,7 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'docs_category_layout',
 	'label'       => esc_html__( 'Select Layout', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => 'icon',
+	'default'     => 'layout-01',
 	'priority'    => 10,
 	'choices'     => [
 		'layout-01'   => FINEST_DOCS_ASSETS_ASSETS . 'menu-icon.png',
@@ -70,10 +70,10 @@ Kirki::add_field( 'docs_panel', [
 	'label'       => esc_html__( 'Padding', 'finest-docs' ),
 	'section'     => 'single_page',
 	'default'     => [
-		'padding-top'    => '0px',
-		'padding-bottom' => '0px',
-		'padding-left'   => '0px',
-		'padding-right'  => '0px',
+		'padding-top'    => '45px',
+		'padding-left' => '45px',
+		'padding-bottom'   => '190px',
+		'padding-right'  => '45px',
 	],
 ] );
 
@@ -87,26 +87,22 @@ Kirki::add_field( 'docs_panel', [
 	'priority'    => 10,
 ] );
 
+
 Kirki::add_field( 'docs_panel', [
-	'type'        => 'slider',
-	'settings'    => 'title_font_size',
-	'label'       => esc_html__( 'Post Title Font Size', 'finest-docs' ),
+	'type'        => 'typography',
+	'settings'    => 'docs_title_typography',
+	'label'       => esc_html__( 'Typography', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => 28,
-	'choices'     => [
-		'min'  => 0,
-		'max'  => 100,
-		'step' => 1,
+	'default'     => [
+		'font-family'    => 'Inter',
+		'variant'        => '600',
+		'font-size'      => '28px',
+		'line-height'    => '1.72em',
+		'letter-spacing' => '0',
+		'text-transform' => 'none',
 	],
-	'transport' => 'postMessage',
-	'js_vars'   => [
-		[
-			'element'  => '.finest-single-content .entry-content h2',
-			'function' => 'css',
-			'property' => 'font-size',
-			'units'    => 'px',
-		],
-	],
+	'priority'    => 10,
+	
 ] );
 
 Kirki::add_field( 'docs_panel', [
@@ -153,26 +149,31 @@ Kirki::add_field( 'docs_panel', [
 	'priority'    => 10,
 ] );
 
+
 Kirki::add_field( 'docs_panel', [
-	'type'        => 'slider',
-	'settings'    => 'desc_font_size',
-	'label'       => esc_html__( 'Content Font Size', 'finest-docs' ),
+	'type'        => 'typography',
+	'settings'    => 'desc_title_typography',
+	'label'       => esc_html__( 'Typography', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => 16,
-	'choices'     => [
-		'min'  => 0,
-		'max'  => 100,
-		'step' => 1,
+	'default'     => [
+		'font-family'    => 'Inter',
+		'variant'        => 'regular',
+		'font-size'      => '16px',
+		'line-height'    => '1.6em',
+		'letter-spacing' => '0',
+		'text-transform' => 'none',
 	],
+	'priority'    => 10,
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
 			'element'  => '.finest-single-content .entry-content p',
 			'function' => 'css',
-			'property' => 'font-size',
-			'units'    => 'px',
+			'property' => [],
+			
 		],
 	],
+	
 ] );
 
 Kirki::add_field( 'docs_panel', [
@@ -180,7 +181,7 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'content_desc_color',
 	'label'       => __( 'Content Color', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => '#000',
+	'default'     => 'rgba(0, 0, 0, 0.7)',
 	'choices'     => [
 		'alpha' => true,
 	],
@@ -218,25 +219,29 @@ Kirki::add_field( 'docs_panel', [
 ] );
 
 Kirki::add_field( 'docs_panel', [
-	'type'        => 'slider',
-	'settings'    => 'bread_font_size',
-	'label'       => esc_html__( 'Breadcrumb Font Size', 'finest-docs' ),
+	'type'        => 'typography',
+	'settings'    => 'brad_typography',
+	'label'       => esc_html__( 'Typography', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => 14,
-	'choices'     => [
-		'min'  => 0,
-		'max'  => 100,
-		'step' => 1,
+	'default'     => [
+		'font-family'    => 'Inter',
+		'variant'        => 'regular',
+		'font-size'      => '14px',
+		'line-height'    => '1.5em',
+		'letter-spacing' => '0',
+		'text-transform' => 'none',
 	],
+	'priority'    => 10,
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-single-content ul.finest-breadcrumb li a,.finest-single-content ul.finest-breadcrumb li .current',
+			'element'  => '.finest-single-content ul.finest-breadcrumb li a',
 			'function' => 'css',
-			'property' => 'font-size',
-			'units'    => 'px',
+			'property' => [],
+			
 		],
 	],
+	
 ] );
 
 Kirki::add_field( 'docs_panel', [
@@ -421,28 +426,32 @@ Kirki::add_field( 'docs_panel', [
 	],
 ] );
 
+
 Kirki::add_field( 'docs_panel', [
-	'type'        => 'slider',
-	'settings'    => 'table_title_font_size',
-	'label'       => esc_html__( 'Title Font Size', 'finest-docs' ),
+	'type'        => 'typography',
+	'settings'    => 'table_title_typography',
+	'label'       => esc_html__( 'Typography', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => 18,
-	'choices'     => [
-		'min'  => 0,
-		'max'  => 100,
-		'step' => 1,
+	'default'     => [
+		'font-family'    => 'Inter',
+		'variant'        => '500',
+		'font-size'      => '18px',
+		'line-height'    => '1.66em',
+		'letter-spacing' => '0',
+		'text-transform' => 'none',
 	],
+	'priority'    => 10,
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
 			'element'  => '.finest-autoc-wrap .autoc ul li a',
 			'function' => 'css',
-			'property' => 'font-size',
-			'units'    => 'px',
+			'property' => [],
+			
 		],
 	],
+	
 ] );
-
 
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'color',

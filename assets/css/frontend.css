@@ -1,3 +1,22 @@
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #fff;
+}
+.container-layout-01 {
+    max-width: 100%;
+}
+.container-layout-02 {
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px
+}
+
+.finest-docs-template-default {
+    background-color: #fff;
+}
 .finest-single-wrap {
     width: 100%;
     display: -ms-flex;
@@ -16,13 +35,15 @@
     padding-top: 45px;
     padding-right: 30px;
     padding-bottom: 45px;
+    position: sticky;
+    top: 0px;
 }
 
 .finest-single-wrap .finest-single-content {
     width: 50%;
     background-color: #fff;
     padding-top: 45px;
-    padding-bottom: 100px;
+    padding-bottom: 190px;
     padding-left: 45px;
     padding-right: 45px;
 }
@@ -36,7 +57,8 @@
 }
 
 .finest-single-wrap .finest-single-content ul.finest-breadcrumb li {
-    display: inline;
+    display: flex;
+    align-items: center;
 }
 
 .ast-single-post .entry-title {
@@ -47,6 +69,9 @@
     line-height: 1.72em;
     color: #000000;
     text-transform: capitalize;
+}
+.finest-single-content ul.finest-breadcrumb li .current {
+    font-size: 13px;
 }
 
 .finest-nav-list li.page_item_has_children>.children {
@@ -85,9 +110,10 @@
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
-    line-height: 30px;
+    line-height: 1.66em;
     color: #000000;
     display: inline-block;
+    transition: all 0.3s;
 }
 
 .finest-autoc-wrap .autoc ul li:last-child {
@@ -97,6 +123,9 @@
 .finest-autoc-wrap .autoc {
     border-left: 1px solid rgba(0, 0, 0, 0.1);
     padding-left: 30px;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 100px;
 }
 
 .autoc .autoc-level-H3 {
@@ -128,15 +157,16 @@
 }
 
 .finest-sidebar .widget-title {
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
     font-size: 13px;
-    line-height: 18px;
+    line-height: 1.38em;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: rgba(0, 0, 0, 0.4);
+    margin-bottom: 30px;
 }
+
 
 .finest-sidebar ul {
     margin: 0px;
@@ -146,9 +176,10 @@
 
 .finest-single-wrap .finest-sidebar {
     background-color: #F8F8FA;
-    padding-top: 35px;
+    padding-top: 30px;
     padding-left: 45px;
-    padding-right: 20px;
+    padding-right: 15px;
+    padding-bottom: 20px;
 }
 
 .finest-sidebar ul li a {
@@ -158,36 +189,55 @@
     line-height: 30px;
     color: #000000;
     display: block;
-    padding-bottom: 15px;
+    margin-bottom: 15px;
 }
-
+.finest-sidebar ul.finest-nav-list li a span {
+    display: inline-block;
+    line-height: 18px;
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
+    color: #111827;
+    margin-right: 20px;
+    font-size: 18px;
+}
 .finest-sidebar ul li ul.children li a {
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 16px;
-    line-height: 24px;
+    line-height: 1.5em;
     color: rgba(0, 0, 0, 0.7);
     display: block;
+    padding-left: 38px;
 }
-
+.finest-sidebar ul.finest-nav-list li ul.children li a span {
+    display: none;
+}
 ul.finest-breadcrumb li .dashicons {
-    line-height: 28px;
+    line-height: 1.55em;
     font-size: 18px;
 }
 
-ul.finest-nav-list li .menu-link .toggle-menu {
-    line-height: 1.75em;
+.finest-sidebar ul.finest-nav-list li a span.toggle-menu {
+    line-height: initial;
     font-size: 18px;
     position: absolute;
     right: 0;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-ul.finest-breadcrumb li .dashicons {
+.finest-single-content ul.finest-breadcrumb li span.dashicons {
     margin-right: 5px;
-    font-size: 14px;
+    font-size: 20px;
+    line-height: initial;
+   
 }
-
+.finest-single-content ul.finest-breadcrumb li a {
+    color: #000000;
+    margin-right: 5px;
+    margin-left: 5px;
+}
 .ast-separate-container .finest-docs.ast-article-single:not(.ast-related-post) {
     background-color: transparent;
 }
@@ -197,23 +247,25 @@ ul.finest-breadcrumb li .dashicons {
 }
 
 .finest-single-content .entry-content h2 {
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
     font-size: 28px;
     line-height: 1.72em;
     color: #000000;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
-
+.single .entry-header {
+    margin-bottom: 30px;
+}
 .finest-single-content .entry-content p {
-    font-family: 'Inter';
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     line-height: 1.6em;
     color: rgba(0, 0, 0, 0.7);
     margin-right: 80px;
+    margin-bottom: 35px;
+    margin-right: 150px;
 
 }
 
@@ -226,7 +278,7 @@ ul.finest-breadcrumb li .dashicons {
     letter-spacing: 2px;
     text-transform: uppercase;
     color: rgba(0, 0, 0, 0.4);
-    padding-bottom: 25px;
+    padding-bottom:10px;
 }
 
 /********************* 
@@ -237,20 +289,36 @@ ul.finest-breadcrumb li .dashicons {
     border-left: 0px;
     padding-left: 0px;
 }
+.finest-sidebar.layout-two-bg {
+    background-color: transparent !important;
+}
 
-@media (min-width: 922px) {
-    .ast-container {
-        max-width: 100%;
-    }
+.container-layout-02 .finest-single-content .entry-content p {
+    margin-right: 30px;
 }
 
 @media screen and (min-width: 992px) and (max-width: 1444px) {
     .finest-single-content .entry-content p {
         margin-right: 20px;
     }
+    .finest-single-wrap .finest-sidebar {
+        padding-left: 20px;
+        padding-right: 0px;
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
+    .finest-single-wrap .finest-single-content {
+        width: 100% !important;
+    }
+    .finest-single-wrap .finest-sidebar {
+        width: 50% !important;
+        order: -2;
+    }
+    .finest-autoc-wrap {
+        width: 50% !important;
+        order: -1;
+    }
     .finest-single-wrap .finest-single-content {
         padding-top: 20px;
         padding-left: 20px;
@@ -278,6 +346,7 @@ ul.finest-breadcrumb li .dashicons {
     .finest-autoc-wrap {
         padding-top: 25px;
         padding-right: 20px;
+        padding-left: 20px;
     }
 
     .finest-autoc-wrap .autoc {
@@ -289,15 +358,24 @@ ul.finest-breadcrumb li .dashicons {
     .finest-single-wrap .finest-sidebar {
         width: 100% !important;
         order: -2;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
     }
 
     .finest-autoc-wrap {
-        width: 100%;
+        width: 100% !important;
         order: -1;
     }
 
     .finest-single-wrap .finest-single-content {
-        width: 100%;
+        width: 100% !important;
         order: 0;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 25px;
+    }
+    .finest-single-content .entry-content p {
+        margin-right: 0px; 
     }
 }

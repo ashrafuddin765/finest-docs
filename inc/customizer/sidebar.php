@@ -6,20 +6,6 @@ Kirki::add_section( 'doc_sidebar', array(
 ) );
 
 
-Kirki::add_field( 'docs_panel', [
-	'type'        => 'radio-image',
-	'settings'    => 'sidebAR_LAYOUT',
-	'label'       => esc_html__( 'Radio Control (Image)', 'finest-docs' ),
-	'section'     => 'doc_sidebar',
-	'default'     => 'left',
-	'priority'    => 10,
-	'choices'     => [
-		'left'   => 'http://finestwp.local/wp-content/plugins/betterdocs/admin/assets/img/docs-layout-1.png',
-		'center' => get_template_directory_uri() . '/assets/images/center.png',
-		'right'  => get_template_directory_uri() . '/assets/images/right.png',
-	],
-] );
-
 // sidebar_width
 
 Kirki::add_field( 'docs_panel', [
@@ -63,7 +49,6 @@ Kirki::add_field( 'docs_panel', [
 		],
 	]
 ] );
-
 // padding
 
 Kirki::add_field( 'docs_panel', [
@@ -94,42 +79,47 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-single-wrap .finest-sidebar',
 			'function' => 'css',
 			'property' => 'border-radius',
-			'units'    => 'px',
+			'units'    => 'px'
 		],
 	]
 ] );
 
 Kirki::add_field( 'docs_panel', [
-	'type'        => 'slider',
-	'settings'    => 'cat_title_font_size',
-	'label'       => esc_html__( 'Category Title Font Size', 'finest-docs' ),
+	'type'        => 'typography',
+	'settings'    => 'sidebar_typography',
+	'label'       => esc_html__( 'Category Typography', 'finest-docs' ),
 	'section'     => 'doc_sidebar',
-	'default'     => 14,
-	'choices'     => [
-		'min'  => 0,
-		'max'  => 100,
-		'step' => 1,
+	'default'     => [
+		'font-family'    => 'Inter',
+		'variant'        => '500',
+		'font-size'      => '18px',
+		'line-height'    => '1.66em',
+		'letter-spacing' => '0',
+		'text-transform' => 'none',
 	],
+	'priority'    => 10,
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-sidebar .widget-title',
+			'element'  => '.finest-sidebar ul li a',
 			'function' => 'css',
-			'property' => 'font-size',
-			'units'    => 'px',
+			'property' => [],
+			
 		],
-	]
+	],
+	
 ] );
+
 
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'color',
 	'settings'    => 'cate_title_color',
 	'label'       => __( 'Category Title Color', 'finest-docs' ),
 	'section'     => 'doc_sidebar',
-	'default'     => '#000000',
+	'default'     => 'rgba(0, 0, 0, 0.4)',
 	'choices'     => [
 		'alpha' => true,
 	],
@@ -139,28 +129,6 @@ Kirki::add_field( 'docs_panel', [
 			'element'  => '.finest-sidebar .widget-title',
 			'function' => 'css',
 			'property' => 'color',
-		],
-	]
-] );
-
-Kirki::add_field( 'docs_panel', [
-	'type'        => 'slider',
-	'settings'    => 'category_font_size',
-	'label'       => esc_html__( 'Category Font Size', 'finest-docs' ),
-	'section'     => 'doc_sidebar',
-	'default'     => 14,
-	'choices'     => [
-		'min'  => 0,
-		'max'  => 100,
-		'step' => 1,
-	],
-	'transport' => 'postMessage',
-	'js_vars'   => [
-		[
-			'element'  => '.finest-sidebar ul li a',
-			'function' => 'css',
-			'property' => 'font-size',
-			'units'    => 'px',
 		],
 	]
 ] );
@@ -265,7 +233,7 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'sub_single_category_color',
 	'label'       => __( 'Sub Category Color', 'finest-docs' ),
 	'section'     => 'doc_sidebar',
-	'default'     => '#000000',
+	'default'     => 'color: rgba(0, 0, 0, 0.7)',
 	'choices'     => [
 		'alpha' => true,
 	],
@@ -310,4 +278,93 @@ Kirki::add_field( 'docs_panel', [
 		'padding-left'   => '0px',
 		'padding-right'  => '0px',
 	],
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'custom',
+	'settings'    => 'icon_box',
+	'section'     => 'doc_sidebar',
+		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Icon', 'finest-mini-cart' ) . '</h3>',
+	'priority'    => 10,
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'slider',
+	'settings'    => 'sidebar_icon_size',
+	'label'       => esc_html__( 'Icon Size', 'finest-docs' ),
+	'section'     => 'doc_sidebar',
+	'default'     => 18,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-sidebar ul.finest-nav-list li a span.dashicons',
+			'function' => 'css',
+			'property' => 'font-size',
+			'units'    => 'px'
+		],
+		[
+			'element'  => '.finest-sidebar ul.finest-nav-list li a span.dashicons',
+			'function' => 'css',
+			'property' => 'width',
+			'units'    => 'px'
+		],
+		[
+			'element'  => '.finest-sidebar ul.finest-nav-list li a span.dashicons',
+			'function' => 'css',
+			'property' => 'height',
+			'units'    => 'px'
+		],
+		[
+			'element'  => '.finest-sidebar ul.finest-nav-list li a span.dashicons',
+			'function' => 'css',
+			'property' => 'line-height',
+			'units'    => 'px'
+		],
+	]
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'color',
+	'settings'    => 'sidebar_icon_color',
+	'label'       => __( 'Icon Color', 'finest-docs' ),
+	'section'     => 'doc_sidebar',
+	'default'     => '#111827',
+	'choices'     => [
+		'alpha' => true,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-sidebar ul.finest-nav-list li a span.dashicons',
+			'function' => 'css',
+			'property' => 'color',
+		],
+	]
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'slider',
+	'settings'    => 'sidebar_icon_gap',
+	'label'       => esc_html__( 'Icon Gap', 'finest-docs' ),
+	'section'     => 'doc_sidebar',
+	'default'     => 20,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-sidebar ul.finest-nav-list li a span.dashicons',
+			'function' => 'css',
+			'property' => 'margin-right',
+			'units'    => 'px'
+		],
+	]
 ] );
