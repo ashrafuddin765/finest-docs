@@ -9,6 +9,7 @@ use Finestics\Insights;
 
 function fqv_register_script(){
 
+	wp_enqueue_style( 'finest-google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600', false ); 
 	// Enqueue All css
 	wp_enqueue_style( 'dashicons' );
 	wp_enqueue_style('finest-quick-view', FINEST_DOCS_ASSETS_CSS . 'frontend.css',array(), time() );

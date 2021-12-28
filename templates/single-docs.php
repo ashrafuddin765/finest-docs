@@ -3,29 +3,29 @@
     
 ?>
 <?php 
-    $layout = get_theme_mod( 'docs_category_layout', 'icon' );
+    $layout = get_theme_mod( 'docs_category_layout', 'layout-01' );
     $class = '';
     if ( 'layout-01' == $layout) {
-        $class = '';
+        $class = 'icon';
     }
-    elseif ( 'layout-01' == $layout ) {
-        $class = 'without-icon';
+    elseif ( 'layout-02' == $layout ) {
+        $class = 'without-icon'; 
     }
-
+ 
     while ( have_posts() ) {
         the_post(); ?>
-        <div class="finest-single-wrap">
-           <?php 
+        <div class="container-<?php echo esc_attr( $layout ) ?>" >
+            <div class="finest-single-wrap">
+            <?php 
 
 
-                if ( !empty($layout) ) {
-                    include FINEST_DOCS_DIR .'layout/'. $layout .'.php';
-                }
-    
-           ?>
-           
-            
-        </div><!-- .finest-single-wrap -->
+                    if ( !empty($layout) ) {
+                        include FINEST_DOCS_DIR_LY . $layout .'.php';
+                    }
+        
+            ?>  
+            </div><!-- .finest-single-wrap -->
+        </div>
 
     <?php } ?>
 <?php get_footer(); ?>

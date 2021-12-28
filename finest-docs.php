@@ -22,6 +22,7 @@ define( 'FINEST_DOCS_VERSION', '1.1.0');
 define( 'FINEST_PLUGIN_NAME', 'FinestDocs');
 define( 'FINEST_DOCS_INC', plugin_dir_path( __FILE__ ) . 'inc/' );
 define( 'FINEST_DOCS_DIR', plugin_dir_path( __FILE__ ) . '' );
+define( 'FINEST_DOCS_DIR_LY', plugin_dir_path( __FILE__ ) . 'layout/' );
 define( 'FINEST_DOCS_FILE', __FILE__  );
 define( 'FINEST_DOCS_TEMPLATE', plugin_dir_path( __FILE__ ) . 'templates/' );
 define( 'FINEST_DOCS_MAIN', trailingslashit( plugin_dir_path( __FILE__ ) ) );

@@ -1,4 +1,14 @@
-<div class="finest-sidebar">
+<?php  
+$layout = get_theme_mod( 'docs_category_layout', 'layout-01' );
+$class = '';
+if ( 'layout-01' == $layout) {
+    $class = 'layout-one-bg';
+}
+elseif ( 'layout-02' == $layout ) {
+    $class = 'layout-two-bg';
+}
+?>
+<div class="finest-sidebar <?php echo $class; ?>">
     <?php
 $ancestors        = [];
 $root             = $parent             = false;
