@@ -137,63 +137,71 @@ function get_posts_children( $parent_id ) {
 function fd_duplicate( $post_id, $parent_id = '' ) {
 
     // And all the original post data then
-        $post = get_post( $post_id );
-    
+    $post = get_post( $post_id );
+
     /*
      * if you don't want current user to be the new post author,
      * then change next couple of lines to this: $new_post_author = $post->post_author;
      */
-        $current_user    = wp_get_current_user();
-        $new_post_author = $current_user->ID;
-    
+    $current_user    = wp_get_current_user();
+    $new_post_author = $current_user->ID;
+
     // if post data exists (I am sure it is, but just in a case), create the post duplicate
-        if ( $post ) {
-    
-            // new post data array
-            $args = array(
-                'comment_status' => $post->comment_status,
-                'ping_status'    => $post->ping_status,
-                'post_author'    => $new_post_author,
-                'post_content'   => $post->post_content,
-                'post_excerpt'   => $post->post_excerpt,
-                'post_name'      => $post->post_name,
-                'post_parent'    => $parent_id,
-                'post_password'  => $post->post_password,
-                'post_status'    => 'draft',
-                'post_title'     => $post->post_title . ' copied',
-                'post_type'      => $post->post_type,
-                'to_ping'        => $post->to_ping,
-                'menu_order'     => $post->menu_order,
-            );
-    
-            // insert the post by wp_insert_post() function
-            $new_post_id = wp_insert_post( $args );
-    
-            /*
-             * get all current post terms ad set them to the new post draft
-             */
-            $taxonomies = get_object_taxonomies( get_post_type( $post ) ); // returns array of taxonomy names for post type, ex array("category", "post_tag");
-            if ( $taxonomies ) {
-                foreach ( $taxonomies as $taxonomy ) {
-                    $post_terms = wp_get_object_terms( $post_id, $taxonomy, array( 'fields' => 'slugs' ) );
-                    wp_set_object_terms( $new_post_id, $post_terms, $taxonomy, false );
+    if ( $post ) {
+
+        // new post data array
+        $args = array(
+            'comment_status' => $post->comment_status,
+            'ping_status'    => $post->ping_status,
+            'post_author'    => $new_post_author,
+            'post_content'   => $post->post_content,
+            'post_excerpt'   => $post->post_excerpt,
+            'post_name'      => $post->post_name,
+            'post_parent'    => $parent_id,
+            'post_password'  => $post->post_password,
+            'post_status'    => 'publish',
+            'post_title'     => $post->post_title . ' copied',
+            'post_type'      => $post->post_type,
+            'to_ping'        => $post->to_ping,
+            'menu_order'     => $post->menu_order,
+        );
+
+        // insert the post by wp_insert_post() function
+        $new_post_id = wp_insert_post( $args );
+
+        /*
+         * get all current post terms ad set them to the new post draft
+         */
+        $taxonomies = get_object_taxonomies( get_post_type( $post ) ); // returns array of taxonomy names for post type, ex array("category", "post_tag");
+        if ( $taxonomies ) {
+            foreach ( $taxonomies as $taxonomy ) {
+                $post_terms = wp_get_object_terms( $post_id, $taxonomy, array( 'fields' => 'slugs' ) );
+                wp_set_object_terms( $new_post_id, $post_terms, $taxonomy, false );
+            }
+        }
+        return $new_post_id;
+    }
+
+}
+
+function fd_duplicator( $post_id ) {
+    $old_parent_id = wp_get_post_parent_id($post_id);
+    $new_post_id = fd_duplicate( $post_id, $old_parent_id );
+    $child_ids   = get_posts_children( $post_id );
+
+    // var_dump($new_post_id);
+    if ( $new_post_id && false != $child_ids ) {
+        foreach ( $child_ids as $child_id ) {
+            $new_child_id = fd_duplicate( $child_id, $new_post_id );
+            $sl_child_ids = get_posts_children( $child_id );
+            if ( $new_child_id && false != $sl_child_ids ) {
+                foreach ( $sl_child_ids as $sl_child_id ) {
+                    fd_duplicate( $sl_child_id, $new_child_id );
                 }
             }
-            return $new_post_id;
         }
-    
     }
-    
-    
-    function fd_duplicator( $post_id ) {
-    
-        $new_post_id = fd_duplicate( $post_id );
-        $child_ids   = get_posts_children( $post_id );
-        // var_dump($new_post_id);
-        if ( $new_post_id && false != $child_ids ) {
-            foreach ( $child_ids as $child_id ) {
-                fd_duplicate( $child_id, $new_post_id );
-            }
-        }
-    
-    }
+
+    return $new_post_id;
+
+}

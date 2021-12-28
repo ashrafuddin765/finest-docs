@@ -106,6 +106,25 @@ Vue.directive('sortable', {
           });
         });
       },
+    
+      copyDoc: function (post) {
+
+  
+          wp.ajax.send({
+            data: {
+              action: 'finestdocs_duplicate_doc',
+              post_id: post.post.id,
+              parent: 0,
+              _wpnonce: finestDocs.nonce,
+            },
+            success: function (res) {
+              // that.docs.unshift(res);
+              console.log(res);
+            },
+            error: this.onError,
+          });
+
+      },
   
       removeDoc: function (doc, docs) {
         var self = this;
@@ -226,10 +245,11 @@ Vue.directive('sortable', {
           });
         });
       },
+
   
       removeArticle: function (article, articles) {
         var self = this;
-  
+
         Swal.fire({
           title: finestDocs.delConfirm,
           text: finestDocs.delConfirmTxt,
@@ -247,7 +267,7 @@ Vue.directive('sortable', {
   
       removePost: function (index, items, message) {
         message = message || 'This post has been deleted';
-  
+
         wp.ajax.send({
           data: {
             action: 'finestdocs_remove_doc',
@@ -282,7 +302,7 @@ Vue.directive('sortable', {
     win.send_to_editor(shortcode);
   }
 
-$(function () {
+jQuery(function ($) {
   $('#insert_shortcode').bind('click',function() {
       var name = $('#name').val();
       insertShortcode(name);

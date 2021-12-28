@@ -12,7 +12,7 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'docs_category_layout',
 	'label'       => esc_html__( 'Select Layout', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => 'icon',
+	'default'     => 'layout-01',
 	'priority'    => 10,
 	'choices'     => [
 		'layout-01'   => FINEST_DOCS_ASSETS_ASSETS . 'menu-icon.png',

@@ -1,7 +1,5 @@
 <?php
 
-
-
 /**
  * Ajax Class.
  */
@@ -11,20 +9,21 @@ class Ajax {
      * Bind actions.
      */
     public function __construct() {
-        add_action( 'wp_ajax_finestdocs_create_doc', [ $this, 'create_doc' ] );
-        add_action( 'wp_ajax_finestdocs_remove_doc', [ $this, 'remove_doc' ] );
-        add_action( 'wp_ajax_finestdocs_admin_get_docs', [ $this, 'get_docs' ] );
-        add_action( 'wp_ajax_finestdocs_sortable_docs', [ $this, 'sort_docs' ] );
+        add_action( 'wp_ajax_finestdocs_create_doc', [$this, 'create_doc'] );
+        add_action( 'wp_ajax_finestdocs_duplicate_doc', [$this, 'duplicate_doc'] );
+        add_action( 'wp_ajax_finestdocs_remove_doc', [$this, 'remove_doc'] );
+        add_action( 'wp_ajax_finestdocs_admin_get_docs', [$this, 'get_docs'] );
+        add_action( 'wp_ajax_finestdocs_sortable_docs', [$this, 'sort_docs'] );
 
-        add_action( 'wp_ajax_finestdocs_rated', [ $this, 'hide_finestdocs_rating' ] );
+        add_action( 'wp_ajax_finestdocs_rated', [$this, 'hide_finestdocs_rating'] );
 
         // feedback
-        add_action( 'wp_ajax_finestdocs_ajax_feedback', [ $this, 'handle_feedback' ] );
-        add_action( 'wp_ajax_nopriv_finestdocs_ajax_feedback', [ $this, 'handle_feedback' ] );
+        add_action( 'wp_ajax_finestdocs_ajax_feedback', [$this, 'handle_feedback'] );
+        add_action( 'wp_ajax_nopriv_finestdocs_ajax_feedback', [$this, 'handle_feedback'] );
 
         // contact
-        add_action( 'wp_ajax_finestdocs_contact_feedback', [ $this, 'handle_contact' ] );
-        add_action( 'wp_ajax_nopriv_finestdocs_contact_feedback', [ $this, 'handle_contact' ] );
+        add_action( 'wp_ajax_finestdocs_contact_feedback', [$this, 'handle_contact'] );
+        add_action( 'wp_ajax_nopriv_finestdocs_contact_feedback', [$this, 'handle_contact'] );
     }
 
     /**
@@ -47,7 +46,7 @@ class Ajax {
             return wp_send_json_error();
         }
 
-        if ( ! current_user_can( $post_type_object->cap->publish_posts ) ) {
+        if ( !current_user_can( $post_type_object->cap->publish_posts ) ) {
             $status = 'pending';
         }
 
@@ -65,7 +64,7 @@ class Ajax {
         }
 
         wp_send_json_success( [
-            'post' => [
+            'post'  => [
                 'id'     => $post_id,
                 'title'  => stripslashes( $title ),
                 'status' => $status,
@@ -79,6 +78,44 @@ class Ajax {
     }
 
     /**
+     * Create a new doc.
+     *
+     * @return void
+     */
+    public function duplicate_doc() {
+        check_ajax_referer( 'finestdocs-admin-nonce' );
+        $childs           = [];
+        $post_id          = isset( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
+        $post_type_object = get_post_type_object( 'finest-docs' );
+
+        if ( '' === $post_id ) {
+            return wp_send_json_error();
+        }
+
+        $new_post_id = fd_duplicator( $post_id );
+        
+
+        if ( is_wp_error( $new_post_id ) ) {
+            wp_send_json_error();
+        }
+
+        // wp_send_json_success( [
+        //     'post'  => [
+        //         'id'     => $new_post_id,
+        //         'title'  => get_the_title( $new_post_id ),
+        //         'status' => 'publish',
+        //         'caps'   => [
+        //             'edit'   => current_user_can( $post_type_object->cap->edit_post, $new_post_id ),
+        //             'delete' => current_user_can( $post_type_object->cap->delete_post, $new_post_id ),
+        //         ],
+        //     ],
+        //     'child' => [$childs],
+        // ] );
+
+        wp_send_json_success();
+    }
+
+    /**
      * Delete a doc.
      *
      * @return void
@@ -89,7 +126,7 @@ class Ajax {
         $force_delete = false;
         $post_id      = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
 
-        if ( ! current_user_can( 'delete_post', $post_id ) ) {
+        if ( !current_user_can( 'delete_post', $post_id ) ) {
             wp_send_json_error( __( 'You are not allowed to delete this item.' ) );
         }
 
@@ -112,14 +149,14 @@ class Ajax {
      * @return void
      */
     public function remove_child_docs( $parent_id = 0, $force_delete ) {
-        $childrens = get_children( [ 'post_parent' => $parent_id ] );
+        $childrens = get_children( ['post_parent' => $parent_id] );
 
         if ( $childrens ) {
             foreach ( $childrens as $child_post ) {
                 // recursively delete
                 $this->remove_child_docs( $child_post->ID, $force_delete );
 
-                wp_delete_post( $child_post->ID, $force_delete );
+                wp_delete_post( $child_post->ID );
             }
         }
     }
@@ -134,14 +171,14 @@ class Ajax {
 
         $docs = get_pages( [
             'post_type'      => 'finest-docs',
-            'post_status'    => [ 'publish', 'draft', 'pending' ],
+            'post_status'    => ['publish', 'draft', 'pending'],
             'posts_per_page' => '-1',
             'orderby'        => 'menu_order',
             'order'          => 'ASC',
         ] );
 
         $arranged = $this->build_tree( $docs );
-        usort( $arranged, [ $this, 'sort_callback' ] );
+        usort( $arranged, [$this, 'sort_callback'] );
         wp_send_json_success( $arranged );
     }
 
@@ -168,7 +205,7 @@ class Ajax {
         $template = '<div class="finestdocs-alert finestdocs-alert-%s">%s</div>';
         $previous = isset( $_COOKIE['finestdocs_response'] ) ? explode( ',', $_COOKIE['finestdocs_response'] ) : [];
         $post_id  = intval( $_POST['post_id'] );
-        $type     = in_array( $_POST['type'], [ 'positive', 'negative' ] ) ? $_POST['type'] : false;
+        $type     = in_array( $_POST['type'], ['positive', 'negative'] ) ? $_POST['type'] : false;
 
         // check previous response
         if ( in_array( $post_id, $previous ) ) {
@@ -268,14 +305,14 @@ class Ajax {
 
         foreach ( $docs as $key => $doc ) {
             if ( $doc->post_parent == $parent ) {
-                unset( $docs[ $key ] );
+                unset( $docs[$key] );
 
                 // build tree and sort
                 $child = $this->build_tree( $docs, $doc->ID );
-                usort( $child, [ $this, 'sort_callback' ] );
+                usort( $child, [$this, 'sort_callback'] );
 
                 $result[] = [
-                    'post' => [
+                    'post'  => [
                         'id'     => $doc->ID,
                         'title'  => $doc->post_title,
                         'status' => $doc->post_status,
@@ -305,6 +342,5 @@ class Ajax {
         return $a['post']['order'] - $b['post']['order'];
     }
 }
-
 
 $ajax = new Ajax();
