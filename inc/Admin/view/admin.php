@@ -20,7 +20,6 @@
 
     </h1>
 
-    <!-- <pre>{{ $data | json }}</pre> -->
 
     <span class="spinner is-active" style="float: none;"></span>
 

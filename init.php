@@ -51,11 +51,10 @@ require_once  FINEST_DOCS_INC . 'Walker/Finest_Walker.php';
 if ( file_exists( FINEST_DOCS_INC . 'Post_types.php' ) ) {
 	require_once  FINEST_DOCS_INC . 'Post_types.php';
 }
-require_once  FINEST_DOCS_INC . 'Admin.php';
+require_once  FINEST_DOCS_INC . 'Admin/Admin.php';
 require_once  FINEST_DOCS_INC . 'Metabox.php';
-require_once  FINEST_DOCS_INC . 'Admin.php';
-require_once  FINEST_DOCS_INC . 'Ajax.php';
-require_once  FINEST_DOCS_INC . 'Frontend.php';
+require_once  FINEST_DOCS_INC . 'Admin/Ajax.php';
+require_once  FINEST_DOCS_INC . 'Manager.php';
 require_once  FINEST_DOCS_INC . 'shortcode.php';
 require_once  FINEST_DOCS_INC . 'Widgets.php';
 

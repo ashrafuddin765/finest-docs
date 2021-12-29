@@ -1,8 +1,8 @@
 <?php
 /**
- * Frontend Handler Class
+ * Template Manager Class
  */
-class Frontend {
+class Manager {
 
     /**
      * Shortcode class
@@ -19,8 +19,6 @@ class Frontend {
      * Class Constructor
      */
     public function __construct() {
-
-
         // override the theme template
         add_filter( 'template_include', [ $this, 'template_loader' ], 20 );
 
@@ -52,4 +50,4 @@ class Frontend {
     
 }
 
-$frontend = new Frontend();
+$Manager = new Manager();

@@ -289,7 +289,7 @@ Vue.directive('sortable', {
       },
   
       toggleCollapse: function (event) {
-        jQuery(event.target).siblings('ul.articles').toggleClass('collapsed');
+        jQuery(event.target).siblings('ul.articles').slideToggle();
       },
     },
   });

@@ -14,16 +14,6 @@ class Ajax {
         add_action( 'wp_ajax_finestdocs_remove_doc', [$this, 'remove_doc'] );
         add_action( 'wp_ajax_finestdocs_admin_get_docs', [$this, 'get_docs'] );
         add_action( 'wp_ajax_finestdocs_sortable_docs', [$this, 'sort_docs'] );
-
-        add_action( 'wp_ajax_finestdocs_rated', [$this, 'hide_finestdocs_rating'] );
-
-        // feedback
-        add_action( 'wp_ajax_finestdocs_ajax_feedback', [$this, 'handle_feedback'] );
-        add_action( 'wp_ajax_nopriv_finestdocs_ajax_feedback', [$this, 'handle_feedback'] );
-
-        // contact
-        add_action( 'wp_ajax_finestdocs_contact_feedback', [$this, 'handle_contact'] );
-        add_action( 'wp_ajax_nopriv_finestdocs_contact_feedback', [$this, 'handle_contact'] );
     }
 
     /**
@@ -99,19 +89,6 @@ class Ajax {
             wp_send_json_error();
         }
 
-        // wp_send_json_success( [
-        //     'post'  => [
-        //         'id'     => $new_post_id,
-        //         'title'  => get_the_title( $new_post_id ),
-        //         'status' => 'publish',
-        //         'caps'   => [
-        //             'edit'   => current_user_can( $post_type_object->cap->edit_post, $new_post_id ),
-        //             'delete' => current_user_can( $post_type_object->cap->delete_post, $new_post_id ),
-        //         ],
-        //     ],
-        //     'child' => [$childs],
-        // ] );
-
         wp_send_json_success();
     }
 
@@ -182,87 +159,7 @@ class Ajax {
         wp_send_json_success( $arranged );
     }
 
-    /**
-     * Assume the user rated finestDocs.
-     *
-     * @return void
-     */
-    public function hide_finestdocs_rating() {
-        check_ajax_referer( 'finestdocs-admin-nonce' );
-
-        update_option( 'finestdocs_admin_footer_text_rated', 'yes' );
-        wp_send_json_success();
-    }
-
-    /**
-     * Store feedback for an article.
-     *
-     * @return void
-     */
-    public function handle_feedback() {
-        check_ajax_referer( 'finestdocs-ajax' );
-
-        $template = '<div class="finestdocs-alert finestdocs-alert-%s">%s</div>';
-        $previous = isset( $_COOKIE['finestdocs_response'] ) ? explode( ',', $_COOKIE['finestdocs_response'] ) : [];
-        $post_id  = intval( $_POST['post_id'] );
-        $type     = in_array( $_POST['type'], ['positive', 'negative'] ) ? $_POST['type'] : false;
-
-        // check previous response
-        if ( in_array( $post_id, $previous ) ) {
-            $message = sprintf( $template, 'danger', __( 'Sorry, you\'ve already recorded your feedback!', 'finestdocs' ) );
-            wp_send_json_error( $message );
-        }
-
-        // seems new
-        if ( $type ) {
-            $count = (int) get_post_meta( $post_id, $type, true );
-            update_post_meta( $post_id, $type, $count + 1 );
-
-            array_push( $previous, $post_id );
-            $cookie_val = implode( ',', $previous );
-
-            $val = setcookie( 'finestdocs_response', $cookie_val, time() + WEEK_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN );
-        }
-
-        $message = sprintf( $template, 'success', __( 'Thanks for your feedback!', 'finestdocs' ) );
-        wp_send_json_success( $message );
-    }
-
-    /**
-     * Send email feedback.
-     *
-     * @return void
-     */
-    public function handle_contact() {
-        check_ajax_referer( 'finestdocs-ajax' );
-
-        $name    = isset( $_POST['name'] ) ? sanitize_text_field( $_POST['name'] ) : '';
-        $subject = isset( $_POST['subject'] ) ? sanitize_text_field( $_POST['subject'] ) : '';
-        $message = isset( $_POST['message'] ) ? strip_tags( $_POST['message'] ) : '';
-        $doc_id  = isset( $_POST['doc_id'] ) ? intval( $_POST['doc_id'] ) : 0;
-
-        if ( !is_user_logged_in() ) {
-            $email = isset( $_POST['email'] ) ? filter_var( $_POST['email'], FILTER_VALIDATE_EMAIL ) : false;
-
-            if ( !$email ) {
-                wp_send_json_error( __( 'Please enter a valid email address.', 'finestdocs' ) );
-            }
-        } else {
-            $email = wp_get_current_user()->user_email;
-        }
-
-        if ( empty( $subject ) ) {
-            wp_send_json_error( __( 'Please provide a subject line.', 'finestdocs' ) );
-        }
-
-        if ( empty( $message ) ) {
-            wp_send_json_error( __( 'Please provide the message details.', 'finestdocs' ) );
-        }
-
-        finestdocs_doc_feedback_email( $doc_id, $name, $email, $subject, $message );
-
-        wp_send_json_success( __( 'Thanks for your feedback.', 'finestdocs' ) );
-    }
+  
 
     /**
      * Sort docs.
