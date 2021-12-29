@@ -1,6 +1,6 @@
-<?php 
+<?php
 class Finest_walker extends Walker {
- 
+
     /**
      * What the class handles.
      *
@@ -10,7 +10,7 @@ class Finest_walker extends Walker {
      * @see Walker::$tree_type
      */
     public $tree_type = 'page';
- 
+
     /**
      * Database fields to use.
      *
@@ -24,7 +24,7 @@ class Finest_walker extends Walker {
         'parent' => 'post_parent',
         'id'     => 'ID',
     );
- 
+
     /**
      * Outputs the beginning of the current level in the tree before elements are output.
      *
@@ -45,10 +45,10 @@ class Finest_walker extends Walker {
             $t = '';
             $n = '';
         }
-        $indent  = str_repeat( $t, $depth );
+        $indent = str_repeat( $t, $depth );
         $output .= "{$n}{$indent}<ul class='children'>{$n}";
     }
- 
+
     /**
      * Outputs the end of the current level in the tree after elements are output.
      *
@@ -69,10 +69,10 @@ class Finest_walker extends Walker {
             $t = '';
             $n = '';
         }
-        $indent  = str_repeat( $t, $depth );
+        $indent = str_repeat( $t, $depth );
         $output .= "{$indent}</ul>{$n}";
     }
- 
+
     /**
      * Outputs the beginning of the current element in the tree.
      *
@@ -98,20 +98,20 @@ class Finest_walker extends Walker {
         } else {
             $indent = '';
         }
- 
+
         $css_class = array( 'page_item', 'page-item-' . $page->ID );
- 
-        if ( isset( $args['pages_with_children'][ $page->ID ] ) ) {
+
+        if ( isset( $args['pages_with_children'][$page->ID] ) ) {
             $css_class[] = 'page_item_has_children';
         }
- 
-        if ( ! empty( $current_page ) ) {
+
+        if ( !empty( $current_page ) ) {
             $_current_page = get_post( $current_page );
- 
+
             if ( $_current_page && in_array( $page->ID, $_current_page->ancestors, true ) ) {
                 $css_class[] = 'current_page_ancestor';
             }
- 
+
             if ( $page->ID == $current_page ) {
                 $css_class[] = 'current_page_item';
             } elseif ( $_current_page && $page->ID === $_current_page->post_parent ) {
@@ -120,7 +120,7 @@ class Finest_walker extends Walker {
         } elseif ( get_option( 'page_for_posts' ) == $page->ID ) {
             $css_class[] = 'current_page_parent';
         }
- 
+
         /**
          * Filters the list of CSS classes to include with each page item in the list.
          *
@@ -136,19 +136,19 @@ class Finest_walker extends Walker {
          */
         $css_classes = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_page ) );
         $css_classes = $css_classes ? ' class="' . esc_attr( $css_classes ) . '"' : '';
- 
+
         if ( '' === $page->post_title ) {
             /* translators: %d: ID of a post. */
             $page->post_title = sprintf( __( '#%d (no title)' ), $page->ID );
         }
- 
+
         $args['link_before'] = empty( $args['link_before'] ) ? '' : $args['link_before'];
         $args['link_after']  = empty( $args['link_after'] ) ? '' : $args['link_after'];
- 
+
         $atts                 = array();
         $atts['href']         = get_permalink( $page->ID );
         $atts['aria-current'] = ( $page->ID == $current_page ) ? 'page' : '';
- 
+
         /**
          * Filters the HTML attributes applied to a page menu item's anchor element.
          *
@@ -166,18 +166,24 @@ class Finest_walker extends Walker {
          * @param int     $current_page ID of the current page.
          */
         $atts = apply_filters( 'page_menu_link_attributes', $atts, $page, $depth, $args, $current_page );
- 
+
         $attributes = '';
         foreach ( $atts as $attr => $value ) {
             if ( is_scalar( $value ) && '' !== $value && false !== $value ) {
-                $value       = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+                $value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
                 $attributes .= ' ' . $attr . '="' . $value . '"';
             }
         }
 
-        $doc_icon_meta = get_post_meta( $page->ID, 'fd_doc_icon', true );
-        $doc_icon = !empty($doc_icon_meta) ? '<img src="'.esc_url( $doc_icon_meta ).'"' : '';
- 
+        $layout = get_theme_mod( 'docs_category_layout', 'icon' );
+        if ( 'layout-01' == $layout ) {
+
+            $doc_icon_meta = get_post_meta( $page->ID, 'fd_doc_icon', true );
+            $doc_icon      = !empty( $doc_icon_meta ) ? '<img src="' . esc_url( $doc_icon_meta ) . '"/>' : '';
+        }else{
+            $doc_icon = '';
+        }
+
         $output .= $indent . sprintf(
             '<li%s><a%s> %s %s%s%s</a>',
             $css_classes,
@@ -188,19 +194,19 @@ class Finest_walker extends Walker {
             apply_filters( 'the_title', $page->post_title, $page->ID ),
             $args['link_after']
         );
- 
-        if ( ! empty( $args['show_date'] ) ) {
+
+        if ( !empty( $args['show_date'] ) ) {
             if ( 'modified' === $args['show_date'] ) {
                 $time = $page->post_modified;
             } else {
                 $time = $page->post_date;
             }
- 
+
             $date_format = empty( $args['date_format'] ) ? '' : $args['date_format'];
-            $output     .= ' ' . mysql2date( $date_format, $time );
+            $output .= ' ' . mysql2date( $date_format, $time );
         }
     }
- 
+
     /**
      * Outputs the end of the current element in the tree.
      *
@@ -223,5 +229,5 @@ class Finest_walker extends Walker {
         }
         $output .= "</li>{$n}";
     }
- 
+
 }

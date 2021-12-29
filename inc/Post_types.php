@@ -53,7 +53,7 @@ class Post_Types {
             'has_archive'        => false,
             'hierarchical'       => true,
             'menu_position'      => null,
-            'supports'           => array( 'title', 'elementor', 'editor', 'thumbnail', 'page-attributes' ),
+            'supports'           => array( 'title', 'elementor', 'editor', 'thumbnail', 'attributes' ),
         );
         register_post_type( 'finest-docs', $args );
     }

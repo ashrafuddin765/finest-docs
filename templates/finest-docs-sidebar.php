@@ -16,7 +16,7 @@ $enabled_multidoc = get_option( 'finestdocs_sidebar_all_docs', true );
 $layout           = get_theme_mod( 'docs_category_layout', 'icon' );
 $link_before      = '';
 if ( 'layout-01' == $layout ) {
-    $link_before = '<span class="dashicons dashicons-admin-generic"></span>';
+    $link_before = '';
 }
 
 if ( $enabled_multidoc ) {
