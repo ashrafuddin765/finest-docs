@@ -113,13 +113,17 @@ function fmc_css_strip_whitespace( $css ) {
     return trim( $css );
 }
 
-function get_posts_children( $parent_id ) {
+function fd_get_posts_children( $parent_id ) {
 
     $post = get_post( $parent_id );
-
+    if(empty($post)){
+        return false;
+    }
     $children = array();
     // grab the posts children
     $posts = get_posts( array( 'numberposts' => -1, 'post_parent' => $parent_id, 'post_type' => $post->post_type, 'suppress_filters' => false ) );
+
+
     // now grab the grand children
     foreach ( $posts as $child ) {
         // recursion!! hurrah
@@ -187,13 +191,13 @@ function fd_duplicate( $post_id, $parent_id = '' ) {
 function fd_duplicator( $post_id ) {
     $old_parent_id = wp_get_post_parent_id($post_id);
     $new_post_id = fd_duplicate( $post_id, $old_parent_id );
-    $child_ids   = get_posts_children( $post_id );
+    $child_ids   = fd_get_posts_children( $post_id );
 
     // var_dump($new_post_id);
     if ( $new_post_id && false != $child_ids ) {
         foreach ( $child_ids as $child_id ) {
             $new_child_id = fd_duplicate( $child_id, $new_post_id );
-            $sl_child_ids = get_posts_children( $child_id );
+            $sl_child_ids = fd_get_posts_children( $child_id );
             if ( $new_child_id && false != $sl_child_ids ) {
                 foreach ( $sl_child_ids as $sl_child_id ) {
                     fd_duplicate( $sl_child_id, $new_child_id );
