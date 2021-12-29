@@ -190,6 +190,7 @@ body {
     color: #000000;
     display: block;
     margin-bottom: 15px;
+    text-decoration: none;
 }
 .finest-sidebar ul.finest-nav-list li a span {
     display: inline-block;

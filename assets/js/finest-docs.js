@@ -15,9 +15,8 @@
           var self = $(this),
             parent = self.closest('.page_item');
 
+            parent.children('.children').slideToggle(300).parent('li').siblings('li').children('.children').slideUp();
 
-          parent.children('.children').slideToggle(300);
-          // alert();
         }
       );
 
