@@ -2,9 +2,7 @@
 <div class="finest-single-content">
     <?php finest_breadcrumbs(); ?>
     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemscope >
-        <header class="entry-header">
-                <?php the_title( '<h1 class="entry-title" itemprop="headline">', '</h1>' ); ?>
-        </header>
+        
         <div class="entry-content" itemprop="articleBody">
 
             <?php

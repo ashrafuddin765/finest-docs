@@ -1,11 +1,14 @@
 <?php  
 $layout = get_theme_mod( 'docs_category_layout', 'layout-01' );
-$class = '';
+$class = 'layout-one-bg';
 if ( 'layout-01' == $layout) {
     $class = 'layout-one-bg';
 }
 elseif ( 'layout-02' == $layout ) {
     $class = 'layout-two-bg';
+}
+elseif ( 'layout-03' == $layout ) {
+    $class = 'layout-three';
 }
 ?>
 <div class="finest-sidebar <?php echo $class; ?>">
@@ -40,11 +43,7 @@ $children = wp_list_pages( [
     'walker' => new Finest_walker()
 ] );
 ?>
-    <?php if ( $enabled_multidoc ): ?>
-    <h3 class="widget-title"><?php echo get_post_field( 'post_title', $parent, 'display' ); ?></h3>
-    <?php endif;?>
-
-
+   
     <?php if ( $children ) {
     ?>
         <ul class="finest-nav-list">

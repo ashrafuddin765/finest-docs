@@ -4,17 +4,17 @@
 ?>
 <?php 
     $layout = get_theme_mod( 'docs_category_layout', 'layout-01' );
-    $class = '';
+    $class = 'finest-container-fluid';
     if ( 'layout-01' == $layout) {
-        $class = 'icon';
+        $class = 'finest-container-fluid';
     }
-    elseif ( 'layout-02' == $layout ) {
-        $class = 'without-icon'; 
+    elseif ( 'layout-02' == $layout || 'layout-03' == $layout ) {
+        $class = 'finest-container'; 
     }
  
     while ( have_posts() ) {
         the_post(); ?>
-        <div class="container-<?php echo esc_attr( $layout ) ?>" >
+        <div class="<?php echo esc_attr( $class ) ?>" >
             <div class="finest-single-wrap">
             <?php 
 

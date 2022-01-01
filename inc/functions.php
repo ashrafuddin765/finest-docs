@@ -46,7 +46,6 @@ function finest_breadcrumbs() {
     $breadcrumb_position = 1;
 
     $html .= '<ul class="finest-breadcrumb" itemscope >';
-    $html .= '<li><span class="dashicons dashicons-admin-home"></span></li>';
     $html .= finest_get_breadcrumb_item( $args['home'], home_url( '/' ), $breadcrumb_position );
     $html .= $args['delimiter'];
 

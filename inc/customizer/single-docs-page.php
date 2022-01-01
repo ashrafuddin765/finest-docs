@@ -15,8 +15,9 @@ Kirki::add_field( 'docs_panel', [
 	'default'     => 'layout-01',
 	'priority'    => 10,
 	'choices'     => [
-		'layout-01'   => FINEST_DOCS_ASSETS_ASSETS . 'menu-icon.png',
-		'layout-02' => FINEST_DOCS_ASSETS_ASSETS . 'menu.png',
+		'layout-01'   => FINEST_DOCS_ASSETS_ASSETS . 'layout-1.png',
+		'layout-02' => FINEST_DOCS_ASSETS_ASSETS . 'layout-2.png',
+		'layout-03' => FINEST_DOCS_ASSETS_ASSETS . 'layout-3.png',
 		
 	],
 ] );

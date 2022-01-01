@@ -22,11 +22,11 @@ function fd_shortcode( $atts ) {
 
     $args = array(
         'post_type' => 'finest-docs',
-        'p'         => $id,
         'posts_per_page' => -1, 
     );
 
     if(!empty($id)){
+        
         $args['post__in'] = fd_get_posts_children($id) ;
        
     }
@@ -35,24 +35,30 @@ function fd_shortcode( $atts ) {
     $the_query = new WP_Query( $args );?>
 
         <?php if ( $the_query->have_posts() ): ?>
+            <div <?php post_class('finest-site-main template-two'); ?> >
+            <div class="section-container" >
+                <div class="row" >
             <?php while ( $the_query->have_posts() ): $the_query->the_post();
                 $has_parent = wp_get_post_parent_id( get_the_ID());
             ?>
 
 	            <?php 
-                    if(empty($id)){
+                    if( !empty ($id) ){
                         // here will be section layout 
+                        include FINEST_DOCS_INC .'section-template/section-template-03.php';
 
                     }elseif( !$has_parent ){
                         // here will show all docs 
-                        
+                        include FINEST_DOCS_INC .'docs-template/docs-template-02.php';
                     }
                     
                 ?>
 
 	            <?php endwhile;?>
             <?php wp_reset_postdata();?>
-
+            </div>
+        </div>
+        </div>
         <?php else: ?>
             <p><?php _e( 'Sorry, no posts matched your criteria.' );?></p>
         <?php endif;
