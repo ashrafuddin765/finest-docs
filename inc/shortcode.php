@@ -49,7 +49,7 @@ function fd_shortcode( $atts ) {
 
                     }elseif( !$has_parent ){
                         // here will show all docs 
-                        include FINEST_DOCS_INC .'docs-template/docs-template-02.php';
+                        include FINEST_DOCS_INC .'docs-template/docs-template-01.php';
                     }
                     
                 ?>

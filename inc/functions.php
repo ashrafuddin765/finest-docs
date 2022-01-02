@@ -208,3 +208,13 @@ function fd_duplicator( $post_id ) {
     return $new_post_id;
 
 }
+
+// body class added
+
+add_filter( 'body_class','finest_body_classes' );
+
+function finest_body_classes( $classes ) {
+    $classes[] = 'finest-body';     
+    return $classes;
+     
+}
