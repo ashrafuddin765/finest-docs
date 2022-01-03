@@ -17,7 +17,7 @@ function fd_shortcode( $atts ) {
 
     extract( shortcode_atts( array(
         'id' => '',
-        'style' => '',
+        'style' => '01',
     ), $atts ) );
 
     $args = array(
@@ -45,11 +45,11 @@ function fd_shortcode( $atts ) {
 	            <?php 
                     if( !empty ($id) ){
                         // here will be section layout 
-                        include FINEST_DOCS_INC .'section-template/section-template-03.php';
+                        include FINEST_DOCS_INC .'section-template/section-template-'.$style.'.php';
 
                     }elseif( !$has_parent ){
                         // here will show all docs 
-                        include FINEST_DOCS_INC .'docs-template/docs-template-02.php';
+                        include FINEST_DOCS_INC .'docs-template/docs-template-'.$style.'.php';
                     }
                     
                 ?>
