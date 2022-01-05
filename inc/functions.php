@@ -254,13 +254,5 @@ function wpa3396_page_template( $page_template ) {
     return $page_template;
 }
 
-//recursive function to get page level, function returns when parent page is zero
-function level_page_admin_get_level( $parentIds, $pageId, $level ) {
-    
-    $parentId = $parentIds[$pageId];
-    if ( $parentId > 0 ) {
-        $level++;
-        return level_page_admin_get_level( $parentIds, $parentId, $level );
-    }
-    return $level;
-}
+
+

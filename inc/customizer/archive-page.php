@@ -45,8 +45,8 @@ Kirki::add_field( 'docs_panel', [
 Kirki::add_field( 'docs_panel', array(
 	'type'        => 'dimensions',
 	'settings'    => 'section_border_setting',
-	'label'       => esc_attr__( 'Border Width', 'textdomain' ),
-	'section'     => 'docs_page',
+	'label'       => esc_attr__( 'Content area Border Width', 'textdomain' ),
+	'section'     => 'docs_archive',
 	'default'     => [
 		'top-width'    => '1px',
 		'right-width'  => '1px',
@@ -65,9 +65,9 @@ Kirki::add_field( 'docs_panel', array(
 
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'select',
-	'settings'    => 'select_border_type',
-	'label'       => esc_html__( 'Column Border Type', 'kirki' ),
-	'section'     => 'docs_page',
+	'settings'    => 'section_border_type',
+	'label'       => esc_html__( 'Content area Border Type', 'kirki' ),
+	'section'     => 'docs_archive',
 	'default'     => 'solid',
 	'priority'    => 10,
 	'multiple'    => 1,
@@ -100,9 +100,9 @@ Kirki::add_field( 'docs_panel', [
 
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'color',
-	'settings'    => 'column_border_color',
-	'label'       => __( 'Column Border Color', 'finest-docs' ),
-	'section'     => 'docs_page',
+	'settings'    => 'section_border_color',
+	'label'       => __( 'Border Color', 'finest-docs' ),
+	'section'     => 'docs_archive',
 	'default'     => 'rgba(45, 45, 49, 0.12)',
 	'choices'     => [
 		'alpha' => true,
@@ -136,9 +136,9 @@ Kirki::add_field( 'docs_panel', [
 
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'slider',
-	'settings'    => 'column_border_radius',
-	'label'       => esc_html__( 'Column Border Radius', 'finest-docs' ),
-	'section'     => 'docs_page',
+	'settings'    => 'section_border_radius',
+	'label'       => esc_html__( 'Content Border Radius', 'finest-docs' ),
+	'section'     => 'docs_archive',
 	'default'     => 5,
 	'choices'     => [
 		'min'  => 0,
@@ -157,7 +157,6 @@ Kirki::add_field( 'docs_panel', [
 ] );
 
 // section-thumbnail
-
 
 
 
