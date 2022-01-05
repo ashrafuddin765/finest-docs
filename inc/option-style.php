@@ -3,10 +3,6 @@ function fmc_options_scripts(){
 
 
     wp_enqueue_style('finest-quick-view', FINEST_DOCS_ASSETS_CSS . 'frontend.css',array(), FINEST_DOCS_VERSION );
-
-    // product box
-  
-
     
 
    $fmc_dynamic_css  = '';
@@ -15,8 +11,15 @@ function fmc_options_scripts(){
         require_once(  FINEST_DOCS_INC . 'custom-css/sidebar-css.php' );
     };
 
-    if ( file_exists( FINEST_DOCS_INC . 'custom-css/docs-page-css.php' ) ) {
-       require_once ( FINEST_DOCS_INC . 'custom-css/docs-page-css.php' );
+    if ( file_exists( FINEST_DOCS_INC . 'custom-css/single-docs-css.php' ) ) {
+       require_once ( FINEST_DOCS_INC . 'custom-css/single-docs-css.php' );
+    }
+
+    if ( file_exists( FINEST_DOCS_INC . 'custom-css/docs-page.php' ) ) {
+       require_once ( FINEST_DOCS_INC . 'custom-css/docs-page.php' );
+    }
+    if ( file_exists( FINEST_DOCS_INC . 'custom-css/section-page.php' ) ) {
+       require_once ( FINEST_DOCS_INC . 'custom-css/section-page.php' );
     }
 
     $fmc_dynamic_css = fmc_css_strip_whitespace( $fmc_dynamic_css );

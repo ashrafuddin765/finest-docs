@@ -3,6 +3,10 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: #fff;
 }
+.finest-sidebar #mainnav #menu {
+    display: none;
+    cursor: pointer;
+}
 body.finest-body {
     background: #F3F5F7;
 }
@@ -46,7 +50,7 @@ body.finest-body {
 .finest-single-wrap .finest-single-content {
     width: 50%;
     background-color: #fff;
-    padding-top: 45px;
+    padding-top: 40px;
     padding-bottom: 190px;
     padding-left: 45px;
     padding-right: 45px;
@@ -58,6 +62,7 @@ ul.finest-breadcrumb {
     padding-left: 0;
     display: flex;
     align-items: center;
+    margin-bottom: 25px;
 }
 
 ul.finest-breadcrumb li {
@@ -240,7 +245,7 @@ ul.finest-breadcrumb li .dashicons {
     margin-right: 5px;
     margin-left: 5px;
     font-size: 20px;
-    line-height: initial;
+    line-height: 20px;
     color: rgba(17, 24, 39, 0.6);
     
 }
@@ -266,6 +271,7 @@ ul.finest-breadcrumb li .dashicons {
     line-height: 1.72em;
     color: #000000;
     margin-bottom: 15px;
+    margin-top: 0px;
 }
 .single .entry-header {
     margin-bottom: 30px;
@@ -291,7 +297,8 @@ ul.finest-breadcrumb li .dashicons {
     letter-spacing: 2px;
     text-transform: uppercase;
     color: rgba(0, 0, 0, 0.4);
-    padding-bottom:10px;
+    margin-bottom:10px;
+    margin-top: 0px;
 }
 
 /********************* 
@@ -516,6 +523,22 @@ a {
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
+    .finest-sidebar #mainnav #menu {
+        display: block;
+    }
+
+    .finest-sidebar #mainnav ul {
+        display: none;
+        text-align: left;
+    }
+    .finest-sidebar #mainnav ul li {
+        display: block;
+    }
+
+    .finest-sidebar #mainnav ul li a {
+        display: block;
+        
+    }
     .finest-single-wrap .finest-sidebar {
         width: 100% !important;
         order: -2;
@@ -547,13 +570,13 @@ a {
 .finest-sidebar.layout-three .entry-content {
     margin-bottom: 50px;
 }
-.finest-container {
+/* .finest-container {
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
-}
+} */
 .finest-sidebar.layout-three {
     background: #fff !important;
     width: 30%;
@@ -680,11 +703,11 @@ a {
     color: #4A3BFD;
 }
 
-@media (min-width: 1200px) {
+/* @media (min-width: 1200px) {
     .finest-container {
         width: 1300px;
     }
-}
+} */
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
     .finest-single-wrap .finest-sidebar.layout-three {
@@ -710,12 +733,15 @@ a {
 /* **********************************
         section template
 *************************************/
-
-.finest-site-main  {
+.finest-container {
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
+    max-width: 1300px;
+}
+
+.finest-site-main  {
     padding-top: 95px;
     padding-bottom: 115px;
   }
@@ -1023,12 +1049,13 @@ a {
 *********************************/
 
 .finest-site-main .card-top .card-title img {
-    max-width: 100%;
+    width: 100%;
     height: 190px;
     border-radius: 5px 5px 0px 0px;
     display: flex;
     align-items: center;
     justify-content: center;
+    object-fit: cover;
 }
 .finest-site-main .card-top .card-title h1 {
     font-family: 'Gentona';
@@ -1045,6 +1072,7 @@ a {
     background: #FFFFFF;
     border: 1px solid rgba(45, 45, 49, 0.12);
     border-radius: 5px;
+    transition: all 0.3s;
 }
 .finest-site-main .card-bottom {
     padding: 25px 35px 40px 35px;
@@ -1057,8 +1085,8 @@ a {
     line-height: 32px;
     color: #161617;
     text-transform: capitalize;
-    margin: 0px;
-    padding-bottom: 15px;
+    margin-top: 0px;
+    margin-bottom: 15px;
 }
 .finest-site-main .card-bottom .card-content p {
     font-family: 'Inter';
@@ -1127,7 +1155,7 @@ a {
     color: rgba(0, 0, 0, 0.7);
 }
 
-@media (min-width:576px) {
+@media (min-width: 320px) and (max-width: 767px) {
     .finest-site-main .col-sm {
         -ms-flex-preferred-size: 0;
         flex-basis: 0;
@@ -1272,8 +1300,8 @@ a {
     }
 
 }
-  @media (min-width: 768px) {
-    .finest-site-main {  
+  @media (min-width: 768px) and (max-width: 991px) {
+    .finest-container {  
       max-width: 750px;
     }
     .finest-site-main .col-md {
@@ -1420,8 +1448,8 @@ a {
         max-width: 100%
     }
   }
-  @media (min-width: 992px) {
-    .finest-site-main {
+  @media ( min-width: 992px ) and ( max-width: 1159px ) {
+    .finest-container {
       max-width: 970px;
     }
     .finest-site-main .col-lg {

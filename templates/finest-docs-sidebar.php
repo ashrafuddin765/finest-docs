@@ -12,6 +12,8 @@ elseif ( 'layout-03' == $layout ) {
 }
 ?>
 <div class="finest-sidebar <?php echo $class; ?>">
+<nav id="mainnav" >
+    <div id="menu" ><span class="dashicons dashicons-menu"></span></div>
     <?php
 $ancestors        = [];
 $root             = $parent             = false;
@@ -52,5 +54,6 @@ echo $children;
     ?>
         </ul>
     <?php }?>
+</nav>
 </div>
 
