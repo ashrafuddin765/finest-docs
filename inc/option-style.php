@@ -21,6 +21,9 @@ function fmc_options_scripts(){
     if ( file_exists( FINEST_DOCS_INC . 'custom-css/section-page.php' ) ) {
        require_once ( FINEST_DOCS_INC . 'custom-css/section-page.php' );
     }
+    if ( file_exists( FINEST_DOCS_INC . 'custom-css/search.php' ) ) {
+       require_once ( FINEST_DOCS_INC . 'custom-css/search.php' );
+    }
 
     $fmc_dynamic_css = fmc_css_strip_whitespace( $fmc_dynamic_css );
 	wp_add_inline_style( 'finest-quick-view', $fmc_dynamic_css );

@@ -883,6 +883,36 @@ a {
 ***********************************/
 .section-bg {
     background-image: url('../img/secton-head.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 85px;
+    padding-bottom: 105px;
+}
+.section-header {
+    text-align: center;
+
+}
+.section-title h1 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 42px;
+    line-height: 1.14em;
+    text-align: center;
+    color: #FFFFFF;
+}
+.section-desc p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 1.55em;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    padding-left: 70px;
+    padding-right: 70px;
+    margin-bottom: 40px;
 }
 /*********************************
             Docs Template-01
