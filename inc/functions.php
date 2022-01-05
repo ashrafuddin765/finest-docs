@@ -245,14 +245,45 @@ function fddocs_search_query( $query ) {
 }
 add_action( 'pre_get_posts', 'fddocs_search_query' );
 
+
 add_filter( 'template_include', 'wpa3396_page_template' );
 function wpa3396_page_template( $page_template ) {
 
     if ( is_search() && 'finest-docs' == get_query_var( 'post_type' ) ) {
         $page_template = FINEST_DOCS_DIR . 'templates/search.php';
     }
+
+    if ( get_page_template_slug() === 'fddocs-sections.php' ) {
+
+        $page_template = FINEST_DOCS_DIR . '/templates/fddocs-sections.php';
+
+    }
+ 
+    if ( get_page_template_slug() === 'fddocs.php' ) {
+
+        $page_template = FINEST_DOCS_DIR . '/templates/fddocs.php';
+
+    }
+
+    if ( $page_template == '' ) {
+        throw new \Exception( 'No template found' );
+    }
+
     return $page_template;
 }
 
 
 
+/**
+ * Add "Custom" template to page attirbute template section.
+ */
+function wpse_288589_add_template_to_select( $post_templates, $wp_theme, $post, $post_type ) {
+
+    // Add custom template named template-with-sidebar.php to select dropdown
+    $post_templates['fddocs.php'] = __( 'Documentation Page' );
+    $post_templates['fddocs-sections.php'] = __( 'Doc Sections' );
+
+    return $post_templates;
+}
+
+add_filter( 'theme_page_templates', 'wpse_288589_add_template_to_select', 10, 4 );
