@@ -110,21 +110,15 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .docs-wraper',
+			'element'  => '.finest-site-main .wraper',
 			'function' => 'css',
 			'property' => 'border-color',
 		],
 	],
-    'active_callback'  => [
-		[
-			'setting'  => 'column_hover_normal',
-			'operator' => '===',
-			'value'    => 'normal',
-		],
-	],
+    
 ] );
-// padding
 
+// padding
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'dimensions',
 	'settings'    => 'archive_area_padding',
@@ -137,8 +131,6 @@ Kirki::add_field( 'docs_panel', [
 		'padding-right'  => '0px',
 	],
 ] );
-
-
 
 //colum radius
 
@@ -156,17 +148,10 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.finest-site-main .wraper',
 			'function' => 'css',
 			'property' => 'border-radius',
 			'units'    => 'px',
-		],
-	],
-    'active_callback'  => [
-		[
-			'setting'  => 'column_hover_normal',
-			'operator' => '===',
-			'value'    => 'normal',
 		],
 	],
 ] );
