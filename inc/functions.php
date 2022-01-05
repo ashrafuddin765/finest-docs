@@ -115,13 +115,12 @@ function fmc_css_strip_whitespace( $css ) {
 function fd_get_posts_children( $parent_id ) {
 
     $post = get_post( $parent_id );
-    if(empty($post)){
+    if ( empty( $post ) ) {
         return false;
     }
     $children = array();
     // grab the posts children
     $posts = get_posts( array( 'numberposts' => -1, 'post_parent' => $parent_id, 'post_type' => $post->post_type, 'suppress_filters' => false ) );
-
 
     // now grab the grand children
     foreach ( $posts as $child ) {
@@ -188,9 +187,9 @@ function fd_duplicate( $post_id, $parent_id = '' ) {
 }
 
 function fd_duplicator( $post_id ) {
-    $old_parent_id = wp_get_post_parent_id($post_id);
-    $new_post_id = fd_duplicate( $post_id, $old_parent_id );
-    $child_ids   = fd_get_posts_children( $post_id );
+    $old_parent_id = wp_get_post_parent_id( $post_id );
+    $new_post_id   = fd_duplicate( $post_id, $old_parent_id );
+    $child_ids     = fd_get_posts_children( $post_id );
 
     // var_dump($new_post_id);
     if ( $new_post_id && false != $child_ids ) {
@@ -207,4 +206,61 @@ function fd_duplicator( $post_id ) {
 
     return $new_post_id;
 
+}
+
+// body class added
+
+add_filter( 'body_class', 'finest_body_classes' );
+
+function finest_body_classes( $classes ) {
+    $classes[] = 'finest-body';
+    return $classes;
+
+}
+
+/**
+ * Register custom query vars
+ *
+ * @link https://codex.wordpress.org/Plugin_API/Filter_Reference/query_vars
+ */
+function fddox_register_query_vars( $vars ) {
+    $vars[] = 'doc-search';
+    return $vars;
+}
+add_filter( 'query_vars', 'fddox_register_query_vars' );
+
+/**
+ * Override Movie Archive Query
+ * https://codex.wordpress.org/Plugin_API/Action_Reference/pre_get_posts
+ */
+function fddocs_search_query( $query ) {
+    // only run this query if we're on the job archive page and not on the admin side
+    if ( $query->is_archive( 'docs' ) && $query->is_main_query() && !is_admin() ) {
+        // get query vars from url.
+        // https://codex.wordpress.org/Function_Reference/get_query_var#Examples
+        $search_key = get_query_var( 'doc-search', FALSE );
+
+        $query->set( 's', esc_attr( $search_key ) );
+    }
+}
+add_action( 'pre_get_posts', 'fddocs_search_query' );
+
+add_filter( 'template_include', 'wpa3396_page_template' );
+function wpa3396_page_template( $page_template ) {
+
+    if ( is_search() && 'finest-docs' == get_query_var( 'post_type' ) ) {
+        $page_template = FINEST_DOCS_DIR . 'templates/search.php';
+    }
+    return $page_template;
+}
+
+//recursive function to get page level, function returns when parent page is zero
+function level_page_admin_get_level( $parentIds, $pageId, $level ) {
+    
+    $parentId = $parentIds[$pageId];
+    if ( $parentId > 0 ) {
+        $level++;
+        return level_page_admin_get_level( $parentIds, $parentId, $level );
+    }
+    return $level;
 }

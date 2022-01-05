@@ -11,7 +11,7 @@
                 <h1><?php echo get_the_title(); ?></h1>
             </div>
             <div class="docs-excerpt" >
-                <?php echo get_the_excerpt(); ?>
+                <p><?php echo wp_trim_words(get_the_excerpt(),15,'.'); ?></p>
             </div>
             <div class="total-article" >
                 <span class="article-total" ><?php _e( '4 Articles', 'finest-docs' ); ?> </span>

@@ -3,6 +3,9 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: #fff;
 }
+body.finest-body {
+    background: #F3F5F7;
+}
 .container-layout-01 {
     max-width: 100%;
 }
@@ -49,7 +52,7 @@ body {
     padding-right: 45px;
 }
 
-.finest-single-wrap .finest-single-content ul.finest-breadcrumb {
+ul.finest-breadcrumb {
     list-style: none;
     margin-left: 0;
     padding-left: 0;
@@ -57,7 +60,7 @@ body {
     align-items: center;
 }
 
-.finest-single-wrap .finest-single-content ul.finest-breadcrumb li {
+ul.finest-breadcrumb li {
     display: flex;
     align-items: center;
 }
@@ -305,6 +308,154 @@ ul.finest-breadcrumb li .dashicons {
 
 .container-layout-02 .finest-single-content .entry-content p {
     margin-right: 30px;
+}
+
+
+
+/* Search page style  */
+form.search-form.finestdocs-search-form {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+}
+
+form.search-form.finestdocs-search-form input.search-field {
+    width: 100%;
+    background-color: #FAFAFA;
+    border: 1px solid rgba(22, 22, 23, 0.15);
+    border-radius: 5px;
+    height: 60px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: #161617;
+    padding-left: 50px;
+    margin-top: 0;
+    margin-right: 0;
+    margin: 0;
+}
+
+form.search-form.finestdocs-search-form  button.search-submit {
+    position: absolute;
+    background-color: transparent;
+    border: none!important;
+    margin-left: 0!important;
+    padding: 0;
+    margin-top: 0!important;
+    left: 20px;
+    top: 17px;
+}
+
+.finestdocs-search-input {
+    width: 100%;
+}
+
+.finest-search-bar h2 {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 46px;
+    margin-bottom: 18px;
+}
+
+.finest-search-bar p {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 28px;
+    margin-bottom: 40px;
+}
+
+.finest-search-page .finest-container {
+    width: 856px;
+}
+
+.finest-search-page .finest-search-bar {
+    padding: 90px;
+    background-color: #fff;
+}
+
+.fddox-search-title {
+    width: 465px;
+    max-width: 100%;
+}
+
+.finest-search-results {
+    padding: 65px 0 70px;
+}
+
+.finest-search-restult-title {
+    margin-bottom: 50px;
+}
+
+.finest-search-restult-title h4 {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 21px;
+    line-height: 32px;
+/* identical to box height, or 152% */
+    color: rgba(22, 22, 23, 0.5);
+}
+
+.finest-search-restult-title h4 strong {
+    color: #161617;
+}
+
+.fddocs-single-search-item {
+    background-color: #fff;
+    padding: 35px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 26px;
+    border: 1px solid rgba(45, 45, 49, 0.12);
+    border-radius: 3px;
+    margin-bottom: 25px;
+}
+
+.fddocs-single-search-item ul.finest-breadcrumb {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 26px;
+    margin-bottom: 13px;
+}
+
+.fddocs-single-search-item ul.finest-breadcrumb a {
+    color: rgba(22, 22, 23, 0.6);
+    text-decoration: none;
+}
+
+.fddocs-single-search-item ul.finest-breadcrumb span.current {
+    color: #4B3BFD;
+}
+
+.fddocs-single-search-item h4 {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 34px;
+    color: #161617;
+    margin-bottom: 16px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.fddocs-single-search-item ul.finest-breadcrumb li {
+    display: none;
+}
+
+.fddocs-single-search-item ul.finest-breadcrumb li:last-child, .fddocs-single-search-item ul.finest-breadcrumb li:nth-last-child(2),.fddocs-single-search-item ul.finest-breadcrumb li:nth-last-child(3) {
+    display: block;
 }
 
 @media screen and (min-width: 992px) and (max-width: 1444px) {
@@ -747,7 +898,7 @@ ul.finest-breadcrumb li .dashicons {
     position: relative;
 }
 .finest-site-main .content-area {
-    padding: 30px 40px;
+    padding: 30px 35px 35px 35px;
 }
 .finest-site-main .docs-title h1 {
     margin: 0px;
@@ -772,7 +923,6 @@ ul.finest-breadcrumb li .dashicons {
     font-size: 16px;
     line-height: 26px;
     color: rgba(0, 0, 0, 0.7);
-    margin-top: 15px;
     margin-bottom: 30px;
     font-family: 'Inter';
 }
@@ -811,17 +961,19 @@ ul.finest-breadcrumb li .dashicons {
     align-items: center;
     border-radius: 0px;
     padding-top: 35px;
-    padding-bottom: 40px;
+    padding-bottom: 35px;
     padding-left: 35px;
 }
 .finest-site-main .wraper.template-scnd .content-area {
     padding: 0px;
 }
 .finest-site-main .icon.scnd-icon {
-    margin-right: 30px;
+    margin-right: 25px;
 }
 .finest-site-main .icon.scnd-icon img {
     color: #161617;
+    width: 40px;
+    height: 40px;
 }
 .finest-site-main .wraper.template-scnd .total-article .article-total {
     font-family: 'Inter';
@@ -858,6 +1010,9 @@ ul.finest-breadcrumb li .dashicons {
     color: #161617;
     margin-left: 5px;
 }
+.section-article-list ul li a:hover {
+    text-decoration: underline;
+}
 
 .section-article-list {
     margin-bottom: 25px;
@@ -867,10 +1022,9 @@ ul.finest-breadcrumb li .dashicons {
             Docs Template-01
 *********************************/
 
-.finest-site-main .card-top {
+.finest-site-main .card-top .card-title img {
     max-width: 100%;
     height: 190px;
-    background: #FC824E;
     border-radius: 5px 5px 0px 0px;
     display: flex;
     align-items: center;
@@ -893,7 +1047,7 @@ ul.finest-breadcrumb li .dashicons {
     border-radius: 5px;
 }
 .finest-site-main .card-bottom {
-    padding: 20px 35px 40px 35px;
+    padding: 25px 35px 40px 35px;
 }
 .finest-site-main .card-bottom .card-content-title h1 {
     font-family: 'Inter';
@@ -904,6 +1058,7 @@ ul.finest-breadcrumb li .dashicons {
     color: #161617;
     text-transform: capitalize;
     margin: 0px;
+    padding-bottom: 15px;
 }
 .finest-site-main .card-bottom .card-content p {
     font-family: 'Inter';
@@ -937,21 +1092,20 @@ ul.finest-breadcrumb li .dashicons {
 .docs-wraper.docs-templatetwo {
     display: flex;
     align-items: center;
-    padding: 40px 35px;
+    padding: 38px 35px;
     border: 0px;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
-.finest-site-main .docs-templatetwo .card-top {
+.finest-site-main .docs-templatetwo .card-top img {
     width: 60px;
     height: 60px;
-    background: #5CD5E6;
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 30px;
-}
+    margin-right: 25px;
+} 
 .finest-site-main .docs-templatetwo .card-top .card-title h1 { 
     font-family: 'Inter';
     font-style: normal;
@@ -1417,6 +1571,7 @@ ul.finest-breadcrumb li .dashicons {
   @media (min-width: 1200px) {
     .finest-site-main {
       max-width: 1300px;
+      width: 100%;
     }
     .finest-site-main .col-xl {
         -ms-flex-preferred-size: 0;

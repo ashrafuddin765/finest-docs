@@ -3,11 +3,12 @@
     <div class="docs-wraper docs-templatetwo" >
         <div class="card-top">
             <div class="card-title">
-                <h1><?php 
-                    $str = get_the_title(); 
-                    $firstchar = substr($str,0,1);
-                    echo $firstchar;
-                ?></h1>
+                <img src="<?php echo FINEST_DOCS_ASSETS_ASSETS.'/docs-thum.png' ?>" alt="thumbnail" />
+                <!-- <h1><?php 
+                    // $str = get_the_title(); 
+                    // $firstchar = substr($str,0,1);
+                    // echo $firstchar;
+                ?></h1> -->
             </div>
         </div>
         <div class="card-bottom">
