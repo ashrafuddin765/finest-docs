@@ -35,6 +35,7 @@ function init() {
     // fd_duplicator(20);
 
 
+	register_theme_directory( dirname( __FILE__ ).'/templates' );
 }
 
 // // Load the library
