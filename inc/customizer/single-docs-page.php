@@ -10,7 +10,7 @@ Kirki::add_section( 'single_page', array(
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'radio-image',
 	'settings'    => 'docs_category_layout',
-	'label'       => esc_html__( 'Select Layout', 'finest-docs' ),
+	'label'       => esc_html__( 'Select Single Doc Layout', 'finest-docs' ),
 	'section'     => 'single_page',
 	'default'     => 'layout-01',
 	'priority'    => 10,
@@ -22,10 +22,45 @@ Kirki::add_field( 'docs_panel', [
 	],
 ] );
 
+// background color
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'color',
+	'settings'    => 'doc_area_backgound',
+	'label'       => __( 'Content Area Background Color', 'finest-docs' ),
+	'section'     => 'single_page',
+	'default'     => '#F3F5F7',
+	'choices'     => [
+		'alpha' => true,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-single-wrap',
+			'function' => 'css',
+			'property' => 'background-color',
+		],
+	]
+] );
+
+// padding
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'dimensions',
+	'settings'    => 'content_padding',
+	'label'       => esc_html__( 'Contnet Area Padding', 'finest-docs' ),
+	'section'     => 'single_page',
+	'default'     => [
+		'padding-top'    => '0px',
+		'padding-left' => '0px',
+		'padding-bottom'   => '0px',
+		'padding-right'  => '0px',
+	],
+	
+] );
+
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'single_page_width',
-	'label'       => esc_html__( 'Content Area Width', 'finest-docs' ),
+	'label'       => esc_html__( 'Doc Area Width', 'finest-docs' ),
 	'section'     => 'single_page',
 	'default'     => 50,
 	'choices'     => [
@@ -48,7 +83,7 @@ Kirki::add_field( 'docs_panel', [
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'color',
 	'settings'    => 'content_area_backgound',
-	'label'       => __( 'Content Area Background Color', 'finest-docs' ),
+	'label'       => __( 'Doc Area Background Color', 'finest-docs' ),
 	'section'     => 'single_page',
 	'default'     => '#ffffff',
 	'choices'     => [
@@ -68,7 +103,7 @@ Kirki::add_field( 'docs_panel', [
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'dimensions',
 	'settings'    => 'docs_padding',
-	'label'       => esc_html__( 'Padding', 'finest-docs' ),
+	'label'       => esc_html__( 'Doc Padding', 'finest-docs' ),
 	'section'     => 'single_page',
 	'default'     => [
 		'padding-top'    => '45px',
@@ -90,20 +125,25 @@ Kirki::add_field( 'docs_panel', [
 
 
 Kirki::add_field( 'docs_panel', [
-	'type'        => 'typography',
-	'settings'    => 'docs_title_typography',
-	'label'       => esc_html__( 'Typography', 'finest-docs' ),
+	'type'        => 'slider',
+	'settings'    => 'post_title_font_size',
+	'label'       => esc_html__( 'Title Font Size', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => [
-		'font-family'    => 'Inter',
-		'variant'        => '600',
-		'font-size'      => '28px',
-		'line-height'    => '1.72em',
-		'letter-spacing' => '0',
-		'text-transform' => 'none',
+	'default'     => 28,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
 	],
-	'priority'    => 10,
-	
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-single-content .entry-content h2',
+			'function' => 'css',
+			'property' => 'font-size',
+			'units'    => 'px',
+		],
+	],
 ] );
 
 Kirki::add_field( 'docs_panel', [
@@ -140,6 +180,29 @@ Kirki::add_field( 'docs_panel', [
 	], 
 ] );
 
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'slider',
+	'settings'    => 'post_title_title_margin',
+	'label'       => esc_html__( 'Title Margin', 'finest-docs' ),
+	'section'     => 'single_page',
+	'default'     => 15,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-single-content .entry-content h2',
+			'function' => 'css',
+			'property' => 'margin-bottom',
+			'units'    => 'px',
+		],
+	],
+] );
+
 //entry content
 
 Kirki::add_field( 'docs_panel', [
@@ -150,31 +213,26 @@ Kirki::add_field( 'docs_panel', [
 	'priority'    => 10,
 ] );
 
-
 Kirki::add_field( 'docs_panel', [
-	'type'        => 'typography',
-	'settings'    => 'desc_title_typography',
-	'label'       => esc_html__( 'Typography', 'finest-docs' ),
+	'type'        => 'slider',
+	'settings'    => 'entry_font_size',
+	'label'       => esc_html__( 'Font Size', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => [
-		'font-family'    => 'Inter',
-		'variant'        => 'regular',
-		'font-size'      => '16px',
-		'line-height'    => '1.6em',
-		'letter-spacing' => '0',
-		'text-transform' => 'none',
+	'default'     => 16,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
 	],
-	'priority'    => 10,
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
 			'element'  => '.finest-single-content .entry-content p',
 			'function' => 'css',
-			'property' => [],
-			
+			'property' => 'font-size',
+			'units'    => 'px',
 		],
 	],
-	
 ] );
 
 Kirki::add_field( 'docs_panel', [
@@ -196,18 +254,25 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-
 Kirki::add_field( 'docs_panel', [
-	'type'        => 'dimensions',
-	'settings'    => 'desc_content_margin',
-	'label'       => esc_html__( 'Contetn Margin', 'finest-docs' ),
+	'type'        => 'slider',
+	'settings'    => 'entry_margin_bottom',
+	'label'       => esc_html__( 'Margin Bottom', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => [
-		'margin-top'    => '0px',
-		'margin-right'  => '0px',
-		'margin-bottom' => '0px',
-		'margin-left'   => '0px'
-		
+	'default'     => 35,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-single-content .entry-content p',
+			'function' => 'css',
+			'property' => 'margin-bottom',
+			'units'    => 'px',
+		],
 	],
 ] );
 
@@ -220,37 +285,34 @@ Kirki::add_field( 'docs_panel', [
 ] );
 
 Kirki::add_field( 'docs_panel', [
-	'type'        => 'typography',
-	'settings'    => 'brad_typography',
-	'label'       => esc_html__( 'Typography', 'finest-docs' ),
+	'type'        => 'slider',
+	'settings'    => 'bradcrumb_font_size',
+	'label'       => esc_html__( 'Font Size', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => [
-		'font-family'    => 'Inter',
-		'variant'        => 'regular',
-		'font-size'      => '14px',
-		'line-height'    => '1.5em',
-		'letter-spacing' => '0',
-		'text-transform' => 'none',
+	'default'     => 15,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
 	],
-	'priority'    => 10,
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-single-content ul.finest-breadcrumb li a',
+			'element'  => '.finest-single-content ul.finest-breadcrumb li a,
+			.finest-single-content ul.finest-breadcrumb li .current',
 			'function' => 'css',
-			'property' => [],
-			
+			'property' => 'font-size',
+			'units'    => 'px',
 		],
 	],
-	
-] );
+] ); 
 
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'color',
 	'settings'    => 'bread_font_color',
 	'label'       => __( 'Breadcrumb Font Color', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => '#000',
+	'default'     => 'rgba(22, 22, 23, 0.6)',
 	'choices'     => [
 		'alpha' => true,
 	],
@@ -288,7 +350,7 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'active_bread_color',
 	'label'       => __( 'Breadcrumb Active Color', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => '#000',
+	'default'     => '#4A3BFD',
 	'choices'     => [
 		'alpha' => true,
 	],
@@ -303,18 +365,40 @@ Kirki::add_field( 'docs_panel', [
 ] );
 
 Kirki::add_field( 'docs_panel', [
+	'type'        => 'slider',
+	'settings'    => 'bradcrumb_margin',
+	'label'       => esc_html__( 'Margin Bottom', 'finest-docs' ),
+	'section'     => 'single_page',
+	'default'     => 25,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-single-wrap .finest-single-content ul.finest-breadcrumb',
+			'function' => 'css',
+			'property' => 'margin-bottom',
+			'units'    => 'px',
+		],
+	],
+] );
+
+Kirki::add_field( 'docs_panel', [
 	'type'        => 'color',
 	'settings'    => 'icon_bread_color',
 	'label'       => __( 'Breadcrumb Icon Color', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => '#000',
+	'default'     => '#111827',
 	'choices'     => [
 		'alpha' => true,
 	],
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'ul.finest-breadcrumb li .dashicons',
+			'element'  => '.finest-single-content ul.finest-breadcrumb li span.dashicons',
 			'function' => 'css',
 			'property' => 'color',
 		],
@@ -326,7 +410,7 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'bread_icon_size',
 	'label'       => esc_html__( 'Breadcrumb Icon Size', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => 14,
+	'default'     => 16,
 	'choices'     => [
 		'min'  => 0,
 		'max'  => 100,
@@ -335,7 +419,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'ul.finest-breadcrumb li .dashicons',
+			'element'  => '.finest-single-content ul.finest-breadcrumb li span.dashicons',
 			'function' => 'css',
 			'property' => 'font-size',
 			'units'    => 'px',
@@ -354,7 +438,7 @@ Kirki::add_field( 'docs_panel', [
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'docs_table_width',
-	'label'       => esc_html__( 'Content Area Width', 'finest-docs' ),
+	'label'       => esc_html__( 'Toc Area Width', 'finest-docs' ),
 	'section'     => 'single_page',
 	'default'     => 25,
 	'choices'     => [
@@ -376,7 +460,7 @@ Kirki::add_field( 'docs_panel', [
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'color',
 	'settings'    => 'table_area_backgound',
-	'label'       => __( 'Background Color', 'finest-docs' ),
+	'label'       => __( 'Toc Background Color', 'finest-docs' ),
 	'section'     => 'single_page',
 	'default'     => '#ffffff',
 	'choices'     => [
@@ -395,12 +479,12 @@ Kirki::add_field( 'docs_panel', [
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'dimensions',
 	'settings'    => 'docs_table_padding',
-	'label'       => esc_html__( 'Content Area Padding', 'finest-docs' ),
+	'label'       => esc_html__( 'Toc Area Padding', 'finest-docs' ),
 	'section'     => 'single_page',
 	'default'     => [
-		'padding-top'    => '0px',
-		'padding-right' => '0px',
-		'padding-bottom'   => '0px',
+		'padding-top'    => '45px',
+		'padding-right' => '30px',
+		'padding-bottom'   => '45px',
 		'padding-left'  => '0px',
 	],
 ] );
@@ -408,7 +492,7 @@ Kirki::add_field( 'docs_panel', [
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'table_content_radius',
-	'label'       => esc_html__( 'Content Area Radius', 'finest-docs' ),
+	'label'       => esc_html__( 'Toc Area Radius', 'finest-docs' ),
 	'section'     => 'single_page',
 	'default'     => 0,
 	'choices'     => [
@@ -427,31 +511,89 @@ Kirki::add_field( 'docs_panel', [
 	],
 ] );
 
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'color',
+	'settings'    => 'toc_title_color',
+	'label'       => __( 'Toc Title Color', 'finest-docs' ),
+	'section'     => 'single_page',
+	'default'     => 'color: rgba(0, 0, 0, 0.4);',
+	'choices'     => [
+		'alpha' => true,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-autoc-wrap .autoc h2',
+			'function' => 'css',
+			'property' => 'color',
+		],
+	]
+] );
 
 Kirki::add_field( 'docs_panel', [
-	'type'        => 'typography',
-	'settings'    => 'table_title_typography',
-	'label'       => esc_html__( 'Typography', 'finest-docs' ),
+	'type'        => 'slider',
+	'settings'    => 'toc_title_font_size',
+	'label'       => esc_html__( 'Toc Font Size', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => [
-		'font-family'    => 'Inter',
-		'variant'        => '500',
-		'font-size'      => '18px',
-		'line-height'    => '1.66em',
-		'letter-spacing' => '0',
-		'text-transform' => 'none',
+	'default'     => 13,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
 	],
-	'priority'    => 10,
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-autoc-wrap .autoc h2',
+			'function' => 'css',
+			'property' => 'font-size',
+			'units'    => 'px',
+		],
+	],
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'slider',
+	'settings'    => 'toc_title_bottom',
+	'label'       => esc_html__( 'Toc Margin Bottom', 'finest-docs' ),
+	'section'     => 'single_page',
+	'default'     => 10,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-autoc-wrap .autoc h2',
+			'function' => 'css',
+			'property' => 'margin-bottom',
+			'units'    => 'px',
+		],
+	],
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'slider',
+	'settings'    => 'table_title_font_size',
+	'label'       => esc_html__( 'Title Size', 'finest-docs' ),
+	'section'     => 'single_page',
+	'default'     => 18,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
+	],
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
 			'element'  => '.finest-autoc-wrap .autoc ul li a',
 			'function' => 'css',
-			'property' => [],
-			
+			'property' => 'font-size',
+			'units'    => 'px',
 		],
 	],
-	
 ] );
 
 Kirki::add_field( 'docs_panel', [
@@ -492,17 +634,25 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-
 Kirki::add_field( 'docs_panel', [
-	'type'        => 'dimensions',
-	'settings'    => 'table_title_margin',
-	'label'       => esc_html__( 'Title Margin', 'finest-docs' ),
+	'type'        => 'slider',
+	'settings'    => 'table_title_margin_bottom',
+	'label'       => esc_html__( 'Title Gap', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => [
-		'margin-top'    => '0px',
-		'margin-right' => '0px',
-		'margin-bottom'   => '0px',
-		'margin-left'  => '0px',
+	'default'     => 15,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-autoc-wrap .autoc ul li',
+			'function' => 'css',
+			'property' => 'padding-bottom',
+			'units'    => 'px',
+		],
 	],
 ] );
 
