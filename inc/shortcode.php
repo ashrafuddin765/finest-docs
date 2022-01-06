@@ -43,7 +43,7 @@ function fd_shortcode( $atts ) {
     ?>
 
         <?php if ( $the_query->have_posts() ): ?>
-            <div <?php post_class('finest-site-main template-two'); ?> >
+            <div class="finest-site-main <?php echo $section; ?> " >
             <div class="finest-container" >
                 <div class="row" >
             <?php while ( $the_query->have_posts() ): $the_query->the_post();

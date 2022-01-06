@@ -1,6 +1,6 @@
 <?php
 Kirki::add_section( 'docs_archive', array(
-	'title'          => esc_html__( 'Archive Page', 'finest-docs' ),
+	'title'          => esc_html__( 'Section Page', 'finest-docs' ),
 	'panel'          => 'docs_panel',
 	'priority'       => 160,
 ) );

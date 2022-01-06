@@ -16,9 +16,11 @@
                     <h1><?php echo get_the_title(); ?></h1>
             </a>
             </div>
+            <?php if ( !empty( get_the_content() ) ): ?>
             <div class="docs-excerpt" >
-                <p><?php echo wp_trim_words(get_the_excerpt(),15,'.'); ?></p>
+                <p><?php echo wp_trim_words(get_the_content(),15,'.'); ?></p>
             </div>
+            <?php endif; ?>
             <div class="total-article" >
                 <span class="article-total" ><?php 
                     printf(
