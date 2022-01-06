@@ -53,11 +53,11 @@ function fd_shortcode( $atts ) {
 	            <?php 
                     if( !empty ($id) ){
                         // here will be section layout 
-                        include FINEST_DOCS_INC .'section-template/'.$section.'.php';
+                        include FINEST_DOCS_DIR .'templates/section-template/'.$section.'.php';
 
                     }elseif( !$has_parent ){
                         // here will show all docs 
-                        include FINEST_DOCS_INC .'docs-template/'.$docs.'.php';
+                        include FINEST_DOCS_DIR .'templates/docs-template/'.$docs.'.php';
                     }
                     
                 ?>

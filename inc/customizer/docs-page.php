@@ -868,7 +868,7 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'doc_font_color',
 	'label'       => __( 'Doc Font Color', 'finest-docs' ),
 	'section'     => 'docs_page',
-	'default'     => 'rgba(22, 22, 23, 0.06)',
+	'default'     => '#161617',
 	'choices'     => [
 		'alpha' => true,
 	],
@@ -926,7 +926,7 @@ Kirki::add_field( 'docs_panel', [
 	'default'     => 50,
 	'choices'     => [
 		'min'  => 0,
-		'max'  => 500,
+		'max'  => 100,
 		'step' => 1,
 	],
 	'transport' => 'postMessage',
@@ -937,12 +937,7 @@ Kirki::add_field( 'docs_panel', [
 			'property' => 'height',
 			'units'    => 'px',
 		],
-		[
-			'element'  => '.finest-site-main .card-bottom .card-button a',
-			'function' => 'css',
-			'property' => 'line-height',
-			'units'    => 'px',
-		],
+		
 	],
     'active_callback'  => [
 		[
@@ -1052,7 +1047,7 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'button_border_color',
 	'label'       => __( 'Button Border Color', 'finest-docs' ),
 	'section'     => 'docs_page',
-	'default'     => '#fff',
+	'default'     => '#fffffff',
 	'choices'     => [
 		'alpha' => true,
 	],

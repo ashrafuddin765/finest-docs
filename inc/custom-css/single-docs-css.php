@@ -44,6 +44,13 @@
      $table_title_hover = get_theme_mod( 'table_title_hover_color', '#000000' );
      $table_title_gap = get_theme_mod( 'table_title_margin_bottom', '15px' );
 
+    //  footer button
+    $footerbutton_width = get_theme_mod( 'footer_button_width', '162px' );
+    $footerbutton_height = get_theme_mod( 'footer_button_height', '45px' );
+    $footerbutton_bg_color = get_theme_mod( 'button_bg_color', '#4A3BFD' );
+    $footerbutton_font_size = get_theme_mod( 'button_font_size', '16px' );
+    $footerbutton_font_color = get_theme_mod( 'button_text_color', '#ffffff' );
+    $footerbutton_font_color = get_theme_mod( 'button_border_radius', '5px' );
 
     if ( $content_bg_color) {
         $fmc_dynamic_css .= '.finest-single-wrap  { background-color:' . esc_attr( $content_bg_color ) .' } ';
