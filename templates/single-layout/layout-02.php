@@ -16,6 +16,20 @@
          
             ?>
         </div>
+        <div class="fdocs-ctn">
+            <div class="footer-area">
+                <div class="footer-content">
+                    <h3><?php echo esc_html( 'Still no luck? We can help!' ) ?> </h3>
+                    <p><?php echo esc_html( 'Contact us and we’ll get back to you as soon as possible.' ); ?></p>
+                </div>
+                <div class="footer-button">
+                    <a href="#">Contact support</a>
+                </div>
+            </div>
+        </div>
+        <div class="fdoc-powered">
+            <span class="fd-footertext" ><?php echo esc_html( 'Powered by UltimateDoc' ) ?></span>
+        </div>
         <?php if ( comments_open() || get_comments_number() ) { ?>
                 <div class="finest-comments-wrap">
                     <?php comments_template(); ?>

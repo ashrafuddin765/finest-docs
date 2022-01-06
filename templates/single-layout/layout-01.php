@@ -17,30 +17,43 @@
          
             ?>
         </div>
+        <div class="fdocs-navigation">
+           <?php 
+                the_post_navigation(array(
+                    'prev_text'          => '<span class="dashicons dashicons-arrow-left-alt"></span> %title',
+                    'next_text'          => '%title <span class="dashicons dashicons-arrow-right-alt"></span>',
+                     
+                ));
+           ?>
+        </div>
+
         <div class="fddocs-article-footer">
             <div class="fddocs-footer-meta"></div>
             <?php printf('%s', fddocs_feedback_html()) ?>
         </div>
-        <?php if ( comments_open() || get_comments_number() ) { ?>
-        <div class="finest-comments-wrap">
-            <?php comments_template(); ?>
-        </div>
-        <?php } ?>
-        <footer class="fddocs-entry-footer">
+        <div class="fdocs-ctn">
             <div class="footer-area">
                 <div class="footer-content">
                     <h3><?php echo esc_html( 'Still no luck? We can help!' ) ?> </h3>
                     <p><?php echo esc_html( 'Contact us and we’ll get back to you as soon as possible.' ); ?></p>
                 </div>
                 <div class="footer-button">
-                    <a href="#">Contact support</a>
+                    <?php 
+                         $supporturl = get_theme_mod( 'contact_url_page', 'http://example.com/' );
+                         printf('<a href="%s">%s</a>',esc_url_raw($supporturl), esc_html('Contact support'));
+                    ?>
+                   
                 </div>
             </div>
-            <div class="fd-powered">
-                <span class="fd-footertext" ><?php echo esc_html( 'Powered by UltimateDoc' ) ?></span>
-            </div>
-        </footer>
-        
+        </div>
+        <div class="fdoc-powered">
+            <span class="fd-footertext" ><?php echo esc_html( 'Powered by UltimateDoc' ) ?></span>
+        </div>
+        <?php if ( comments_open() || get_comments_number() ) { ?>
+                <div class="finest-comments-wrap">
+                    <?php comments_template(); ?>
+                </div>
+        <?php } ?>
     </article><!-- #post-## -->
 </div><!-- .finest-single-content -->
 <div class="finest-autoc-wrap">
