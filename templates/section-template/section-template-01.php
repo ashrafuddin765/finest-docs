@@ -12,13 +12,22 @@
         </div>
         <div class="content-area" >
             <div class="docs-title" >
-                <h1><?php echo get_the_title(); ?></h1>
+                <a href="<?php echo get_the_permalink( fd_get_posts_children(get_the_ID(  ))[0] ) ?>">
+                    <h1><?php echo get_the_title(); ?></h1>
+            </a>
             </div>
             <div class="docs-excerpt" >
                 <p><?php echo wp_trim_words(get_the_excerpt(),15,'.'); ?></p>
             </div>
             <div class="total-article" >
-                <span class="article-total" ><?php _e( '4 Articles', 'finest-docs' ); ?> </span>
+                <span class="article-total" ><?php 
+                    printf(
+                        '%s %s', 
+                        fddocs_get_totla_article(get_the_ID(), true),
+                        esc_html__( 'Articles ', 'finest-docs' )
+                    ); 
+                            
+                ?> </span>
             </div>
         </div>
     </div>

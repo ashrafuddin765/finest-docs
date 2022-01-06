@@ -1,9 +1,8 @@
-
-<div class="col-12" >
-    <div class="docs-wraper docs-templatetwo" >
+<div class="col-12">
+    <div class="docs-wraper docs-templatetwo">
         <div class="card-top">
             <div class="card-title">
-                 <?php 
+                <?php 
                     if ( has_post_thumbnail() ) {
                         the_post_thumbnail();
                     }
@@ -12,12 +11,20 @@
         </div>
         <div class="card-bottom">
             <div class="card-content-title">
-                <h1><?php echo get_the_title(); ?></h1>
+                <a href="<?php echo esc_url( get_the_permalink(  ) ) ?>">
+                    <h1><?php echo get_the_title(); ?></h1>
+                </a>
             </div>
-            <div class="docs-article" >
-                <span class="docs-article-total" ><?php _e( '113 Articles in this doc', 'finest-docs' ); ?> </span>
+            <div class="docs-article">
+                <span class="docs-article-total">
+                    <?php 
+                    printf(
+                    '%s %s', 
+                    fddocs_get_totla_article(get_the_ID())   ,
+                    esc_html__( 'Articles in this doc', 'finest-docs' )); 
+                    
+                ?> </span>
             </div>
         </div>
     </div>
 </div>
-   

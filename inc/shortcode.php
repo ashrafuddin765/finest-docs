@@ -63,7 +63,7 @@ function fd_shortcode( $atts ) {
                 ?>
 
 	            <?php endwhile;?>
-            <?php wp_reset_postdata();?>
+            <?php wp_reset_query(  );?>
 
             </div>
         </div>
@@ -104,6 +104,7 @@ function fddocs_search_shortcode( $atts ) {
         <span class="screen-reader-text">' . _x( 'Search for:', 'label', 'finestdocs' ) . '</span>
         <input type="search" class="search-field" placeholder="' . esc_attr_x( 'Search for articles...', 'placeholder', 'finestdocs' ) . '" value="' . get_search_query() . '" name="s" title="' . esc_attr_x( 'Search for:', 'label', 'finestdocs' ) . '" />
         <input type="hidden" name="post_type" value="finest-docs" />
+        <input type="hidden" name="post_id" value="'.esc_html($id).'" />
         <button class="search-submit" type="submit">'.$search_icon.'</button>
     </div>
  

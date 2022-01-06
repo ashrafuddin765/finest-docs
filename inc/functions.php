@@ -245,7 +245,6 @@ function fddocs_search_query( $query ) {
 }
 add_action( 'pre_get_posts', 'fddocs_search_query' );
 
-
 add_filter( 'template_include', 'wpa3396_page_template' );
 function wpa3396_page_template( $page_template ) {
 
@@ -258,7 +257,7 @@ function wpa3396_page_template( $page_template ) {
         $page_template = FINEST_DOCS_DIR . '/templates/fddocs-sections.php';
 
     }
- 
+
     if ( get_page_template_slug() === 'fddocs.php' ) {
 
         $page_template = FINEST_DOCS_DIR . '/templates/fddocs.php';
@@ -272,15 +271,13 @@ function wpa3396_page_template( $page_template ) {
     return $page_template;
 }
 
-
-
 /**
  * Add "Custom" template to page attirbute template section.
  */
 function wpse_288589_add_template_to_select( $post_templates, $wp_theme, $post, $post_type ) {
 
     // Add custom template named template-with-sidebar.php to select dropdown
-    $post_templates['fddocs.php'] = __( 'Documentation Page' );
+    $post_templates['fddocs.php']          = __( 'Documentation Page' );
     $post_templates['fddocs-sections.php'] = __( 'Doc Sections' );
 
     return $post_templates;
@@ -288,23 +285,22 @@ function wpse_288589_add_template_to_select( $post_templates, $wp_theme, $post, 
 
 add_filter( 'theme_page_templates', 'wpse_288589_add_template_to_select', 10, 4 );
 
-
-function fddocs_feedback_html(){
-    $previous = isset( $_COOKIE['fddocs_response'] ) ? explode( ',', $_COOKIE['fddocs_response'] ) : [];
-    $is_disabled = in_array( get_the_ID(), $previous ) ? 'disabled': '';
+function fddocs_feedback_html() {
+    $previous    = isset( $_COOKIE['fddocs_response'] ) ? explode( ',', $_COOKIE['fddocs_response'] ) : [];
+    $is_disabled = in_array( get_the_ID(), $previous ) ? 'disabled' : '';
     ob_start();?>
 <div class="fddocs-footer-feedback <?php echo esc_attr( $is_disabled ) ?>">
-   
-    <span class="feedback-text"><?php esc_html_e( 'Rate this article', 'finestdocs' ) ?></span>
 
-    <span class="like" data-type="like" data-id="<?php the_ID() ?>"><svg width="14" height="13" viewBox="0 0 14 13"
+    <span class="feedback-text"><?php esc_html_e( 'Rate this article', 'finestdocs' )?></span>
+
+    <span class="like" data-type="like" data-id="<?php the_ID()?>"><svg width="14" height="13" viewBox="0 0 14 13"
             fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M0.59375 12.5625H2.95625V5.475H0.59375V12.5625ZM13.5875 6.06562C13.5875 5.41298 13.0589 4.88437 12.4063 4.88437H8.67645L9.2405 2.18522C9.25231 2.12616 9.26117 2.06414 9.26117 1.99917C9.26117 1.75406 9.16077 1.53258 9.0013 1.37311L8.37228 0.75L4.48302 4.63927C4.27039 4.85484 4.1375 5.15016 4.1375 5.475V11.3812C4.1375 12.0339 4.66611 12.5625 5.31875 12.5625H10.6344C11.1246 12.5625 11.5439 12.2642 11.7211 11.8419L13.5019 7.67803C13.555 7.54219 13.5875 7.39748 13.5875 7.24687V6.11583L13.5816 6.10992L13.5875 6.06562Z"
                 fill="white" />
         </svg>
     </span>
-    <span class="dislike" data-type="dislike" data-id="<?php the_ID() ?>">
+    <span class="dislike" data-type="dislike" data-id="<?php the_ID()?>">
         <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M13.7451 0.4375H11.3826V7.525H13.7451V0.4375ZM0.751366 6.93438C0.751366 7.58702 1.27998 8.11562 1.93262 8.11562H5.66241L5.09837 10.8148C5.08655 10.8738 5.07769 10.9359 5.07769 11.0008C5.07769 11.2459 5.1781 11.4674 5.33757 11.6269L5.96659 12.25L9.85585 8.36073C10.0685 8.14516 10.2014 7.84984 10.2014 7.525V1.61875C10.2014 0.966109 9.67276 0.4375 9.02012 0.4375H3.70449C3.21427 0.4375 2.79493 0.735765 2.61774 1.15806L0.837007 5.32197C0.783851 5.45781 0.751366 5.60252 0.751366 5.75313V6.88417L0.757273 6.89008L0.751366 6.93438Z"
@@ -315,16 +311,55 @@ function fddocs_feedback_html(){
 
 </div>
 <?php
-    return ob_get_clean();
+return ob_get_clean();
 }
 
-
-
- function page_layout( $layout ) {
+function page_layout( $layout ) {
 
     if ( is_singular( 'finest-docs' ) ) {
         return 'no-sidebar';
     }
 
     return $layout;
+}
+
+function fddocs_get_totla_article( $id = '', $in_section = false ) {
+    $id = '' != $id ? $id : get_the_ID();
+
+    $args = array(
+        'post_type'      => 'finest-docs',
+        'posts_per_page' => -1,
+        'post_parent' => $id
+    );
+
+    $posts = get_posts( $args );
+
+    $counter = 0;
+    // now grab the grand children
+    foreach ( $posts as $child ) {
+
+        $first_parent = wp_get_post_parent_id( $child->ID );
+        if ( $in_section ) {
+            $children = fd_get_posts_children( $first_parent );
+            $children = count( $children );
+            $counter += $children;
+            break;
+        } else {
+
+            if ( $first_parent == $id ) {
+                $second_parent = wp_get_post_parent_id( $child->ID );
+
+                $children = fd_get_posts_children( $second_parent );
+                // var_dump($children);
+                $children = count( $children );
+                $counter += $children;
+
+            }
+        }
+
+    }
+
+
+
+    return $counter;
 }

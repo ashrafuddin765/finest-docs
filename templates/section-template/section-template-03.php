@@ -14,7 +14,15 @@
                 </ul>
             </div>
             <div class="total-article" >
-                <span class="article-total" ><?php _e( 'See all 7 Articles ', 'finest-docs' ); ?> </span>
+                <span class="article-total" ><?php 
+                           printf(
+                            '%s <a href="%s">%s</a>', 
+                            fddocs_get_totla_article(get_the_ID(), true),
+                            get_the_permalink( fd_get_posts_children(get_the_ID(  ))[0] ),
+                            esc_html__( 'See all 7 Articles ', 'finest-docs' )
+                        ); 
+                            
+                ?> </span>
             </div>
         </div>
     </div>
