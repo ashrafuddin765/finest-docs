@@ -33,7 +33,7 @@ add_action( 'init', 'init' );
 
 function init() {
     // fd_duplicator(20);
-
+	add_filter( 'astra_page_layout',  'page_layout'  );
 
 	register_theme_directory( dirname( __FILE__ ).'/templates' );
 }

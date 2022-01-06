@@ -25,7 +25,7 @@ function fmc_options_scripts(){
        require_once ( FINEST_DOCS_INC . 'custom-css/search.php' );
     }
 
-    $fmc_dynamic_css = fmc_css_strip_whitespace( $fmc_dynamic_css );
+    $fmc_dynamic_css = fddocs_css_strip_whitespace( $fmc_dynamic_css );
 	wp_add_inline_style( 'finest-quick-view', $fmc_dynamic_css );
 
 }

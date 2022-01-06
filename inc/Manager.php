@@ -47,6 +47,8 @@ class Manager {
         
         return $template;
     }
+
+    
     
 }
 

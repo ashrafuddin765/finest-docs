@@ -383,7 +383,7 @@ span.finestdocs-row-actions ul.action-sub-menu .finestdocs-btn-remove {
   color: #F82C2C;
 }
 span.finestdocs-row-actions .actions-menu .toggler {
-  background: rgba(5, 5, 5, 0.1);
+  background: rgb(5 5 5 / 5%);
   width: 20px;
   height: 20px;
   display: inline-flex;

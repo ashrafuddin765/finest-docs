@@ -19,6 +19,10 @@ function fqv_register_script() {
 
     wp_enqueue_script( 'finest-docs-core', FINEST_DOCS_ASSETS_JS . 'finest-docs.js', array( 'jquery' ), FINEST_DOCS_VERSION, true );
 
+    wp_localize_script( 'finest-docs-core', 'fddocs_vars', [
+        'nonce'   => wp_create_nonce( 'finestdocs-nonce' ),
+        'ajaxurl' => admin_url( 'admin-ajax.php' ),
+    ] );
 };
 add_action( 'wp_enqueue_scripts', 'fqv_register_script' );
 
@@ -52,6 +56,7 @@ if ( file_exists( FINEST_DOCS_INC . 'Post_types.php' ) ) {
 require_once FINEST_DOCS_INC . 'Admin/Admin.php';
 require_once FINEST_DOCS_INC . 'Metabox.php';
 require_once FINEST_DOCS_INC . 'Admin/Ajax.php';
+require_once FINEST_DOCS_INC . 'Ajax.php';
 require_once FINEST_DOCS_INC . 'Manager.php';
 require_once FINEST_DOCS_INC . 'shortcode.php';
 require_once FINEST_DOCS_INC . 'Widgets.php';

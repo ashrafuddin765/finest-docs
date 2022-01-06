@@ -1,11 +1,10 @@
-
-<?php finest_get_template_part( 'finest-docs', 'sidebar' ); ?> 
+<?php finest_get_template_part( 'finest-docs', 'sidebar' ); ?>
 
 
 <div class="finest-single-content">
     <?php finest_breadcrumbs(); ?>
-    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemscope >
-        
+    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemscope>
+
         <div class="entry-content" itemprop="articleBody">
 
             <?php
@@ -18,13 +17,17 @@
          
             ?>
         </div>
+        <div class="fddocs-article-footer">
+            <div class="fddocs-footer-meta"></div>
+            <?php printf('%s', fddocs_feedback_html()) ?>
+        </div>
         <?php if ( comments_open() || get_comments_number() ) { ?>
-                <div class="finest-comments-wrap">
-                    <?php comments_template(); ?>
-                </div>
+        <div class="finest-comments-wrap">
+            <?php comments_template(); ?>
+        </div>
         <?php } ?>
     </article><!-- #post-## -->
 </div><!-- .finest-single-content -->
- <div class="finest-autoc-wrap" >
+<div class="finest-autoc-wrap">
     <div class="autoc" data-stopat='h2' data-offset='1'></div>
- </div>
+</div>

@@ -1052,3 +1052,38 @@ a {
     padding-right: 70px;
     padding-left: 70px;
 }
+
+/***************************************
+            Feedback Css
+****************************************/
+.fddocs-article-footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.fddocs-footer-feedback .like,.fddocs-footer-feedback .dislike {
+    background-color: #161617;
+    width: 27px;
+    height: 27px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 50%;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.fddocs-footer-feedback .feedback-text {
+    margin-right: 15px;
+    display: inline-flex;
+}
+
+.fddocs-footer-feedback.disabled {
+    opacity: .5;
+    cursor: not-allowed;
+    transition: .4s;
+}
+.fddocs-footer-feedback.disabled .like,.fddocs-footer-feedback.disabled .dislike {
+    cursor: not-allowed;
+}

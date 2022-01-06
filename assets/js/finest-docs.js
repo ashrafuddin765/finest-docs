@@ -1,10 +1,11 @@
 +(function ($) {
-  var pending_ajax = false;
+  var is_active = false;
 
   var finestDocs = {
     init: function () {
       this.toc();
-
+      $('.finest-container, .finest-container-fluid').parents('.ast-container').removeClass('ast-container');
+      $('.fddocs-footer-feedback').on('click', 'span', this.feedback);
       $('ul.finest-nav-list .page_item_has_children> a').append('<span class="toggle-menu dashicons dashicons-arrow-up-alt2"></span>');
 
 
@@ -15,20 +16,36 @@
           var self = $(this),
             parent = self.closest('.page_item');
 
-            parent.children('.children').slideToggle(300).parent('li').siblings('li').children('.children').slideUp();
+          parent.children('.children').slideToggle(300).parent('li').siblings('li').children('.children').slideUp();
 
         }
       );
 
 
+    },
 
-      // jQuery('ul.finest-nav-list .page_item_has_children ').on("click", ".togle-menu", function (e) {
-      //   e.preventDefault();
-      //   alert();
-      //   var self = $(this);
-      // });
+    feedback: function (e) {
+      e.preventDefault();
 
+      // return if any request is in process already
+      if (is_active) {
+        return;
+      }
+      var self = $(this),
+        wrap = self.closest('.fddocs-footer-feedback'),
+        data = {
+          post_id: self.data('id'),
+          type: self.data('type'),
+          action: 'fddocs_feedback',
+          _wpnonce: fddocs_vars.nonce,
+        };
 
+      $.post(fddocs_vars.ajaxurl, data, function (resp) {
+        console.log(resp);
+        wrap.addClass('disabled');
+        // wrap.html(resp.data);
+        is_active = false;
+      });
     },
 
     toc: function () {
@@ -94,22 +111,16 @@
     finestDocs.init();
   });
 
-  // // initialize anchor.js
-  // anchors.options = {
-  //   icon: '#',
-  // };
-  // anchors.add(
-  //   '.finestDocs-single-content .entry-content > h2, .finestDocs-single-content .entry-content > h3'
-  // );
-  $('#menu').on('click',function(event){
+
+  $('#menu').on('click', function (event) {
     $('#mainnav ul').slideToggle();
   });
 
-  $(window).resize(function(){  
-      var w = $(window).width();  
-      if(w > 768) {  
-          $('#mainnav ul').removeAttr('style');  
-      }  
+  $(window).resize(function () {
+    var w = $(window).width();
+    if (w > 768) {
+      $('#mainnav ul').removeAttr('style');
+    }
   });
 
 })(jQuery);
