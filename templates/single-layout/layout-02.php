@@ -1,7 +1,7 @@
 <?php finest_get_template_part( 'finest-docs', 'sidebar' );?> 
 <div class="finest-single-content">
     <?php finest_breadcrumbs(); ?>
-    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemscope >
+    <article id="post-<?php the_ID(); ?>" >
         
         <div class="entry-content" itemprop="articleBody">
 
