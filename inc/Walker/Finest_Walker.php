@@ -146,7 +146,10 @@ class Finest_walker extends Walker {
         $args['link_after']  = empty( $args['link_after'] ) ? '' : $args['link_after'];
 
         $atts                 = array();
-        $atts['href']         = get_permalink( $page->ID );
+        $first_child = fd_get_posts_children($page->ID);
+        $first_child = $first_child != false? $first_child[0] : 0;
+    
+        $atts['href']         = false != $first_child ? get_the_permalink( $first_child ) : get_the_permalink( $page->ID ) ;
         $atts['aria-current'] = ( $page->ID == $current_page ) ? 'page' : '';
 
         /**

@@ -329,37 +329,32 @@ function fddocs_get_totla_article( $id = '', $in_section = false ) {
     $args = array(
         'post_type'      => 'finest-docs',
         'posts_per_page' => -1,
-        'post_parent' => $id
+        'post_parent'    => [$id],
+        'suppress_filters' => false ,
+
     );
 
     $posts = get_posts( $args );
-
+    // var_dump($posts);
     $counter = 0;
     // now grab the grand children
-    foreach ( $posts as $child ) {
 
-        $first_parent = wp_get_post_parent_id( $child->ID );
-        if ( $in_section ) {
-            $children = fd_get_posts_children( $first_parent );
-            $children = count( $children );
-            $counter += $children;
-            break;
-        } else {
+    if ( $in_section ) {
 
-            if ( $first_parent == $id ) {
-                $second_parent = wp_get_post_parent_id( $child->ID );
+        $children = fd_get_posts_children( $id );
+        $children = count( $children );
+        $counter += $children;
 
-                $children = fd_get_posts_children( $second_parent );
-                // var_dump($children);
-                $children = count( $children );
-                $counter += $children;
-
+    } else {
+        $first_parents = fd_get_posts_children( $id );
+        if($first_parents){
+            foreach ( $first_parents as $section ) {
+                $article = fd_get_posts_children($section) ? fd_get_posts_children($section) : [];
+                $counter += count($article);
             }
         }
 
     }
-
-
 
     return $counter;
 }

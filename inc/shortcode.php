@@ -30,8 +30,8 @@ function fd_shortcode( $atts ) {
     );
 
     if ( !empty( $id ) ) {
-
-        $args['post__in'] = fd_get_posts_children( $id );
+        $children = fd_get_posts_children( $id ) ? fd_get_posts_children( $id ) : [0];
+        $args['post__in'] = $children;
 
     }
 
@@ -42,16 +42,17 @@ function fd_shortcode( $atts ) {
 
     ?>
 
-        <?php if ( $the_query->have_posts() ): ?>
-            <div <?php post_class('finest-site-main template-two'); ?> >
-            <div class="finest-container" >
-                <div class="row" >
+<div <?php post_class('finest-site-main template-two'); ?>>
+    <div class="finest-container">
+        <div class="row">
+            <?php if ( $the_query->have_posts() ): ?>
             <?php while ( $the_query->have_posts() ): $the_query->the_post();
                 $has_parent = wp_get_post_parent_id( get_the_ID());
             ?>
 
-	            <?php 
+            <?php 
                     if( !empty ($id) ){
+
                         // here will be section layout 
                         include FINEST_DOCS_DIR .'templates/section-template/'.$section.'.php';
 
@@ -62,15 +63,16 @@ function fd_shortcode( $atts ) {
                     
                 ?>
 
-	            <?php endwhile;?>
+            <?php endwhile;?>
             <?php wp_reset_query(  );?>
 
-            </div>
-        </div>
-        <?php else: ?>
+            <?php else: ?>
             <p><?php _e( 'Sorry, no posts matched your criteria.' );?></p>
-        <?php endif;
-
+            <?php endif;?>
+        </div>
+    </div>
+</div>
+<?Php
 }
 add_shortcode( 'ud', 'fd_shortcode' );
 

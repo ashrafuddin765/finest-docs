@@ -8,7 +8,7 @@
                 <div class="col-6">
                     <div class="section-header" >
                         <div class="section-title" >
-                            <h1><?php echo esc_html( 'ShadePro Documentation' ); ?></h1>
+                            <h1><?php echo esc_html( get_the_title()); ?></h1>
                         </div>
                         <div class="section-desc" >
                             <p><?php echo esc_html( 'You can search for a question here. It will help you get the most common anwers easily.' ) ?></p>

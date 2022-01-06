@@ -1,3 +1,9 @@
+<?php
+    $first_child = fd_get_posts_children(get_the_ID(  ));
+    $first_child = $first_child != false? $first_child[0] : 0;
+
+
+?>
 
 <div class="col-xl-4 col-lg-4 col-md-6" >
     <div class="wraper" >
@@ -12,9 +18,13 @@
         </div>
         <div class="content-area" >
             <div class="docs-title" >
-                <a href="<?php echo get_the_permalink( fd_get_posts_children(get_the_ID(  ))[0] ) ?>">
+                <?php if($first_child): ?>
+                <a href="<?php echo get_the_permalink( $first_child ) ?>">
+                <?php endif; ?>
                     <h1><?php echo get_the_title(); ?></h1>
-            </a>
+                <?php if($first_child): ?>
+                    </a>
+                <?php endif; ?>
             </div>
             <div class="docs-excerpt" >
                 <p><?php echo wp_trim_words(get_the_excerpt(),15,'.'); ?></p>

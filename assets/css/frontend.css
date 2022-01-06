@@ -222,7 +222,7 @@ ul.finest-breadcrumb li {
     line-height: 1.5em;
     color: rgba(0, 0, 0, 0.7);
     display: block;
-    padding-left: 38px;
+    padding-left: 15px;
 }
 .finest-sidebar ul.finest-nav-list li ul.children li a span {
     display: none;
@@ -237,8 +237,7 @@ ul.finest-breadcrumb li .dashicons {
     font-size: 18px;
     position: absolute;
     right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 6px;
 }
 
 .finest-single-content ul.finest-breadcrumb li span.dashicons {
