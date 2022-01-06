@@ -42,7 +42,7 @@ function fd_shortcode( $atts ) {
 
     ?>
 
-<div class="finest-site-main <?php echo $section; ?> " >
+<div class="finest-site-main <?php echo esc_attr( $section ); ?> <?php echo esc_attr( $docs) ?>" >
 <div class="finest-container" >
     <div class="row" >
         <?php if ( $the_query->have_posts() ): ?>

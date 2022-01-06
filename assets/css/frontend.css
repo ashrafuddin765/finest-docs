@@ -343,6 +343,10 @@ ul.finest-breadcrumb li .dashicons {
     text-align: center;
     color: rgba(0, 0, 0, 0.7);
 }
+.fdocs-ctn {
+    padding-top: 50px;
+    border-top: 1px solid rgba(22, 22, 23, 0.1);
+}
 /********************* 
         layout 02 
  **********************/
@@ -841,6 +845,13 @@ a {
 .fdocs-navigation .nav-next {
     float: right;
 }
+.single .post-navigation a {
+    margin: 2px;
+    display: inline-flex;
+    justify-content: end;
+    color: #000 !important;
+    align-items: center;
+}
 /***************************************
         section -template 02
 ***************************************/
@@ -1034,6 +1045,12 @@ a {
     margin-top: 0px;
     margin-bottom: 15px;
 }
+.finest-site-main .docs-templatetwo .card-bottom .card-content-title h1 { 
+    margin-bottom: 0px !important;
+}
+.docs-wraper.docs-templatetwo {
+    padding: 38px 35px !important;
+}
 .finest-site-main .card-bottom .card-content p {
     font-family: 'Inter';
     font-style: normal;
@@ -1080,6 +1097,7 @@ a {
     align-items: center;
     justify-content: center;
     margin-right: 25px;
+    object-fit: cover;
 } 
 .finest-site-main .docs-templatetwo .card-top .card-title h1 { 
     font-family: 'Inter';
@@ -1101,14 +1119,32 @@ a {
     line-height: 26px;
     color: rgba(0, 0, 0, 0.7);
 }
-
+.finest-site-main.docs-template-01 {
+    background: #F3F5F7;
+    padding-top: 0px;
+}
+.finest-site-main.docs-template-02 {
+    background: #F3F5F7;
+    padding-top: 0px;
+}
+.docs-template-two {
+    margin-bottom: 22px;
+}
+.fddoc-bg-color.docs-template-02 {
+    background: #ffffff;
+}
+.finest-site-main.docs-template-02 {
+    background: #F3F5F7;
+    padding-top: 100px;
+    padding-bottom: 95px;
+}
 /***************************************
             page template
 ****************************************/
 .template-header {
     text-align: center;
-    padding-top: 80px;
-
+    padding-top: 90px;
+    padding-bottom: 55px;
 }
 .header-title h1 {
     font-family: 'Inter';
@@ -1116,7 +1152,10 @@ a {
     font-weight: 600;
     font-size: 42px;
     line-height: 1.14x;
-    text-align: center
+    margin-bottom: 15px;
+}
+.fddoc-bg-color.docs-template-02 .template-header{
+    text-align: left;
 }
 .header-desc p {
     font-family: 'Inter';
@@ -1124,10 +1163,13 @@ a {
     font-weight: normal;
     font-size: 18px;
     line-height: 28px;
-    text-align: center;
     color: #161617;
     padding-right: 70px;
     padding-left: 70px;
+}
+.fddoc-bg-color.docs-template-02 .header-desc p {
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
 /***************************************
@@ -1137,6 +1179,7 @@ a {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 35px;
 }
 
 .fddocs-footer-feedback .like,.fddocs-footer-feedback .dislike {

@@ -1,8 +1,8 @@
-<div class="col-12">
+<div class="col-12 docs-template-two ">
     <div class="docs-wraper docs-templatetwo">
         <div class="card-top">
-            <div class="card-title">
-                <?php 
+            <div class="template-thumbnail" >
+            <?php 
                     if ( has_post_thumbnail() ) {
                         the_post_thumbnail();
                     }
