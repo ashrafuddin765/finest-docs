@@ -2,7 +2,11 @@
 <div class="col-12" >
     <div class="wraper template-scnd" >
         <div class="icon scnd-icon" >
-            <img src="<?php echo FINEST_DOCS_ASSETS_ASSETS.'/setting.svg' ?>" alt="icon">
+        <?php 
+            if ( has_post_thumbnail() ) {
+                the_post_thumbnail();
+            }
+        ?>
         </div>
         <div class="content-area" >
             <div class="docs-title" >

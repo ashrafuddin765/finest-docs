@@ -153,7 +153,7 @@
         $fmc_dynamic_css .= "\n";
     }
     if( $hover_border_radius ){
-        $fmc_dynamic_css .= '.finest-site-main .docs-wraper:hover {border-radius: ' . esc_attr( $hover_border_radius ) . ' } ';
+        $fmc_dynamic_css .= '.finest-site-main .docs-wraper:hover {border-radius: ' . esc_attr( $hover_border_radius ) . 'px } ';
         $fmc_dynamic_css .= "\n";
     }
     if ( $hover_title_font_color) {
@@ -172,7 +172,7 @@
         $fmc_dynamic_css .= "\n";
     }
     if( $doc_title_font_size ){
-        $fmc_dynamic_css .= '.finest-single-content .entry-content h2 {font-size: ' . esc_attr( $doc_title_font_size ) . ' } ';
+        $fmc_dynamic_css .= '.finest-single-content .entry-content h2 {font-size: ' . esc_attr( $doc_title_font_size ) . 'px } ';
         $fmc_dynamic_css .= "\n";
     }
     if ( $doc_title_font_color) {
@@ -181,12 +181,12 @@
     }
 
     if( $doc_title_gap ){
-        $fmc_dynamic_css .= '.finest-single-content .entry-content h2 {margin-bottom: ' . esc_attr( $doc_title_gap ) . ' } ';
+        $fmc_dynamic_css .= '.finest-single-content .entry-content h2 {margin-bottom: ' . esc_attr( $doc_title_gap ) . 'px } ';
         $fmc_dynamic_css .= "\n";
     }
     // description
     if( $doc_decription_font_size ){
-        $fmc_dynamic_css .= '.finest-site-main .card-bottom .card-content p {font-size: ' . esc_attr( $doc_decription_font_size ) . ' } ';
+        $fmc_dynamic_css .= '.finest-site-main .card-bottom .card-content p {font-size: ' . esc_attr( $doc_decription_font_size ) . 'px } ';
         $fmc_dynamic_css .= "\n";
     }
     if ( $doc_description_color) {
@@ -201,17 +201,17 @@
 
     // thumbnail
     if ( $doc_thumbnail_width) {
-        $fmc_dynamic_css .= '.finest-site-main .card-top .card-title img { width:' . esc_attr( $doc_thumbnail_width ) .' } ';
+        $fmc_dynamic_css .= '.finest-site-main .card-top .card-title img { width:' . esc_attr( $doc_thumbnail_width ) .'% } ';
         $fmc_dynamic_css .= "\n";
     }
     if ( $doc_thumbnail_height) {
-        $fmc_dynamic_css .= '.finest-site-main .card-top .card-title img { height:' . esc_attr( $doc_thumbnail_height ) .' } ';
+        $fmc_dynamic_css .= '.finest-site-main .card-top .card-title img { height:' . esc_attr( $doc_thumbnail_height ) .'px } ';
         $fmc_dynamic_css .= "\n";
     }
 
     // doc button 
     if( $doc_button_font_size ){
-        $fmc_dynamic_css .= '.finest-site-main .card-bottom .card-button a {font-size: ' . esc_attr( $doc_button_font_size ) . ' } ';
+        $fmc_dynamic_css .= '.finest-site-main .card-bottom .card-button a {font-size: ' . esc_attr( $doc_button_font_size ) . 'px } ';
         $fmc_dynamic_css .= "\n";
     }
     if ( $doc_font_color ) {
@@ -219,11 +219,11 @@
         $fmc_dynamic_css .= "\n";
     }
     if ( $doc_button_width ) {
-        $fmc_dynamic_css .= '.finest-site-main .card-bottom .card-button a  { width:' . esc_attr( $doc_button_width ) .' } ';
+        $fmc_dynamic_css .= '.finest-site-main .card-bottom .card-button a  { width:' . esc_attr( $doc_button_width ) .'px } ';
         $fmc_dynamic_css .= "\n";
     }
     if ( $doc_button_height ) {
-        $fmc_dynamic_css .= '.finest-site-main .card-bottom .card-button a  { height:' . esc_attr( $doc_button_height ) .' } ';
+        $fmc_dynamic_css .= '.finest-site-main .card-bottom .card-button a  { height:' . esc_attr( $doc_button_height ) .'px } ';
         $fmc_dynamic_css .= "\n";
     }
     if ( $doc_button_bg_color ) {
@@ -255,7 +255,7 @@
         $fmc_dynamic_css .= "\n";
     }
     if( $button_border_radius ){
-        $fmc_dynamic_css .= '.finest-site-main .card-bottom .card-button a {border-radius: ' . esc_attr( $button_border_radius ) . ' } ';
+        $fmc_dynamic_css .= '.finest-site-main .card-bottom .card-button a {border-radius: ' . esc_attr( $button_border_radius ) . 'px } ';
         $fmc_dynamic_css .= "\n";
     }
     
@@ -299,7 +299,7 @@
 
     // count color
     if( $doc_count_font_size ){
-        $fmc_dynamic_css .= '.finest-site-main .docs-templatetwo .docs-article .docs-article-total {font-size: ' . esc_attr( $doc_count_font_size ) . ' } ';
+        $fmc_dynamic_css .= '.finest-site-main .docs-templatetwo .docs-article .docs-article-total {font-size: ' . esc_attr( $doc_count_font_size ) . 'px } ';
         $fmc_dynamic_css .= "\n";
     }
     if( $item_count_color ){

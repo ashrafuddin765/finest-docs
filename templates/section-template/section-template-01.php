@@ -3,7 +3,11 @@
     <div class="wraper" >
         <div class="top-iocn" >
             <div class="icon icon-one" >
-                <img src="<?php echo FINEST_DOCS_ASSETS_ASSETS.'/rocket 1.svg' ?>" alt="icon">
+            <?php 
+                    if ( has_post_thumbnail() ) {
+                        the_post_thumbnail();
+                    }
+                ?>
             </div>
         </div>
         <div class="content-area" >

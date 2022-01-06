@@ -17,12 +17,9 @@
         <div class="<?php echo esc_attr( $class ) ?>" >
             <div class="finest-single-wrap">
             <?php 
-
-
-                    if ( !empty($layout) ) {
-                        include FINEST_DOCS_DIR_LY . $layout .'.php';
-                    }
-        
+                if ( !empty($layout) ) {
+                    include FINEST_DOCS_DIR.'templates/single-layout/' . $layout .'.php';
+                }
             ?>  
             </div><!-- .finest-single-wrap -->
         </div>

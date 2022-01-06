@@ -3,12 +3,11 @@
     <div class="docs-wraper docs-templatetwo" >
         <div class="card-top">
             <div class="card-title">
-                <img src="<?php echo FINEST_DOCS_ASSETS_ASSETS.'/docs-thum.png' ?>" alt="thumbnail" />
-                <!-- <h1><?php 
-                    // $str = get_the_title(); 
-                    // $firstchar = substr($str,0,1);
-                    // echo $firstchar;
-                ?></h1> -->
+                 <?php 
+                    if ( has_post_thumbnail() ) {
+                        the_post_thumbnail();
+                    }
+                ?>
             </div>
         </div>
         <div class="card-bottom">

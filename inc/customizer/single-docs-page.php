@@ -773,3 +773,136 @@ Kirki::add_field( 'docs_panel', [
 		'off' => esc_html__( 'Disable', 'finest-docs' ),
 	],
 ] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'custom',
+	'settings'    => 'footer_box',
+	'section'     => 'single_page',
+		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Footer Contact Button', 'finest-mini-cart' ) . '</h3>',
+	'priority'    => 10,
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'slider',
+	'settings'    => 'footer_button_width',
+	'label'       => esc_html__( 'Button Width', 'finest-docs' ),
+	'section'     => 'single_page',
+	'default'     => 162,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 300,
+		'step' => 1,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.fddocs-entry-footer .footer-button a',
+			'function' => 'css',
+			'property' => 'width',
+			'units'    => 'px',
+		],
+	],
+] );
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'slider',
+	'settings'    => 'footer_button_height',
+	'label'       => esc_html__( 'Button Background', 'finest-docs' ),
+	'section'     => 'single_page',
+	'default'     => 45,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.fddocs-entry-footer .footer-button a',
+			'function' => 'css',
+			'property' => 'height',
+			'units'    => 'px',
+		],
+	],
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'color',
+	'settings'    => 'button_bg_color',
+	'label'       => __( 'Background Color', 'finest-docs' ),
+	'section'     => 'single_page',
+	'default'     => '#4A3BFD',
+	'choices'     => [
+		'alpha' => true,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.fddocs-entry-footer .footer-button a',
+			'function' => 'css',
+			'property' => 'background-color',
+		],
+	]
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'slider',
+	'settings'    => 'button_font_size',
+	'label'       => esc_html__( 'Font Size', 'finest-docs' ),
+	'section'     => 'single_page',
+	'default'     => 16,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.fddocs-entry-footer .footer-button a',
+			'function' => 'css',
+			'property' => 'font-size',
+			'units'    => 'px',
+		],
+	],
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'color',
+	'settings'    => 'button_text_color',
+	'label'       => __( 'Text Color', 'finest-docs' ),
+	'section'     => 'single_page',
+	'default'     => '#ffffff;',
+	'choices'     => [
+		'alpha' => true,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.fddocs-entry-footer .footer-button a',
+			'function' => 'css',
+			'property' => 'background-color',
+		],
+	]
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'slider',
+	'settings'    => 'button_border_radius',
+	'label'       => esc_html__( 'Border Radius', 'finest-docs' ),
+	'section'     => 'single_page',
+	'default'     => 16,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.fddocs-entry-footer .footer-button a',
+			'function' => 'css',
+			'property' => 'border-radius',
+			'units'    => 'px',
+		],
+	],
+] );

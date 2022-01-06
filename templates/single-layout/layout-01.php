@@ -18,11 +18,21 @@
          
             ?>
         </div>
-        <?php if ( comments_open() || get_comments_number() ) { ?>
-                <div class="finest-comments-wrap">
-                    <?php comments_template(); ?>
+        <footer class="fddocs-entry-footer">
+            <div class="footer-area">
+                <div class="footer-content">
+                    <h3><?php echo esc_html( 'Still no luck? We can help!' ) ?> </h3>
+                    <p><?php echo esc_html( 'Contact us and we’ll get back to you as soon as possible.' ); ?></p>
                 </div>
-        <?php } ?>
+                <div class="footer-button">
+                    <a href="#">Contact support</a>
+                </div>
+            </div>
+            <div class="fd-powered">
+                <span class="fd-footertext" ><?php echo esc_html( 'Powered by UltimateDoc' ) ?></span>
+            </div>
+        </footer>
+        
     </article><!-- #post-## -->
 </div><!-- .finest-single-content -->
  <div class="finest-autoc-wrap" >

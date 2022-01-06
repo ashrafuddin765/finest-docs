@@ -300,7 +300,57 @@ ul.finest-breadcrumb li .dashicons {
     margin-bottom:10px;
     margin-top: 0px;
 }
-
+.fddocs-entry-footer .footer-area {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 75px;
+}
+.footer-content {
+    margin-right: 45px;
+}
+.fddocs-entry-footer .footer-content h3 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 28px;
+    color: #000000;
+    margin-bottom: 5px;
+}
+.fddocs-entry-footer .footer-content p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 26px;
+    color: rgba(0, 0, 0, 0.7);
+    margin-bottom: 0px;
+}
+.fddocs-entry-footer .footer-button a {
+    width: 162px;
+    height: 45px;
+    background: #4A3BFD;
+    border-radius: 5px;
+    display: inline-flex;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    align-items: center;
+    text-align: right;
+    color: #FFFFFF;
+    justify-content: center;
+}
+.fddocs-entry-footer .fd-powered .fd-footertext {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 26px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.7);
+}
 /********************* 
         layout 02 
  **********************/
@@ -968,10 +1018,11 @@ a {
     margin-bottom: 35px;
 }
 .finest-site-main .card-bottom .card-button a { 
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     width: 150px;
     height: 50px;
-    line-height: 50px;
     background: rgba(22, 22, 23, 0.06);
     border-radius: 5px;
     text-align: center;

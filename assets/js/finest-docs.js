@@ -4,6 +4,7 @@
   var finestDocs = {
     init: function () {
       this.toc();
+      $(''.finest-container, .finest-container-fluid').parents(''.ast-container').removeClass('ast-container');
 
       $('ul.finest-nav-list .page_item_has_children> a').append('<span class="toggle-menu dashicons dashicons-arrow-up-alt2"></span>');
 
