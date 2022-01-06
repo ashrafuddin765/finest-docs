@@ -1,11 +1,25 @@
 
 <?php get_header(); ?>
-
+<?php
+     $secttionlayout = get_theme_mod( 'section_select_layout', 'section-template-01' );
+     if ( 'section-template-01' ==  $secttionlayout ){
+        $gridclass = "col-12 col-xl-6";
+    }
+    elseif ( 'section-template-02' == $secttionlayout ) {
+        $gridclass = "col-12";
+    }
+    elseif ( 'section-template-02' == $secttionlayout ) {
+        $gridclass = "col-12 col-xl-6";
+    }
+    else {
+        $gridclass = "col-12 col-xl-6";
+    }
+?>
 <div class="docsectin-main">
-    <div class="section-bg" >
+    <div class="section-bg <?php echo esc_attr($secttionlayout) ?>" >
         <div class="finest-container">
             <div class="row">
-                <div class="col-6">
+                <div class="<?php echo esc_attr( $gridclass ); ?>">
                     <div class="section-header" >
                         <div class="section-title" >
                             <h1><?php echo esc_html( get_the_title()); ?></h1>

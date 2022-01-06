@@ -42,10 +42,10 @@ function fd_shortcode( $atts ) {
 
     ?>
 
-<div <?php post_class('finest-site-main template-two'); ?>>
-    <div class="finest-container">
-        <div class="row">
-            <?php if ( $the_query->have_posts() ): ?>
+<div class="finest-site-main <?php echo $section; ?> " >
+<div class="finest-container" >
+    <div class="row" >
+        <?php if ( $the_query->have_posts() ): ?>
             <?php while ( $the_query->have_posts() ): $the_query->the_post();
                 $has_parent = wp_get_post_parent_id( get_the_ID());
             ?>
