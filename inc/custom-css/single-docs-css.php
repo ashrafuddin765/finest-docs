@@ -50,7 +50,32 @@
     $footerbutton_bg_color = get_theme_mod( 'button_bg_color', '#4A3BFD' );
     $footerbutton_font_size = get_theme_mod( 'button_font_size', '16px' );
     $footerbutton_font_color = get_theme_mod( 'button_text_color', '#ffffff' );
-    $footerbutton_font_color = get_theme_mod( 'button_border_radius', '5px' );
+    $footerbutton_radius = get_theme_mod( 'fbutton_border_radius', '5px' );
+
+    if ( $footerbutton_width) {
+        $fmc_dynamic_css .= '.fddocs-entry-footer .footer-button a { width:' . esc_attr( $footerbutton_width ) .'px } ';
+        $fmc_dynamic_css .= "\n";
+    }
+    if ( $footerbutton_height) {
+        $fmc_dynamic_css .= '.fddocs-entry-footer .footer-button a { height:' . esc_attr( $footerbutton_height ) .'px } ';
+        $fmc_dynamic_css .= "\n";
+    }
+    if ( $footerbutton_bg_color) {
+        $fmc_dynamic_css .= '.fddocs-entry-footer .footer-button a { background-color:' . esc_attr( $footerbutton_bg_color ) .' } ';
+        $fmc_dynamic_css .= "\n";
+    }
+    if ( $footerbutton_font_size) {
+        $fmc_dynamic_css .= '.fddocs-entry-footer .footer-button a { font-size:' . esc_attr( $footerbutton_font_size ) .'px } ';
+        $fmc_dynamic_css .= "\n";
+    }
+    if ( $footerbutton_font_color) {
+        $fmc_dynamic_css .= '.fddocs-entry-footer .footer-button a { color:' . esc_attr( $footerbutton_font_color ) .' } ';
+        $fmc_dynamic_css .= "\n";
+    }
+    if ( $footerbutton_radius) {
+        $fmc_dynamic_css .= '.fddocs-entry-footer .footer-button a { border-radius:' . esc_attr( $footerbutton_radius ) .'px } ';
+        $fmc_dynamic_css .= "\n";
+    }
 
     if ( $content_bg_color) {
         $fmc_dynamic_css .= '.finest-single-wrap  { background-color:' . esc_attr( $content_bg_color ) .' } ';

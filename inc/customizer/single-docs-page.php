@@ -783,6 +783,15 @@ Kirki::add_field( 'docs_panel', [
 ] );
 
 Kirki::add_field( 'docs_panel', [
+	'type'     => 'link',
+	'settings' => 'contact_url_page',
+	'label'    => __( 'Link Control', 'kirki' ),
+	'section'  => 'single_page',
+	'default'  => 'http://example.com/',
+	'priority' => 10,
+] );
+
+Kirki::add_field( 'docs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'footer_button_width',
 	'label'       => esc_html__( 'Button Width', 'finest-docs' ),
@@ -806,7 +815,7 @@ Kirki::add_field( 'docs_panel', [
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'footer_button_height',
-	'label'       => esc_html__( 'Button Background', 'finest-docs' ),
+	'label'       => esc_html__( 'Button Height', 'finest-docs' ),
 	'section'     => 'single_page',
 	'default'     => 45,
 	'choices'     => [
@@ -880,17 +889,17 @@ Kirki::add_field( 'docs_panel', [
 		[
 			'element'  => '.fddocs-entry-footer .footer-button a',
 			'function' => 'css',
-			'property' => 'background-color',
+			'property' => 'color',
 		],
 	]
 ] );
 
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'slider',
-	'settings'    => 'button_border_radius',
+	'settings'    => 'fbutton_border_radius',
 	'label'       => esc_html__( 'Border Radius', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => 16,
+	'default'     => 5,
 	'choices'     => [
 		'min'  => 0,
 		'max'  => 100,
