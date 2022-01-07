@@ -341,7 +341,7 @@ function fddocs_get_totla_article( $id = '', $in_section = false ) {
 
     if ( $in_section ) {
 
-        $children = fd_get_posts_children( $id );
+        $children = fd_get_posts_children( $id ) ? fd_get_posts_children( $id ) : [];
         $children = count( $children );
         $counter += $children;
 
