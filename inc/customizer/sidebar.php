@@ -13,7 +13,7 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'sidebar_width_setting',
 	'label'       => esc_html__( 'Sidebar Area Width', 'finest-docs' ),
 	'section'     => 'doc_sidebar',
-	'default'     => 25,
+	'default'     => 20,
 	'choices'     => [
 		'min'  => 0,
 		'max'  => 100,

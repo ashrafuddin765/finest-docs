@@ -34,11 +34,11 @@ body.finest-body {
 }
 
 .finest-single-wrap .finest-sidebar {
-    width: 25%;
+    width: 20%;
 }
 
 .finest-autoc-wrap {
-    width: 25%;
+    width: 20%;
     background: #fff;
     padding-top: 45px;
     padding-right: 30px;
@@ -48,7 +48,7 @@ body.finest-body {
 }
 
 .finest-single-wrap .finest-single-content {
-    width: 50%;
+    width: 60%;
     background-color: #fff;
     padding-top: 40px;
     padding-bottom: 60px;
@@ -61,8 +61,9 @@ ul.finest-breadcrumb {
     margin-left: 0;
     padding-left: 0;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
 }
 
 ul.finest-breadcrumb li {
@@ -181,7 +182,7 @@ ul.finest-breadcrumb li {
 }
 
 
-.finest-sidebar ul {
+.finest-sidebar #mainnav ul.finest-nav-list {
     margin: 0px;
     padding: 0px;
     list-style: none;
@@ -189,9 +190,9 @@ ul.finest-breadcrumb li {
 
 .finest-single-wrap .finest-sidebar {
     background-color: #F8F8FA;
-    padding-top: 30px;
+    padding-top: 35px;
     padding-left: 45px;
-    padding-right: 15px;
+    padding-right: 25px;
     padding-bottom: 20px;
 }
 
@@ -212,7 +213,6 @@ ul.finest-breadcrumb li {
     width: 18px;
     height: 18px;
     color: #111827;
-    margin-right: 20px;
     font-size: 18px;
 }
 .finest-sidebar ul li ul.children li a {
@@ -222,7 +222,6 @@ ul.finest-breadcrumb li {
     line-height: 1.5em;
     color: rgba(0, 0, 0, 0.7);
     display: block;
-    padding-left: 15px;
 }
 .finest-sidebar ul.finest-nav-list li ul.children li a span {
     display: none;
@@ -243,7 +242,7 @@ ul.finest-breadcrumb li .dashicons {
 .finest-single-content ul.finest-breadcrumb li span.dashicons {
     margin-right: 5px;
     margin-left: 5px;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 20px;
     color: rgba(17, 24, 39, 0.6);
     
@@ -289,7 +288,7 @@ ul.finest-breadcrumb li .dashicons {
     letter-spacing: 2px;
     text-transform: uppercase;
     color: rgba(0, 0, 0, 0.4);
-    margin-bottom:10px;
+    margin-bottom:20px;
     margin-top: 0px;
 }
 .fdocs-ctn .footer-area {
@@ -346,6 +345,11 @@ ul.finest-breadcrumb li .dashicons {
 .fdocs-ctn {
     padding-top: 50px;
     border-top: 1px solid rgba(22, 22, 23, 0.1);
+}
+.fdocs-navigation .post-navigation {
+    border-top: 0;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 /********************* 
         layout 02 
@@ -511,6 +515,9 @@ a {
 
 .fddocs-single-search-item ul.finest-breadcrumb li:last-child, .fddocs-single-search-item ul.finest-breadcrumb li:nth-last-child(2),.fddocs-single-search-item ul.finest-breadcrumb li:nth-last-child(3) {
     display: block;
+} 
+.fdocs-navigation .post-navigation a {
+    padding: 0px !important ;
 }
 
 @media screen and (min-width: 992px) and (max-width: 1444px) {
@@ -519,7 +526,7 @@ a {
     }
     .finest-single-wrap .finest-sidebar {
         padding-left: 20px;
-        padding-right: 0px;
+        padding-right: 15px;
     }
 }
 
@@ -572,12 +579,20 @@ a {
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
     .finest-sidebar #mainnav #menu {
-        display: block;
+        display: inline-block;
+        background-color: #F3F5F7;
+        padding: 10px;
     }
 
-    .finest-sidebar #mainnav ul {
+    .finest-sidebar #mainnav ul.finest-nav-list {
         display: none;
         text-align: left;
+        background-color: #F8F8FA;
+        padding-left: 20px;
+        padding-top: 15px;
+        padding-bottom: 10px;
+        padding-right: 20px;
+        
     }
     .finest-sidebar #mainnav ul li {
         display: block;
@@ -588,11 +603,12 @@ a {
         
     }
     .finest-single-wrap .finest-sidebar {
-        width: 100% !important;
+        width: 60% !important;
         order: -2;
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-bottom: 20px;
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        background-color: transparent !important;
     }
 
     .finest-autoc-wrap {
@@ -609,6 +625,12 @@ a {
     }
     .finest-single-content .entry-content p {
         margin-right: 0px; 
+    }
+    .fdocs-navigation .post-navigation .nav-links .nav-next {
+        width: auto !important;
+    }
+    .fdocs-navigation .post-navigation .nav-links .nav-previous {
+        width: auto !important;
     }
 }
 
@@ -769,6 +791,7 @@ a {
     box-sizing: border-box;
     transition: all 0.3s;
     border-radius: 5px;
+    margin-bottom: 24px;
 } 
 .finest-site-main .wraper:hover {
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.08);
@@ -835,6 +858,9 @@ a {
     align-items: center;
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
+}
+.fdocs-navigation {
+    margin-bottom: 30px;
 }
 .footer-button a.customize-unpreviewable {
     cursor: pointer !important;
@@ -1119,9 +1145,13 @@ a {
     line-height: 26px;
     color: rgba(0, 0, 0, 0.7);
 }
+
 .finest-site-main.docs-template-01 {
     background: #F3F5F7;
     padding-top: 0px;
+}
+.finest-site-main.section-template-01 {
+    padding-top: 115px;
 }
 .finest-site-main.docs-template-02 {
     background: #F3F5F7;
@@ -1170,6 +1200,9 @@ a {
 .fddoc-bg-color.docs-template-02 .header-desc p {
     padding-right: 0px;
     padding-left: 0px;
+}
+.finest-sidebar ul li {
+    list-style: none;
 }
 
 /***************************************
@@ -1239,6 +1272,17 @@ a {
     .section-desc p {
         padding-left: 0px;
         padding-right: 0px;
-       
+    }
+    .fdocs-ctn .footer-area {
+        flex-direction: column;
+    }
+    .footer-content {
+        margin-right: 20px;
+        margin-bottom: 25px;
+    }
+    .finest-sidebar {
+        position: fixed;
+        bottom: 30px;
+        left: 18px;
     }
 }

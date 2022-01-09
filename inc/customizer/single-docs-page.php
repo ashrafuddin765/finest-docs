@@ -62,7 +62,7 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'single_page_width',
 	'label'       => esc_html__( 'Doc Area Width', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => 50,
+	'default'     => 60,
 	'choices'     => [
 		'min'  => 0,
 		'max'  => 100,
@@ -369,7 +369,7 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'bradcrumb_margin',
 	'label'       => esc_html__( 'Margin Bottom', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => 25,
+	'default'     => 35,
 	'choices'     => [
 		'min'  => 0,
 		'max'  => 100,
@@ -391,7 +391,7 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'icon_bread_color',
 	'label'       => __( 'Breadcrumb Icon Color', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => '#111827',
+	'default'     => 'rgba(22, 22, 23, 0.6)',
 	'choices'     => [
 		'alpha' => true,
 	],
@@ -440,7 +440,7 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'docs_table_width',
 	'label'       => esc_html__( 'Toc Area Width', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => 25,
+	'default'     => 20,
 	'choices'     => [
 		'min'  => 0,
 		'max'  => 100,
