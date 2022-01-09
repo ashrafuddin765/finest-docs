@@ -4,7 +4,6 @@
     $content_padding = get_theme_mod( 'content_padding' ) != ' ' ? get_theme_mod( 'content_padding' ) : '' ;
     $contentpadding = is_array($content_padding ) ?  implode(' ', $content_padding) : '';
 
-    $docs_width = get_theme_mod( 'single_page_width', '50%' );
     $docs_bgc = get_theme_mod( 'content_area_backgound', '#ffffff' );
     $docs_padding = get_theme_mod( 'docs_padding' ) != ' ' ? get_theme_mod( 'docs_padding' ) : '' ;
     $docspadding = is_array($docs_padding ) ?  implode(' ', $docs_padding) : '';
@@ -28,7 +27,6 @@
     $bread_margin_bottom = get_theme_mod( 'bradcrumb_margin', '25px' );
 
     //table of contents
-    $docs_table_width = get_theme_mod( 'docs_table_width', '25%' );
     $table_area_backgound = get_theme_mod( 'table_area_backgound', '#ffffff' );
     $docs_table_padding = get_theme_mod( 'docs_table_padding' ) != ' ' ? get_theme_mod( 'docs_table_padding' ) : '' ;
     $tablepadding = is_array($docs_table_padding ) ?  implode(' ', $docs_table_padding) : '';
@@ -87,11 +85,6 @@
         $fmc_dynamic_css .= "\n";
     }
 
-    if($docs_width){
-        $fmc_dynamic_css .= '.finest-single-wrap .finest-single-content { width:' . esc_attr( $docs_width ) .'% } ';
-        $fmc_dynamic_css .= "\n";
-    }
-   
     if($docs_bgc){
         $fmc_dynamic_css .= '.finest-single-wrap .finest-single-content { background-color:' . esc_attr( $docs_bgc ) .' } ';
         $fmc_dynamic_css .= "\n";
@@ -170,11 +163,6 @@
     }
 
     // Toc area
-
-    if($docs_table_width){
-        $fmc_dynamic_css .= '.finest-autoc-wrap { width:' . esc_attr( $docs_table_width ) .'% } ';
-        $fmc_dynamic_css .= "\n";
-    }
     if($table_area_backgound){
         $fmc_dynamic_css .= '.finest-autoc-wrap{ background-color:' . esc_attr( $table_area_backgound ) .' } ';
         $fmc_dynamic_css .= "\n";

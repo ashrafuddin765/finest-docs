@@ -37,11 +37,11 @@ body.finest-body {
 }
 
 .finest-single-wrap .finest-sidebar {
-    width: 25%;
+    width: 20%;
 }
 
 .finest-autoc-wrap {
-    width: 25%;
+    width: 20%;
     background: #fff;
     padding-top: 45px;
     padding-right: 30px;
@@ -51,7 +51,7 @@ body.finest-body {
 }
 
 .finest-single-wrap .finest-single-content {
-    width: 50%;
+    width: 60%;
     background-color: #fff;
     padding-top: 40px;
     padding-bottom: 60px;
@@ -64,8 +64,9 @@ ul.finest-breadcrumb {
     margin-left: 0;
     padding-left: 0;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
 }
 
 ul.finest-breadcrumb li {
@@ -187,7 +188,7 @@ ul.finest-breadcrumb li {
 }
 
 
-.finest-sidebar ul {
+.finest-sidebar #mainnav ul.finest-nav-list {
     margin: 0px;
     padding: 0px;
     list-style: none;
@@ -197,7 +198,7 @@ ul.finest-breadcrumb li {
     background-color: #F8F8FA;
     padding-top: 39px;
     padding-left: 45px;
-    padding-right: 15px;
+    padding-right: 25px;
     padding-bottom: 20px;
 }
 
@@ -229,7 +230,6 @@ ul.finest-breadcrumb li {
     width: 18px;
     height: 18px;
     color: #111827;
-    margin-right: 20px;
     font-size: 18px;
 }
 
@@ -240,7 +240,6 @@ ul.finest-breadcrumb li {
     line-height: 1.5em;
     color: rgba(0, 0, 0, 0.7);
     display: block;
-    padding-left: 15px;
 }
 
 .finest-sidebar ul.finest-nav-list li ul.children li a span {
@@ -278,7 +277,7 @@ ul.finest-breadcrumb li .dashicons {
 .finest-single-content ul.finest-breadcrumb li span.dashicons {
     margin-right: 5px;
     margin-left: 5px;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 20px;
     color: rgba(17, 24, 39, 0.6);
 
@@ -573,6 +572,9 @@ a {
 .fddocs-single-search-item ul.finest-breadcrumb li:nth-last-child(2),
 .fddocs-single-search-item ul.finest-breadcrumb li:nth-last-child(3) {
     display: block;
+} 
+.fdocs-navigation .post-navigation a {
+    padding: 0px !important ;
 }
 
 @media screen and (min-width: 992px) and (max-width: 1444px) {
@@ -675,6 +677,12 @@ a {
 
     .finest-sidebar #mainnav ul {
         text-align: left;
+        background-color: #F8F8FA;
+        padding-left: 20px;
+        padding-top: 15px;
+        padding-bottom: 10px;
+        padding-right: 20px;
+        
     }
 
     .finest-sidebar #mainnav ul li {
@@ -684,7 +692,7 @@ a {
     .finest-sidebar #mainnav ul li a {}
 
     .finest-single-wrap .finest-sidebar {
-        width: 100% !important;
+        width: 60% !important;
         order: -2;
         padding: 0;
     }
@@ -705,6 +713,12 @@ a {
 
     .finest-single-content .entry-content p {
         margin-right: 0px;
+    }
+    .fdocs-navigation .post-navigation .nav-links .nav-next {
+        width: auto !important;
+    }
+    .fdocs-navigation .post-navigation .nav-links .nav-previous {
+        width: auto !important;
     }
 }
 
@@ -882,8 +896,8 @@ a {
     box-sizing: border-box;
     transition: all 0.3s;
     border-radius: 5px;
-}
-
+    margin-bottom: 24px;
+} 
 .finest-site-main .wraper:hover {
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.08);
 }
@@ -958,7 +972,9 @@ a {
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
 }
-
+.fdocs-navigation {
+    margin-bottom: 30px;
+}
 .footer-button a.customize-unpreviewable {
     cursor: pointer !important;
 }
@@ -1306,7 +1322,9 @@ a {
     background: #F3F5F7;
     padding-top: 0px;
 }
-
+.finest-site-main.section-template-01 {
+    padding-top: 115px;
+}
 .finest-site-main.docs-template-02 {
     background: #F3F5F7;
     padding-top: 0px;
@@ -1362,6 +1380,9 @@ a {
 .fddoc-bg-color.docs-template-02 .header-desc p {
     padding-right: 0px;
     padding-left: 0px;
+}
+.finest-sidebar ul li {
+    list-style: none;
 }
 
 /***************************************
@@ -1444,6 +1465,17 @@ a {
     .section-desc p {
         padding-left: 0px;
         padding-right: 0px;
-
+    }
+    .fdocs-ctn .footer-area {
+        flex-direction: column;
+    }
+    .footer-content {
+        margin-right: 20px;
+        margin-bottom: 25px;
+    }
+    .finest-sidebar {
+        position: fixed;
+        bottom: 30px;
+        left: 18px;
     }
 }

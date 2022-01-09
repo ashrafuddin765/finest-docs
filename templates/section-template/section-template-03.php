@@ -7,19 +7,21 @@
             </div>
             <div class="section-article-list" >
                 <ul>
-                    <li><span class="dashicons dashicons-arrow-right-alt2"></span><a href="#">Basic Requirements</a></li>
-                    <li><span class="dashicons dashicons-arrow-right-alt2"></span><a href="#">WordPress Installation</a></li>
-                    <li><span class="dashicons dashicons-arrow-right-alt2"></span><a href="#">Requirement for this theme</a></li>
-                    <li><span class="dashicons dashicons-arrow-right-alt2"></span><a href="#">Files Included</a></li>
+                    <?php 
+                        $child = fd_get_posts_children( get_the_ID() );
+                        if ($child) {
+                        foreach ( $child as $item ) {        
+                    ?>
+                    <li><span class="dashicons dashicons-arrow-right-alt2"></span><a href="#"><?php echo get_the_title( $item ); ?></a></li>
+                   <?php } } ?>
+                    
                 </ul>
             </div>
             <div class="total-article" >
                 <span class="article-total" ><?php 
-                           printf(
-                            '%s <a href="%s">%s</a>', 
-                            fddocs_get_totla_article(get_the_ID(), true),
-                            get_the_permalink( fd_get_posts_children(get_the_ID(  ))[0] ),
-                            esc_html__( 'See all 7 Articles ', 'finest-docs' )
+                           printf('<a href="%s">%s %s %s</a>',
+                            get_the_permalink( fd_get_posts_children(get_the_ID())[0] ),
+                            esc_html__( 'See all', 'finest-docs' ),fddocs_get_totla_article(get_the_ID(), true),esc_html__( 'Articles', 'finest-docs' )
                         ); 
                             
                 ?> </span>

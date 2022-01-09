@@ -6,11 +6,25 @@ Kirki::add_section( 'docs_page', array(
 	'priority'       => 100,
 ) );
 
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'radio-buttonset',
+	'settings'    => 'docs_design_layout',
+	'label'       => esc_html__( ' ', 'finest-docs' ),
+	'section'     => 'docs_page',
+	'default'     => 'general',
+	'priority'    => 10,
+	'choices'     => [
+		'general'   => esc_html__( 'General ', 'finest-docs' ),
+		'design' => esc_html__( 'Design', 'finest-docs' ),
+	],
+] );
+
+
 // docs layout
 
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'radio-image',
-	'settings'    => 'docs_select_layout',
+	'settings'    => 'docs_layout_design',
 	'label'       => esc_html__( 'Select Single Doc Layout', 'finest-docs' ),
 	'section'     => 'docs_page',
 	'default'     => 'docs-template-01',
@@ -18,8 +32,14 @@ Kirki::add_field( 'docs_panel', [
 	'choices'     => [
 		'docs-template-01'   => FINEST_DOCS_ASSETS_ASSETS . 'docs-layout-01.png',
 		'docs-template-02' => FINEST_DOCS_ASSETS_ASSETS . 'docs-layout-02.png',
-		
 	],
+	'active_callback'  => [
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'design',
+		],
+	]
 ] );
 
 // background color
@@ -39,7 +59,15 @@ Kirki::add_field( 'docs_panel', [
 			'function' => 'css',
 			'property' => 'background-color',
 		],
+	],
+	'active_callback'  => [
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	]
+	
 ] );
 
 Kirki::add_field( 'docs_panel', [
@@ -53,30 +81,16 @@ Kirki::add_field( 'docs_panel', [
 		'padding-bottom'   => '115px',
 		'padding-right'  => '0px',
 	],
+	'active_callback'  => [
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
+	]
 	
 ] );
 
-Kirki::add_field( 'docs_panel', [
-	'type'        => 'slider',
-	'settings'    => 'docs_page_width',
-	'label'       => esc_html__( 'Content Area Width', 'finest-docs' ),
-	'section'     => 'docs_page',
-	'default'     => 1300,
-	'choices'     => [
-		'min'  => 1170,
-		'max'  => 2500,
-		'step' => 1,
-	],
-	'transport' => 'postMessage',
-	'js_vars'   => [
-		[
-			'element'  => '.finest-container',
-			'function' => 'css',
-			'property' => 'max-width',
-			'units'    => 'px',
-		],
-	],
-] );
 
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'custom',
@@ -85,6 +99,13 @@ Kirki::add_field( 'docs_panel', [
 		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 12px; background:#ddd; color:#222; margin:0;">' . __( 'CATEGORY COLUMN SETTINGS
         ', 'finest-mini-cart' ) . '</h3>',
 	'priority'    => 10,
+	'active_callback'  => [
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
+	]
 ] );
 
 
@@ -100,6 +121,13 @@ Kirki::add_field( 'docs_panel', [
 		'normal'   => esc_html__( 'Normal', 'finest-docs' ),
 		'hover' => esc_html__( 'Hover', 'finest-docs' ),
 	],
+	'active_callback'  => [
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
+	]
 ] );
 
 Kirki::add_field( 'docs_panel', [
@@ -125,6 +153,11 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'normal',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] );
 
@@ -145,6 +178,11 @@ Kirki::add_field( 'docs_panel', [
 			'setting'  => 'column_hover_normal',
 			'operator' => '===',
 			'value'    => 'normal',
+		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
 		],
 	],
 ] );
@@ -173,6 +211,11 @@ Kirki::add_field( 'docs_panel', array(
 			'setting'  => 'column_hover_normal',
 			'operator' => '===',
 			'value'    => 'normal',
+		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
 		],
 	],
 ) );
@@ -215,6 +258,11 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'normal',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] );
 
@@ -242,6 +290,11 @@ Kirki::add_field( 'docs_panel', [
 			'setting'  => 'column_hover_normal',
 			'operator' => '===',
 			'value'    => 'normal',
+		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
 		],
 	],
 ] );
@@ -274,6 +327,11 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'normal',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] );
 
@@ -303,6 +361,11 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'hover',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] );
 
@@ -323,6 +386,11 @@ Kirki::add_field( 'docs_panel', [
 			'setting'  => 'column_hover_normal',
 			'operator' => '===',
 			'value'    => 'hover',
+		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
 		],
 	],
 ] );
@@ -351,6 +419,11 @@ Kirki::add_field( 'docs_panel', array(
 			'setting'  => 'column_hover_normal',
 			'operator' => '===',
 			'value'    => 'hover',
+		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
 		],
 	],
 ) );
@@ -393,6 +466,11 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'hover',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] );
 
@@ -420,6 +498,11 @@ Kirki::add_field( 'docs_panel', [
 			'setting'  => 'column_hover_normal',
 			'operator' => '===',
 			'value'    => 'hover',
+		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
 		],
 	],
 ] );
@@ -452,6 +535,11 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'hover',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] );
 
@@ -461,6 +549,13 @@ Kirki::add_field( 'docs_panel', [
 	'section'     => 'docs_page',
 		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 12px; background:#ddd; color:#222; margin:0;">' . __( 'Doc Content', 'finest-mini-cart' ) . '</h3>',
 	'priority'    => 10,
+	'active_callback'  => [
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
+	],
 ] );
 
 Kirki::add_field( 'docs_panel', [
@@ -481,6 +576,13 @@ Kirki::add_field( 'docs_panel', [
 			'function' => 'css',
 			'property' => 'width',
 			'units'    => '%',
+		],
+	],
+	'active_callback'  => [
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
 		],
 	],
 ] ); 
@@ -505,6 +607,13 @@ Kirki::add_field( 'docs_panel', [
 			'units'    => 'px',
 		],
 	],
+	'active_callback'  => [
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
+	],
     
 ] ); 
 
@@ -519,6 +628,13 @@ Kirki::add_field( 'docs_panel', [
 	'choices'     => [
 		'normal'   => esc_html__( 'Normal', 'finest-docs' ),
 		'hover' => esc_html__( 'Hover', 'finest-docs' ),
+	],
+	'active_callback'  => [
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] );
 // background color
@@ -545,6 +661,12 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'normal',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
+		
 	],
 ] );
 
@@ -564,6 +686,11 @@ Kirki::add_field( 'docs_panel', [
 			'setting'  => 'contetn_column_hover_normal',
 			'operator' => '===',
 			'value'    => 'normal',
+		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
 		],
 	],
 	
@@ -596,6 +723,11 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'normal',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] ); 
 Kirki::add_field( 'docs_panel', [
@@ -620,6 +752,11 @@ Kirki::add_field( 'docs_panel', [
 			'setting'  => 'contetn_column_hover_normal',
 			'operator' => '===',
 			'value'    => 'normal',
+		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
 		],
 	],
 ] );
@@ -649,6 +786,11 @@ Kirki::add_field( 'docs_panel', [
 			'setting'  => 'contetn_column_hover_normal',
 			'operator' => '===',
 			'value'    => 'normal',
+		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
 		],
 	],
 ] );
@@ -681,6 +823,11 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'normal',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] ); 
 Kirki::add_field( 'docs_panel', [
@@ -705,6 +852,11 @@ Kirki::add_field( 'docs_panel', [
 			'setting'  => 'contetn_column_hover_normal',
 			'operator' => '===',
 			'value'    => 'normal',
+		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
 		],
 	],
 ] );
@@ -735,6 +887,11 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'normal',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] );
 
@@ -762,6 +919,11 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'hover',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] );
 
@@ -781,6 +943,11 @@ Kirki::add_field( 'docs_panel', [
 			'setting'  => 'contetn_column_hover_normal',
 			'operator' => '===',
 			'value'    => 'hover',
+		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
 		],
 	],
 	
@@ -809,6 +976,11 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'normal',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] );
 
@@ -819,6 +991,14 @@ Kirki::add_field( 'docs_panel', [
 	'section'     => 'docs_page',
 		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 12px; background:#ddd; color:#222; margin:0;">' . __('Doc Button', 'finest-mini-cart' ) . '</h3>',
 	'priority'    => 10,
+	'active_callback'  => [
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
+	]
+	
 ] );
 
 Kirki::add_field( 'docs_panel', [
@@ -832,6 +1012,13 @@ Kirki::add_field( 'docs_panel', [
 		'normal'   => esc_html__( 'Normal', 'finest-docs' ),
 		'hover' => esc_html__( 'Hover', 'finest-docs' ),
 	],
+	'active_callback'  => [
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
+	]
 ] );
 
 Kirki::add_field( 'docs_panel', [
@@ -860,6 +1047,11 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'normal',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] );
 
@@ -885,6 +1077,11 @@ Kirki::add_field( 'docs_panel', [
 			'setting'  => 'doc_button_normal',
 			'operator' => '===',
 			'value'    => 'normal',
+		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
 		],
 	],
 ] );
@@ -914,6 +1111,11 @@ Kirki::add_field( 'docs_panel', [
 			'setting'  => 'doc_button_normal',
 			'operator' => '===',
 			'value'    => 'normal',
+		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
 		],
 	],
 ] ); 
@@ -945,6 +1147,11 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'normal',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] ); 
 
@@ -971,6 +1178,11 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'normal',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] );
 Kirki::add_field( 'docs_panel', array(
@@ -995,6 +1207,11 @@ Kirki::add_field( 'docs_panel', array(
 			'setting'  => 'doc_button_normal',
 			'operator' => '===',
 			'value'    => 'normal',
+		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
 		],
 	],
 ) );
@@ -1037,6 +1254,11 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'normal',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] );
 
@@ -1064,6 +1286,11 @@ Kirki::add_field( 'docs_panel', [
 			'setting'  => 'doc_button_normal',
 			'operator' => '===',
 			'value'    => 'normal',
+		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
 		],
 	],
 ] );
@@ -1096,6 +1323,11 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'normal',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] );
 
@@ -1126,6 +1358,11 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'hover',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] );
  
@@ -1152,6 +1389,11 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'hover',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] );
 Kirki::add_field( 'docs_panel', array(
@@ -1176,6 +1418,11 @@ Kirki::add_field( 'docs_panel', array(
 			'setting'  => 'doc_button_normal',
 			'operator' => '===',
 			'value'    => 'hover',
+		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
 		],
 	],
 ) );
@@ -1218,6 +1465,11 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'hover',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] );
 
@@ -1245,6 +1497,11 @@ Kirki::add_field( 'docs_panel', [
 			'setting'  => 'doc_button_normal',
 			'operator' => '===',
 			'value'    => 'hover',
+		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
 		],
 	],
 ] );
@@ -1277,6 +1534,11 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'hover',
 		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
 	],
 ] );
 
@@ -1287,6 +1549,13 @@ Kirki::add_field( 'docs_panel', [
 	'section'     => 'docs_page',
 		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 12px; background:#ddd; color:#222; margin:0;">' . __('Doc Item Counter', 'finest-mini-cart' ) . '</h3>',
 	'priority'    => 10,
+	'active_callback'  => [
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
+	]
 ] );
 
 Kirki::add_field( 'docs_panel', [
@@ -1309,6 +1578,13 @@ Kirki::add_field( 'docs_panel', [
 			'units'    => 'px',
 		],
 	],
+	'active_callback'  => [
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
+	]
     
 ] );
 
@@ -1329,5 +1605,12 @@ Kirki::add_field( 'docs_panel', [
 			'property' => 'color',
 		],
 	],
+	'active_callback'  => [
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
+	]
     
 ] );

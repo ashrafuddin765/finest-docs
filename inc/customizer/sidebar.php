@@ -5,31 +5,6 @@ Kirki::add_section( 'doc_sidebar', array(
 	'priority'       => 160,
 ) );
 
-
-// sidebar_width
-
-Kirki::add_field( 'docs_panel', [
-	'type'        => 'slider',
-	'settings'    => 'sidebar_width_setting',
-	'label'       => esc_html__( 'Sidebar Area Width', 'finest-docs' ),
-	'section'     => 'doc_sidebar',
-	'default'     => 25,
-	'choices'     => [
-		'min'  => 0,
-		'max'  => 100,
-		'step' => 1,
-	],
-	'transport' => 'postMessage',
-	'js_vars'   => [
-		[
-			'element'  => '.finest-single-wrap .finest-sidebar',
-			'function' => 'css',
-			'property' => 'width',
-			'units'    => '%',
-		],
-	],
-] );
-
 // background color
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'color',
