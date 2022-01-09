@@ -223,6 +223,7 @@ add_filter( 'body_class', 'finest_body_classes' );
 
 function finest_body_classes( $classes ) {
     $classes[] = 'finest-body';
+
     return $classes;
 
 }

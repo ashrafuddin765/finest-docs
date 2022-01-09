@@ -1,5 +1,5 @@
 <?php finest_get_template_part( 'finest-docs', 'sidebar' );?> 
-<div class="finest-single-content tamplate-three">
+<div class="finest-single-content layout-three">
     <?php finest_breadcrumbs(); ?>
     <article id="post-<?php the_ID(); ?>" >
         <div class="entry-content" itemprop="articleBody">
@@ -11,14 +11,13 @@
                 ) );
             ?>
         </div>
-        <div class="rate-article">
-            <div class="article-like">
-                <span class="article-title" >Rate this article</span>
-                <span class="dashicons dashicons-arrow-up"></span>
-                <span class="dashicons dashicons-arrow-down"></span>
-            </div>
-            <div class="update-date">
-                <span class="update-text">Updated on April 2021</span>
+        <div class="fddocs-article-footer">
+            <?php printf('%s', fddocs_feedback_html()) ?>
+            <div class="fddocs-footer-meta">
+                <?php printf('%s %s',
+                        esc_html__( 'Updated on ', 'finestdocs'),
+                        get_the_modified_time('M d, Y'));
+                    ?>
             </div>
         </div>
         <div class="help-center">
@@ -26,8 +25,14 @@
             <a href="#" class="contact-support" >Contact our support</a>
             <p class="contact-text" >Contact us and we’ll get back to you as soon as possible.</p>
         </div>
-        <div class="ultimatedoc">
-            <p>Powered by <a href="#" >UltimateDoc</a></p>
+        <div class="fdoc-powered">
+        <span class="fddoc-copyright" >
+                <?php printf('%s <a href="%s">%s</a>', 
+                        esc_html( 'Powered by '),
+                        esc_url( 'https://finestdevs.com' ),
+                        esc_html( 'UltimateDoc' )
+                     ) ?>
+            </span>
         </div>
         <?php if ( comments_open() || get_comments_number() ) { ?>
                 <div class="finest-comments-wrap">

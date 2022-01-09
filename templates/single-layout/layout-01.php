@@ -17,6 +17,18 @@
          
             ?>
         </div>
+
+
+        <div class="fddocs-article-footer">
+            <div class="fddocs-footer-meta">
+                <?php printf('%s %s',
+                        esc_html__( 'Updated on ', 'finestdocs'),
+                        get_the_modified_time('M d, Y'));
+                    ?>
+            </div>
+            <?php printf('%s', fddocs_feedback_html()) ?>
+        </div>
+
         <div class="fdocs-navigation">
            <?php 
                 the_post_navigation(array(
@@ -27,10 +39,6 @@
            ?>
         </div>
 
-        <div class="fddocs-article-footer">
-            <div class="fddocs-footer-meta"></div>
-            <?php printf('%s', fddocs_feedback_html()) ?>
-        </div>
         <div class="fdocs-ctn">
             <div class="footer-area">
                 <div class="footer-content">
@@ -47,7 +55,13 @@
             </div>
         </div>
         <div class="fdoc-powered">
-            <span class="fd-footertext" ><?php echo esc_html( 'Powered by UltimateDoc' ) ?></span>
+            <span class="fddoc-copyright" >
+                <?php printf('%s <a href="%s">%s</a>', 
+                        esc_html( 'Powered by '),
+                        esc_url( 'https://finestdevs.com' ),
+                        esc_html( 'UltimateDoc' )
+                     ) ?>
+            </span>
         </div>
         <?php if ( comments_open() || get_comments_number() ) { ?>
                 <div class="finest-comments-wrap">
@@ -56,6 +70,6 @@
         <?php } ?>
     </article><!-- #post-## -->
 </div><!-- .finest-single-content -->
-<div class="finest-autoc-wrap">
+<div class="finest-autoc-wrap <?php echo $class; ?>" >
     <div class="autoc" data-stopat='h2' data-offset='1'></div>
-</div>
+ </div>

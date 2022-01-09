@@ -10,11 +10,7 @@ elseif ( 'layout-02' == $layout ) {
 elseif ( 'layout-03' == $layout ) {
     $class = 'layout-three';
 }
-?>
-<div class="finest-sidebar <?php echo $class; ?>">
-<nav id="mainnav" >
-    <div id="menu" ><span class="dashicons dashicons-menu"></span></div>
-    <?php
+
 $ancestors        = [];
 $root             = $parent             = false;
 $enabled_multidoc = get_option( 'finestdocs_sidebar_all_docs', true );
@@ -45,15 +41,20 @@ $children = wp_list_pages( [
     'walker' => new Finest_walker()
 ] );
 ?>
-   
-    <?php if ( $children ) {
-    ?>
-        <ul class="finest-nav-list">
-            <?php
-echo $children;
-    ?>
-        </ul>
-    <?php }?>
-</nav>
-</div>
 
+<div class="finest-sidebar <?php echo $class; ?>">
+    <nav id="mainnav">
+        <div id="menu" class="fddoc-sidebar-trigger"><span class="dashicons dashicons-menu"></span></div>
+        <?php if ( $children ) {
+    ?>
+        <div class="fddoc-nav-inner">
+            <div id="menu" class="fddoc-sidebar-trigger"><span class=" dashicons dashicons-no-alt"></span></div>
+            <ul class="finest-nav-list">
+                <?php
+    echo $children;
+        ?>
+            </ul>
+        </div>
+        <?php }?>
+    </nav>
+</div>

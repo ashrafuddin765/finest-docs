@@ -86,6 +86,19 @@ class Finest_walker extends Walker {
      * @param int     $current_page Optional. Page ID. Default 0.
      */
     public function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 ) {
+
+        $layout = get_theme_mod( 'docs_category_layout', 'icon' );
+        $doc_icon = '';
+        $has_icon = '';
+        
+        if ( 'layout-01' == $layout || 'layout-03' == $layout ) {
+
+            $doc_icon_meta = get_post_meta( $page->ID, 'fd_doc_icon', true );
+            $doc_icon      = !empty( $doc_icon_meta ) ? '<img src="' . esc_url( $doc_icon_meta ) . '"/>' : '';
+            $has_icon = !empty( $doc_icon_meta )  ? 'has-icon' : '';
+        }
+
+
         if ( isset( $args['item_spacing'] ) && 'preserve' === $args['item_spacing'] ) {
             $t = "\t";
             $n = "\n";
@@ -135,7 +148,7 @@ class Finest_walker extends Walker {
          * @param int      $current_page ID of the current page.
          */
         $css_classes = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_page ) );
-        $css_classes = $css_classes ? ' class="' . esc_attr( $css_classes ) . '"' : '';
+        $css_classes = $css_classes ? ' class="' . esc_attr( $css_classes ) . ' ' . esc_attr($has_icon). '"' : '';
 
         if ( '' === $page->post_title ) {
             /* translators: %d: ID of a post. */
@@ -178,14 +191,6 @@ class Finest_walker extends Walker {
             }
         }
 
-        $layout = get_theme_mod( 'docs_category_layout', 'icon' );
-        if ( 'layout-01' == $layout ) {
-
-            $doc_icon_meta = get_post_meta( $page->ID, 'fd_doc_icon', true );
-            $doc_icon      = !empty( $doc_icon_meta ) ? '<img src="' . esc_url( $doc_icon_meta ) . '"/>' : '';
-        }else{
-            $doc_icon = '';
-        }
 
         $output .= $indent . sprintf(
             '<li%s><a%s> %s %s%s%s</a>',

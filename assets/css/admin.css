@@ -304,7 +304,7 @@ span.finestdocs-row-actions ul.action-sub-menu {
   z-index: 1;
   transition: .4s;
   opacity: 0;
-  transform: translatey(10px)translateX(10px);
+  transform: translatey(10px);
 }
 
 ul.actions-menu>li {
