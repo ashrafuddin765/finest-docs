@@ -25,7 +25,7 @@ function fd_shortcode( $atts ) {
     ), $atts ) );
 
     $args = array(
-        'post_type'      => 'finest-docs',
+        'post_type'      => 'docs',
         'posts_per_page' => -1,
     );
 
@@ -89,7 +89,7 @@ function fddocs_search_shortcode( $atts ) {
     </svg>
     ';
     $dropdown_args = [
-        'post_type'         => 'finest-docs',
+        'post_type'         => 'docs',
         'echo'              => 0,
         'depth'             => 1,
         'show_option_none'  => __( 'All Docs', 'finestdocs' ),
@@ -105,7 +105,7 @@ function fddocs_search_shortcode( $atts ) {
     <div class="finestdocs-search-input">
         <span class="screen-reader-text">' . _x( 'Search for:', 'label', 'finestdocs' ) . '</span>
         <input type="search" class="search-field" placeholder="' . esc_attr_x( 'Search for articles...', 'placeholder', 'finestdocs' ) . '" value="' . get_search_query() . '" name="s" title="' . esc_attr_x( 'Search for:', 'label', 'finestdocs' ) . '" />
-        <input type="hidden" name="post_type" value="finest-docs" />
+        <input type="hidden" name="post_type" value="docs" />
         <input type="hidden" name="post_id" value="'.esc_html($id).'" />
         <button class="search-submit" type="submit">'.$search_icon.'</button>
     </div>

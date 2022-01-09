@@ -10,7 +10,7 @@ class Post_Types {
      *
      * @var string
      */
-    private $post_type = 'finest-docs';
+    private $post_type = 'docs';
 
     /**
      * Initialize the class
@@ -35,8 +35,8 @@ class Post_Types {
             'all_items'          => __( 'All Docs', 'finest-docs' ),
             'search_items'       => __( 'Search Docs', 'finest-docs' ),
             'parent_item_colon'  => __( 'Parent :', 'finest-docs' ),
-            'not_found'          => __( 'No portfolios found.', 'finest-docs' ),
-            'not_found_in_trash' => __( 'No portfolios found in Trash.', 'finest-docs' ),
+            'not_found'          => __( 'No docs found.', 'finest-docs' ),
+            'not_found_in_trash' => __( 'No docs found in Trash.', 'finest-docs' ),
         );
         $args = array(
             'labels'             => $labels,
@@ -48,14 +48,14 @@ class Post_Types {
             'show_in_admin_bar'  => true,
             'query_var'          => true,
             'menu_icon'          => 'dashicons-format-gallery',
-            'rewrite'            => array( 'slug' => 'portfolio', 'with_front' => true, 'pages' => true, 'feeds' => true ),
+            'rewrite'            => array( 'slug' => 'docs', 'with_front' => true, 'pages' => true, 'feeds' => true ),
             'capability_type'    => 'post',
             'has_archive'        => false,
             'hierarchical'       => true,
             'menu_position'      => null,
             'supports'           => array( 'title', 'elementor', 'editor', 'thumbnail', 'attributes' ),
         );
-        register_post_type( 'finest-docs', $args );
+        register_post_type( 'docs', $args );
     }
     public function register_taxonomy() {
         $labels = array(
@@ -84,7 +84,7 @@ class Post_Types {
             'rewrite'           => array( 'slug' => 'doc-tag' ),
         ];
 
-        register_taxonomy( 'doc-tag', array( 'finest-docs' ), $args );
+        register_taxonomy( 'doc-tag', array( 'docs' ), $args );
     }
 }
 $post_type = new Post_Types();

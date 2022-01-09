@@ -7,7 +7,7 @@
  * Upload Doc Icon = get_post_meta( get_the_ID(), 'fd_doc_icon', true )
  */
 class Finest_Metabox {
-	private $config = '{"title":"Finest Metabox","prefix":"finest_metabox_","domain":"finest-metabox","class_name":"Finest_Metabox","context":"normal","priority":"default","cpt":"finest-docs","fields":[{"type":"media","label":"Upload Doc Icon","button-text":"Upload icon","return":"url","id":"fd_doc_icon"}]}';
+	private $config = '{"title":"Finest Metabox","prefix":"finest_metabox_","domain":"finest-metabox","class_name":"Finest_Metabox","context":"normal","priority":"default","cpt":"docs","fields":[{"type":"media","label":"Upload Doc Icon","button-text":"Upload icon","return":"url","id":"fd_doc_icon"}]}';
 
 	public function __construct() {
 		$this->config = json_decode( $this->config, true );

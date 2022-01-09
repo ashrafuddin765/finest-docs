@@ -30,7 +30,7 @@ class Ajax {
         $order  = isset( $_POST['order'] ) ? absint( $_POST['order'] ) : 0;
 
         $status           = 'publish';
-        $post_type_object = get_post_type_object( 'finest-docs' );
+        $post_type_object = get_post_type_object( 'docs' );
 
         if ( '' === $title ) {
             return wp_send_json_error();
@@ -42,7 +42,7 @@ class Ajax {
 
         $post_id = wp_insert_post( [
             'post_title'  => $title,
-            'post_type'   => 'finest-docs',
+            'post_type'   => 'docs',
             'post_status' => $status,
             'post_parent' => $parent,
             'post_author' => get_current_user_id(),
@@ -76,7 +76,7 @@ class Ajax {
         check_ajax_referer( 'finestdocs-admin-nonce' );
         $childs           = [];
         $post_id          = isset( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
-        $post_type_object = get_post_type_object( 'finest-docs' );
+        $post_type_object = get_post_type_object( 'docs' );
 
         if ( '' === $post_id ) {
             return wp_send_json_error();
@@ -147,7 +147,7 @@ class Ajax {
         check_ajax_referer( 'finestdocs-admin-nonce' );
 
         $docs = get_pages( [
-            'post_type'      => 'finest-docs',
+            'post_type'      => 'docs',
             'post_status'    => ['publish', 'draft', 'pending'],
             'posts_per_page' => '-1',
             'orderby'        => 'menu_order',
@@ -198,7 +198,7 @@ class Ajax {
             return $result;
         }
 
-        $post_type_object = get_post_type_object( 'finest-docs' );
+        $post_type_object = get_post_type_object( 'docs' );
 
         foreach ( $docs as $key => $doc ) {
             if ( $doc->post_parent == $parent ) {

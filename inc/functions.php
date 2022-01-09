@@ -49,7 +49,16 @@ function finest_breadcrumbs() {
     $html .= finest_get_breadcrumb_item( $args['home'], home_url( '/' ), $breadcrumb_position );
     $html .= $args['delimiter'];
 
-    if ( 'finest-docs' == $post->post_type && $post->post_parent ) {
+    // $docs_home = wedocs_get_option( 'docs_home', 'wedocs_settings' );
+
+    // if ( $docs_home ) {
+    //     ++$breadcrumb_position;
+
+    //     $html .= finest_get_breadcrumb_item( __( 'Docs', 'wedocs' ), get_permalink( $docs_home ), $breadcrumb_position );
+    //     $html .= $args['delimiter'];
+    // }
+
+    if ( 'docs' == $post->post_type && $post->post_parent ) {
         $parent_id   = $post->post_parent;
         $breadcrumbs = [];
 
@@ -248,7 +257,7 @@ add_action( 'pre_get_posts', 'fddocs_search_query' );
 add_filter( 'template_include', 'wpa3396_page_template' );
 function wpa3396_page_template( $page_template ) {
 
-    if ( is_search() && 'finest-docs' == get_query_var( 'post_type' ) ) {
+    if ( is_search() && 'docs' == get_query_var( 'post_type' ) ) {
         $page_template = FINEST_DOCS_DIR . 'templates/search.php';
     }
 
@@ -316,7 +325,7 @@ return ob_get_clean();
 
 function page_layout( $layout ) {
 
-    if ( is_singular( 'finest-docs' ) ) {
+    if ( is_singular( 'docs' ) ) {
         return 'no-sidebar';
     }
 
@@ -327,7 +336,7 @@ function fddocs_get_totla_article( $id = '', $in_section = false ) {
     $id = '' != $id ? $id : get_the_ID();
 
     $args = array(
-        'post_type'      => 'finest-docs',
+        'post_type'      => 'docs',
         'posts_per_page' => -1,
         'post_parent'    => [$id],
         'suppress_filters' => false ,

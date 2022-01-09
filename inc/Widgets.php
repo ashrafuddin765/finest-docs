@@ -28,7 +28,7 @@ class Widget extends \WP_Widget {
         }
 
         $dropdown_args = [
-            'post_type'         => 'finest-docs',
+            'post_type'         => 'docs',
             'echo'              => 0,
             'depth'             => 1,
             'show_option_none'  => __( 'All Docs', 'finestdocs' ),
@@ -44,7 +44,7 @@ class Widget extends \WP_Widget {
             <div class="finestdocs-search-input">
                 <span class="screen-reader-text">' . _x( 'Search for:', 'label', 'finestdocs' ) . '</span>
                 <input type="search" class="search-field" placeholder="' . esc_attr_x( 'Documentation Search &hellip;', 'placeholder', 'finestdocs' ) . '" value="' . get_search_query() . '" name="s" title="' . esc_attr_x( 'Search for:', 'label', 'finestdocs' ) . '" />
-                <input type="hidden" name="post_type" value="finest-docs" />
+                <input type="hidden" name="post_type" value="docs" />
             </div>
             <div class="finestdocs-search-in">
             ' . wp_dropdown_pages( $dropdown_args ) . '

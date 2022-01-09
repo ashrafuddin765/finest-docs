@@ -36,10 +36,10 @@
                     <?php 
 
 
-                        $first_article_id =  fd_get_posts_children(get_the_ID(  ))[0];
+                        $first_article_id =  fd_get_posts_children(get_the_ID(  )) ? fd_get_posts_children(get_the_ID(  ))[0] : [];
 
                         $args = [
-                            'post_type' => 'finest-docs',
+                            'post_type' => 'docs',
                             'p' => $first_parent,
                             'posts_per_page' => 1
                         ];

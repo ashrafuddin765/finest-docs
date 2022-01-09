@@ -39,7 +39,7 @@ $children = wp_list_pages( [
     'order'       => 'menu_order',
     'child_of'    => $parent,
     'echo'        => false,
-    'post_type'   => 'finest-docs',
+    'post_type'   => 'docs',
     // 'link_after' => '<span class="toggle-menu dashicons dashicons-arrow-up-alt2"></span>',
     'link_before' => $link_before,
     'walker' => new Finest_walker()
