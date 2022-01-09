@@ -219,13 +219,11 @@ function fd_duplicator( $post_id ) {
 
 // body class added
 
-add_filter( 'body_class', 'finest_body_classes' );
+function finest_add_body_class( $classes ) {
+    return array_merge( $classes, array( 'finest-body' ) );
+};
+add_filter( 'body_class', 'finest_add_body_class');
 
-function finest_body_classes( $classes ) {
-    $classes[] = 'finest-body';
-    return $classes;
-
-}
 
 /**
  * Register custom query vars

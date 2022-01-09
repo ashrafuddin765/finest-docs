@@ -3,7 +3,6 @@
     $docs_bg_color = get_theme_mod( 'single_area_backgound', '#F3F5F7' );
     $content_docs_padding = get_theme_mod( 'docs_content_padding' ) != ' ' ? get_theme_mod( 'docs_content_padding' ) : '' ;
     $docspadding = is_array($content_docs_padding ) ?  implode(' ', $content_docs_padding) : '';
-    $docs_content_width = get_theme_mod( 'docs_page_width', '1300px' );
 
     // column normal settings
     $colum_bg_color = get_theme_mod( 'column_background_color', '#ffffff' );
@@ -74,11 +73,6 @@
 
     if( $docspadding ){
         $fmc_dynamic_css .= '.finest-site-main {padding: ' . esc_attr( $docspadding ) . ' } ';
-        $fmc_dynamic_css .= "\n";
-    }
-
-    if($docs_content_width){
-        $fmc_dynamic_css .= '.finest-container { max-width:' . esc_attr( $docs_content_width ) .'px } ';
         $fmc_dynamic_css .= "\n";
     }
 

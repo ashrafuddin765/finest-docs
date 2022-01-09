@@ -1,6 +1,5 @@
 <?php 
     
-    $sidebar_width = get_theme_mod( 'sidebar_width_setting', '25%' );
     $sidebar_bgc = get_theme_mod( 'sidebar_backgound', '#F8F8FA' );
     $sidebar_padding = get_theme_mod( 'sidebar_padding' ) != ' ' ? get_theme_mod( 'sidebar_padding' ) : '' ;
     $sidebarpadding = is_array($sidebar_padding ) ?  implode(' ', $sidebar_padding) : '';
@@ -24,11 +23,6 @@
     $section_margin_bottom = get_theme_mod( 'section_margin_bottom', '15px' );
     $section_font_size = get_theme_mod( 'section_font_size', '18px' );
 
-
-    if($sidebar_width){
-        $fmc_dynamic_css .= '.finest-single-wrap .finest-sidebar { width:' . esc_attr( $sidebar_width ) .'% } ';
-        $fmc_dynamic_css .= "\n";
-    }
     if($sidebar_bgc){
         $fmc_dynamic_css .= '.finest-single-wrap .finest-sidebar { background-color:' . esc_attr( $sidebar_bgc ) .' } ';
         $fmc_dynamic_css .= "\n";
