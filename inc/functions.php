@@ -219,12 +219,11 @@ function fd_duplicator( $post_id ) {
 
 // body class added
 
-if ( get_post_type() == 'docs' ) {
-    function finest_add_body_class( $classes ) {
-        return array_merge( $classes, array( 'finest-body' ) );
-    };
-    add_filter( 'body_class', 'finest_add_body_class');
-}
+function finest_add_body_class( $classes ) {
+    return array_merge( $classes, array( 'finest-body' ) );
+};
+add_filter( 'body_class', 'finest_add_body_class');
+
 
 /**
  * Register custom query vars

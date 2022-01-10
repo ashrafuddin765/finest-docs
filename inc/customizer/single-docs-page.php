@@ -911,6 +911,7 @@ Kirki::add_field( 'docs_panel', [
 	'type'     => 'text',
 	'settings' => 'social_share_ttile',
 	'label'    => esc_html__( 'Social Share Title', 'finest-docs' ),
+	'default'  => esc_html__( 'Social Share', 'finest-docs' ),
 	'section'  => 'single_page',
 	'priority' => 10,
 	'active_callback'  => [
@@ -927,14 +928,14 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'social_title_color',
 	'label'       => __( 'Social Title Color', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => '#ffffff',
+	'default'     => '#3a3a3a',
 	'choices'     => [
 		'alpha' => true,
 	],
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.fddocs-socshare-heading h5',
 			'function' => 'css',
 			'property' => 'color',
 		],
@@ -952,7 +953,7 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'social_title_font_size',
 	'label'       => esc_html__( 'Social Title Font Size', 'finest-docs' ),
 	'section'     => 'single_page',
-	'default'     => 14,
+	'default'     => 18,
 	'choices'     => [
 		'min'  => 0,
 		'max'  => 100,
@@ -961,9 +962,37 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '',
+			'element'  => '.fddocs-socshare-heading h5',
 			'function' => 'css',
-			'property' => 'width',
+			'property' => 'font-size',
+			'units'    => 'px',
+		],
+	],
+	'active_callback'  => [
+		[
+			'setting'  => 'single_layout_design',
+			'operator' => '===',
+			'value'    => 'general',
+		],
+	]
+] );
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'slider',
+	'settings'    => 'social_title_gap',
+	'label'       => esc_html__( 'Title Gap', 'finest-docs' ),
+	'section'     => 'single_page',
+	'default'     => 15,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.fddocs-socshare-heading h5',
+			'function' => 'css',
+			'property' => 'margin-bottom',
 			'units'    => 'px',
 		],
 	],
@@ -993,7 +1022,8 @@ Kirki::add_field( 'docs_panel', [
 			'operator' => '===',
 			'value'    => 'general',
 		],
-	]
+	],
+	
 ] );
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'switch',
@@ -1043,6 +1073,41 @@ Kirki::add_field( 'docs_panel', [
 	'choices'     => [
 		'on'  => esc_html__( 'Enable', 'finest-docs' ),
 		'off' => esc_html__( 'Disable', 'finest-docs' ),
+	],
+	'active_callback'  => [
+		[
+			'setting'  => 'single_layout_design',
+			'operator' => '===',
+			'value'    => 'general',
+		],
+	]
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'slider',
+	'settings'    => 'icon_width_height',
+	'label'       => esc_html__( 'Icon Width Height', 'finest-docs' ),
+	'section'     => 'single_page',
+	'default'     => 35,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.fddocs-social-share ul.fddocs-social-share-links li a img',
+			'function' => 'css',
+			'property' => 'width',
+			'units'    => 'px',
+		],
+		[
+			'element'  => '.fddocs-social-share ul.fddocs-social-share-links li a img',
+			'function' => 'css',
+			'property' => 'height',
+			'units'    => 'px',
+		],
 	],
 	'active_callback'  => [
 		[

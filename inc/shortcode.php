@@ -114,4 +114,51 @@ function fddocs_search_shortcode( $atts ) {
     return $form;
 }
 add_shortcode( 'ud_search', 'fddocs_search_shortcode' );
+
+
+// socila share shortcode
+function fddocs_social_share()
+{ 
+    $social_title = get_theme_mod( 'social_share_ttile', 'Social Share' );
+    $onfacebook = get_theme_mod( 'switch_facebook_share', true );
+    $ontwitter = get_theme_mod( 'enable_Twitter_sharing', true );
+    $onlinkdin = get_theme_mod( 'enable_linkedin_sharing', true );
+    $onpinterest = get_theme_mod( 'enable_pinterest_sharing', true );
+    ?>
+	<div class="fddocs-social-share">
+		<div class="fddocs-socshare-heading">
+			<?php echo '<h5>' . esc_html( $social_title) . '</h5>'; ?>
+		</div>
+		<ul class="fddocs-social-share-links">
+            <?php if ( true == $onfacebook ): ?>
+			<li><a href="https://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>" target="_blank"><img src="<?php echo FINEST_DOCS_ASSETS_ASSETS.'facebook.svg' ?>" alt="Facebook"></a></li>
+            <?php endif; ?>
+
+            <?php if ( true == $ontwitter ): ?>
+            <li><a href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>" target="_blank"><img src="<?php echo FINEST_DOCS_ASSETS_ASSETS.'twitter.svg' ?>" alt="Twitter"></a></li>
+            <?php endif; ?>
+
+            <?php if ( true == $onlinkdin ): ?>
+            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(); ?>" target="_blank"><img src="<?php echo FINEST_DOCS_ASSETS_ASSETS.'linkedin.svg' ?>" alt="LinkedIn"></a></li>
+            <?php endif; ?>
+
+            <?php if ( true == $onpinterest ): ?>
+            <li><a href="https://pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>" target="_blank"><img src="<?php echo FINEST_DOCS_ASSETS_ASSETS.'pinterest.svg' ?>" alt="Pinterest"></a></li>
+            <?php endif; ?>
+		</ul>
+	</div> 
+<?php }
+
+add_shortcode('fddocs_social_share', 'fddocs_social_share');
+
+
+
+
+
+
+
+
+
+
+
 ?>

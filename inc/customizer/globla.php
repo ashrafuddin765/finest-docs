@@ -29,22 +29,39 @@ Kirki::add_field( 'docs_panel', [
 
 ] );
 
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'color',
+	'settings'    => 'fddoc_body_bg_color',
+	'label'       => __( 'Body Background Color', 'finest-docs' ),
+	'section'     => 'docs_global',
+	'default'     => '#FFFFFF',
+	'choices'     => [
+		'alpha' => true,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => 'body.finest-body',
+			'function' => 'css',
+			'property' => 'background-color',
+		],
+	],
+	
+] );
+
 // Typography 
 
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'typography',
-	'settings'    => 'finest_typography_setting',
-	'label'       => esc_html__( 'Control Label', 'kirki' ),
-	'section'     => 'section_id',
+	'settings'    => 'fddoc_typhography',
+	'label'       => esc_html__( 'Typography', 'finest-docs' ),
+	'section'     => 'docs_global',
 	'default'     => [
 		'font-family'    => 'Roboto',
 		'variant'        => 'regular',
-		'font-size'      => '14px',
-		'line-height'    => '1.5',
-		'letter-spacing' => '0',
-		'color'          => '#333333',
-		'text-transform' => 'none',
-		'text-align'     => 'left',
+		'font-size'      => '13px',
+		'line-height'    => '1.5em',
+		'text-transform' => 'capitalize',
 	],
 	'priority'    => 10,
 	'transport'   => 'auto',
@@ -57,35 +74,22 @@ Kirki::add_field( 'docs_panel', [
 
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'color',
-	'settings'    => 'primary_color',
-	'label'       => __( 'Primary Color', 'finest-docs' ),
+	'settings'    => 'body_primary_color',
+	'label'       => __( 'Color', 'finest-docs' ),
 	'section'     => 'docs_global',
-	'default'     => '#0088CC',
+	'default'     => 'rgba(0, 0, 0, 0.7)',
 	'choices'     => [
 		'alpha' => true,
 	],
-] );
-
-Kirki::add_field( 'docs_panel', [
-	'type'        => 'color',
-	'settings'    => 'secoudary_color',
-	'label'       => __( 'Secondary Color', 'finest-docs' ),
-	'section'     => 'docs_global',
-	'default'     => '#00ff00',
-	'choices'     => [
-		'alpha' => true,
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => 'body.finest-body',
+			'function' => 'css',
+			'property' => 'color',
+		],
 	],
+	
 ] );
 
-
-Kirki::add_field( 'docs_panel', [
-	'type'        => 'color',
-	'settings'    => 'accent_color',
-	'label'       => __( 'Accent Color', 'finest-docs' ),
-	'section'     => 'docs_global',
-	'default'     => '#cc88cc',
-	'choices'     => [
-		'alpha' => true,
-	],
-] );
 

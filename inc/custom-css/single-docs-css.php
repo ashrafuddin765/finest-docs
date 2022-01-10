@@ -50,6 +50,32 @@
     $footerbutton_font_color = get_theme_mod( 'button_text_color', '#ffffff' );
     $footerbutton_radius = get_theme_mod( 'fbutton_border_radius', '5px' );
 
+    // social share
+    $social_title_color = get_theme_mod( 'social_title_color', '#3a3a3a' );
+    $social_title_font_size = get_theme_mod( 'social_title_font_size', '18px' );
+    $social_title_gap = get_theme_mod( 'social_title_gap', '15px' );
+    $icon_width_height = get_theme_mod( 'icon_width_height', '35px' );
+
+    if ( $icon_width_height) {
+        $fmc_dynamic_css .= '.fddocs-social-share ul.fddocs-social-share-links li a img { width:' . esc_attr( $icon_width_height ) .'px } ';
+        $fmc_dynamic_css .= "\n";
+    }
+    if ( $icon_width_height) {
+        $fmc_dynamic_css .= '.fddocs-social-share ul.fddocs-social-share-links li a img { height:' . esc_attr( $icon_width_height ) .'px } ';
+        $fmc_dynamic_css .= "\n";
+    }
+    if ( $social_title_color) {
+        $fmc_dynamic_css .= '.fddocs-socshare-heading h5 { color:' . esc_attr( $social_title_color ) .' } ';
+        $fmc_dynamic_css .= "\n";
+    }
+    if ( $social_title_font_size) {
+        $fmc_dynamic_css .= '.fddocs-socshare-heading h5 { font-size:' . esc_attr( $social_title_font_size ) .'px } ';
+        $fmc_dynamic_css .= "\n";
+    }
+    if ( $social_title_gap) {
+        $fmc_dynamic_css .= '.fddocs-socshare-heading h5 { margin-bottom:' . esc_attr( $social_title_gap ) .'px } ';
+        $fmc_dynamic_css .= "\n";
+    }
     if ( $footerbutton_width) {
         $fmc_dynamic_css .= '.fddocs-entry-footer .footer-button a { width:' . esc_attr( $footerbutton_width ) .'px } ';
         $fmc_dynamic_css .= "\n";

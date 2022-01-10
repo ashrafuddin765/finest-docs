@@ -577,6 +577,28 @@ a {
     padding: 0px !important ;
 }
 
+/* social share */
+
+.fddocs-social-share ul.fddocs-social-share-links {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+.fddocs-social-share ul.fddocs-social-share-links li {
+    display: inline-block;
+}
+
+.fddocs-social-share-links a.customize-unpreviewable {
+    cursor: pointer !important;
+}
+
+.fddocs-social-share {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
 @media screen and (min-width: 992px) and (max-width: 1444px) {
     .finest-single-content .entry-content p {
         margin-right: 20px;
@@ -1388,11 +1410,10 @@ a {
 /***************************************
             Feedback Css
 ****************************************/
-.fddocs-article-footer {
+.fddocs-meta-area {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 35px;
     border: 1px solid rgb(22 22 23 / 8%);
     padding: 20px;
 }
