@@ -4,7 +4,7 @@
 <div class="finest-single-content">
     <?php finest_breadcrumbs(); ?>
     <article id="post-<?php the_ID(); ?>"  >
-
+        <?php the_title( '<h1 class="fddoc-single-title">', '</h1>' ) ?>
         <div class="entry-content" itemprop="articleBody">
 
             <?php
@@ -69,7 +69,7 @@
                 </div>
         <?php } ?>
     </article><!-- #post-## -->
+    <div class="finest-autoc-wrap <?php echo $class; ?>" >
+        <div class="autoc" data-stopat='h2' data-offset='1'></div>
+     </div>
 </div><!-- .finest-single-content -->
-<div class="finest-autoc-wrap <?php echo $class; ?>" >
-    <div class="autoc" data-stopat='h2' data-offset='1'></div>
- </div>
