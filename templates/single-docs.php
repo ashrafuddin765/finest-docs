@@ -18,6 +18,7 @@
         the_post(); ?>
 
         <?php 
+          
              $first_parent = wp_get_post_parent_id( get_the_ID() );
              if($first_parent):
                  $second_parent = wp_get_post_parent_id( $first_parent );

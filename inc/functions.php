@@ -220,7 +220,14 @@ function fd_duplicator( $post_id ) {
 // body class added
 
 function finest_add_body_class( $classes ) {
-    return array_merge( $classes, array( 'finest-body' ) );
+    $layout = get_theme_mod( 'docs_category_layout', 'layout-01' );
+
+    $classes[] = 'finest-body';
+    if('docs' == get_post_type() && is_single()){
+        $classes[] = 'fddoc-single-'.$layout;
+    }
+
+    return  $classes ;
 };
 add_filter( 'body_class', 'finest_add_body_class');
 
@@ -365,3 +372,37 @@ function fddocs_get_totla_article( $id = '', $in_section = false ) {
 
     return $counter;
 }
+
+
+function fddoc_update_exxisting_doc_type(){
+
+    $args = array(
+        'post_type'      => 'docs',
+        'posts_per_page' => -1,
+    );
+
+    // the query
+    $the_query = new WP_Query( $args );
+
+    if($the_query->have_posts()){
+        while($the_query->have_posts(  )){
+            $the_query->the_post();
+
+            $idd = get_the_ID(  );
+            $sec_parent = wp_get_post_parent_id( $idd );
+            $type = 'doc';
+            if($sec_parent){
+                $third_parent = wp_get_post_parent_id( $sec_parent );
+                $type = 'section';
+                if($third_parent){
+                    $type = 'article';
+                }
+            }
+
+            update_post_meta( $idd, 'doc_type',$type );
+
+        }
+        wp_reset_query(  );
+    }
+}
+

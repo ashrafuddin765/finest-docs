@@ -49,6 +49,16 @@ class Ajax {
             'menu_order'  => $order,
         ] );
 
+        // if( 0 == $parent  ){
+        //     $doc_type  = 'doc';
+        // }elseif( wp_get_post_parent_id( $parent )){
+        //     $doc_type = 'article';
+        // }else{
+        //     $doc_type = 'section';
+        // }
+        
+        // update_post_meta( $post_id, 'doc_type', $doc_type );
+
         if ( is_wp_error( $post_id ) ) {
             wp_send_json_error();
         }

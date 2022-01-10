@@ -4,6 +4,7 @@
         <div class="card-top">
             <div class="card-title">
                 <?php 
+                
                     if ( has_post_thumbnail() ) {
                         the_post_thumbnail();
                     }
