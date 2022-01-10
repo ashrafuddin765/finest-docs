@@ -20,15 +20,23 @@
 
 
         <div class="fddocs-article-footer">
-            <div class="fddocs-footer-meta">
-                <?php printf('%s %s',
-                        esc_html__( 'Updated on ', 'finestdocs'),
-                        get_the_modified_time('M d, Y'));
-                    ?>
+            <div class="fddocs-meta-area" >
+                <div class="fddocs-footer-meta">
+                    <?php printf('%s %s',
+                            esc_html__( 'Updated on ', 'finestdocs'),
+                            get_the_modified_time('M d, Y'));
+                        ?>
+                </div>
+                <?php printf('%s', fddocs_feedback_html()) ?>
             </div>
-            <?php printf('%s', fddocs_feedback_html()) ?>
+            <?php 
+            $socialenable = get_theme_mod( 'switch_social_share', true );
+            if ( true == $socialenable ) {
+                echo do_shortcode( '[fddocs_social_share]' );
+            }    
+            ?>
         </div>
-
+      
         <div class="fdocs-navigation">
            <?php 
                 the_post_navigation(array(
