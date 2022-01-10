@@ -23,6 +23,28 @@
     $section_margin_bottom = get_theme_mod( 'section_margin_bottom', '15px' );
     $section_font_size = get_theme_mod( 'section_font_size', '18px' );
 
+    // responsive menu
+    $open_icon_font_size = get_theme_mod( 'open_icon_color', '20px' );
+    $open_icon_color = get_theme_mod( 'open_icon_color', '#cccccc' );
+    $close_icon_font_size = get_theme_mod( 'close_icon_size', '20px' );
+    $close_icon_color = get_theme_mod( 'close_icon_color', '#cccccc' );
+
+    if($open_icon_color){
+        $fmc_dynamic_css .= '.finest-sidebar #mainnav>.fddoc-sidebar-trigger { color:' . esc_attr( $open_icon_color ) .' } ';
+        $fmc_dynamic_css .= "\n";
+    }
+    if($open_icon_font_size){
+        $fmc_dynamic_css .= '.finest-sidebar #mainnav>.fddoc-sidebar-trigger span.dashicons.dashicons-menu { font-size:' . esc_attr( $open_icon_font_size ) .' } ';
+        $fmc_dynamic_css .= "\n";
+    }
+    if($close_icon_color){
+        $fmc_dynamic_css .= '.finest-sidebar #mainnav .fddoc-nav-inner .fddoc-sidebar-trigger { color:' . esc_attr( $open_icon_color ) .' } ';
+        $fmc_dynamic_css .= "\n";
+    }
+    if($close_icon_font_size){
+        $fmc_dynamic_css .= '.finest-sidebar #mainnav .fddoc-nav-inner .fddoc-sidebar-trigger span.dashicons.dashicons-no-alt { font-size:' . esc_attr( $close_icon_font_size ) .' } ';
+        $fmc_dynamic_css .= "\n";
+    }
     if($sidebar_bgc){
         $fmc_dynamic_css .= '.finest-single-wrap .finest-sidebar { background-color:' . esc_attr( $sidebar_bgc ) .' } ';
         $fmc_dynamic_css .= "\n";

@@ -209,9 +209,6 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-
-
-
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'custom',
 	'settings'    => 'icon_box',
@@ -296,6 +293,111 @@ Kirki::add_field( 'docs_panel', [
 			'element'  => '.finest-sidebar ul.finest-nav-list li a span.dashicons',
 			'function' => 'css',
 			'property' => 'margin-right',
+			'units'    => 'px'
+		],
+	]
+] );
+
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'custom',
+	'settings'    => 'responsive_menu_box',
+	'section'     => 'doc_sidebar',
+		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Responsive Menu', 'finest-mini-cart' ) . '</h3>',
+	'priority'    => 10,
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'select',
+	'settings'    => 'open_icon_position',
+	'label'       => esc_html__( 'Open Icon Position', 'finest-docs' ),
+	'section'     => 'doc_sidebar',
+	'default'     => 'left',
+	'priority'    => 10,
+	'multiple'    => 1,
+	'choices'     => [
+		'left' => esc_html__( 'Left', 'finest-docs' ),
+		'right' => esc_html__( 'Right', 'finest-docs' ),
+	],
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'color',
+	'settings'    => 'open_icon_color',
+	'label'       => __( 'Open Icon Color', 'finest-docs' ),
+	'section'     => 'doc_sidebar',
+	'default'     => '#ccc',
+	'choices'     => [
+		'alpha' => true,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-sidebar #mainnav>.fddoc-sidebar-trigger',
+			'function' => 'css',
+			'property' => 'color',
+		],
+	]
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'slider',
+	'settings'    => 'open_icon_size',
+	'label'       => esc_html__( 'Open Icon Size', 'finest-docs' ),
+	'section'     => 'doc_sidebar',
+	'default'     => 20,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-sidebar #mainnav>.fddoc-sidebar-trigger span.dashicons.dashicons-menu',
+			'function' => 'css',
+			'property' => 'font-size',
+			'units'    => 'px'
+		],
+	]
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'color',
+	'settings'    => 'close_icon_color',
+	'label'       => __( 'Close Icon Color', 'finest-docs' ),
+	'section'     => 'doc_sidebar',
+	'default'     => '#cccccc',
+	'choices'     => [
+		'alpha' => true,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-sidebar #mainnav .fddoc-nav-inner .fddoc-sidebar-trigger',
+			'function' => 'css',
+			'property' => 'color',
+		],
+	]
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'slider',
+	'settings'    => 'close_icon_size',
+	'label'       => esc_html__( 'Close Icon Size', 'finest-docs' ),
+	'section'     => 'doc_sidebar',
+	'default'     => 20,
+	'choices'     => [
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.finest-sidebar #mainnav .fddoc-nav-inner .fddoc-sidebar-trigger span.dashicons.dashicons-no-alt',
+			'function' => 'css',
+			'property' => 'font-size',
 			'units'    => 'px'
 		],
 	]
