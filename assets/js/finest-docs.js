@@ -4,12 +4,12 @@
   var finestDocs = {
     init: function () {
       this.toc();
-      $('.finest-container, .finest-container-fluid').parents('.ast-container').removeClass('ast-container');
+      $('.fddocs-container, .fddocs-container-fluid').parents('.ast-container').removeClass('ast-container');
       $('.fddocs-footer-feedback').on('click', 'span', this.feedback);
-      $('ul.finest-nav-list .page_item_has_children').append('<span class="toggle-menu dashicons dashicons-arrow-up-alt2"></span>');
-      $('ul.finest-nav-list .page_item_has_children.current_page_parent').addClass('active');
+      $('ul.fddocs-nav-list .page_item_has_children').append('<span class="toggle-menu dashicons dashicons-arrow-up-alt2"></span>');
+      $('ul.fddocs-nav-list .page_item_has_children.current_page_parent').addClass('active');
 
-      $('ul.finest-nav-list .page_item_has_children').on(
+      $('ul.fddocs-nav-list .page_item_has_children').on(
         'click',
         function (event) {
           // event.preventDefault();
@@ -52,7 +52,7 @@
     toc: function () {
 
       var $autoc = $(".autoc");
-      var $content = $('.entry-content');
+      var $content = $('.fddocs-entry-content');
       var stopAt = $autoc.data("stopat");
       var hs = [];
       switch (stopAt) {
