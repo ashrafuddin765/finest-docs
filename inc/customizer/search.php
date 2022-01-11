@@ -19,7 +19,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'form.search-form.finestdocs-search-form input.search-field',
+			'element'  => 'form.search-form.fddocs-search-form input.search-field',
 			'function' => 'css',
 			'property' => 'width',
 			'units'    => '%',
@@ -41,7 +41,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'form.search-form.finestdocs-search-form input.search-field',
+			'element'  => 'form.search-form.fddocs-search-form input.search-field',
 			'function' => 'css',
 			'property' => 'height',
 			'units'    => 'px',
@@ -61,7 +61,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'form.search-form.finestdocs-search-form input.search-field',
+			'element'  => 'form.search-form.fddocs-search-form input.search-field',
 			'function' => 'css',
 			'property' => 'color',
 			
@@ -83,7 +83,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'form.search-form.finestdocs-search-form input.search-field',
+			'element'  => 'form.search-form.fddocs-search-form input.search-field',
 			'function' => 'css',
 			'property' => 'font-size',
 			'units'    => 'px',
@@ -103,7 +103,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'form.search-form.finestdocs-search-form input.search-field',
+			'element'  => 'form.search-form.fddocs-search-form input.search-field',
 			'function' => 'css',
 			'property' => 'background-color',
 			
@@ -157,7 +157,7 @@ Kirki::add_field( 'docs_panel', [
     'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'form.search-form.finestdocs-search-form input.search-field',
+			'element'  => 'form.search-form.fddocs-search-form input.search-field',
 			'function' => 'css',
 			'property' => 'border-style',
 		],
@@ -179,7 +179,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'form.search-form.finestdocs-search-form input.search-field',
+			'element'  => 'form.search-form.fddocs-search-form input.search-field',
 			'function' => 'css',
 			'property' => 'border-color',
 		],
@@ -201,7 +201,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'form.search-form.finestdocs-search-form input.search-field',
+			'element'  => 'form.search-form.fddocs-search-form input.search-field',
 			'function' => 'css',
 			'property' => 'padding-left',
 			'units'    => 'px',
@@ -223,7 +223,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'form.search-form.finestdocs-search-form input.search-field',
+			'element'  => 'form.search-form.fddocs-search-form input.search-field',
 			'function' => 'css',
 			'property' => 'border-radius',
 			'units'    => 'px',

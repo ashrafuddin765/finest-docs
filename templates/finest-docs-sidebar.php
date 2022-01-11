@@ -1,19 +1,11 @@
 <?php  
 $layout = get_theme_mod( 'docs_category_layout', 'layout-01' );
-$class = 'layout-one-bg';
-if ( 'layout-01' == $layout) {
-    $class = 'layout-one-bg';
-}
-elseif ( 'layout-02' == $layout ) {
-    $class = 'layout-two-bg';
-}
-elseif ( 'layout-03' == $layout ) {
-    $class = 'layout-three';
-}
+$class = $layout;
+
 
 $ancestors        = [];
 $root             = $parent             = false;
-$enabled_multidoc = get_option( 'finestdocs_sidebar_all_docs', true );
+$enabled_multidoc = get_option( 'fddocs_sidebar_all_docs', true );
 $layout           = get_theme_mod( 'docs_category_layout', 'icon' );
 $link_before      = '';
 if ( 'layout-01' == $layout ) {
@@ -42,14 +34,14 @@ $children = wp_list_pages( [
 ] );
 ?>
 
-<div class="finest-sidebar <?php echo $class; ?>">
+<div class="fddocs-sidebar <?php echo $class; ?>">
     <nav id="mainnav">
         <div id="menu" class="fddoc-sidebar-trigger"><span class="dashicons dashicons-menu"></span></div>
         <?php if ( $children ) {
     ?>
         <div class="fddoc-nav-inner">
             <div id="menu" class="fddoc-sidebar-trigger"><span class=" dashicons dashicons-no-alt"></span></div>
-            <ul class="finest-nav-list">
+            <ul class="fddocs-nav-list">
                 <?php
     echo $children;
         ?>

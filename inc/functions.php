@@ -1,5 +1,5 @@
 <?php
-function finest_get_template_part( $slug, $name = '' ) {
+function fddocs_get_template_part( $slug, $name = '' ) {
 
     $templates = [];
     $name      = (string) $name;
@@ -21,7 +21,7 @@ function finest_get_template_part( $slug, $name = '' ) {
     if ( !$template ) {
         $templates = [
             "{$slug}.php",
-            $finest->FINEST_DOCS_TEMPLATE . "{$slug}.php",
+            $fddocs->FINEST_DOCS_TEMPLATE . "{$slug}.php",
         ];
 
         $template = locate_template( $templates );
@@ -32,11 +32,11 @@ function finest_get_template_part( $slug, $name = '' ) {
     }
 }
 
-function finest_breadcrumbs() {
+function fddocs_breadcrumbs() {
     global $post;
 
     $html = '';
-    $args = apply_filters( 'finest_breadcrumbs', [
+    $args = apply_filters( 'fddocs_breadcrumbs', [
         'delimiter' => '<li class="delimiter"><span class="dashicons dashicons-arrow-right-alt2"></span></li>',
         'home'      => __( 'Home', 'finest-docs' ),
         'before'    => '<li><span class="current">',
@@ -45,8 +45,8 @@ function finest_breadcrumbs() {
 
     $breadcrumb_position = 1;
 
-    $html .= '<ul class="finest-breadcrumb" itemscope >';
-    $html .= finest_get_breadcrumb_item( $args['home'], home_url( '/' ), $breadcrumb_position );
+    $html .= '<ul class="fddocs-breadcrumb" itemscope >';
+    $html .= fddocs_get_breadcrumb_item( $args['home'], home_url( '/' ), $breadcrumb_position );
     $html .= $args['delimiter'];
 
     // $docs_home = wedocs_get_option( 'docs_home', 'wedocs_settings' );
@@ -54,7 +54,7 @@ function finest_breadcrumbs() {
     // if ( $docs_home ) {
     //     ++$breadcrumb_position;
 
-    //     $html .= finest_get_breadcrumb_item( __( 'Docs', 'wedocs' ), get_permalink( $docs_home ), $breadcrumb_position );
+    //     $html .= fddocs_get_breadcrumb_item( __( 'Docs', 'wedocs' ), get_permalink( $docs_home ), $breadcrumb_position );
     //     $html .= $args['delimiter'];
     // }
 
@@ -66,7 +66,7 @@ function finest_breadcrumbs() {
             ++$breadcrumb_position;
 
             $page          = get_post( $parent_id );
-            $breadcrumbs[] = finest_get_breadcrumb_item( get_the_title( $page->ID ), get_permalink( $page->ID ), $breadcrumb_position );
+            $breadcrumbs[] = fddocs_get_breadcrumb_item( get_the_title( $page->ID ), get_permalink( $page->ID ), $breadcrumb_position );
             $parent_id     = $page->post_parent;
         }
 
@@ -82,10 +82,10 @@ function finest_breadcrumbs() {
 
     $html .= '</ul>';
 
-    echo apply_filters( 'finest_breadcrumbs_html', $html, $args );
+    echo apply_filters( 'fddocs_breadcrumbs_html', $html, $args );
 }
 
-function finest_get_breadcrumb_item( $label, $permalink, $position = 1 ) {
+function fddocs_get_breadcrumb_item( $label, $permalink, $position = 1 ) {
 
     return '<li itemprop="itemListElement" itemscope >
             <a itemprop="item" href="' . esc_attr( $permalink ) . '">
@@ -219,17 +219,17 @@ function fd_duplicator( $post_id ) {
 
 // body class added
 
-function finest_add_body_class( $classes ) {
+function fddocs_add_body_class( $classes ) {
     $layout = get_theme_mod( 'docs_category_layout', 'layout-01' );
 
-    $classes[] = 'finest-body';
+    $classes[] = 'fddocs-body';
     if('docs' == get_post_type() && is_single()){
         $classes[] = 'fddoc-single-'.$layout;
     }
 
     return  $classes ;
 };
-add_filter( 'body_class', 'finest_add_body_class');
+add_filter( 'body_class', 'fddocs_add_body_class');
 
 
 /**
@@ -305,7 +305,7 @@ function fddocs_feedback_html() {
     ob_start();?>
 <div class="fddocs-footer-feedback <?php echo esc_attr( $is_disabled ) ?>">
 
-    <span class="feedback-text"><?php esc_html_e( 'Rate this article', 'finestdocs' )?></span>
+    <span class="feedback-text"><?php esc_html_e( 'Rate this article', 'fddocs' )?></span>
 
     <span class="like" data-type="like" data-id="<?php the_ID()?>"><svg width="14" height="13" viewBox="0 0 14 13"
             fill="none" xmlns="http://www.w3.org/2000/svg">

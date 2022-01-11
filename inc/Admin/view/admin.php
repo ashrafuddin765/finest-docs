@@ -1,6 +1,6 @@
-<div class="wrap" id="finestdocs-app">
+<div class="wrap" id="fddocs-app">
 
-    <h1 class="finestdocs-page-title"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+    <h1 class="fddocs-page-title"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path d="M5 5C5 3.89543 5.89543 3 7 3H17C18.1046 3 19 3.89543 19 5V21L12 17.5L5 21V5Z" stroke="#4B3BFD"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -8,14 +8,14 @@
                 d="M9 7.40001C9 6.73727 9.53726 6.20001 10.2 6.20001H13.8C14.4627 6.20001 15 6.73727 15 7.40001V15.8L12 14.3L9 15.8V7.40001Z"
                 fill="#4B3BFD" fill-opacity="0.3" />
         </svg>
-        <?php _e( 'UltimateDoc', 'finestdocs' );?>
+        <?php _e( 'UltimateDoc', 'fddocs' );?>
 
         <a class="fd-doc-page-title" href="#" v-on:click.prevent="addDoc"><svg width="12" height="12"
                 viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6 1.5V6M6 6V10.5M6 6H10.5M6 6L1.5 6" stroke="#2D2D31" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" />
             </svg>
-            <?php _e( 'Add new doc', 'finestdocs' );?>
+            <?php _e( 'Add new doc', 'fddocs' );?>
         </a>
 
     </h1>
@@ -42,7 +42,7 @@
                 <span v-else>{{ doc.post.title }}<span v-if="doc.post.status != 'publish'"
                         class="doc-status">{{ doc.post.status }}</span></span>
 
-                <span class="finestdocs-row-actions">
+                <span class="fddocs-row-actions">
                     <ul class="actions-menu">
                         <li>
                             <span class="toggler"><svg width="12" height="4" viewBox="0 0 12 4" fill="none"
@@ -55,27 +55,27 @@
                             <ul class="action-sub-menu">
                                 <li>
                                     <a target="_blank" :href="viewurl + doc.post.id"
-                                        title="<?php esc_attr_e( 'View the doc', 'finestdocs' );?>">
-                                        <?php esc_attr_e( 'View', 'finestdocs' );?> </a>
+                                        title="<?php esc_attr_e( 'View the doc', 'fddocs' );?>">
+                                        <?php esc_attr_e( 'View', 'fddocs' );?> </a>
                                 </li>
                                 <li>
                                     <a target="_blank" :href="editurl + doc.post.id"
-                                        title="<?php esc_attr_e( 'Edit the doc', 'finestdocs' );?>">
-                                        <?php esc_attr_e( 'Edit', 'finestdocs' );?> </a>
+                                        title="<?php esc_attr_e( 'Edit the doc', 'fddocs' );?>">
+                                        <?php esc_attr_e( 'Edit', 'fddocs' );?> </a>
                                 </li>
                                 <li>
-                                    <a href="" v-on:click="copyDoc(doc,$event)" class="copy"><?php esc_html_e( 'Duplicate','finestdocs' ) ?></a>
+                                    <a href="" v-on:click="copyDoc(doc,$event)" class="copy"><?php esc_html_e( 'Duplicate','fddocs' ) ?></a>
                                 </li>
                                 <li>
-                                    <span v-if="doc.post.caps.delete" class="finestdocs-btn-remove"
+                                    <span v-if="doc.post.caps.delete" class="fddocs-btn-remove"
                                         v-on:click="removeDoc(index, docs)"
-                                        title="<?php esc_attr_e( 'Delete this doc', 'finestdocs' );?>"><?php esc_html_e( 'Delete','finestdocs' ) ?></span>
+                                        title="<?php esc_attr_e( 'Delete this doc', 'fddocs' );?>"><?php esc_html_e( 'Delete','fddocs' ) ?></span>
                                 </li>
                             </ul>
                         </li>
                     </ul>
 
-                    <!-- <span class="finestdocs-btn-reorder"><span class="dashicons dashicons-menu"></span></span> -->
+                    <!-- <span class="fddocs-btn-reorder"><span class="dashicons dashicons-menu"></span></span> -->
                 </span>
             </h3>
 
@@ -102,7 +102,7 @@
                                     class="count">{{ section.child.length }}</span></span>
 
 
-                            <span class="finestdocs-row-actions">
+                            <span class="fddocs-row-actions">
                                 <ul class="actions-menu">
                                     <li>
                                         <span class="toggler"><svg width="12" height="4" viewBox="0 0 12 4" fill="none"
@@ -115,22 +115,22 @@
                                         <ul class="action-sub-menu">
                                             <li>
                                                 <a target="_blank" :href="viewurl + section.post.id"
-                                                    title="<?php esc_attr_e( 'View the doc', 'finestdocs' );?>">
-                                                    <?php esc_attr_e( 'View', 'finestdocs' );?> </a>
+                                                    title="<?php esc_attr_e( 'View the doc', 'fddocs' );?>">
+                                                    <?php esc_attr_e( 'View', 'fddocs' );?> </a>
                                             </li>
                                             <li>
                                                 <a target="_blank" :href="editurl + section.post.id"
-                                                    title="<?php esc_attr_e( 'Edit the doc', 'finestdocs' );?>">
-                                                    <?php esc_attr_e( 'Edit', 'finestdocs' );?> </a>
+                                                    title="<?php esc_attr_e( 'Edit the doc', 'fddocs' );?>">
+                                                    <?php esc_attr_e( 'Edit', 'fddocs' );?> </a>
                                             </li>
                                             <li>
                                                 <a href="" v-on:click="copyDoc(section,$event)"
-                                                class="copy"><?php esc_html_e( 'Duplicate','finestdocs' ) ?></a>
+                                                class="copy"><?php esc_html_e( 'Duplicate','fddocs' ) ?></a>
                                             </li>
                                             <li>
-                                                <span v-if="section.post.caps.delete" class="finestdocs-btn-remove"
+                                                <span v-if="section.post.caps.delete" class="fddocs-btn-remove"
                                                     v-on:click="removeDoc(index, doc.child)"
-                                                    title="<?php esc_attr_e( 'Delete this doc', 'finestdocs' );?>"><?php esc_html_e( 'Delete','finestdocs' ) ?></span>
+                                                    title="<?php esc_attr_e( 'Delete this doc', 'fddocs' );?>"><?php esc_html_e( 'Delete','fddocs' ) ?></span>
                                             </li>
                                         </ul>
                                     </li>
@@ -157,7 +157,7 @@
                                             class="doc-status">{{ article.post.status }}</span></a>
                                     <span v-else>{{ article.post.title }}</span>
 
-                                    <span class="actions finestdocs-row-actions">
+                                    <span class="actions fddocs-row-actions">
 
                                         <ul class="actions-menu">
                                             <li>
@@ -172,24 +172,24 @@
                                                 <ul class="action-sub-menu">
                                                     <li>
                                                         <a target="_blank" :href="viewurl + article.post.id"
-                                                            title="<?php esc_attr_e( 'View the doc', 'finestdocs' );?>">
-                                                            <?php esc_attr_e( 'View', 'finestdocs' );?> </a>
+                                                            title="<?php esc_attr_e( 'View the doc', 'fddocs' );?>">
+                                                            <?php esc_attr_e( 'View', 'fddocs' );?> </a>
                                                     </li>
                                                     <li>
                                                         <a target="_blank" :href="editurl + article.post.id"
-                                                            title="<?php esc_attr_e( 'Edit the doc', 'finestdocs' );?>">
-                                                            <?php esc_attr_e( 'Edit', 'finestdocs' );?> </a>
+                                                            title="<?php esc_attr_e( 'Edit the doc', 'fddocs' );?>">
+                                                            <?php esc_attr_e( 'Edit', 'fddocs' );?> </a>
                                                     </li>
                                          
                                                     <li>
                                                         <a href="" v-on:click="copyDoc(article,$event)"
-                                                            class="copy"><?php esc_html_e( 'Duplicate','finestdocs' ) ?></a>
+                                                            class="copy"><?php esc_html_e( 'Duplicate','fddocs' ) ?></a>
                                                     </li>
                                                     <li>
                                                         <span v-if="article.post.caps.delete"
-                                                            class="finestdocs-btn-remove"
+                                                            class="fddocs-btn-remove"
                                                             v-on:click="removeArticle(index, section.child)"
-                                                            title="<?php esc_attr_e( 'Delete this doc', 'finestdocs' );?>"><?php esc_html_e( 'Delete','finestdocs' ) ?></span>
+                                                            title="<?php esc_attr_e( 'Delete this doc', 'fddocs' );?>"><?php esc_html_e( 'Delete','fddocs' ) ?></span>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -206,13 +206,13 @@
                                                 class="doc-status">{{ art.post.status }}</span></a>
                                         <span v-else>{{ art.post.title }}</span>
 
-                                        <span class="actions finestdocs-row-actions">
+                                        <span class="actions fddocs-row-actions">
                                             <a target="_blank" :href="viewurl + article.post.id"
-                                                title="<?php esc_attr_e( 'Preview the article', 'finestdocs' );?>"><span
+                                                title="<?php esc_attr_e( 'Preview the article', 'fddocs' );?>"><span
                                                     class="dashicons dashicons-external"></span></a>
-                                                    <span class="finestdocs-btn-remove" v-if="art.post.caps.delete" v-on:click="removeArticle(index, article.child)" title="<?php esc_attr_e( 'Delete this article', 'finestdocs' ); ?>"><span class="dashicons dashicons-trash"></span></span>
-                                            <span class="finestdocs-btn-add" v-on:click.prevent="addSection(doc)"
-                                                title="<?php esc_attr_e( 'Add article', 'finestdocs' );?>"><span
+                                                    <span class="fddocs-btn-remove" v-if="art.post.caps.delete" v-on:click="removeArticle(index, article.child)" title="<?php esc_attr_e( 'Delete this article', 'fddocs' ); ?>"><span class="dashicons dashicons-trash"></span></span>
+                                            <span class="fddocs-btn-add" v-on:click.prevent="addSection(doc)"
+                                                title="<?php esc_attr_e( 'Add article', 'fddocs' );?>"><span
                                                     class="dashicons dashicons-plus"></span></span>
                                         </span>
                                     </li>
@@ -220,13 +220,13 @@
                             </li>
                             <li>
                                 <span class="add-article" v-on:click="addArticle(section,$event)"
-                                    title="<?php esc_attr_e( 'Add a new article', 'finestdocs' );?>">
+                                    title="<?php esc_attr_e( 'Add a new article', 'fddocs' );?>">
                                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path d="M6 1.5V6M6 6V10.5M6 6H10.5M6 6L1.5 6" stroke="#F9FAFB" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
-                                    <?php esc_html_e( 'Add new article', 'finestdocs' ) ?></span>
+                                    <?php esc_html_e( 'Add new article', 'fddocs' ) ?></span>
                             </li>
                         </ul>
                     </li>
@@ -241,14 +241,14 @@
                             stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
 
-                    <?php _e( 'Add Section', 'finestdocs' );?>
+                    <?php _e( 'Add Section', 'fddocs' );?>
                 </a>
             </div>
         </li>
     </ul>
 
     <div class="no-docs not-loaded" v-show="!docs.length">
-        <?php printf( __( 'No docs has been found. Perhaps %s?', 'finestdocs' ), '<a href="#" v-on:click.prevent="addDoc">' . __( 'create one', 'finestdocs' ) . '</a>' );?>
+        <?php printf( __( 'No docs has been found. Perhaps %s?', 'fddocs' ), '<a href="#" v-on:click.prevent="addDoc">' . __( 'create one', 'fddocs' ) . '</a>' );?>
     </div>
 
 </div>

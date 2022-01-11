@@ -17,20 +17,20 @@ class Admin {
 
         wp_enqueue_script( 'vue', 'https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js', [], time(), true );
         wp_enqueue_script( 'sweetalert', FINEST_DOCS_ASSETS_JS . 'sweetalert.min.js', ['jquery'], time(), true );
-        wp_enqueue_script( 'finestdocs-frontentd-script', FINEST_DOCS_ASSETS_JS . 'frontend.js', ['jquery', 'jquery-ui-sortable', 'wp-util'], time(), true );
-        wp_enqueue_script( 'finestdocs-admin-script', FINEST_DOCS_ASSETS_JS . 'admin-script.js', ['jquery', 'jquery-ui-sortable', 'wp-util'], time(), true );
-        wp_localize_script( 'finestdocs-admin-script', 'finestDocs', [
-            'nonce'               => wp_create_nonce( 'finestdocs-admin-nonce' ),
+        wp_enqueue_script( 'fddocs-frontentd-script', FINEST_DOCS_ASSETS_JS . 'frontend.js', ['jquery', 'jquery-ui-sortable', 'wp-util'], time(), true );
+        wp_enqueue_script( 'fddocs-admin-script', FINEST_DOCS_ASSETS_JS . 'admin-script.js', ['jquery', 'jquery-ui-sortable', 'wp-util'], time(), true );
+        wp_localize_script( 'fddocs-admin-script', 'finestDocs', [
+            'nonce'               => wp_create_nonce( 'fddocs-admin-nonce' ),
             'editurl'             => admin_url( 'post.php?action=edit&post=' ),
             'viewurl'             => home_url( '/?p=' ),
-            'enter_doc_title'     => __( 'Enter doc title', 'finestdocs' ),
-            'write_something'     => __( 'Write something', 'finestdocs' ),
-            'enter_section_title' => __( 'Enter section title', 'finestdocs' ),
-            'confirmBtn'          => __( 'OK', 'finestdocs' ),
-            'delConfirmBtn'       => __( 'Yes, delete it!', 'finestdocs' ),
-            'cancelBtn'           => __( 'Cancel', 'finestdocs' ),
-            'delConfirm'          => __( 'Are you sure?', 'finestdocs' ),
-            'delConfirmTxt'       => __( 'Are you sure to delete the entire section? Articles inside this section will be deleted too!', 'finestdocs' ),
+            'enter_doc_title'     => __( 'Enter doc title', 'fddocs' ),
+            'write_something'     => __( 'Write something', 'fddocs' ),
+            'enter_section_title' => __( 'Enter section title', 'fddocs' ),
+            'confirmBtn'          => __( 'OK', 'fddocs' ),
+            'delConfirmBtn'       => __( 'Yes, delete it!', 'fddocs' ),
+            'cancelBtn'           => __( 'Cancel', 'fddocs' ),
+            'delConfirm'          => __( 'Are you sure?', 'fddocs' ),
+            'delConfirmTxt'       => __( 'Are you sure to delete the entire section? Articles inside this section will be deleted too!', 'fddocs' ),
         ] );
 
     }
@@ -43,7 +43,7 @@ class Admin {
 
             add_submenu_page( 'finest-docs', __( 'Tags', 'finest-docs' ), __( 'Tags', 'finest-docs' ), 'manage_categories', 'edit-tags.php?taxonomy=doc-tag&post_type=finest-docs' );
 
-            add_submenu_page( 'finest-docs', __( 'Settings', 'finest-docs' ), __( 'Settings', 'finest-docs' ), 'manage_options', 'finest-settings', [$this, 'settings_page'] );
+            add_submenu_page( 'finest-docs', __( 'Settings', 'finest-docs' ), __( 'Settings', 'finest-docs' ), 'manage_options', 'fddocs-settings', [$this, 'settings_page'] );
 
             $sdk_license->create_license_menu('finest-docs');
 

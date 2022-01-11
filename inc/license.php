@@ -349,7 +349,7 @@ if ( !class_exists( 'FinestDocs\License' ) ) {
         // create custom plugin settings menu
         function create_license_menu( $parent_menu = '' ) {
             if ( !empty( $parent_menu ) ) {
-                add_submenu_page( $parent_menu, __( 'Finest License', 'finest-mini-cart-pro' ), __( 'Finest License', 'finest-mini-cart-pro' ), 'manage_options', 'finest-license', [$this, 'license_settings_page'] );
+                add_submenu_page( $parent_menu, __( 'Finest License', 'fddocs-mini-cart-pro' ), __( 'Finest License', 'fddocs-mini-cart-pro' ), 'manage_options', 'fddocs-license', [$this, 'license_settings_page'] );
             } else {
                 // create new top-level menu
                 // add_menu_page( $this->plugin_name, 'Finest License', 'administrator', __FILE__, [$this, 'license_settings_page'] );
@@ -376,7 +376,7 @@ if ( !class_exists( 'FinestDocs\License' ) ) {
             ?>
             <div class="wrap">
 
-            <h1><?php esc_html_e( $this->plugin_name, 'finest-mini-cart-pro' )?></h1>
+            <h1><?php esc_html_e( $this->plugin_name, 'fddocs-mini-cart-pro' )?></h1>
             <?php if ( $this->is_activated() ): ?>
                 <strong style='color:green'><?php echo esc_html_e( 'License Activated', $this->plugin_name ) ?></strong>
                 <?php else: ?>
@@ -385,9 +385,9 @@ if ( !class_exists( 'FinestDocs\License' ) ) {
             <form method="post" action="">
                     <input type="text" name="<?php echo $this->valid_object ?>" value="<?php echo esc_attr( $license ); ?>" required />
                     <?php if ( !$this->is_activated() ): ?>
-                    <button type="submit" name="activate"><?php esc_html_e( 'Activate', 'finest-mini-cart-pro' )?></button>
+                    <button type="submit" name="activate"><?php esc_html_e( 'Activate', 'fddocs-mini-cart-pro' )?></button>
                     <?php else: ?>
-                    <button type="submit" name="deactivate"><?php esc_html_e( 'Deactivate', 'finest-mini-cart-pro' )?></button>
+                    <button type="submit" name="deactivate"><?php esc_html_e( 'Deactivate', 'fddocs-mini-cart-pro' )?></button>
                     <?php endif;?>
 
             </form>

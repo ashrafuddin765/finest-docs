@@ -15,7 +15,7 @@ class Ajax {
 
     public function feedback_handler() {
 
-        check_ajax_referer( 'finestdocs-nonce' );
+        check_ajax_referer( 'fddocs-nonce' );
         $template = '<div class="wedocs-alert wedocs-alert-%s">%s</div>';
         $previous = isset( $_COOKIE['fddocs_response'] ) ? explode( ',', $_COOKIE['fddocs_response'] ) : [];
         $post_id  = intval( $_POST['post_id'] );

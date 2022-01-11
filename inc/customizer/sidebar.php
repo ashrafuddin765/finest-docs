@@ -18,7 +18,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-single-wrap .finest-sidebar',
+			'element'  => '.fddocs-single-wrap .fddocs-sidebar',
 			'function' => 'css',
 			'property' => 'background-color',
 		],
@@ -55,7 +55,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-single-wrap .finest-sidebar',
+			'element'  => '.fddocs-single-wrap .fddocs-sidebar',
 			'function' => 'css',
 			'property' => 'border-radius',
 			'units'    => 'px'
@@ -77,7 +77,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-sidebar ul li a',
+			'element'  => '.fddocs-sidebar ul li a',
 			'function' => 'css',
 			'property' => 'font-size',
 			'units'    => 'px',
@@ -97,7 +97,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-sidebar ul li a',
+			'element'  => '.fddocs-sidebar ul li a',
 			'function' => 'css',
 			'property' => 'color',
 			
@@ -117,7 +117,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-sidebar ul li a:hover',
+			'element'  => '.fddocs-sidebar ul li a:hover',
 			'function' => 'css',
 			'property' => 'color',
 		],
@@ -139,7 +139,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-sidebar ul li',
+			'element'  => '.fddocs-sidebar ul li',
 			'function' => 'css',
 			'property' => 'margin-bottom',
 			'units'    => 'px',
@@ -163,7 +163,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-sidebar ul li ul.children li a',
+			'element'  => '.fddocs-sidebar ul li ul.children li a',
 			'function' => 'css',
 			'property' => 'font-size',
 			'units'    => 'px',
@@ -183,7 +183,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-sidebar ul li ul.children li a',
+			'element'  => '.fddocs-sidebar ul li ul.children li a',
 			'function' => 'css',
 			'property' => 'color',
 		],
@@ -202,7 +202,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-sidebar ul li ul.children li a:hover',
+			'element'  => '.fddocs-sidebar ul li ul.children li a:hover',
 			'function' => 'css',
 			'property' => 'color',
 		],
@@ -213,7 +213,7 @@ Kirki::add_field( 'docs_panel', [
 	'type'        => 'custom',
 	'settings'    => 'icon_box',
 	'section'     => 'doc_sidebar',
-		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Icon', 'finest-mini-cart' ) . '</h3>',
+		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Icon', 'fddocs-mini-cart' ) . '</h3>',
 	'priority'    => 10,
 ] );
 
@@ -231,25 +231,25 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-sidebar ul.finest-nav-list li a span.dashicons',
+			'element'  => '.fddocs-sidebar ul.fddocs-nav-list li a span.dashicons',
 			'function' => 'css',
 			'property' => 'font-size',
 			'units'    => 'px'
 		],
 		[
-			'element'  => '.finest-sidebar ul.finest-nav-list li a span.dashicons',
+			'element'  => '.fddocs-sidebar ul.fddocs-nav-list li a span.dashicons',
 			'function' => 'css',
 			'property' => 'width',
 			'units'    => 'px'
 		],
 		[
-			'element'  => '.finest-sidebar ul.finest-nav-list li a span.dashicons',
+			'element'  => '.fddocs-sidebar ul.fddocs-nav-list li a span.dashicons',
 			'function' => 'css',
 			'property' => 'height',
 			'units'    => 'px'
 		],
 		[
-			'element'  => '.finest-sidebar ul.finest-nav-list li a span.dashicons',
+			'element'  => '.fddocs-sidebar ul.fddocs-nav-list li a span.dashicons',
 			'function' => 'css',
 			'property' => 'line-height',
 			'units'    => 'px'
@@ -269,7 +269,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-sidebar ul.finest-nav-list li a span.dashicons',
+			'element'  => '.fddocs-sidebar ul.fddocs-nav-list li a span.dashicons',
 			'function' => 'css',
 			'property' => 'color',
 		],
@@ -290,7 +290,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-sidebar ul.finest-nav-list li a span.dashicons',
+			'element'  => '.fddocs-sidebar ul.fddocs-nav-list li a span.dashicons',
 			'function' => 'css',
 			'property' => 'margin-right',
 			'units'    => 'px'
@@ -303,7 +303,7 @@ Kirki::add_field( 'docs_panel', [
 	'type'        => 'custom',
 	'settings'    => 'responsive_menu_box',
 	'section'     => 'doc_sidebar',
-		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Responsive Menu', 'finest-mini-cart' ) . '</h3>',
+		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Responsive Menu', 'fddocs-mini-cart' ) . '</h3>',
 	'priority'    => 10,
 ] );
 
@@ -333,7 +333,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-sidebar #mainnav>.fddoc-sidebar-trigger',
+			'element'  => '.fddocs-sidebar #mainnav>.fddoc-sidebar-trigger',
 			'function' => 'css',
 			'property' => 'color',
 		],
@@ -354,7 +354,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-sidebar #mainnav>.fddoc-sidebar-trigger span.dashicons.dashicons-menu',
+			'element'  => '.fddocs-sidebar #mainnav>.fddoc-sidebar-trigger span.dashicons.dashicons-menu',
 			'function' => 'css',
 			'property' => 'font-size',
 			'units'    => 'px'
@@ -374,7 +374,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-sidebar #mainnav .fddoc-nav-inner .fddoc-sidebar-trigger',
+			'element'  => '.fddocs-sidebar #mainnav .fddoc-nav-inner .fddoc-sidebar-trigger',
 			'function' => 'css',
 			'property' => 'color',
 		],
@@ -395,7 +395,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-sidebar #mainnav .fddoc-nav-inner .fddoc-sidebar-trigger span.dashicons.dashicons-no-alt',
+			'element'  => '.fddocs-sidebar #mainnav .fddoc-nav-inner .fddoc-sidebar-trigger span.dashicons.dashicons-no-alt',
 			'function' => 'css',
 			'property' => 'font-size',
 			'units'    => 'px'

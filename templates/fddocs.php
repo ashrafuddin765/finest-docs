@@ -21,7 +21,7 @@
 ?>
 <div class="fddoc-main">
     <div class="fddoc-bg-color <?php echo esc_attr( $docs ); ?>" >
-        <div class="finest-container">
+        <div class="fddocs-container">
             <div class="row">
                 <div class="<?php echo esc_attr( $gridclass ); ?>">
                     <div class="template-header" >

@@ -9,11 +9,11 @@ class Ajax {
      * Bind actions.
      */
     public function __construct() {
-        add_action( 'wp_ajax_finestdocs_create_doc', [$this, 'create_doc'] );
-        add_action( 'wp_ajax_finestdocs_duplicate_doc', [$this, 'duplicate_doc'] );
-        add_action( 'wp_ajax_finestdocs_remove_doc', [$this, 'remove_doc'] );
-        add_action( 'wp_ajax_finestdocs_admin_get_docs', [$this, 'get_docs'] );
-        add_action( 'wp_ajax_finestdocs_sortable_docs', [$this, 'sort_docs'] );
+        add_action( 'wp_ajax_fddocs_create_doc', [$this, 'create_doc'] );
+        add_action( 'wp_ajax_fddocs_duplicate_doc', [$this, 'duplicate_doc'] );
+        add_action( 'wp_ajax_fddocs_remove_doc', [$this, 'remove_doc'] );
+        add_action( 'wp_ajax_fddocs_admin_get_docs', [$this, 'get_docs'] );
+        add_action( 'wp_ajax_fddocs_sortable_docs', [$this, 'sort_docs'] );
     }
 
     /**
@@ -22,7 +22,7 @@ class Ajax {
      * @return void
      */
     public function create_doc() {
-        check_ajax_referer( 'finestdocs-admin-nonce' );
+        check_ajax_referer( 'fddocs-admin-nonce' );
 
         $title  = isset( $_POST['title'] ) ? trim( sanitize_text_field( $_POST['title'] ) ) : '';
         $status = isset( $_POST['status'] ) ? sanitize_text_field( $_POST['status'] ) : 'draft';
@@ -83,7 +83,7 @@ class Ajax {
      * @return void
      */
     public function duplicate_doc() {
-        check_ajax_referer( 'finestdocs-admin-nonce' );
+        check_ajax_referer( 'fddocs-admin-nonce' );
         $childs           = [];
         $post_id          = isset( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
         $post_type_object = get_post_type_object( 'docs' );
@@ -108,7 +108,7 @@ class Ajax {
      * @return void
      */
     public function remove_doc() {
-        check_ajax_referer( 'finestdocs-admin-nonce' );
+        check_ajax_referer( 'fddocs-admin-nonce' );
 
         $force_delete = false;
         $post_id      = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
@@ -154,7 +154,7 @@ class Ajax {
      * @return void
      */
     public function get_docs() {
-        check_ajax_referer( 'finestdocs-admin-nonce' );
+        check_ajax_referer( 'fddocs-admin-nonce' );
 
         $docs = get_pages( [
             'post_type'      => 'docs',
@@ -177,7 +177,7 @@ class Ajax {
      * @return void
      */
     public function sort_docs() {
-        check_ajax_referer( 'finestdocs-admin-nonce' );
+        check_ajax_referer( 'fddocs-admin-nonce' );
 
         $doc_ids = isset( $_POST['ids'] ) ? array_map( 'absint', $_POST['ids'] ) : [];
 

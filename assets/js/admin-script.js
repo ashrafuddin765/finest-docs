@@ -12,7 +12,7 @@ Vue.directive('sortable', {
     var $el = jQuery(el);
 
     $el.sortable({
-      // handle: '.finestdocs-btn-reorder',
+      // handle: '.fddocs-btn-reorder',
       stop: function (event, ui) {
         var ids = [];
 
@@ -23,7 +23,7 @@ Vue.directive('sortable', {
           });
 
         wp.ajax.post({
-          action: 'finestdocs_sortable_docs',
+          action: 'fddocs_sortable_docs',
           ids: ids,
           _wpnonce: finestDocs.nonce,
         });
@@ -35,7 +35,7 @@ Vue.directive('sortable', {
 });
 
 new Vue({
-  el: '#finestdocs-app',
+  el: '#fddocs-app',
   data: {
     editurl: '',
     viewurl: '',
@@ -53,7 +53,7 @@ new Vue({
 
     jQuery.get(
       ajaxurl, {
-        action: 'finestdocs_admin_get_docs',
+        action: 'fddocs_admin_get_docs',
         _wpnonce: finestDocs.nonce,
       },
       function (data) {
@@ -95,7 +95,7 @@ new Vue({
 
         wp.ajax.send({
           data: {
-            action: 'finestdocs_create_doc',
+            action: 'fddocs_create_doc',
             title: input.value.trim(),
             parent: 0,
             _wpnonce: finestDocs.nonce,
@@ -113,7 +113,7 @@ new Vue({
 
       wp.ajax.send({
         data: {
-          action: 'finestdocs_duplicate_doc',
+          action: 'fddocs_duplicate_doc',
           post_id: post.post.id,
           parent: 0,
           _wpnonce: finestDocs.nonce,
@@ -163,7 +163,7 @@ new Vue({
         if (input.value) {
           wp.ajax.send({
             data: {
-              action: 'finestdocs_create_doc',
+              action: 'fddocs_create_doc',
               title: input.value.trim(),
               parent: doc.post.id,
               order: doc.child.length,
@@ -222,7 +222,7 @@ new Vue({
 
         wp.ajax.send({
           data: {
-            action: 'finestdocs_create_doc',
+            action: 'fddocs_create_doc',
             title: input.value,
             parent: section.post.id,
             status: 'draft',
@@ -271,7 +271,7 @@ new Vue({
 
       wp.ajax.send({
         data: {
-          action: 'finestdocs_remove_doc',
+          action: 'fddocs_remove_doc',
           id: items[index].post.id,
           _wpnonce: finestDocs.nonce,
         },

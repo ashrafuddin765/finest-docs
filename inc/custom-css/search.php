@@ -11,58 +11,58 @@
     $search_border_radius = get_theme_mod( 'search_border_radius', '5px' );
 
     if($search_width){
-        $fmc_dynamic_css .= 'form.search-form.finestdocs-search-form input.search-field { width:' . esc_attr( $search_width ) .'% } ';
+        $fmc_dynamic_css .= 'form.search-form.fddocs-search-form input.search-field { width:' . esc_attr( $search_width ) .'% } ';
         $fmc_dynamic_css .= "\n";
     }
     if($search_height){
-        $fmc_dynamic_css .= 'form.search-form.finestdocs-search-form input.search-field { height:' . esc_attr( $search_height ) .'px } ';
+        $fmc_dynamic_css .= 'form.search-form.fddocs-search-form input.search-field { height:' . esc_attr( $search_height ) .'px } ';
         $fmc_dynamic_css .= "\n";
     }
 
     if ( $search_filed_color) {
-        $fmc_dynamic_css .= 'form.search-form.finestdocs-search-form input.search-field  { color:' . esc_attr( $search_filed_color ) .' } ';
+        $fmc_dynamic_css .= 'form.search-form.fddocs-search-form input.search-field  { color:' . esc_attr( $search_filed_color ) .' } ';
         $fmc_dynamic_css .= "\n";
     }
     if ( $search_field_size ) {
-        $fmc_dynamic_css .= 'form.search-form.finestdocs-search-form input.search-field  { font-size:' . esc_attr( $search_field_size ) .' } ';
+        $fmc_dynamic_css .= 'form.search-form.fddocs-search-form input.search-field  { font-size:' . esc_attr( $search_field_size ) .' } ';
         $fmc_dynamic_css .= "\n";
     }
 
     if( $docs_bg_color ){
-        $fmc_dynamic_css .= 'form.search-form.finestdocs-search-form input.search-field {background-color: ' . esc_attr( $docs_bg_color ) . ' } ';
+        $fmc_dynamic_css .= 'form.search-form.fddocs-search-form input.search-field {background-color: ' . esc_attr( $docs_bg_color ) . ' } ';
         $fmc_dynamic_css .= "\n";
     }
     if(  $search_text_padding ){
-        $fmc_dynamic_css .= 'form.search-form.finestdocs-search-form input.search-field {padding-left: ' . esc_attr(  $search_text_padding ) . ' } ';
+        $fmc_dynamic_css .= 'form.search-form.fddocs-search-form input.search-field {padding-left: ' . esc_attr(  $search_text_padding ) . ' } ';
         $fmc_dynamic_css .= "\n";
     }
 
     if( $search_border_setting ){
-        $fmc_dynamic_css .= 'form.search-form.finestdocs-search-form input.search-field {border-top: ' . esc_attr( $search_border_setting['top-width'] ) . ' } ';
+        $fmc_dynamic_css .= 'form.search-form.fddocs-search-form input.search-field {border-top: ' . esc_attr( $search_border_setting['top-width'] ) . ' } ';
         $fmc_dynamic_css .= "\n";
     }
     if( $search_border_setting ){
-        $fmc_dynamic_css .= 'form.search-form.finestdocs-search-form input.search-field {border-right: ' . esc_attr( $search_border_setting['right-width'] ) . ' } ';
+        $fmc_dynamic_css .= 'form.search-form.fddocs-search-form input.search-field {border-right: ' . esc_attr( $search_border_setting['right-width'] ) . ' } ';
         $fmc_dynamic_css .= "\n";
     }
     if( $search_border_setting ){
-        $fmc_dynamic_css .= 'form.search-form.finestdocs-search-form input.search-field {border-bottom: ' . esc_attr( $search_border_setting['bottom-width'] ) . ' } ';
+        $fmc_dynamic_css .= 'form.search-form.fddocs-search-form input.search-field {border-bottom: ' . esc_attr( $search_border_setting['bottom-width'] ) . ' } ';
         $fmc_dynamic_css .= "\n";
     }
     if( $search_border_setting ){
-        $fmc_dynamic_css .= 'form.search-form.finestdocs-search-form input.search-field {border-left: ' . esc_attr( $search_border_setting['left-width'] ) . ' } ';
+        $fmc_dynamic_css .= 'form.search-form.fddocs-search-form input.search-field {border-left: ' . esc_attr( $search_border_setting['left-width'] ) . ' } ';
         $fmc_dynamic_css .= "\n";
     }
     if(  $search_border_type ){
-        $fmc_dynamic_css .= 'form.search-form.finestdocs-search-form input.search-field {border-style: ' . esc_attr(  $search_border_type ) . ' } ';
+        $fmc_dynamic_css .= 'form.search-form.fddocs-search-form input.search-field {border-style: ' . esc_attr(  $search_border_type ) . ' } ';
         $fmc_dynamic_css .= "\n";
     }
     if( $search_border_color ){
-        $fmc_dynamic_css .= 'form.search-form.finestdocs-search-form input.search-field {border-color: ' . esc_attr( $search_border_color ) . ' } ';
+        $fmc_dynamic_css .= 'form.search-form.fddocs-search-form input.search-field {border-color: ' . esc_attr( $search_border_color ) . ' } ';
         $fmc_dynamic_css .= "\n";
     }
     if(  $search_border_radius ){
-        $fmc_dynamic_css .= 'form.search-form.finestdocs-search-form input.search-field {border-radius: ' . esc_attr(  $search_border_radius ) . ' } ';
+        $fmc_dynamic_css .= 'form.search-form.fddocs-search-form input.search-field {border-radius: ' . esc_attr(  $search_border_radius ) . ' } ';
         $fmc_dynamic_css .= "\n";
     }
    

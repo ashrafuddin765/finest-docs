@@ -1,10 +1,10 @@
-<?php finest_get_template_part( 'finest-docs', 'sidebar' );?> 
-<div class="finest-single-content">
-    <?php finest_breadcrumbs(); ?>
+<?php fddocs_get_template_part( 'finest-docs', 'sidebar' );?> 
+<div class="fddocs-single-content">
+    <?php fddocs_breadcrumbs(); ?>
     <article id="post-<?php the_ID(); ?>" >
         
     <?php the_title( '<h1 class="fddoc-single-title">', '</h1>' ) ?>
-        <div class="entry-content" itemprop="articleBody">
+        <div class="fddocs-entry-content" itemprop="articleBody">
 
            
             <?php
@@ -18,13 +18,21 @@
             ?>
         </div>
         <div class="fddocs-article-footer">
-            <div class="fddocs-footer-meta">
-                <?php printf('%s %s',
-                        esc_html__( 'Updated on ', 'finestdocs'),
-                        get_the_modified_time('M d, Y'));
-                    ?>
+            <div class="fddocs-meta-area" >
+                <div class="fddocs-footer-meta">
+                    <?php printf('%s %s',
+                            esc_html__( 'Updated on ', 'fddocs'),
+                            get_the_modified_time('M d, Y'));
+                        ?>
+                </div>
+                <?php printf('%s', fddocs_feedback_html()) ?>
             </div>
-            <?php printf('%s', fddocs_feedback_html()) ?>
+            <?php 
+            $socialenable = get_theme_mod( 'switch_social_share', true );
+            if ( true == $socialenable ) {
+                echo do_shortcode( '[fddocs_social_share]' );
+            }    
+            ?>
         </div>
         <div class="fdocs-ctn">
             <div class="footer-area">
@@ -47,12 +55,12 @@
             </span>
         </div>
         <?php if ( comments_open() || get_comments_number() ) { ?>
-                <div class="finest-comments-wrap">
+                <div class="fddocs-comments-wrap">
                     <?php comments_template(); ?>
                 </div>
         <?php } ?>
     </article><!-- #post-## -->
-    <div class="finest-autoc-wrap <?php echo $class; ?>" >
+    <div class="fddocs-autoc-wrap <?php echo $class; ?>" >
        <div class="autoc" data-stopat='h2' data-offset='1'></div>
     </div>
-</div><!-- .finest-single-content -->
+</div><!-- .fddocs-single-content -->

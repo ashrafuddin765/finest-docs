@@ -17,7 +17,7 @@
 ?>
 <div class="docsectin-main">
     <div class="section-bg <?php echo esc_attr($secttionlayout) ?>" >
-        <div class="finest-container">
+        <div class="fddocs-container">
             <div class="row">
                 <div class="<?php echo esc_attr( $gridclass ); ?>">
                     <div class="section-header" >

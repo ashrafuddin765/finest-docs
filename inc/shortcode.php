@@ -1,6 +1,6 @@
 <?php
  
-function finest_docs_shortcode( $atts ) {
+function fddocs_docs_shortcode( $atts ) {
     if ( empty( $atts ) ) {
         $atts = array();
     }
@@ -12,7 +12,7 @@ function finest_docs_shortcode( $atts ) {
     }
     return '<div class="autoc" data-stopat="' . $atts['stopat'] . '" data-offset="' . $atts['offset'] . '"></div>';
 }
-add_shortcode( 'finest-doc-toc', 'finest_docs_shortcode' );
+add_shortcode( 'fddocs-doc-toc', 'fddocs_docs_shortcode' );
 
 function fd_shortcode( $atts ) {
     $docs = get_theme_mod( 'docs_select_layout', 'docs-template-01' );
@@ -42,8 +42,8 @@ function fd_shortcode( $atts ) {
 
     ?>
 
-<div class="finest-site-main <?php echo esc_attr( $section ); ?> <?php echo esc_attr( $docs) ?>" >
-<div class="finest-container" >
+<div class="fddocs-site-main <?php echo esc_attr( $section ); ?> <?php echo esc_attr( $docs) ?>" >
+<div class="fddocs-container" >
     <div class="row" >
         <?php if ( $the_query->have_posts() ): ?>
             <?php while ( $the_query->have_posts() ): $the_query->the_post();
@@ -92,7 +92,7 @@ function fddocs_search_shortcode( $atts ) {
         'post_type'         => 'docs',
         'echo'              => 0,
         'depth'             => 1,
-        'show_option_none'  => __( 'All Docs', 'finestdocs' ),
+        'show_option_none'  => __( 'All Docs', 'fddocs' ),
         'option_none_value' => 'all',
         'name'              => 'search_in_doc',
     ];
@@ -101,10 +101,10 @@ function fddocs_search_shortcode( $atts ) {
         $dropdown_args['selected'] = (int) $_GET['search_in_doc'];
     }
 
-    $form = '<form role="search" method="get" class="search-form finestdocs-search-form" action="' . esc_url( home_url( '/' ) ) . '">
-    <div class="finestdocs-search-input">
-        <span class="screen-reader-text">' . _x( 'Search for:', 'label', 'finestdocs' ) . '</span>
-        <input type="search" class="search-field" placeholder="' . esc_attr_x( 'Search for articles...', 'placeholder', 'finestdocs' ) . '" value="' . get_search_query() . '" name="s" title="' . esc_attr_x( 'Search for:', 'label', 'finestdocs' ) . '" />
+    $form = '<form role="search" method="get" class="search-form fddocs-search-form" action="' . esc_url( home_url( '/' ) ) . '">
+    <div class="fddocs-search-input">
+        <span class="screen-reader-text">' . _x( 'Search for:', 'label', 'fddocs' ) . '</span>
+        <input type="search" class="search-field" placeholder="' . esc_attr_x( 'Search for articles...', 'placeholder', 'fddocs' ) . '" value="' . get_search_query() . '" name="s" title="' . esc_attr_x( 'Search for:', 'label', 'fddocs' ) . '" />
         <input type="hidden" name="post_type" value="docs" />
         <input type="hidden" name="post_id" value="'.esc_html($id).'" />
         <button class="search-submit" type="submit">'.$search_icon.'</button>
@@ -119,7 +119,7 @@ add_shortcode( 'ud_search', 'fddocs_search_shortcode' );
 // socila share shortcode
 function fddocs_social_share()
 { 
-    $social_title = get_theme_mod( 'social_share_ttile', 'Social Share' );
+    $social_title = get_theme_mod( 'social_share_ttile', 'Share this article:' );
     $onfacebook = get_theme_mod( 'switch_facebook_share', true );
     $ontwitter = get_theme_mod( 'enable_Twitter_sharing', true );
     $onlinkdin = get_theme_mod( 'enable_linkedin_sharing', true );

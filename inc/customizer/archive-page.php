@@ -55,7 +55,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .wraper',
+			'element'  => '.fddocs-site-main .wraper',
 			'function' => 'css',
 			'property' => 'background-color',
 		],
@@ -124,7 +124,7 @@ Kirki::add_field( 'docs_panel', [
     'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .wraper',
+			'element'  => '.fddocs-site-main .wraper',
 			'function' => 'css',
 			'property' => 'border-style',
 		],
@@ -153,7 +153,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .wraper',
+			'element'  => '.fddocs-site-main .wraper',
 			'function' => 'css',
 			'property' => 'border-color',
 		],
@@ -204,7 +204,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .wraper',
+			'element'  => '.fddocs-site-main .wraper',
 			'function' => 'css',
 			'property' => 'border-radius',
 			'units'    => 'px',
@@ -225,7 +225,7 @@ Kirki::add_field( 'docs_panel', [
 	'type'        => 'custom',
 	'settings'    => 'section_top',
 	'section'     => 'docs_archive',
-		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Thumbnail', 'finest-mini-cart' ) . '</h3>',
+		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Thumbnail', 'fddocs-mini-cart' ) . '</h3>',
 	'priority'    => 10,
 	'active_callback'  => [
 		[
@@ -250,7 +250,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .top-iocn',
+			'element'  => '.fddocs-site-main .top-iocn',
 			'function' => 'css',
 			'property' => 'width',
 			'units'    => '%',
@@ -279,7 +279,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .top-iocn',
+			'element'  => '.fddocs-site-main .top-iocn',
 			'function' => 'css',
 			'property' => 'height',
 			'units'    => 'px',
@@ -306,7 +306,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .top-iocn',
+			'element'  => '.fddocs-site-main .top-iocn',
 			'function' => 'css',
 			'property' => 'background-color',
 		],
@@ -334,7 +334,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .icon.icon-one',
+			'element'  => '.fddocs-site-main .icon.icon-one',
 			'function' => 'css',
 			'property' => 'width',
 			'units'    => 'px',
@@ -363,7 +363,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .icon.icon-one',
+			'element'  => '.fddocs-site-main .icon.icon-one',
 			'function' => 'css',
 			'property' => 'height',
 			'units'    => 'px',
@@ -390,7 +390,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .icon.icon-one',
+			'element'  => '.fddocs-site-main .icon.icon-one',
 			'function' => 'css',
 			'property' => 'background-color',
 		],
@@ -456,7 +456,7 @@ Kirki::add_field( 'docs_panel', [
     'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .icon.icon-one',
+			'element'  => '.fddocs-site-main .icon.icon-one',
 			'function' => 'css',
 			'property' => 'border-style',
 		],
@@ -483,7 +483,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .icon.icon-one',
+			'element'  => '.fddocs-site-main .icon.icon-one',
 			'function' => 'css',
 			'property' => 'border-color',
 		],
@@ -511,7 +511,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .icon.icon-one',
+			'element'  => '.fddocs-site-main .icon.icon-one',
 			'function' => 'css',
 			'property' => 'border-radius',
 			'units'    => 'px',
@@ -530,7 +530,7 @@ Kirki::add_field( 'docs_panel', [
 	'type'        => 'custom',
 	'settings'    => 'doc_content_top',
 	'section'     => 'docs_archive',
-		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Doc Content', 'finest-mini-cart' ) . '</h3>',
+		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Doc Content', 'fddocs-mini-cart' ) . '</h3>',
 	'priority'    => 10,
 	'active_callback'  => [
 		[
@@ -553,7 +553,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .content-area',
+			'element'  => '.fddocs-site-main .content-area',
 			'function' => 'css',
 			'property' => 'background-color',
 		],
@@ -601,7 +601,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .docs-title h1',
+			'element'  => '.fddocs-site-main .docs-title h1',
 			'function' => 'css',
 			'property' => 'font-size',
 			'units'    => 'px',
@@ -628,7 +628,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .docs-title h1',
+			'element'  => '.fddocs-site-main .docs-title h1',
 			'function' => 'css',
 			'property' => 'color',
 			'units'    => 'px',
@@ -657,7 +657,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .docs-title h1',
+			'element'  => '.fddocs-site-main .docs-title h1',
 			'function' => 'css',
 			'property' => 'margin-bottom',
 			'units'    => 'px',
@@ -686,7 +686,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .docs-excerpt p',
+			'element'  => '.fddocs-site-main .docs-excerpt p',
 			'function' => 'css',
 			'property' => 'font-size',
 			'units'    => 'px',
@@ -713,7 +713,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .docs-excerpt p',
+			'element'  => '.fddocs-site-main .docs-excerpt p',
 			'function' => 'css',
 			'property' => 'color',
 			
@@ -742,7 +742,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .docs-excerpt p',
+			'element'  => '.fddocs-site-main .docs-excerpt p',
 			'function' => 'css',
 			'property' => 'margin-bottom',
 			'units'    => 'px',
@@ -761,7 +761,7 @@ Kirki::add_field( 'docs_panel', [
 	'type'        => 'custom',
 	'settings'    => 'section_total_count',
 	'section'     => 'docs_archive',
-		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Section total Article', 'finest-mini-cart' ) . '</h3>',
+		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Section total Article', 'fddocs-mini-cart' ) . '</h3>',
 	'priority'    => 10,
 	'active_callback'  => [
 		[
@@ -787,7 +787,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .total-article .article-total',
+			'element'  => '.fddocs-site-main .total-article .article-total',
 			'function' => 'css',
 			'property' => 'font-size',
 			'units'    => 'px',
@@ -814,7 +814,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-site-main .total-article .article-total',
+			'element'  => '.fddocs-site-main .total-article .article-total',
 			'function' => 'css',
 			'property' => 'color',
 			

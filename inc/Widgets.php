@@ -7,11 +7,11 @@ class Widget extends \WP_Widget {
     public function __construct() {
         
         $widget_ops = [
-            'classname'   => 'finestdocs-search-widget',
-            'description' => __( 'Document Search Widget', 'finestdocs' ),
+            'classname'   => 'fddocs-search-widget',
+            'description' => __( 'Document Search Widget', 'fddocs' ),
         ];
 
-        parent::__construct( 'finestdocs-search-widget', __( 'FinestDocs Document Search', 'finestdocs' ), $widget_ops );
+        parent::__construct( 'fddocs-search-widget', __( 'FinestDocs Document Search', 'fddocs' ), $widget_ops );
     }
 
     /**
@@ -31,7 +31,7 @@ class Widget extends \WP_Widget {
             'post_type'         => 'docs',
             'echo'              => 0,
             'depth'             => 1,
-            'show_option_none'  => __( 'All Docs', 'finestdocs' ),
+            'show_option_none'  => __( 'All Docs', 'fddocs' ),
             'option_none_value' => 'all',
             'name'              => 'search_in_doc',
         ];
@@ -40,16 +40,16 @@ class Widget extends \WP_Widget {
             $dropdown_args['selected'] = (int) $_GET['search_in_doc'];
         }
 
-        $form = '<form role="search" method="get" class="search-form finestdocs-search-form" action="' . esc_url( home_url( '/' ) ) . '">
-            <div class="finestdocs-search-input">
-                <span class="screen-reader-text">' . _x( 'Search for:', 'label', 'finestdocs' ) . '</span>
-                <input type="search" class="search-field" placeholder="' . esc_attr_x( 'Documentation Search &hellip;', 'placeholder', 'finestdocs' ) . '" value="' . get_search_query() . '" name="s" title="' . esc_attr_x( 'Search for:', 'label', 'finestdocs' ) . '" />
+        $form = '<form role="search" method="get" class="search-form fddocs-search-form" action="' . esc_url( home_url( '/' ) ) . '">
+            <div class="fddocs-search-input">
+                <span class="screen-reader-text">' . _x( 'Search for:', 'label', 'fddocs' ) . '</span>
+                <input type="search" class="search-field" placeholder="' . esc_attr_x( 'Documentation Search &hellip;', 'placeholder', 'fddocs' ) . '" value="' . get_search_query() . '" name="s" title="' . esc_attr_x( 'Search for:', 'label', 'fddocs' ) . '" />
                 <input type="hidden" name="post_type" value="docs" />
             </div>
-            <div class="finestdocs-search-in">
+            <div class="fddocs-search-in">
             ' . wp_dropdown_pages( $dropdown_args ) . '
             </div>
-            <input type="submit" class="search-submit" value="' . esc_attr_x( 'Search', 'submit button', 'finestdocs' ) . '" />
+            <input type="submit" class="search-submit" value="' . esc_attr_x( 'Search', 'submit button', 'fddocs' ) . '" />
         </form>';
 
         echo $form;
@@ -63,7 +63,7 @@ class Widget extends \WP_Widget {
      * @param array $instance The widget options
      */
     public function form( $instance ) {
-        $title = !empty( $instance['title'] ) ? $instance['title'] : __( 'Documentation Search', 'finestdocs' ); ?>
+        $title = !empty( $instance['title'] ) ? $instance['title'] : __( 'Documentation Search', 'fddocs' ); ?>
         <p>
             <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">

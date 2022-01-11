@@ -91,11 +91,18 @@ class Finest_walker extends Walker {
         $doc_icon = '';
         $has_icon = '';
         
-        if ( 'layout-01' == $layout || 'layout-03' == $layout ) {
+        if ( 'layout-02' != $layout ) {
 
             $doc_icon_meta = get_post_meta( $page->ID, 'fd_doc_icon', true );
-            $doc_icon      = !empty( $doc_icon_meta ) ? '<img src="' . esc_url( $doc_icon_meta ) . '"/>' : '';
-            $has_icon = !empty( $doc_icon_meta )  ? 'has-icon' : '';
+            $doc_type = get_post_meta( $page->ID, 'doc_type', true );
+            $section_icon =  !empty( $doc_icon_meta ) ?  '<img src="' . esc_url( $doc_icon_meta ) . '"/>' : '<span class="dashicons dashicons-media-document"></span>';
+            
+            $article_icon = !empty( $doc_icon_meta ) ?  '<img src="' . esc_url( $doc_icon_meta ) . '"/>' : '<span class="dashicons dashicons-media-default"></span>';
+            $doc_icon = $section_icon;
+
+            if('article' == $doc_type){
+                $doc_icon =  $article_icon;
+            }
         }
 
 

@@ -7,7 +7,7 @@
  * Upload Doc Icon = get_post_meta( get_the_ID(), 'fd_doc_icon', true )
  */
 class Finest_Metabox {
-	private $config = '{"title":"Finest Metabox","prefix":"finest_metabox_","domain":"finest-metabox","class_name":"Finest_Metabox","context":"normal","priority":"default","cpt":"docs","fields":[{"type":"media","label":"Upload Doc Icon","button-text":"Upload icon","return":"url","id":"fd_doc_icon"}]}';
+	private $config = '{"title":"Finest Metabox","prefix":"fddocs_metabox_","domain":"fddocs-metabox","class_name":"Finest_Metabox","context":"normal","priority":"default","cpt":"docs","fields":[{"type":"media","label":"Upload Doc Icon","button-text":"Upload icon","return":"url","id":"fd_doc_icon"}]}';
 
 	public function __construct() {
 		$this->config = json_decode( $this->config, true );
@@ -153,11 +153,11 @@ class Finest_Metabox {
 	private function media_button( $field ) {
 		printf(
 			' <button class="button rwp-media-toggle" data-modal-button="%s" data-modal-title="%s" data-return="%s" id="%s_button" name="%s_button" type="button">%s</button>',
-			isset( $field['modal-button'] ) ? $field['modal-button'] : __( 'Select this file', 'finest-metabox' ),
-			isset( $field['modal-title'] ) ? $field['modal-title'] : __( 'Choose a file', 'finest-metabox' ),
+			isset( $field['modal-button'] ) ? $field['modal-button'] : __( 'Select this file', 'fddocs-metabox' ),
+			isset( $field['modal-title'] ) ? $field['modal-title'] : __( 'Choose a file', 'fddocs-metabox' ),
 			$field['return'],
 			$field['id'], $field['id'],
-			isset( $field['button-text'] ) ? $field['button-text'] : __( 'Upload', 'finest-metabox' )
+			isset( $field['button-text'] ) ? $field['button-text'] : __( 'Upload', 'fddocs-metabox' )
 		);
 	}
 

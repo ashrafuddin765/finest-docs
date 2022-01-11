@@ -61,10 +61,10 @@
   font-size: 16px;
   line-height: 28px;
 }
-.single-doc h3 .finestdocs-row-actions {
+.single-doc h3 .fddocs-row-actions {
   float: right;
 }
-.single-doc:hover h3 .finestdocs-row-actions {
+.single-doc:hover h3 .fddocs-row-actions {
   visibility: visible;
 }
 .single-doc .add-section {
@@ -111,7 +111,7 @@
   border-radius: 10px;
   margin-bottom: 10px;
 }
-.single-doc .inside ul.articles li.article:hover .finestdocs-row-actions {
+.single-doc .inside ul.articles li.article:hover .fddocs-row-actions {
   visibility: visible;
 }
 .single-doc .inside ul.articles li::before {
@@ -128,19 +128,19 @@
   display: inline-flex;
   align-items: center;
 }
-.finestdocs-row-actions {
+.fddocs-row-actions {
   display: block;
   position: relative;
 }
-.finestdocs-row-actions a {
+.fddocs-row-actions a {
   color: #999;
 }
-.finestdocs-row-actions .dashicons {
+.fddocs-row-actions .dashicons {
   height: 18px;
   width: 18px;
   font-size: 18px;
 }
-.finestdocs-row-actions .dashicons:hover {
+.fddocs-row-actions .dashicons:hover {
   color: #555;
 }
 .doc-status {
@@ -168,10 +168,10 @@ ul.sections .section-title .count {
 ul.sections .actions {
   float: right;
 }
-.finestdocs-btn-reorder {
+.fddocs-btn-reorder {
   cursor: move;
 }
-.finestdocs-btn-remove {
+.fddocs-btn-remove {
   cursor: pointer;
 }
 .sweet-alert {
@@ -275,7 +275,7 @@ a.fd-doc-page-title svg {
   margin-right: 5px;
 }
 
-h1.finestdocs-page-title {
+h1.fddocs-page-title {
   font-family: Inter;
   font-style: normal;
   font-weight: 600;
@@ -285,11 +285,11 @@ h1.finestdocs-page-title {
   align-items: center;
 }
 
-h1.finestdocs-page-title>svg {
+h1.fddocs-page-title>svg {
   margin-right: 5px;
   width: 26px;
 }
-span.finestdocs-row-actions ul.action-sub-menu {
+span.fddocs-row-actions ul.action-sub-menu {
   position: absolute;
   right: 0;
   top: 100%;
@@ -311,13 +311,13 @@ ul.actions-menu>li {
   position: relative;
 }
 
-span.finestdocs-row-actions li:hover ul.action-sub-menu {
+span.fddocs-row-actions li:hover ul.action-sub-menu {
   visibility: visible;
   opacity: 1;
   transform: translate(0);
 }
 
-span.finestdocs-row-actions ul.action-sub-menu a, span.finestdocs-row-actions ul.action-sub-menu span {
+span.fddocs-row-actions ul.action-sub-menu a, span.fddocs-row-actions ul.action-sub-menu span {
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
@@ -375,14 +375,14 @@ a.add-section-btn svg {
 .single-doc .inside a>svg {
   margin-right: 10px;
 }
-span.finestdocs-row-actions li ul.action-sub-menu li:last-child {
+span.fddocs-row-actions li ul.action-sub-menu li:last-child {
   margin-bottom: 0;
 }
 
-span.finestdocs-row-actions ul.action-sub-menu .finestdocs-btn-remove {
+span.fddocs-row-actions ul.action-sub-menu .fddocs-btn-remove {
   color: #F82C2C;
 }
-span.finestdocs-row-actions .actions-menu .toggler {
+span.fddocs-row-actions .actions-menu .toggler {
   background: rgb(5 5 5 / 5%);
   width: 20px;
   height: 20px;
@@ -396,7 +396,7 @@ span.finestdocs-row-actions .actions-menu .toggler {
 .single-doc h3 a svg {
   margin-right: 5px;
 }
-span.finestdocs-row-actions ul.action-sub-menu a:hover, span.finestdocs-row-actions ul.action-sub-menu span:hover {
+span.fddocs-row-actions ul.action-sub-menu a:hover, span.fddocs-row-actions ul.action-sub-menu span:hover {
   transform: translatex(5px);
 }
 

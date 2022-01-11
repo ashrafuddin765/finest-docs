@@ -2,7 +2,7 @@
 function fmc_options_scripts(){
 
 
-    wp_enqueue_style('finest-quick-view', FINEST_DOCS_ASSETS_CSS . 'frontend.css',array(), FINEST_DOCS_VERSION );
+    wp_enqueue_style('fddocs-quick-view', FINEST_DOCS_ASSETS_CSS . 'frontend.css',array(), FINEST_DOCS_VERSION );
     
 
    $fmc_dynamic_css  = '';
@@ -29,7 +29,7 @@ function fmc_options_scripts(){
     }
 
     $fmc_dynamic_css = fddocs_css_strip_whitespace( $fmc_dynamic_css );
-	wp_add_inline_style( 'finest-quick-view', $fmc_dynamic_css );
+	wp_add_inline_style( 'fddocs-quick-view', $fmc_dynamic_css );
 
 }
 add_action( 'wp_enqueue_scripts', 'fmc_options_scripts', 5 );

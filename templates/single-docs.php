@@ -6,12 +6,9 @@
 ?>
 <?php 
     $layout = get_theme_mod( 'docs_category_layout', 'layout-01' );
-    $class = 'finest-container-fluid';
+    $class = 'fddocs-container';
     if ( 'layout-01' == $layout) {
-        $class = 'finest-container-fluid';
-    }
-    elseif ( 'layout-02' == $layout || 'layout-03' == $layout ) {
-        $class = 'finest-container'; 
+        $class = 'fddocs-container-fluid';
     }
  
     while ( have_posts() ) {
@@ -24,14 +21,14 @@
                  $second_parent = wp_get_post_parent_id( $first_parent );
                  if($second_parent):?>
 
-                    <div class="<?php echo esc_attr( $class ) ?>" >
-                        <div class="finest-single-wrap">
+                    <div class="<?php echo esc_attr( $class. ' '. $layout ) ?>" >
+                        <div class="fddocs-single-wrap">
                         <?php 
                             if ( !empty($layout) ) {
                                 include FINEST_DOCS_DIR.'templates/single-layout/' . $layout .'.php';
                             }
                         ?>  
-                        </div><!-- .finest-single-wrap -->
+                        </div><!-- .fddocs-single-wrap -->
                     </div>
                 <?php else: ?>
                     <?php 
@@ -48,7 +45,7 @@
                             if($the_query->have_posts(  )){
                                 while ( $the_query->have_posts() ): $the_query->the_post();?>
                                     <div class="<?php echo esc_attr( $class ) ?>" >
-                                        <div class="finest-single-wrap">
+                                        <div class="fddocs-single-wrap">
 
                                         <?php 
 
@@ -57,7 +54,7 @@
                                                 include FINEST_DOCS_DIR.'templates/single-layout/' . $layout .'.php';
                                             }
                                         ?>  
-                                        </div><!-- .finest-single-wrap -->
+                                        </div><!-- .fddocs-single-wrap -->
                                     </div>
                                 <?php endwhile;
                             }

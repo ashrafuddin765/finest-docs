@@ -20,7 +20,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.finest-container',
+			'element'  => '.fddocs-container',
 			'function' => 'css',
 			'property' => 'max-width',
 			'units'    => 'px',
@@ -41,7 +41,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'body.finest-body',
+			'element'  => 'body.fddocs-body',
 			'function' => 'css',
 			'property' => 'background-color',
 		],
@@ -84,7 +84,7 @@ Kirki::add_field( 'docs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'body.finest-body',
+			'element'  => 'body.fddocs-body',
 			'function' => 'css',
 			'property' => 'color',
 		],

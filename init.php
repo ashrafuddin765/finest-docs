@@ -9,18 +9,18 @@ use Finestics\Insights;
 
 function fqv_register_script() {
 
-    wp_enqueue_style( 'finest-google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600', false );
+    wp_enqueue_style( 'fddocs-google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600', false );
     // Enqueue All css
-    wp_enqueue_style( 'finest-grid', FINEST_DOCS_ASSETS_CSS . 'grid-css.css', array(), time() );
+    wp_enqueue_style( 'fddocs-grid', FINEST_DOCS_ASSETS_CSS . 'grid-css.css', array(), time() );
     wp_enqueue_style( 'dashicons' );
-    wp_enqueue_style( 'finest-quick-view', FINEST_DOCS_ASSETS_CSS . 'frontend.css', array(), time() );
+    wp_enqueue_style( 'fddocs-quick-view', FINEST_DOCS_ASSETS_CSS . 'frontend.css', array(), time() );
 
     // Enqueue All Js file
 
-    wp_enqueue_script( 'finest-docs-core', FINEST_DOCS_ASSETS_JS . 'finest-docs.js', array( 'jquery' ), FINEST_DOCS_VERSION, true );
+    wp_enqueue_script( 'fddocs-docs-core', FINEST_DOCS_ASSETS_JS . 'finest-docs.js', array( 'jquery' ), FINEST_DOCS_VERSION, true );
 
-    wp_localize_script( 'finest-docs-core', 'fddocs_vars', [
-        'nonce'   => wp_create_nonce( 'finestdocs-nonce' ),
+    wp_localize_script( 'fddocs-docs-core', 'fddocs_vars', [
+        'nonce'   => wp_create_nonce( 'fddocsdocs-nonce' ),
         'ajaxurl' => admin_url( 'admin-ajax.php' ),
     ] );
 };
@@ -40,8 +40,8 @@ $sdk_license = FinestDocs\License::init(
     'ck_c293e33b48c85dd9ddef489a5d88adbb19f39108', //Customer key created in the license server
     'cs_dcc061ded98d6817909ea261b468af7f351189c1', //Customer secret created in the license server
     [], //Set an array of the products IDs on your license server (if no product validation is needed, send an empty array)
-    'finestdocs_license', //Set a unique value to avoid conflict with other plugins
-    'finestdocs-valid', //Set a unique value to avoid conflict with other plugins
+    'fddocs_license', //Set a unique value to avoid conflict with other plugins
+    'fddocs-valid', //Set a unique value to avoid conflict with other plugins
     5//How many days the valid object will be used before calling the license server
 );
 
