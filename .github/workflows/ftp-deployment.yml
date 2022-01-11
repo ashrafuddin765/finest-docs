@@ -14,6 +14,6 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           user: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          delete: "false"
+          delete: "true"
           remote_dir: ${{ secrets.REMOTE_DIR }}
 
