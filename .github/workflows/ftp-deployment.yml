@@ -16,3 +16,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           delete: "false"
           remote_dir: ${{ secrets.REMOTE_DIR }}
+
