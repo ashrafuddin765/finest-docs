@@ -49,14 +49,14 @@ function fddocs_breadcrumbs() {
     $html .= fddocs_get_breadcrumb_item( $args['home'], home_url( '/' ), $breadcrumb_position );
     $html .= $args['delimiter'];
 
-    // $docs_home = wedocs_get_option( 'docs_home', 'wedocs_settings' );
+    $docs_home = get_option( 'fddocs_documentation_page' );
 
-    // if ( $docs_home ) {
-    //     ++$breadcrumb_position;
+    if ( $docs_home ) {
+        ++$breadcrumb_position;
 
-    //     $html .= fddocs_get_breadcrumb_item( __( 'Docs', 'wedocs' ), get_permalink( $docs_home ), $breadcrumb_position );
-    //     $html .= $args['delimiter'];
-    // }
+        $html .= fddocs_get_breadcrumb_item( __( 'Docs', 'finest-docs' ), get_permalink( $docs_home ), $breadcrumb_position );
+        $html .= $args['delimiter'];
+    }
 
     if ( 'docs' == $post->post_type && $post->post_parent ) {
         $parent_id   = $post->post_parent;
@@ -261,18 +261,14 @@ add_action( 'pre_get_posts', 'fddocs_search_query' );
 
 add_filter( 'template_include', 'wpa3396_page_template' );
 function wpa3396_page_template( $page_template ) {
-
+    global $post;
+    $doc_page = get_option( 'fddocs_documentation_page', 0 );
     if ( is_search() && 'docs' == get_query_var( 'post_type' ) ) {
         $page_template = FINEST_DOCS_DIR . 'templates/search.php';
     }
 
-    if ( get_page_template_slug() === 'fddocs-sections.php' ) {
 
-        $page_template = FINEST_DOCS_DIR . '/templates/fddocs-sections.php';
-
-    }
-
-    if ( get_page_template_slug() === 'fddocs.php' ) {
+    if ( $doc_page == get_the_ID(  ) ) {
 
         $page_template = FINEST_DOCS_DIR . '/templates/fddocs.php';
 
@@ -292,7 +288,6 @@ function wpse_288589_add_template_to_select( $post_templates, $wp_theme, $post, 
 
     // Add custom template named template-with-sidebar.php to select dropdown
     $post_templates['fddocs.php']          = __( 'Documentation Page' );
-    $post_templates['fddocs-sections.php'] = __( 'Doc Sections' );
 
     return $post_templates;
 }
@@ -406,3 +401,57 @@ function fddoc_update_exxisting_doc_type(){
     }
 }
 
+
+function fddocs_redirec_section_to_article(){
+    global $post;
+    $first_article_id =  fd_get_posts_children(get_the_ID(  )) ? fd_get_posts_children(get_the_ID(  )) : [];
+    $first_article_id = array_reverse($first_article_id);
+    $doc_type = get_post_meta( get_The_ID(), 'doc_type', true );
+
+    If ('section' == $doc_type){
+        $url_to_redirect = get_the_permalink( $first_article_id[0] );
+        wp_redirect( $url_to_redirect );
+    }
+}
+
+add_action( 'template_redirect', 'fddocs_redirec_section_to_article' );
+
+
+function fddocs_related_article($parent_id){
+
+    $args = array(
+        'post_type'      => 'docs',
+        'posts_per_page' => -1,
+        'post__not_in' => [get_the_ID(  )],
+        'post_parent' => $parent_id
+    );
+
+    // the query
+    $the_query = new WP_Query( $args );
+
+    if($the_query->have_posts()){
+        echo '<div class="fddocs-related-article-wrap">';
+        echo '<h4> '.esc_html__( 'Related Articles', 'finest-docs' ).' </h4>';
+        echo '<ul class="fddocs-related-articles">';
+        while($the_query->have_posts(  )){
+            $the_query->the_post();
+            $idd = get_the_ID(  );
+            $doc_type = get_post_meta( $idd,'doc_type', true);
+            if('article' == $doc_type){
+                $doc_icon_meta = get_post_meta( $idd, 'fd_doc_icon', true );
+                $article_icon =   '<span class="dashicons dashicons-media-default"></span>';
+               
+                printf(
+                    '<li><a href="%s">%s %s</a></li>',
+                    get_the_permalink(  ),
+                    $article_icon,
+                    esc_html(get_the_title(  ))
+                );
+            }
+        }
+        wp_reset_query(  );
+
+        echo '</ul>';
+        echo '</div>';
+    }
+}

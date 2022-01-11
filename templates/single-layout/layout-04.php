@@ -4,6 +4,9 @@
     <article id="post-<?php the_ID(); ?>">
 
         <?php the_title( '<h1 class="fddoc-single-title">', '</h1>' ) ?>
+        <div class="fddocs-autoc-wrap fddocs-auto-in-content">
+            <div class="autoc" data-stopat='h2' data-offset='1'></div>
+        </div>
         <div class="fddocs-entry-content" itemprop="articleBody">
             <?php
                 the_content( sprintf(
@@ -29,6 +32,9 @@
                 echo do_shortcode( '[fddocs_social_share]' );
             }    
             ?>
+        </div>
+        <div class="fddocs-related-articles">
+            <?php fddocs_related_article(wp_get_post_parent_id( get_the_ID() )) ?>
         </div>
         <div class="fdocs-ctn">
             <div class="footer-area">

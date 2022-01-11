@@ -22,57 +22,95 @@ function fd_shortcode( $atts ) {
     extract( shortcode_atts( array(
         'id'    => '',
         'style' => '01',
+        'per_page' => 4
     ), $atts ) );
 
     $args = array(
         'post_type'      => 'docs',
-        'posts_per_page' => -1,
+        'posts_per_page' => $per_page,
+        'paged' => get_query_var('paged') ? get_query_var('paged') : 1
     );
 
     if ( !empty( $id ) ) {
-        $children = fd_get_posts_children( $id ) ? fd_get_posts_children( $id ) : [0];
-        $args['post__in'] = $children;
+        $args['post_parent'] = $id;
+        $args['meta_query'] = array(
+            'relation' => 'AND',
+            array(
+                'key'     => 'doc_type',
+                'value'   => 'section',
+                'compare' => '=',
+                'type'    => 'CHAR',
+            ),
+        );
+    }else{
+        $args['meta_query'] = array(
+            'relation' => 'AND',
+            array(
+                'key'     => 'doc_type',
+                'value'   => 'doc',
+                'compare' => '=',
+                'type'    => 'CHAR',
+            ),
+        );
 
     }
-
+ 
     // the query
     $the_query = new WP_Query( $args );
     
- 
+
 
     ?>
 
-<div class="fddocs-site-main <?php echo esc_attr( $section ); ?> <?php echo esc_attr( $docs) ?>" >
-<div class="fddocs-container" >
-    <div class="row" >
-        <?php if ( $the_query->have_posts() ): ?>
-            <?php while ( $the_query->have_posts() ): $the_query->the_post();
-                $has_parent = wp_get_post_parent_id( get_the_ID());
-            ?>
+    <div class="fddocs-site-main <?php echo esc_attr( $section ); ?> <?php echo esc_attr( $docs) ?>" >
+        <div class="fddocs-container" >
+            <div class="row" >
+                <?php if ( $the_query->have_posts() ): ?>
+                    <?php while ( $the_query->have_posts() ): $the_query->the_post();
+                        $docs_type = get_post_meta( get_the_ID(), 'doc_type', true );
+                       
+                        ?>
 
-            <?php 
-                    if( !empty ($id) ){
+                    <?php 
+                        if( !empty ($id) && 'section' == $docs_type){
+                            // here will be section layout 
+                            include FINEST_DOCS_DIR .'templates/section-template/'.$section.'.php';
 
-                        // here will be section layout 
-                        include FINEST_DOCS_DIR .'templates/section-template/'.$section.'.php';
+                        }elseif('doc' == $docs_type){
+                            // here will show all docs 
+                            include FINEST_DOCS_DIR .'templates/docs-template/'.$docs.'.php';
+                        }
+                        
+                    ?>
 
-                    }elseif( !$has_parent ){
-                        // here will show all docs 
-                        include FINEST_DOCS_DIR .'templates/docs-template/'.$docs.'.php';
-                    }
-                    
+                <?php endwhile;?>
+                <?php wp_reset_query(  );
+                
+     
                 ?>
 
-            <?php endwhile;?>
-            <?php wp_reset_query(  );?>
+                <?php else: ?>
+                <p><?php _e( 'Sorry, no posts matched your criteria.' );?></p>
+                <?php endif;?>
+            </div>
+            <?php 
+            //paginations
+            echo '<div class="fddocs-paginations-wrap">';
+            $big = 999999999; // need an unlikely integer
+                echo paginate_links( array(
+                    'base' => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
+                    'format' => '?paged=%#%',
+                    'current' => max( 1, get_query_var('paged') ),
+                    'total' => $the_query->max_num_pages,
+                    'next_text' => '>',
+                    'prev_text' => '<'
+                ) );
 
-            <?php else: ?>
-            <p><?php _e( 'Sorry, no posts matched your criteria.' );?></p>
-            <?php endif;?>
+            echo '</div>';
+            ?>
         </div>
     </div>
-</div>
-<?Php
+    <?Php
 }
 add_shortcode( 'ud', 'fd_shortcode' );
 
