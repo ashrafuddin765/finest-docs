@@ -28,7 +28,7 @@
     $sec_title_color = get_theme_mod( 'section_title_color', '#161617' );
     $sec_title_gap = get_theme_mod( 'section_title_gap', '10px' );
     $sec_dec_font_size = get_theme_mod( 'archive_desc_font_size', '16px' );
-    $archive_desc_color = get_theme_mod( 'archive_desc_color', '#0088CC' );
+    $archive_desc_color = get_theme_mod( 'archive_desc_color', 'rgba(0, 0, 0, 0.7)' );
     $description_gap = get_theme_mod( 'description_gap', '30px' );
     $article_font_size = get_theme_mod( 'total_article_font_size', '16px' );
     $article_totle_color = get_theme_mod( 'article_totle_color', '#4A3BFD' );

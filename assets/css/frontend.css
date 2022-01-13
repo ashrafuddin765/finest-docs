@@ -916,7 +916,7 @@ a {
     text-align: center;
 }
 
-.help-center a.contact-support {
+.help-center a {
     display: inline-block;
     padding: 16px;
     line-height: 50px;
@@ -1445,13 +1445,13 @@ a {
 /***************************************
             page template
 ****************************************/
-.template-header {
+.doc-template-header {
     text-align: center;
     padding-top: 90px;
     padding-bottom: 55px;
 }
 
-.header-title h1 {
+.doc-header-title h1 {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
@@ -1461,11 +1461,11 @@ a {
     color: #161617;
 }
 
-.fddoc-bg-color.docs-template-02 .template-header {
+.fddoc-bg-color.docs-template-02 .doc-template-header {
     text-align: left;
 }
 
-.header-desc p {
+.doc-header-desc p {
     font-family: 'Inter';
     font-style: normal;
     font-weight: normal;
@@ -1476,7 +1476,7 @@ a {
     padding-left: 70px;
 }
 
-.fddoc-bg-color.docs-template-02 .header-desc p {
+.fddoc-bg-color.docs-template-02 .doc-header-desc p {
     padding-right: 0px;
     padding-left: 0px;
 }

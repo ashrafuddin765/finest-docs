@@ -1,6 +1,7 @@
 
 <?php get_header(); ?>
 <?php
+     $section_description = get_theme_mod( 'section_description', 'You can search for a question here. It will help you get the most common anwers easily.' );
      $secttionlayout = get_theme_mod( 'section_select_layout', 'section-template-01' );
      if ( 'section-template-01' ==  $secttionlayout ){
         $gridclass = "col-12 col-xl-6";
@@ -25,7 +26,7 @@
                             <h1><?php echo esc_html( get_the_title()); ?></h1>
                         </div>
                         <div class="section-desc" >
-                            <p><?php echo esc_html( 'You can search for a question here. It will help you get the most common anwers easily.' ) ?></p>
+                            <p><?php echo esc_html( $section_description ); ?></p>
                         </div>
                         <div class="section-search" >
                             <?php echo do_shortcode( '[ud_search id='.get_the_ID().']' ); ?>

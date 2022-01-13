@@ -1,6 +1,4 @@
 <?php fddocs_get_template_part( 'finest-docs', 'sidebar' ); ?>
-
-
 <div class="fddocs-single-content">
     <?php fddocs_breadcrumbs(); ?>
     <article id="post-<?php the_ID(); ?>"  >
