@@ -14,13 +14,14 @@ function fqv_register_script() {
     wp_enqueue_style( 'fddocs-grid', FINEST_DOCS_ASSETS_CSS . 'grid-css.css', array(), time() );
     wp_enqueue_style( 'dashicons' );
     wp_enqueue_style( 'fddocs-quick-view', FINEST_DOCS_ASSETS_CSS . 'frontend.css', array(), time() );
-
+    
     // Enqueue All Js file
-
+    
+    wp_enqueue_script( 'jquery-masonry' );
     wp_enqueue_script( 'fddocs-docs-core', FINEST_DOCS_ASSETS_JS . 'finest-docs.js', array( 'jquery' ), FINEST_DOCS_VERSION, true );
 
     wp_localize_script( 'fddocs-docs-core', 'fddocs_vars', [
-        'nonce'   => wp_create_nonce( 'fddocsdocs-nonce' ),
+        'nonce'   => wp_create_nonce( 'fddocs-nonce' ),
         'ajaxurl' => admin_url( 'admin-ajax.php' ),
     ] );
 };

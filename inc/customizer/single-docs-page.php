@@ -45,9 +45,73 @@ Kirki::add_field( 'docs_panel', [
 ] );
 
 Kirki::add_field( 'docs_panel', [
+    'type'            => 'custom',
+    'settings'        => 'single_cta_box',
+    'section'         => 'single_page',
+    'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'CTA', 'fddocs-mini-cart' ) . '</h3>',
+    'priority'        => 10,
+    'active_callback' => [
+        [
+            'setting'  => 'single_layout_design',
+            'operator' => '===',
+            'value'    => 'design',
+        ],
+    ],
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'     => 'text',
+	'settings' => 'cta_title',
+	'label'    => esc_html__( 'Title', 'finest-docs' ),
+	'section'  => 'single_page',
+	'default'  => esc_html__( 'Still no luck? We can help!', 'finest-docs' ),
+	'priority' => 10,
+    'active_callback' => [
+        [
+            'setting'  => 'single_layout_design',
+            'operator' => '===',
+            'value'    => 'design',
+        ],
+    ],
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'     => 'textarea',
+	'settings' => 'cta_description',
+	'label'    => esc_html__( 'Description', 'finest-docs' ),
+	'section'  => 'single_page',
+	'default'  => esc_html__( 'Contact us and we’ll get back to you as soon as possible', 'finest-docs' ),
+	'priority' => 10,
+    'active_callback' => [
+        [
+            'setting'  => 'single_layout_design',
+            'operator' => '===',
+            'value'    => 'design',
+        ],
+    ],
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'     => 'text',
+	'settings' => 'cta_button_text',
+	'label'    => esc_html__( 'Button Text', 'finest-docs' ),
+	'section'  => 'single_page',
+	'default'  => esc_html__( 'Contact support', 'finest-docs' ),
+	'priority' => 10,
+    'active_callback' => [
+        [
+            'setting'  => 'single_layout_design',
+            'operator' => '===',
+            'value'    => 'design',
+        ],
+    ],
+    
+] );
+
+Kirki::add_field( 'docs_panel', [
     'type'            => 'link',
     'settings'        => 'contact_url_page',
-    'label'           => __( 'CTA Url', 'kirki' ),
+    'label'           => __( 'CTA', 'finest-docs' ),
     'section'         => 'single_page',
     'default'         => 'http://example.com/',
     'priority'        => 10,
@@ -59,6 +123,8 @@ Kirki::add_field( 'docs_panel', [
         ],
     ],
 ] );
+
+
 
 // background color
 Kirki::add_field( 'docs_panel', [
@@ -1132,24 +1198,23 @@ Kirki::add_field( 'docs_panel', [
     ],
 ] );
 
+// cta title
+
 Kirki::add_field( 'docs_panel', [
-    'type'            => 'slider',
-    'settings'        => 'footer_button_width',
-    'label'           => esc_html__( 'CTA Width', 'finest-docs' ),
+    'type'            => 'color',
+    'settings'        => 'cta_title_color',
+    'label'           => __( 'CTA Title Color', 'finest-docs' ),
     'section'         => 'single_page',
-    'default'         => 162,
+    'default'         => '#000000',
     'choices'         => [
-        'min'  => 0,
-        'max'  => 300,
-        'step' => 1,
+        'alpha' => true,
     ],
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.fddocs-entry-footer .footer-button a',
+            'element'  => '.fdocs-ctn .footer-content h3',
             'function' => 'css',
-            'property' => 'width',
-            'units'    => 'px',
+            'property' => 'color',
         ],
     ],
     'active_callback' => [
@@ -1160,12 +1225,13 @@ Kirki::add_field( 'docs_panel', [
         ],
     ],
 ] );
+
 Kirki::add_field( 'docs_panel', [
     'type'            => 'slider',
-    'settings'        => 'footer_button_height',
-    'label'           => esc_html__( 'CTA Height', 'finest-docs' ),
+    'settings'        => 'cta_title_font_size',
+    'label'           => esc_html__( 'CTA Title Font Size', 'finest-docs' ),
     'section'         => 'single_page',
-    'default'         => 45,
+    'default'         => 16,
     'choices'         => [
         'min'  => 0,
         'max'  => 100,
@@ -1174,9 +1240,9 @@ Kirki::add_field( 'docs_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.fddocs-entry-footer .footer-button a',
+            'element'  => '.fdocs-ctn .footer-content h3',
             'function' => 'css',
-            'property' => 'height',
+            'property' => 'font-size',
             'units'    => 'px',
         ],
     ],
@@ -1190,18 +1256,106 @@ Kirki::add_field( 'docs_panel', [
 ] );
 
 Kirki::add_field( 'docs_panel', [
-    'type'            => 'color',
-    'settings'        => 'button_bg_color',
-    'label'           => __( 'CTA Background Color', 'finest-docs' ),
+    'type'            => 'slider',
+    'settings'        => 'cta_title_gap',
+    'label'           => esc_html__( 'CTA Title Gap', 'finest-docs' ),
     'section'         => 'single_page',
-    'default'         => '#4A3BFD',
+    'default'         => 5,
+    'choices'         => [
+        'min'  => 0,
+        'max'  => 100,
+        'step' => 1,
+    ],
+    'transport'       => 'postMessage',
+    'js_vars'         => [
+        [
+            'element'  => '.fdocs-ctn .footer-content h3',
+            'function' => 'css',
+            'property' => 'margin-bottom',
+            'units'    => 'px',
+        ],
+    ],
+    'active_callback' => [
+        [
+            'setting'  => 'single_layout_design',
+            'operator' => '===',
+            'value'    => 'general',
+        ],
+    ],
+] );
+
+// cta desc
+
+Kirki::add_field( 'docs_panel', [
+    'type'            => 'color',
+    'settings'        => 'cta_desc_color',
+    'label'           => __( 'CTA Description Color', 'finest-docs' ),
+    'section'         => 'single_page',
+    'default'         => 'rgba(0, 0, 0, 0.7)',
     'choices'         => [
         'alpha' => true,
     ],
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.fddocs-entry-footer .footer-button a',
+            'element'  => '.fdocs-ctn .footer-content p',
+            'function' => 'css',
+            'property' => 'color',
+        ],
+    ],
+    'active_callback' => [
+        [
+            'setting'  => 'single_layout_design',
+            'operator' => '===',
+            'value'    => 'general',
+        ],
+    ],
+] );
+
+Kirki::add_field( 'docs_panel', [
+    'type'            => 'slider',
+    'settings'        => 'cta_desc_font_size',
+    'label'           => esc_html__( 'CTA Decription Font Size', 'finest-docs' ),
+    'section'         => 'single_page',
+    'default'         => 14,
+    'choices'         => [
+        'min'  => 0,
+        'max'  => 100,
+        'step' => 1,
+    ],
+    'transport'       => 'postMessage',
+    'js_vars'         => [
+        [
+            'element'  => '.fdocs-ctn .footer-content p',
+            'function' => 'css',
+            'property' => 'font-size',
+            'units'    => 'px',
+        ],
+    ],
+    'active_callback' => [
+        [
+            'setting'  => 'single_layout_design',
+            'operator' => '===',
+            'value'    => 'general',
+        ],
+    ],
+] );
+
+
+
+Kirki::add_field( 'docs_panel', [
+    'type'            => 'color',
+    'settings'        => 'button_bg_color',
+    'label'           => __( 'Button Background Color', 'finest-docs' ),
+    'section'         => 'single_page',
+    'default'         => '',
+    'choices'         => [
+        'alpha' => true,
+    ],
+    'transport'       => 'postMessage',
+    'js_vars'         => [
+        [
+            'element'  => '.fdocs-cta a',
             'function' => 'css',
             'property' => 'background-color',
         ],
@@ -1218,7 +1372,7 @@ Kirki::add_field( 'docs_panel', [
 Kirki::add_field( 'docs_panel', [
     'type'            => 'slider',
     'settings'        => 'button_font_size',
-    'label'           => esc_html__( 'CTA Font Size', 'finest-docs' ),
+    'label'           => esc_html__( 'Button Font Size', 'finest-docs' ),
     'section'         => 'single_page',
     'default'         => 16,
     'choices'         => [
@@ -1229,7 +1383,7 @@ Kirki::add_field( 'docs_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.fddocs-entry-footer .footer-button a',
+            'element'  => '.fdocs-cta a',
             'function' => 'css',
             'property' => 'font-size',
             'units'    => 'px',
@@ -1247,7 +1401,7 @@ Kirki::add_field( 'docs_panel', [
 Kirki::add_field( 'docs_panel', [
     'type'            => 'color',
     'settings'        => 'button_text_color',
-    'label'           => __( 'CTA Text Color', 'finest-docs' ),
+    'label'           => __( 'Button Text Color', 'finest-docs' ),
     'section'         => 'single_page',
     'default'         => '#ffffff;',
     'choices'         => [
@@ -1256,7 +1410,7 @@ Kirki::add_field( 'docs_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.fddocs-entry-footer .footer-button a',
+            'element'  => '.fdocs-cta a',
             'function' => 'css',
             'property' => 'color',
         ],
@@ -1273,7 +1427,7 @@ Kirki::add_field( 'docs_panel', [
 Kirki::add_field( 'docs_panel', [
     'type'            => 'slider',
     'settings'        => 'fbutton_border_radius',
-    'label'           => esc_html__( 'CTA Border Radius', 'finest-docs' ),
+    'label'           => esc_html__( 'Button Border Radius', 'finest-docs' ),
     'section'         => 'single_page',
     'default'         => 5,
     'choices'         => [
@@ -1284,7 +1438,7 @@ Kirki::add_field( 'docs_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.fddocs-entry-footer .footer-button a',
+            'element'  => '.fdocs-cta a',
             'function' => 'css',
             'property' => 'border-radius',
             'units'    => 'px',

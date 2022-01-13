@@ -15,14 +15,14 @@ function fddocs_docs_shortcode( $atts ) {
 add_shortcode( 'fddocs-doc-toc', 'fddocs_docs_shortcode' );
 
 function fd_shortcode( $atts ) {
-    $docs = get_theme_mod( 'docs_select_layout', 'docs-template-01' );
+    $docs = get_theme_mod( 'docs_layout_design', 'docs-template-01' );
     $section = get_theme_mod( 'section_select_layout', 'section-template-01' );
 
 
     extract( shortcode_atts( array(
         'id'    => '',
         'style' => '01',
-        'per_page' => 4
+        'per_page' => 10
     ), $atts ) );
 
     $args = array(
@@ -32,6 +32,7 @@ function fd_shortcode( $atts ) {
     );
 
     if ( !empty( $id ) ) {
+        $class = $section;
         $args['post_parent'] = $id;
         $args['meta_query'] = array(
             'relation' => 'AND',
@@ -43,6 +44,7 @@ function fd_shortcode( $atts ) {
             ),
         );
     }else{
+        $class = $docs;
         $args['meta_query'] = array(
             'relation' => 'AND',
             array(
@@ -62,16 +64,13 @@ function fd_shortcode( $atts ) {
 
     ?>
 
-    <div class="fddocs-site-main <?php echo esc_attr( $section ); ?> <?php echo esc_attr( $docs) ?>" >
+    <div class="fddocs-site-main <?php echo esc_attr( $class) ?>" >
         <div class="fddocs-container" >
-            <div class="row" >
+            <div class="row fddocs-masonry" >
                 <?php if ( $the_query->have_posts() ): ?>
                     <?php while ( $the_query->have_posts() ): $the_query->the_post();
                         $docs_type = get_post_meta( get_the_ID(), 'doc_type', true );
-                       
-                        ?>
-
-                    <?php 
+            
                         if( !empty ($id) && 'section' == $docs_type){
                             // here will be section layout 
                             include FINEST_DOCS_DIR .'templates/section-template/'.$section.'.php';

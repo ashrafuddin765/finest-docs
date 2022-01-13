@@ -156,13 +156,14 @@ ul.sections .section-title .count {
   border-radius: 50%;
   color: #fff;
   padding: 0px;
-  width: 17px;
-  height: 17px;
+  min-width: 17px;
+  min-height: 17px;
   display: inline-block;
   text-align: center;
   font-size: 11px;
   line-height: 17px;
   margin-left: 10px;
+  margin-right: 10px;
 }
 
 ul.sections .actions {
@@ -374,6 +375,9 @@ a.add-section-btn svg {
 }
 .single-doc .inside a>svg {
   margin-right: 10px;
+  min-width: 11px;
+  display: inline-block;
+  width: 11px;
 }
 span.fddocs-row-actions li ul.action-sub-menu li:last-child {
   margin-bottom: 0;

@@ -46,7 +46,7 @@
 
     // doc button
     $doc_button_font_size = get_theme_mod( 'doc_button_font_size', '16px' );
-    $doc_font_color = get_theme_mod( 'doc_font_color', 'rgba(22, 22, 23, 0.06)' );
+    $doc_font_color = get_theme_mod( 'doc_font_color', '#161617' );
     $doc_button_width = get_theme_mod( 'doc_button_width', '150px' );
     $doc_button_height = get_theme_mod( 'doc_button_height', '50px' );
     $doc_button_bg_color = get_theme_mod( 'doc_button_bg_color', 'rgba(22, 22, 23, 0.06)' );
@@ -64,6 +64,44 @@
     $btn_border_radius = get_theme_mod( 'button_hover_border_radius', '5px' );
     $doc_count_font_size = get_theme_mod( 'doc_count_font_size', '16px' );
     $item_count_color = get_theme_mod( 'doc_item_count_color', 'rgba(0, 0, 0, 0.7)' );
+
+    // doc title
+    $doc_head_title_color = get_theme_mod( 'doc_head_title_color', '#161617' );
+    $doc_title_font_size = get_theme_mod( 'doc_title_font_size', '42px' );
+    $doc_sec_title_gap = get_theme_mod( 'doc_sec_title_gap', '15px' );
+
+    // doc description
+    $doc_head_desc_color = get_theme_mod( 'doc_head_desc_color', '#161617' );
+    $doc_desc_font_size = get_theme_mod( 'doc_desc_font_size', '18px' );
+    
+    if (  $doc_head_desc_color) {
+        $fmc_dynamic_css .= '.doc-header-desc p { color:' . esc_attr(  $doc_head_desc_color ) .' } ';
+        $fmc_dynamic_css .= "\n";
+    }
+    
+    if ( $doc_desc_font_size ) {
+        $fmc_dynamic_css .= '.doc-header-desc p { font-size:' . esc_attr( $doc_desc_font_size  ) .'px } ';
+        $fmc_dynamic_css .= "\n";
+    }
+
+    if ( $doc_head_title_color) {
+        $fmc_dynamic_css .= '.doc-header-title h1 { color:' . esc_attr( $doc_head_title_color ) .' } ';
+        $fmc_dynamic_css .= "\n";
+    }
+
+    if (  $doc_title_font_size) {
+        $fmc_dynamic_css .= '.doc-header-title h1 { font-size:' . esc_attr(  $doc_title_font_size ) .'px } ';
+        $fmc_dynamic_css .= "\n";
+    }
+
+    if ( $doc_sec_title_gap) {
+        $fmc_dynamic_css .= '.doc-header-title h1 { margin-bottom:' . esc_attr( $doc_sec_title_gap ) .'px } ';
+        $fmc_dynamic_css .= "\n";
+    }
+
+
+
+
 
 
     if ( $docs_bg_color) {

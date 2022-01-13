@@ -392,8 +392,7 @@ ul.fddocs-breadcrumb li .dashicons {
 }
 
 .fdocs-ctn .footer-button a {
-    width: 162px;
-    height: 45px;
+    padding: 16px;
     background: #4A3BFD;
     border-radius: 5px;
     display: inline-flex;
@@ -491,6 +490,9 @@ form.search-form.fddocs-search-form button.search-submit {
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
+}
+form.search-form.fddocs-search-form button.search-submit svg path {
+    stroke: #fff;
 }
 
 .fddocs-search-input {
@@ -916,8 +918,7 @@ a {
 
 .help-center a.contact-support {
     display: inline-block;
-    width: 205px;
-    height: 50px;
+    padding: 16px;
     line-height: 50px;
     background: #161617;
     border-radius: 5px;
@@ -925,9 +926,11 @@ a {
     font-weight: 500;
     font-size: 16px;
     color: #FFFFFF;
-
+    text-align: center;
 }
-
+.help-center a.customize-unpreviewable {
+    cursor: pointer !important;
+}
 .help-center p.contact-text {
     font-style: normal;
     font-weight: 400;
@@ -1033,7 +1036,7 @@ a {
     font-family: 'Inter';
 }
 
-.fddocs-site-main .total-article .article-total {
+.fddocs-site-main .total-article .article-total a{
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -1309,6 +1312,7 @@ a {
     border: 1px solid rgba(45, 45, 49, 0.12);
     border-radius: 5px;
     transition: all 0.3s;
+    margin-bottom: 30px;
 }
 
 .fddocs-site-main .card-bottom {
@@ -1407,7 +1411,9 @@ a {
     line-height: 26px;
     color: rgba(0, 0, 0, 0.7);
 }
-
+.fddoc-main.docs-template-01 {
+    background-color: #F3F5F7;
+}
 .fddocs-site-main.docs-template-01 {
     background: #F3F5F7;
     padding-top: 0px;
@@ -1450,8 +1456,9 @@ a {
     font-style: normal;
     font-weight: 600;
     font-size: 42px;
-    line-height: 1.14x;
+    line-height: 1.14;
     margin-bottom: 15px;
+    color: #161617;
 }
 
 .fddoc-bg-color.docs-template-02 .template-header {
@@ -1639,6 +1646,35 @@ ul.fddocs-related-articles li:not(:last-child) {
     color: #fff;
     background-color: #4a3bfd;
     border-color: #4a3bfd;
+}
+
+
+/* post navigation  */
+.fddocs-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fddocs-navigation a {color: #161617;font-size: 14px;display: flex;align-items: center;line-height: 1.3;}
+
+.fddocs-navigation a .dashicons {
+    font-size: 14px;
+    display: inline-block;
+    line-height: 1.3;
+}
+
+.fddocs-navigation .next a .dashicons {
+    margin-left: 10px;
+}
+
+.fddocs-navigation .previous a .dashicons {
+    margin-right: 10px;
+}
+
+.fdocs-single-post-navigation {
+    padding: 30px 0;
+    border-top: 1px solid rgba(22, 22, 23, 0.1);
 }
 
 @media screen  and (max-width: 991px) {

@@ -33,11 +33,17 @@
             <?php endif; ?>
             <div class="total-article" >
                 <span class="article-total" ><?php 
+                  IF($first_child){
                     printf(
-                        '%s %s', 
-                        fddocs_get_totla_article(get_the_ID(), true),
-                        esc_html__( 'Articles ', 'finest-docs' )
-                    ); 
+                     '%s %s', 
+                     fddocs_get_totla_article(get_the_ID(), true),
+                     esc_html__( 'Articles ', 'finest-docs' )
+                 ); 
+                     
+                }else{
+                    esc_html_e( 'This doc has no article', 'finest-docs' );
+
+                }
                             
                 ?> </span>
             </div>
