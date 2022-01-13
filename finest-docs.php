@@ -38,6 +38,7 @@ function init() {
 	register_theme_directory( dirname( __FILE__ ).'/templates' );
 	
 	fddoc_update_exxisting_doc_type();
+	fddocs_redirec_section_to_article();
 }
 
 // // Load the library

@@ -78,7 +78,12 @@ $class = '';?>
                 ?>
                 <?php 
                 endwhile;
-                // echo paginate_links();
+                echo '<div class="fddocs-paginations-wrap">';
+                echo paginate_links([
+                    'next_text' => '>',
+                    'prev_text' => '<'
+                ]);
+                echo '</div>';
 
             if(0 == $found_post){
                 printf('<h4>%s</h4>', esc_html__( 'Sorry nothing matched!', 'fddocs' ));
