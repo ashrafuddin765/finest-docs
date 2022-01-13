@@ -391,9 +391,8 @@ ul.fddocs-breadcrumb li .dashicons {
     margin-bottom: 0px;
 }
 
-.fdocs-ctn .footer-button a {
-    width: 162px;
-    height: 45px;
+.footer-button a {
+    padding: 16px;
     background: #4A3BFD;
     border-radius: 5px;
     display: inline-flex;
@@ -914,10 +913,9 @@ a {
     text-align: center;
 }
 
-.help-center a.contact-support {
+.help-center a {
     display: inline-block;
-    width: 205px;
-    height: 50px;
+    padding: 16px;
     line-height: 50px;
     background: #161617;
     border-radius: 5px;
@@ -925,9 +923,11 @@ a {
     font-weight: 500;
     font-size: 16px;
     color: #FFFFFF;
-
+    text-align: center;
 }
-
+.help-center a.customize-unpreviewable {
+    cursor: pointer !important;
+}
 .help-center p.contact-text {
     font-style: normal;
     font-weight: 400;
@@ -1439,26 +1439,27 @@ a {
 /***************************************
             page template
 ****************************************/
-.template-header {
+.doc-template-header {
     text-align: center;
     padding-top: 90px;
     padding-bottom: 55px;
 }
 
-.header-title h1 {
+.doc-header-title h1 {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
     font-size: 42px;
-    line-height: 1.14x;
+    line-height: 1.14em;
     margin-bottom: 15px;
+    color: #161617;
 }
 
-.fddoc-bg-color.docs-template-02 .template-header {
+.fddoc-bg-color.docs-template-02 .doc-template-header {
     text-align: left;
 }
 
-.header-desc p {
+.doc-header-desc p {
     font-family: 'Inter';
     font-style: normal;
     font-weight: normal;
@@ -1469,7 +1470,7 @@ a {
     padding-left: 70px;
 }
 
-.fddoc-bg-color.docs-template-02 .header-desc p {
+.fddoc-bg-color.docs-template-02 .doc-header-desc p {
     padding-right: 0px;
     padding-left: 0px;
 }

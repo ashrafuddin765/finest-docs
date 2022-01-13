@@ -14,8 +14,8 @@ Kirki::add_field( 'docs_panel', [
 	'default'     => 'general',
 	'priority'    => 10,
 	'choices'     => [
-		'general'   => esc_html__( 'General ', 'finest-docs' ),
-		'design' => esc_html__( 'Design', 'finest-docs' ),
+		'design' => esc_html__( 'Layout', 'finest-docs' ),
+		'general'   => esc_html__( 'Design', 'finest-docs' ),
 	],
 ] );
 
@@ -38,6 +38,224 @@ Kirki::add_field( 'docs_panel', [
 			'setting'  => 'docs_design_layout',
 			'operator' => '===',
 			'value'    => 'design',
+		],
+	]
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'custom',
+	'settings'    => 'header_top',
+	'section'     => 'docs_page',
+		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Doc Text', 'fddocs-mini-cart' ) . '</h3>',
+	'priority'    => 10,
+	'active_callback'  => [
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'design',
+		],
+	]
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'     => 'text',
+	'settings' => 'fd_docs_tilte',
+	'label'    => esc_html__( 'Doc Title', 'finest-docs' ),
+	'section'  => 'docs_page',
+	'default'  => esc_html__( 'FinestDevs Products', 'finest-docs' ),
+	'priority' => 10,
+    'active_callback' => [
+        [
+            'setting'  => 'docs_design_layout',
+            'operator' => '===',
+            'value'    => 'design',
+        ],
+    ],
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'     => 'textarea',
+	'settings' => 'docs_description',
+	'label'    => esc_html__( 'Doc Description', 'finest-docs' ),
+	'section'  => 'docs_page',
+	'default'  => esc_html__( 'You Can Search For A Question Here. It Will Help You Get The Most Common Anwers Easily..', 'finest-docs' ),
+	'priority' => 10,
+    'active_callback' => [
+        [
+            'setting'  => 'docs_design_layout',
+            'operator' => '===',
+            'value'    => 'design',
+        ],
+    ],
+] );
+
+
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'custom',
+	'settings'    => 'header_top',
+	'section'     => 'docs_page',
+		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Doc Header', 'fddocs-mini-cart' ) . '</h3>',
+	'priority'    => 10,
+	'active_callback'  => [
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
+	]
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'color',
+	'settings'    => 'doc_head_title_color',
+	'label'       => __( 'Title Color', 'finest-docs' ),
+	'section'     => 'docs_archive',
+	'default'     => '#161617',
+	'choices'     => [
+		'alpha' => true,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.doc-header-title h1',
+			'function' => 'css',
+			'property' => 'color',
+		],
+	],
+	'active_callback'  => [
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
+	]
+] );
+
+Kirki::add_field( 'docs_panel', [
+    'type'            => 'slider',
+    'settings'        => 'doc_title_font_size',
+    'label'           => esc_html__( 'Title Font Size', 'finest-docs' ),
+    'section'         => 'docs_archive',
+    'default'         => 42,
+    'choices'         => [
+        'min'  => 0,
+        'max'  => 100,
+        'step' => 1,
+    ],
+    'transport'       => 'postMessage',
+    'js_vars'         => [
+        [
+            'element'  => '.doc-header-title h1',
+            'function' => 'css',
+            'property' => 'font-size',
+            'units'    => 'px',
+        ],
+    ],
+    'active_callback' => [
+        [
+            'setting'  => 'docs_design_layout',
+            'operator' => '===',
+            'value'    => 'general',
+        ],
+    ],
+] );
+
+Kirki::add_field( 'docs_panel', [
+    'type'            => 'slider',
+    'settings'        => 'doc_sec_title_gap',
+    'label'           => esc_html__( 'Title Gap', 'finest-docs' ),
+    'section'         => 'docs_archive',
+    'default'         => 15,
+    'choices'         => [
+        'min'  => 0,
+        'max'  => 100,
+        'step' => 1,
+    ],
+    'transport'       => 'postMessage',
+    'js_vars'         => [
+        [
+            'element'  => '.doc-header-title h1',
+            'function' => 'css',
+            'property' => 'margin-bottom',
+            'units'    => 'px',
+        ],
+    ],
+    'active_callback' => [
+        [
+            'setting'  => 'docs_design_layout',
+            'operator' => '===',
+            'value'    => 'general',
+        ],
+    ],
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'color',
+	'settings'    => 'doc_head_desc_color',
+	'label'       => __( 'Description Color', 'finest-docs' ),
+	'section'     => 'docs_archive',
+	'default'     => '#161617',
+	'choices'     => [
+		'alpha' => true,
+	],
+	'transport' => 'postMessage',
+	'js_vars'   => [
+		[
+			'element'  => '.doc-header-desc p',
+			'function' => 'css',
+			'property' => 'color',
+		],
+	],
+	'active_callback'  => [
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
+	]
+] );
+
+Kirki::add_field( 'docs_panel', [
+    'type'            => 'slider',
+    'settings'        => 'doc_desc_font_size',
+    'label'           => esc_html__( 'Description Font Size', 'finest-docs' ),
+    'section'         => 'docs_archive',
+    'default'         => 18,
+    'choices'         => [
+        'min'  => 0,
+        'max'  => 100,
+        'step' => 1,
+    ],
+    'transport'       => 'postMessage',
+    'js_vars'         => [
+        [
+            'element'  => '.doc-header-desc p',
+            'function' => 'css',
+            'property' => 'font-size',
+            'units'    => 'px',
+        ],
+    ],
+    'active_callback' => [
+        [
+            'setting'  => 'docs_design_layout',
+            'operator' => '===',
+            'value'    => 'general',
+        ],
+    ],
+] );
+
+Kirki::add_field( 'docs_panel', [
+	'type'        => 'custom',
+	'settings'    => 'doc_area_body',
+	'section'     => 'docs_page',
+		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Doc Body', 'fddocs-mini-cart' ) . '</h3>',
+	'priority'    => 10,
+	'active_callback'  => [
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
 		],
 	]
 ] );
@@ -861,39 +1079,7 @@ Kirki::add_field( 'docs_panel', [
 	],
 ] );
 
-Kirki::add_field( 'docs_panel', [
-	'type'        => 'slider',
-	'settings'    => 'doc_description_gap',
-	'label'       => esc_html__( 'Description Gap', 'finest-docs' ),
-	'section'     => 'docs_page',
-	'default'     => 15,
-	'choices'     => [
-		'min'  => 0,
-		'max'  => 100,
-		'step' => 1,
-	],
-	'transport' => 'postMessage',
-	'js_vars'   => [
-		[
-			'element'  => '.fddocs-site-main .card-bottom .card-content p',
-			'function' => 'css',
-			'property' => 'margin-bottom',
-			'units'    => 'px',
-		],
-	],
-    'active_callback'  => [
-		[
-			'setting'  => 'contetn_column_hover_normal',
-			'operator' => '===',
-			'value'    => 'normal',
-		],
-		[
-			'setting'  => 'docs_design_layout',
-			'operator' => '===',
-			'value'    => 'general',
-		],
-	],
-] );
+
 
 // contetn hover area
 Kirki::add_field( 'docs_panel', [

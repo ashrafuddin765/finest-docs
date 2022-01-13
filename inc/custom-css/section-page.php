@@ -28,11 +28,50 @@
     $sec_title_color = get_theme_mod( 'section_title_color', '#161617' );
     $sec_title_gap = get_theme_mod( 'section_title_gap', '10px' );
     $sec_dec_font_size = get_theme_mod( 'archive_desc_font_size', '16px' );
-    $archive_desc_color = get_theme_mod( 'archive_desc_color', '#0088CC' );
+    $archive_desc_color = get_theme_mod( 'archive_desc_color', 'rgba(0, 0, 0, 0.7)' );
     $description_gap = get_theme_mod( 'description_gap', '30px' );
     $article_font_size = get_theme_mod( 'total_article_font_size', '16px' );
     $article_totle_color = get_theme_mod( 'article_totle_color', '#4A3BFD' );
+    
+    // section title
+    $head_sec_title_color = get_theme_mod( 'head_sec_title_color', '#ffffff' );
+    $head_sec_title_size = get_theme_mod( 'sechead_title_font_size', '42px' );
+    $head_title_gap = get_theme_mod( 'sechead_title_gap', '20px' );
 
+    // section description
+    $head_sec_desc_color = get_theme_mod( 'head_desc_color', '#ffffff' );
+    $head_sec_desc_size = get_theme_mod( 'sechead_title_font_size', '42px' );
+    $head_desc_gap = get_theme_mod( 'sechead_title_gap', '20px' );
+
+    if ( $head_sec_desc_color) {
+        $fmc_dynamic_css .= '.section-desc p { color:' . esc_attr( $head_sec_desc_color ) .' } ';
+        $fmc_dynamic_css .= "\n";
+    }
+    
+    if ( $head_sec_desc_size) {
+        $fmc_dynamic_css .= '.section-desc p { font-size:' . esc_attr( $head_sec_desc_size ) .'px } ';
+        $fmc_dynamic_css .= "\n";
+    }
+
+    if ( $head_desc_gap) {
+        $fmc_dynamic_css .= '.section-desc p { margin-bottom:' . esc_attr( $head_desc_gap ) .'px } ';
+        $fmc_dynamic_css .= "\n";
+    }
+
+    if ( $head_sec_title_color) {
+        $fmc_dynamic_css .= '.section-title h1 { color:' . esc_attr( $head_sec_title_color ) .' } ';
+        $fmc_dynamic_css .= "\n";
+    }
+
+    if ( $head_sec_title_size) {
+        $fmc_dynamic_css .= '.section-title h1 { font-size:' . esc_attr( $head_sec_title_size ) .'px } ';
+        $fmc_dynamic_css .= "\n";
+    }
+
+    if ( $head_title_gap) {
+        $fmc_dynamic_css .= '.section-title h1 { margin-bottom:' . esc_attr( $head_title_gap ) .'px } ';
+        $fmc_dynamic_css .= "\n";
+    }
 
     if ( $section_bg_area) {
         $fmc_dynamic_css .= '.fddocs-site-main .wraper { background-color:' . esc_attr( $section_bg_area ) .' } ';

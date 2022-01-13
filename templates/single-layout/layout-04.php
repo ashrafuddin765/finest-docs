@@ -30,16 +30,22 @@
             }    
             ?>
         </div>
+        <?php 
+            $cta_title = get_theme_mod( 'cta_title', 'Still no luck? We can help!' );
+            $cta_description = get_theme_mod( 'cta_description', 'Contact us and we’ll get back to you as soon as possible' );
+            $supporturl = get_theme_mod( 'contact_url_page', 'http://example.com/' );
+            $cta_text = get_theme_mod( 'cta_button_text', 'Contact support' );
+        ?>
         <div class="fdocs-ctn">
             <div class="footer-area">
                 <div class="footer-content">
-                    <h3><?php echo esc_html( 'Still no luck? We can help!' ) ?> </h3>
-                    <p><?php echo esc_html( 'Contact us and we’ll get back to you as soon as possible.' ); ?></p>
+                    <h3><?php echo esc_html(  $cta_title ) ?> </h3>
+                    <p><?php echo esc_html( $cta_description ); ?></p>
                 </div>
-                <div class="footer-button">
+                <div class="footer-button fdocs-cta">
                     <?php 
                          $supporturl = get_theme_mod( 'contact_url_page', 'http://example.com/' );
-                         printf('<a href="%s">%s</a>',esc_url_raw($supporturl), esc_html('Contact support'));
+                         printf('<a href="%s">%s</a>',esc_url_raw($supporturl), esc_html( $cta_text));
                     ?>
 
                 </div>

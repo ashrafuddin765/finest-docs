@@ -30,10 +30,16 @@
             }    
             ?>
         </div>
-        <div class="help-center">
-            <p class="help-text" >Still no luck? We can help!</p>
-            <a href="#" class="contact-support" >Contact our support</a>
-            <p class="contact-text" >Contact us and we’ll get back to you as soon as possible.</p>
+        <?php 
+            $cta_title = get_theme_mod( 'cta_title', 'Still no luck? We can help!' );
+            $cta_description = get_theme_mod( 'cta_description', 'Contact us and we’ll get back to you as soon as possible' );
+            $supporturl = get_theme_mod( 'contact_url_page', 'http://example.com/' );
+            $cta_text = get_theme_mod( 'cta_button_text', 'Contact support' );
+        ?>
+        <div class="help-center fdocs-cta">
+            <p class="help-text" ><?php echo esc_html(  $cta_title ) ?></p>
+            <?php printf('<a href="%s">%s</a>',esc_url_raw($supporturl), esc_html( $cta_text)); ?>
+            <p class="contact-text" ><?php echo esc_html( $cta_description ); ?></p>
         </div>
         <div class="fdoc-powered">
         <span class="fddoc-copyright" >
