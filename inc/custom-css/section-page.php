@@ -34,7 +34,7 @@
     $article_totle_color = get_theme_mod( 'article_totle_color', '#4A3BFD' );
     
     // section title
-    $head_sec_title_color = get_theme_mod( 'head_sec_title_color', '#ffffff' );
+    // $head_sec_title_color = get_theme_mod( 'head_sec_title_color', '#ffffff' );
     $head_sec_title_size = get_theme_mod( 'sechead_title_font_size', '42px' );
     $head_title_gap = get_theme_mod( 'sechead_title_gap', '20px' );
 
@@ -58,10 +58,10 @@
         $fmc_dynamic_css .= "\n";
     }
 
-    if ( $head_sec_title_color) {
-        $fmc_dynamic_css .= '.section-title h1 { color:' . esc_attr( $head_sec_title_color ) .' } ';
-        $fmc_dynamic_css .= "\n";
-    }
+    // if ( $head_sec_title_color) {
+    //     $fmc_dynamic_css .= '.section-title h1 { color:' . esc_attr( $head_sec_title_color ) .' } ';
+    //     $fmc_dynamic_css .= "\n";
+    // }
 
     if ( $head_sec_title_size) {
         $fmc_dynamic_css .= '.section-title h1 { font-size:' . esc_attr( $head_sec_title_size ) .'px } ';
