@@ -129,7 +129,7 @@ function fd_get_posts_children( $parent_id ) {
     }
     $children = array();
     // grab the posts children
-    $posts = get_posts( array( 'numberposts' => -1, 'post_parent' => $parent_id, 'post_type' => $post->post_type, 'suppress_filters' => false ) );
+    $posts = get_posts( array( 'numberposts' => -1, 'post_parent' => $parent_id, 'post_type' => $post->post_type, 'suppress_filters' => true ) );
 
     // now grab the grand children
     foreach ( $posts as $child ) {
@@ -404,13 +404,17 @@ function fddoc_update_exxisting_doc_type(){
 
 function fddocs_redirec_section_to_article(){
     global $post;
-    $first_article_id =  fd_get_posts_children(get_the_ID(  )) ? fd_get_posts_children(get_the_ID(  )) : [];
-    $first_article_id = array_reverse($first_article_id);
-    $doc_type = get_post_meta( get_The_ID(), 'doc_type', true );
+    if($post->ID && is_single(  )){
 
-    If ('section' == $doc_type){
-        $url_to_redirect = get_the_permalink( $first_article_id[0] );
-        wp_redirect( $url_to_redirect );
+        $first_article_id =  fd_get_posts_children($post->ID) ? fd_get_posts_children($post->ID) : [];
+        $first_article_id = array_reverse($first_article_id);
+
+        $doc_type = get_post_meta( $post->ID, 'doc_type', true );
+    
+        If ('section' == $doc_type){
+            $url_to_redirect = get_the_permalink( $first_article_id[0] );
+            wp_redirect( $url_to_redirect );
+        }
     }
 }
 
@@ -454,4 +458,36 @@ function fddocs_related_article($parent_id){
         echo '</ul>';
         echo '</div>';
     }
+}
+
+
+function fddocs_post_navigation($id){
+    $parent_id = wp_get_post_parent_id( $id );
+    $pagelist = get_pages("post_type=docs&child_of=".$parent_id."&parent=".$parent_id."");
+    $pages = array();
+    foreach ($pagelist as $page) {
+       $pages[] += $page->ID;
+    }
+    
+    $current = array_search($id, $pages);
+    $prevID = array_key_exists($current-1, $pages) ? $pages[$current-1] : false;
+    $nextID = array_key_exists($current+1, $pages) ? $pages[$current+1] : false;
+    ?>
+
+<div class="fddocs-navigation">
+    <div class="previous">
+        <?php if (!empty($prevID)) { ?>
+        <a href="<?php echo the_permalink($prevID); ?>" title="<?php echo get_the_title($prevID); ?>"><span
+                class="dashicons dashicons-arrow-left-alt"></span> <?php echo get_the_title( $prevID ) ?></a>
+
+        <?php }?>
+    </div>
+    <div class="next">
+        <?php   if (!empty($nextID)) { ?>
+        <a href="<?php  the_permalink($nextID); ?>" title="<?php echo get_the_title($nextID); ?>">
+            <?php echo get_the_title( $nextID ) ?> <span class="dashicons dashicons-arrow-right-alt"></span></a>
+        <?php } ?>
+    </div>
+</div>
+<?php    
 }

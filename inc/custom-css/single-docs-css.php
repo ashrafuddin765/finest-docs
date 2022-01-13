@@ -161,15 +161,15 @@
     }
     
     if( $desc_font_size ){
-        $fmc_dynamic_css .= '.fddocs-single-content .fddocs-entry-content p {font-size: ' . esc_attr( $desc_font_size ) . 'px } ';
+        $fmc_dynamic_css .= '.fddocs-single-content .fddocs-entry-content, .fddocs-single-content .fddocs-entry-content p {font-size: ' . esc_attr( $desc_font_size ) . 'px } ';
         $fmc_dynamic_css .= "\n";
     }
     if( $postdesc_color ){
-        $fmc_dynamic_css .= '.fddocs-single-content .fddocs-entry-content p {color: ' . esc_attr( $postdesc_color ) . ' } ';
+        $fmc_dynamic_css .= '.fddocs-single-content .fddocs-entry-content, .fddocs-single-content .fddocs-entry-content p {color: ' . esc_attr( $postdesc_color ) . ' } ';
         $fmc_dynamic_css .= "\n";
     }
     if( $entry_margin_bottom ){
-        $fmc_dynamic_css .= '.fddocs-single-content .fddocs-entry-content p {margin-bottom: ' . esc_attr( $entry_margin_bottom ) . 'px } ';
+        $fmc_dynamic_css .= '.fddocs-single-content .fddocs-entry-content, .fddocs-single-content .fddocs-entry-content p {margin-bottom: ' . esc_attr( $entry_margin_bottom ) . 'px } ';
         $fmc_dynamic_css .= "\n";
     }
 

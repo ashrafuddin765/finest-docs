@@ -22,6 +22,15 @@
         }
       );
 
+      // doc grid masonry 
+      if ($.fn.masonry) {
+        $('.fddocs-masonry').masonry({
+            // options
+            itemSelector: '.fddocs-masonry>div',
+
+        });
+    }
+
 
     },
 
@@ -42,7 +51,7 @@
         };
 
       $.post(fddocs_vars.ajaxurl, data, function (resp) {
-        console.log(resp);
+
         wrap.addClass('disabled');
         // wrap.html(resp.data);
         is_active = false;
@@ -68,10 +77,11 @@
           hs.push("h2");
           break;
       }
-      console.log(hs);
+
       hs = hs.join();
       var $heads = $content.find(hs);
       if ($heads.length === 0) {
+        $autoc.parent('.fddocs-autoc-wrap').hide();
         return;
       }
       var toc = "";
