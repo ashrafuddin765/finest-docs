@@ -32,4 +32,4 @@ function fmc_options_scripts(){
 	wp_add_inline_style( 'fddocs-quick-view', $fmc_dynamic_css );
 
 }
-// add_action( 'wp_enqueue_scripts', 'fmc_options_scripts', 5 );
+add_action( 'wp_enqueue_scripts', 'fmc_options_scripts', 5 );
