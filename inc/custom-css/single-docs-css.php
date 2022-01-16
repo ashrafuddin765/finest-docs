@@ -51,7 +51,7 @@
     // social share
     $social_title_color = get_theme_mod( 'social_title_color', '#3a3a3a' );
     $social_title_font_size = get_theme_mod( 'social_title_font_size', '18px' );
-    $social_title_gap = get_theme_mod( 'social_title_gap', '15px' );
+    $social_title_gap = get_theme_mod( 'social_title_gap', '0px' );
     $icon_width_height = get_theme_mod( 'icon_width_height', '35px' );
     
     //cta title 

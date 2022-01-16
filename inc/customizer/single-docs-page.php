@@ -1046,7 +1046,7 @@ Kirki::add_field( 'docs_panel', [
     'settings'        => 'social_title_gap',
     'label'           => esc_html__( 'Title Gap', 'finest-docs' ),
     'section'         => 'single_page',
-    'default'         => 15,
+    'default'         => 0,
     'choices'         => [
         'min'  => 0,
         'max'  => 100,
