@@ -1,5 +1,6 @@
 <?php  
 $layout = get_theme_mod( 'docs_category_layout', 'layout-01' );
+$icon_pos = get_theme_mod( 'open_icon_position', 'left-bottom' );
 $class = $layout;
 
 
@@ -34,7 +35,7 @@ $children = wp_list_pages( [
 ] );
 ?>
 
-<div class="fddocs-sidebar <?php echo $class; ?>">
+<div class="fddocs-sidebar <?php echo esc_attr( $icon_pos ) ?> <?php echo esc_attr( $class); ?>">
     <nav id="mainnav">
         <div id="menu" class="fddoc-sidebar-trigger"><span class="dashicons dashicons-menu"></span></div>
         <?php if ( $children ) {

@@ -707,7 +707,7 @@ a {
 @media screen and (max-width: 991px) {
     .fddocs-sidebar #mainnav>.fddoc-sidebar-trigger {
         display: inline-flex;
-        position: fixed;
+        /* position: absolute; */
         top: 150px;
         left: 0;
         background-color: #fff;
@@ -1733,6 +1733,24 @@ ul.fddocs-related-articles li:not(:last-child) {
         bottom: 30px;
         left: 18px;
     }
-
-
+    .fddocs-sidebar.left-top {
+        top: 150px;
+    }
+    .fddocs-sidebar.right-top {
+        top: 150px;
+        left: 88%;
+    }
+    .fddocs-sidebar.right-bottom {
+        left: 88%;
+        bottom: 35px;
+    }
+    .fddocs-sidebar.left-vertical-center {
+        top: 50%;
+        left: 10px;
+    }
+    .fddocs-sidebar.right-vertical-center {
+        top: 50%;
+        left: 88%;
+       
+    }
 }

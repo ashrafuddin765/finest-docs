@@ -312,12 +312,16 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'open_icon_position',
 	'label'       => esc_html__( 'Open Icon Position', 'finest-docs' ),
 	'section'     => 'doc_sidebar',
-	'default'     => 'left',
+	'default'     => 'left-bottom',
 	'priority'    => 10,
 	'multiple'    => 1,
 	'choices'     => [
-		'left' => esc_html__( 'Left', 'finest-docs' ),
-		'right' => esc_html__( 'Right', 'finest-docs' ),
+		'left-top' => esc_html__( 'Left Top', 'finest-docs' ),
+		'left-bottom' => esc_html__( 'Left Bottom', 'finest-docs' ),
+		'right-top' => esc_html__( 'Right Top', 'finest-docs' ),
+		'right-bottom' => esc_html__( 'Right Bottom', 'finest-docs' ),
+		'left-vertical-center' => esc_html__( 'Left vertical Center', 'finest-docs' ),
+		'right-vertical-center' => esc_html__( 'Right vertical Center', 'finest-docs' ),
 	],
 ] );
 
