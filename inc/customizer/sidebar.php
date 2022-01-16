@@ -68,7 +68,6 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'section_font_size',
 	'label'       => esc_html__( 'Font Size', 'finest-docs' ),
 	'section'     => 'doc_sidebar',
-	'default'     => 18,
 	'choices'     => [
 		'min'  => 0,
 		'max'  => 100, 
@@ -81,6 +80,7 @@ Kirki::add_field( 'docs_panel', [
 			'function' => 'css',
 			'property' => 'font-size',
 			'units'    => 'px',
+			'suffix' => '!important',
 		],
 	]
 ] );
@@ -90,7 +90,6 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'single_category_color',
 	'label'       => __( 'Title Color', 'finest-docs' ),
 	'section'     => 'doc_sidebar',
-	'default'     => '#000000',
 	'choices'     => [
 		'alpha' => true,
 	],
@@ -100,7 +99,7 @@ Kirki::add_field( 'docs_panel', [
 			'element'  => '.fddocs-sidebar ul li a',
 			'function' => 'css',
 			'property' => 'color',
-			
+			'suffix' => '!important',
 		],
 	]
 ] );
@@ -120,6 +119,7 @@ Kirki::add_field( 'docs_panel', [
 			'element'  => '.fddocs-sidebar ul li a:hover',
 			'function' => 'css',
 			'property' => 'color',
+			'suffix' => '!important',
 		],
 	]
 ] );
@@ -130,7 +130,6 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'section_margin_bottom',
 	'label'       => esc_html__( 'Section Margin Bottom', 'finest-docs' ),
 	'section'     => 'doc_sidebar',
-	'default'     => 15,
 	'choices'     => [
 		'min'  => 0,
 		'max'  => 100, 
@@ -154,7 +153,6 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'subcate_font_size',
 	'label'       => esc_html__( 'Article Font Size', 'finest-docs' ),
 	'section'     => 'doc_sidebar',
-	'default'     => 14,
 	'choices'     => [
 		'min'  => 0,
 		'max'  => 100,
@@ -167,6 +165,7 @@ Kirki::add_field( 'docs_panel', [
 			'function' => 'css',
 			'property' => 'font-size',
 			'units'    => 'px',
+			'suffix' => '!important',
 		],
 	]
 ] );
@@ -176,7 +175,6 @@ Kirki::add_field( 'docs_panel', [
 	'settings'    => 'sub_single_category_color',
 	'label'       => __( 'Article Color', 'finest-docs' ),
 	'section'     => 'doc_sidebar',
-	'default'     => 'color: rgba(0, 0, 0, 0.7)',
 	'choices'     => [
 		'alpha' => true,
 	],
@@ -186,6 +184,7 @@ Kirki::add_field( 'docs_panel', [
 			'element'  => '.fddocs-sidebar ul li ul.children li a',
 			'function' => 'css',
 			'property' => 'color',
+			'suffix' => '!important',
 		],
 	]
 ] );
@@ -205,6 +204,7 @@ Kirki::add_field( 'docs_panel', [
 			'element'  => '.fddocs-sidebar ul li ul.children li a:hover',
 			'function' => 'css',
 			'property' => 'color',
+			'suffix' => '!important',
 		],
 	]
 ] );
