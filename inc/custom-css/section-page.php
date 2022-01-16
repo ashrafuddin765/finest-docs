@@ -40,7 +40,7 @@
 
     // section description
     $head_sec_desc_color = get_theme_mod( 'head_desc_color', '#ffffff' );
-    $head_sec_desc_size = get_theme_mod( 'sechead_title_font_size', '42px' );
+    $head_sec_desc_size = get_theme_mod( 'sechead_desc_font_size', '18px' );
     $head_desc_gap = get_theme_mod( 'sechead_title_gap', '20px' );
 
     if ( $head_sec_desc_color) {

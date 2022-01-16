@@ -74,7 +74,4 @@
                 </div>
         <?php } ?>
     </article><!-- #post-## -->
-    <div class="fddocs-autoc-wrap <?php echo $class; ?>" >
-       <div class="autoc" data-stopat='h2' data-offset='1'></div>
-    </div>
 </div><!-- .fddocs-single-content -->

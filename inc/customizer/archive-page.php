@@ -844,7 +844,6 @@ Kirki::add_field( 'docs_panel', [
 			'element'  => '.fddocs-site-main .docs-title h1',
 			'function' => 'css',
 			'property' => 'color',
-			'units'    => 'px',
 		],
 	],
 	'active_callback'  => [

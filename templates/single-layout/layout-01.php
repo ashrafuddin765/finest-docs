@@ -51,7 +51,7 @@
        <div class="fdocs-ctn">
             <div class="footer-area">
                 <div class="footer-content">
-                    <h3><?php echo esc_html(  $cta_title ) ?> </h3>
+                    <h3><?php echo esc_html( $cta_title ) ?> </h3>
                     <p><?php echo esc_html( $cta_description ); ?></p>
                 </div>
                 <div class="footer-button fdocs-cta">

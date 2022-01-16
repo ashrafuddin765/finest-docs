@@ -60,7 +60,7 @@ body.fddocs-body {
 
 .fddocs-single-wrap article {
     padding: 0 0 0 45px;
-    width: 75%;
+    /* width: 75%; */
     orphans: 1;
 }
 
@@ -608,9 +608,9 @@ a {
     width: 32%;
 }
 
-.fddoc-single-layout-02 .fddocs-single-wrap article {
-    width: 68%;
-}
+/* .fddoc-single-layout-02 .fddocs-single-wrap article {
+    width: 75%;
+} */
 
 /* social share */
 
@@ -919,7 +919,6 @@ a {
 .help-center a {
     display: inline-block;
     padding: 16px;
-    line-height: 50px;
     background: #161617;
     border-radius: 5px;
     font-style: normal;
