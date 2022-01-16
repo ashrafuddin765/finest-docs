@@ -82,13 +82,13 @@ Kirki::add_field( 'docs_panel', [
 	'choices'     => [
 		'alpha' => true,
 	],
-	'transport' => 'postMessage',
-	'js_vars'   => [
+	'transport'       => 'auto',
+	'output' =>[
 		[
 			'element'  => '.section-title h1',
-			'function' => 'css',
 			'property' => 'color',
 		],
+		
 	],
 	'active_callback'  => [
 		[
@@ -166,13 +166,12 @@ Kirki::add_field( 'docs_panel', [
 	'choices'     => [
 		'alpha' => true,
 	],
-	'transport' => 'postMessage',
-	'js_vars'   => [
+	'output' =>[
 		[
 			'element'  => '.section-desc p',
-			'function' => 'css',
 			'property' => 'color',
 		],
+		
 	],
 	'active_callback'  => [
 		[

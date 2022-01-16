@@ -93,7 +93,7 @@ Kirki::add_field( 'docs_panel', [
 
 Kirki::add_field( 'docs_panel', [
 	'type'        => 'custom',
-	'settings'    => 'header_top',
+	'settings'    => 'doc_header_top',
 	'section'     => 'docs_page',
 		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Doc Header', 'fddocs-mini-cart' ) . '</h3>',
 	'priority'    => 10,
@@ -110,7 +110,7 @@ Kirki::add_field( 'docs_panel', [
 	'type'        => 'color',
 	'settings'    => 'doc_head_title_color',
 	'label'       => __( 'Title Color', 'finest-docs' ),
-	'section'     => 'docs_archive',
+	'section'     => 'docs_page',
 	'default'     => '#161617',
 	'choices'     => [
 		'alpha' => true,
@@ -136,7 +136,7 @@ Kirki::add_field( 'docs_panel', [
     'type'            => 'slider',
     'settings'        => 'doc_title_font_size',
     'label'           => esc_html__( 'Title Font Size', 'finest-docs' ),
-    'section'         => 'docs_archive',
+    'section'         => 'docs_page',
     'default'         => 42,
     'choices'         => [
         'min'  => 0,
@@ -165,7 +165,7 @@ Kirki::add_field( 'docs_panel', [
     'type'            => 'slider',
     'settings'        => 'doc_sec_title_gap',
     'label'           => esc_html__( 'Title Gap', 'finest-docs' ),
-    'section'         => 'docs_archive',
+    'section'         => 'docs_page',
     'default'         => 15,
     'choices'         => [
         'min'  => 0,
@@ -194,7 +194,7 @@ Kirki::add_field( 'docs_panel', [
 	'type'        => 'color',
 	'settings'    => 'doc_head_desc_color',
 	'label'       => __( 'Description Color', 'finest-docs' ),
-	'section'     => 'docs_archive',
+	'section'     => 'docs_page',
 	'default'     => '#161617',
 	'choices'     => [
 		'alpha' => true,
@@ -220,7 +220,7 @@ Kirki::add_field( 'docs_panel', [
     'type'            => 'slider',
     'settings'        => 'doc_desc_font_size',
     'label'           => esc_html__( 'Description Font Size', 'finest-docs' ),
-    'section'         => 'docs_archive',
+    'section'         => 'docs_page',
     'default'         => 18,
     'choices'         => [
         'min'  => 0,
