@@ -414,7 +414,7 @@ function fddoc_update_exxisting_doc_type(){
 
 function fddocs_redirec_section_to_article(){
     global $post;
-    if($post->ID && is_single(  )){
+    if(  $post && $post->ID && is_single()){
 
         $first_article_id =  fd_get_posts_children($post->ID) ? fd_get_posts_children($post->ID) : [];
         $first_article_id = array_reverse($first_article_id);

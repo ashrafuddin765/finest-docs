@@ -5,15 +5,15 @@
     $sidebarpadding = is_array($sidebar_padding ) ?  implode(' ', $sidebar_padding) : '';
 
     $sidebar_radius = get_theme_mod( 'sidebar_border_radius', '0px' );
-    $category_font_size = get_theme_mod( 'category_font_size', '14px' );
-    $single_category_color = get_theme_mod( 'single_category_color', '#000000' );
+    $category_font_size = get_theme_mod( 'category_font_size', ' ' );
+    $single_category_color = get_theme_mod( 'single_category_color', ' ' );
     $single_category_hover_color = get_theme_mod( 'single_category_hover_color', '#000000' );
     $single_category_margin = get_theme_mod( 'single_category_margin' ) != ' ' ? get_theme_mod( 'single_category_margin' ) : '' ;
     $singlemargin = is_array($single_category_margin ) ?  implode(' ', $single_category_margin) : '';
     
     // subcategory
-    $subcate_font_size = get_theme_mod( 'subcate_font_size', '16px' );
-    $sub_single_category_color = get_theme_mod( 'sub_single_category_color', 'color: rgba(0, 0, 0, 0.7)' );
+    $subcate_font_size = get_theme_mod( 'subcate_font_size', ' ' );
+    $sub_single_category_color = get_theme_mod( 'sub_single_category_color', ' ' );
     $single_category_hover_color = get_theme_mod( 'sub_category_hover_color', '#000000' );
 
     // icon
@@ -63,15 +63,15 @@
         $fmc_dynamic_css .= "\n";
     }
     if( $single_category_color ){
-        $fmc_dynamic_css .= '.fddocs-sidebar ul li a {color: ' . esc_attr( $single_category_color ) . ' } ';
+        $fmc_dynamic_css .= '.fddocs-sidebar ul li a {color: ' . esc_attr( $single_category_color ) . '!important } ';
         $fmc_dynamic_css .= "\n";
     }
     if( $single_category_hover_color ){
-        $fmc_dynamic_css .= '.fddocs-sidebar ul li a:hover {color: ' . esc_attr( $single_category_hover_color ) . ' } ';
+        $fmc_dynamic_css .= '.fddocs-sidebar ul li a:hover {color: ' . esc_attr( $single_category_hover_color ) . '!important } ';
         $fmc_dynamic_css .= "\n";
     }
     if( $section_font_size ){
-        $fmc_dynamic_css .= '.fddocs-sidebar ul li a {font-size: ' . esc_attr( $section_font_size ) . ' } ';
+        $fmc_dynamic_css .= '.fddocs-sidebar ul li a {font-size: ' . esc_attr( $section_font_size ) . 'px !important } ';
         $fmc_dynamic_css .= "\n";
     }
     if( $singlemargin ){
@@ -81,15 +81,15 @@
     // subcategory
 
     if( $subcate_font_size ){
-        $fmc_dynamic_css .= '.fddocs-sidebar ul li ul.children li a {font-size: ' . esc_attr( $subcate_font_size ) . 'px } ';
+        $fmc_dynamic_css .= '.fddocs-sidebar ul li ul.children li a {font-size: ' . esc_attr( $subcate_font_size ) . 'px !important } ';
         $fmc_dynamic_css .= "\n";
     }
     if( $sub_single_category_color ){
-        $fmc_dynamic_css .= '.fddocs-sidebar ul li ul.children li a {color: ' . esc_attr( $sub_single_category_color ) . ' } ';
+        $fmc_dynamic_css .= '.fddocs-sidebar ul li ul.children li a {color: ' . esc_attr( $sub_single_category_color ) . '!important } ';
         $fmc_dynamic_css .= "\n";
     }
     if( $single_category_hover_color ){
-        $fmc_dynamic_css .= '.fddocs-sidebar ul li ul.children li a:hover {color: ' . esc_attr( $single_category_hover_color ) . ' } ';
+        $fmc_dynamic_css .= '.fddocs-sidebar ul li ul.children li a:hover {color: ' . esc_attr( $single_category_hover_color ) . '!important } ';
         $fmc_dynamic_css .= "\n";
     }
     
