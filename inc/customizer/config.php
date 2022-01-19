@@ -2,7 +2,7 @@
 
 if (function_exists('kirki')) {
 
-	Kirki::add_panel( 'docs_panel', array(
+	Kirki::add_panel( 'fddocs_panel', array(
 	    'priority'    => 10,
 	    'title'       => esc_html__( 'Finest Docs', 'fddocs-mini-cart' ),
 	) );

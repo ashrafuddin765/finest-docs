@@ -217,6 +217,15 @@ function fd_duplicator( $post_id ) {
 
 }
 
+function fddocs_get_option($opt_name, $default = false){
+    $fddocs_options = get_option( 'finestdocs_settings', 0 );
+
+    if(isset($fddocs_options[$opt_name])){
+        return $fddocs_options[$opt_name];
+    }
+
+    return $default;
+}
 // body class added
 
 function fddocs_add_body_class( $classes ) {
@@ -262,7 +271,7 @@ add_action( 'pre_get_posts', 'fddocs_search_query' );
 add_filter( 'template_include', 'wpa3396_page_template' );
 function wpa3396_page_template( $page_template ) {
     global $post;
-    $doc_page = get_option( 'fddocs_documentation_page', 0 );
+    $doc_page = fddocs_get_option( 'select_doc_homepage', 0);
     if ( is_search() && 'docs' == get_query_var( 'post_type' ) ) {
         $page_template = FINEST_DOCS_DIR . 'templates/search.php';
     }
@@ -280,6 +289,7 @@ function wpa3396_page_template( $page_template ) {
 
     return $page_template;
 }
+
 
 /**
  * Add "Custom" template to page attirbute template section.

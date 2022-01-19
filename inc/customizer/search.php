@@ -1,11 +1,11 @@
 <?php
 Kirki::add_section( 'docs_serach', array(
 	'title'          => esc_html__( 'Search', 'finest-docs' ),
-	'panel'          => 'docs_panel',
+	'panel'          => 'fddocs_panel',
 	'priority'       => 160,
 ) );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'search_width',
 	'label'       => esc_html__( 'Search Width', 'finest-docs' ),
@@ -27,7 +27,7 @@ Kirki::add_field( 'docs_panel', [
 	],
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'search_height',
 	'label'       => esc_html__( 'Search Height', 'finest-docs' ),
@@ -49,7 +49,7 @@ Kirki::add_field( 'docs_panel', [
 	],
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'search_filed_color',
 	'label'       => __( 'Search Text Color', 'finest-docs' ),
@@ -69,7 +69,7 @@ Kirki::add_field( 'docs_panel', [
 	],
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'search_field_size',
 	'label'       => esc_html__( 'Search Field Font size', 'finest-docs' ),
@@ -91,7 +91,7 @@ Kirki::add_field( 'docs_panel', [
 	],
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'search_bag_color',
 	'label'       => __( 'Background Color', 'finest-docs' ),
@@ -111,7 +111,7 @@ Kirki::add_field( 'docs_panel', [
 	],
 ] );
 
-Kirki::add_field( 'docs_panel', array(
+Kirki::add_field( 'fddocs_panel', array(
 	'type'        => 'dimensions',
 	'settings'    => 'search_border_setting',
 	'label'       => esc_attr__( 'Search Border Width', 'textdomain' ),
@@ -132,7 +132,7 @@ Kirki::add_field( 'docs_panel', array(
 
 // border type
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'select',
 	'settings'    => 'search_border_type',
 	'label'       => esc_html__( 'Border Type', 'kirki' ),
@@ -167,7 +167,7 @@ Kirki::add_field( 'docs_panel', [
 
 // border-color
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'search_border_color',
 	'label'       => __( 'Border Color', 'finest-docs' ),
@@ -187,7 +187,7 @@ Kirki::add_field( 'docs_panel', [
     
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'search_text_padding',
 	'label'       => esc_html__( 'Padding left', 'finest-docs' ),
@@ -209,7 +209,7 @@ Kirki::add_field( 'docs_panel', [
 	],
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'search_border_radius',
 	'label'       => esc_html__( 'Border Radius', 'finest-docs' ),

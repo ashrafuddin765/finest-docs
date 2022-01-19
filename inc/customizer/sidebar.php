@@ -1,12 +1,12 @@
 <?php
 Kirki::add_section( 'doc_sidebar', array(
 	'title'          => esc_html__( 'Sidebar Option', 'finest-docs' ),
-	'panel'          => 'docs_panel',
+	'panel'          => 'fddocs_panel',
 	'priority'       => 160,
 ) );
 
 // background color
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'sidebar_backgound',
 	'label'       => __( 'Background Color', 'finest-docs' ),
@@ -26,7 +26,7 @@ Kirki::add_field( 'docs_panel', [
 ] );
 // padding
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'dimensions',
 	'settings'    => 'sidebar_padding',
 	'label'       => esc_html__( 'Padding', 'finest-docs' ),
@@ -41,7 +41,7 @@ Kirki::add_field( 'docs_panel', [
 ] );
 
 // border_radius
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'sidebar_border_radius',
 	'label'       => esc_html__( 'Radius', 'finest-docs' ),
@@ -63,7 +63,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'section_font_size',
 	'label'       => esc_html__( 'Font Size', 'finest-docs' ),
@@ -85,7 +85,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'single_category_color',
 	'label'       => __( 'Title Color', 'finest-docs' ),
@@ -105,7 +105,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'single_category_hover_color',
 	'label'       => __( 'Title Hover Color', 'finest-docs' ),
@@ -125,7 +125,7 @@ Kirki::add_field( 'docs_panel', [
 ] );
 
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'section_margin_bottom',
 	'label'       => esc_html__( 'Section Margin Bottom', 'finest-docs' ),
@@ -149,7 +149,7 @@ Kirki::add_field( 'docs_panel', [
 
 // subcategory
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'subcate_font_size',
 	'label'       => esc_html__( 'Article Font Size', 'finest-docs' ),
@@ -171,7 +171,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'sub_single_category_color',
 	'label'       => __( 'Article Color', 'finest-docs' ),
@@ -190,7 +190,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'sub_category_hover_color',
 	'label'       => __( 'Article Hover Color', 'finest-docs' ),
@@ -209,7 +209,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'custom',
 	'settings'    => 'icon_box',
 	'section'     => 'doc_sidebar',
@@ -217,7 +217,7 @@ Kirki::add_field( 'docs_panel', [
 	'priority'    => 10,
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'sidebar_icon_size',
 	'label'       => esc_html__( 'Icon Size', 'finest-docs' ),
@@ -257,7 +257,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'sidebar_icon_color',
 	'label'       => __( 'Icon Color', 'finest-docs' ),
@@ -276,7 +276,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'sidebar_icon_gap',
 	'label'       => esc_html__( 'Icon Gap', 'finest-docs' ),
@@ -299,7 +299,7 @@ Kirki::add_field( 'docs_panel', [
 ] );
 
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'custom',
 	'settings'    => 'responsive_menu_box',
 	'section'     => 'doc_sidebar',
@@ -307,7 +307,7 @@ Kirki::add_field( 'docs_panel', [
 	'priority'    => 10,
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'select',
 	'settings'    => 'open_icon_position',
 	'label'       => esc_html__( 'Open Icon Position', 'finest-docs' ),
@@ -325,7 +325,7 @@ Kirki::add_field( 'docs_panel', [
 	],
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'open_icon_color',
 	'label'       => __( 'Open Icon Color', 'finest-docs' ),
@@ -344,7 +344,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'open_icon_size',
 	'label'       => esc_html__( 'Open Icon Size', 'finest-docs' ),
@@ -366,7 +366,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'close_icon_color',
 	'label'       => __( 'Close Icon Color', 'finest-docs' ),
@@ -385,7 +385,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'close_icon_size',
 	'label'       => esc_html__( 'Close Icon Size', 'finest-docs' ),

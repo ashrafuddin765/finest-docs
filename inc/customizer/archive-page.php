@@ -1,11 +1,11 @@
 <?php
 Kirki::add_section( 'docs_archive', array(
 	'title'          => esc_html__( 'Section Page', 'finest-docs' ),
-	'panel'          => 'docs_panel',
+	'panel'          => 'fddocs_panel',
 	'priority'       => 160,
 ) );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'radio-buttonset',
 	'settings'    => 'section_design_layout',
 	'label'       => esc_html__( ' ', 'finest-docs' ),
@@ -18,7 +18,7 @@ Kirki::add_field( 'docs_panel', [
 	],
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'radio-image',
 	'settings'    => 'section_select_layout',
 	'label'       => esc_html__( 'Section Doc Layout', 'finest-docs' ),
@@ -42,7 +42,7 @@ Kirki::add_field( 'docs_panel', [
 ]);
 
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'     => 'textarea',
 	'settings' => 'section_description',
 	'label'    => esc_html__( 'Section Description', 'finest-docs' ),
@@ -58,7 +58,7 @@ Kirki::add_field( 'docs_panel', [
     ],
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'custom',
 	'settings'    => 'header_top',
 	'section'     => 'docs_archive',
@@ -73,7 +73,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'head_sec_title_color',
 	'label'       => __( 'Title Color', 'finest-docs' ),
@@ -99,7 +99,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
     'type'            => 'slider',
     'settings'        => 'sechead_title_font_size',
     'label'           => esc_html__( 'Title Font Size', 'finest-docs' ),
@@ -128,7 +128,7 @@ Kirki::add_field( 'docs_panel', [
     ],
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
     'type'            => 'slider',
     'settings'        => 'sechead_title_gap',
     'label'           => esc_html__( 'Title Gap', 'finest-docs' ),
@@ -157,7 +157,7 @@ Kirki::add_field( 'docs_panel', [
     ],
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'head_desc_color',
 	'label'       => __( 'Description Color', 'finest-docs' ),
@@ -182,7 +182,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
     'type'            => 'slider',
     'settings'        => 'sechead_desc_font_size',
     'label'           => esc_html__( 'Description Font Size', 'finest-docs' ),
@@ -211,7 +211,7 @@ Kirki::add_field( 'docs_panel', [
     ],
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
     'type'            => 'slider',
     'settings'        => 'sechead_desc_gap',
     'label'           => esc_html__( 'Description Gap', 'finest-docs' ),
@@ -240,7 +240,7 @@ Kirki::add_field( 'docs_panel', [
     ],
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'custom',
 	'settings'    => 'section_area',
 	'section'     => 'docs_archive',
@@ -256,7 +256,7 @@ Kirki::add_field( 'docs_panel', [
 ] );
 
 // background color
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'section_area_backgound',
 	'label'       => __( 'Content Area Background Color', 'finest-docs' ),
@@ -284,7 +284,7 @@ Kirki::add_field( 'docs_panel', [
 
 // border
 
-Kirki::add_field( 'docs_panel', array(
+Kirki::add_field( 'fddocs_panel', array(
 	'type'        => 'dimensions',
 	'settings'    => 'section_border_setting',
 	'label'       => esc_attr__( 'Content area Border Width', 'textdomain' ),
@@ -312,7 +312,7 @@ Kirki::add_field( 'docs_panel', array(
 
 // border type
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'select',
 	'settings'    => 'section_border_type',
 	'label'       => esc_html__( 'Content area Border Type', 'kirki' ),
@@ -354,7 +354,7 @@ Kirki::add_field( 'docs_panel', [
 
 // border-color
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'section_border_color',
 	'label'       => __( 'Border Color', 'finest-docs' ),
@@ -381,7 +381,7 @@ Kirki::add_field( 'docs_panel', [
 ] );
 
 // padding
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'dimensions',
 	'settings'    => 'archive_area_padding',
 	'label'       => esc_html__( 'Section Padding', 'finest-docs' ),
@@ -403,7 +403,7 @@ Kirki::add_field( 'docs_panel', [
 
 // radius
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'section_border_radius',
 	'label'       => esc_html__( 'Content Border Radius', 'finest-docs' ),
@@ -434,7 +434,7 @@ Kirki::add_field( 'docs_panel', [
 
 // section-thumbnail
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'custom',
 	'settings'    => 'section_top',
 	'section'     => 'docs_archive',
@@ -449,7 +449,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'section_thumbnail_width',
 	'label'       => esc_html__( 'Width', 'finest-docs' ),
@@ -478,7 +478,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'section_thumbnail_height',
 	'label'       => esc_html__( 'Height', 'finest-docs' ),
@@ -507,7 +507,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'thum_area_backgound',
 	'label'       => __( 'Background Color', 'finest-docs' ),
@@ -533,7 +533,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'icon_bg_width',
 	'label'       => esc_html__( 'Icon background Width', 'finest-docs' ),
@@ -562,7 +562,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'icon_bg_height',
 	'label'       => esc_html__( 'Icon Background Height', 'finest-docs' ),
@@ -591,7 +591,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'icon_area_backgound',
 	'label'       => __( 'Background Color', 'finest-docs' ),
@@ -617,7 +617,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', array(
+Kirki::add_field( 'fddocs_panel', array(
 	'type'        => 'dimensions',
 	'settings'    => 'icon_border_setting',
 	'label'       => esc_attr__( 'Border Width', 'textdomain' ),
@@ -644,7 +644,7 @@ Kirki::add_field( 'docs_panel', array(
 ) );
 
 // border type
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'select',
 	'settings'    => 'icob_border_type',
 	'label'       => esc_html__( 'Content area Border Type', 'kirki' ),
@@ -684,7 +684,7 @@ Kirki::add_field( 'docs_panel', [
 ] );
 
 // border-color
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'icon_border_color',
 	'label'       => __( 'Border Color', 'finest-docs' ),
@@ -710,7 +710,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'icon_border_radius',
 	'label'       => esc_html__( 'Border Radius', 'finest-docs' ),
@@ -739,7 +739,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'custom',
 	'settings'    => 'doc_content_top',
 	'section'     => 'docs_archive',
@@ -754,7 +754,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'section_content_bg',
 	'label'       => __( 'Background Color', 'finest-docs' ),
@@ -780,7 +780,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'dimensions',
 	'settings'    => 'doc_sec_content_padding',
 	'label'       => esc_html__( 'Content Padding', 'finest-docs' ),
@@ -800,7 +800,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'archive_title_font_size',
 	'label'       => esc_html__( 'Title Font Size', 'finest-docs' ),
@@ -829,7 +829,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'section_title_color',
 	'label'       => __( 'Title Color', 'finest-docs' ),
@@ -856,7 +856,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'section_title_gap',
 	'label'       => esc_html__( 'Title Gap', 'finest-docs' ),
@@ -885,7 +885,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'archive_desc_font_size',
 	'label'       => esc_html__( 'Description Font size', 'finest-docs' ),
@@ -914,7 +914,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'archive_desc_color',
 	'label'       => __( 'Description Color', 'finest-docs' ),
@@ -941,7 +941,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'description_gap',
 	'label'       => esc_html__( 'Description Gap', 'finest-docs' ),
@@ -970,7 +970,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'custom',
 	'settings'    => 'section_total_count',
 	'section'     => 'docs_archive',
@@ -986,7 +986,7 @@ Kirki::add_field( 'docs_panel', [
 ] );
 
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'total_article_font_size',
 	'label'       => esc_html__( 'Font size', 'finest-docs' ),
@@ -1015,7 +1015,7 @@ Kirki::add_field( 'docs_panel', [
 	]
 ] );
 
-Kirki::add_field( 'docs_panel', [
+Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'article_totle_color',
 	'label'       => __( 'Total article Color', 'finest-docs' ),
