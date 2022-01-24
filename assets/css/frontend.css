@@ -490,8 +490,9 @@ form.search-form.fddocs-search-form button.search-submit {
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
+    width: 18px;
 }
-form.search-form.fddocs-search-form button.search-submit svg path {
+.section-template-02 form.search-form.fddocs-search-form button.search-submit svg path {
     stroke: #fff;
 }
 

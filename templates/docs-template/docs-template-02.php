@@ -20,7 +20,7 @@
                     <?php 
                     printf(
                     '%s %s', 
-                    fddocs_get_totla_article(get_the_ID())   ,
+                    fddocs_get_total_article(get_the_ID())   ,
                     esc_html__( 'Articles in this doc', 'finest-docs' )); 
                     
                 ?> </span>

@@ -38,7 +38,7 @@
             </div>
         </div>
     </div>
-    <?php echo do_shortcode( '[ud]' );?>
+    <?php echo do_shortcode( '[ud per_page="'.fddocs_get_option('docs_posts_per_page', 10).'"]' );?>
 </div>
 </body>
 <?php get_footer(); ?>

@@ -49,7 +49,7 @@ function fddocs_breadcrumbs() {
     $html .= fddocs_get_breadcrumb_item( $args['home'], home_url( '/' ), $breadcrumb_position );
     $html .= $args['delimiter'];
 
-    $docs_home = get_option( 'fddocs_documentation_page' );
+    $docs_home = fddocs_get_option('select_doc_homepage');
 
     if ( $docs_home ) {
         ++$breadcrumb_position;
@@ -305,6 +305,9 @@ function wpse_288589_add_template_to_select( $post_templates, $wp_theme, $post, 
 add_filter( 'theme_page_templates', 'wpse_288589_add_template_to_select', 10, 4 );
 
 function fddocs_feedback_html() {
+    if( ! fddocs_get_option('docs_enable_feedback', true)){
+        return;
+    }
     $previous    = isset( $_COOKIE['fddocs_response'] ) ? explode( ',', $_COOKIE['fddocs_response'] ) : [];
     $is_disabled = in_array( get_the_ID(), $previous ) ? 'disabled' : '';
     ob_start();?>
@@ -342,7 +345,7 @@ function page_layout( $layout ) {
     return $layout;
 }
 
-function fddocs_get_totla_article( $id = '', $in_section = false ) {
+function fddocs_get_total_article( $id = '', $in_section = false ) {
     $id = '' != $id ? $id : get_the_ID();
 
     $args = array(

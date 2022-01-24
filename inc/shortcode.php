@@ -15,16 +15,17 @@ function fddocs_docs_shortcode( $atts ) {
 add_shortcode( 'fddocs-doc-toc', 'fddocs_docs_shortcode' );
 
 function fd_shortcode( $atts ) {
-    $docs = get_theme_mod( 'docs_layout_design', 'docs-template-01' );
-    $section = get_theme_mod( 'section_select_layout', 'section-template-01' );
-
-
+    
+    
     extract( shortcode_atts( array(
         'id'    => '',
         'style' => '01',
         'per_page' => 10
     ), $atts ) );
-
+    
+    $docs = get_theme_mod( 'docs_layout_design', 'docs-template-01' );
+    $section = get_theme_mod( 'section_select_layout', 'section-template-01' );
+    $enable_masonry = fddocs_get_option('docs_enable_masonry', true) ? 'fddocs-masonry' : '';
     $args = array(
         'post_type'      => 'docs',
         'posts_per_page' => $per_page,
@@ -59,14 +60,12 @@ function fd_shortcode( $atts ) {
  
     // the query
     $the_query = new WP_Query( $args );
-    
-
 
     ?>
 
     <div class="fddocs-site-main <?php echo esc_attr( $class) ?>" >
         <div class="fddocs-container" >
-            <div class="row fddocs-masonry" >
+            <div class="row <?php esc_attr( $enable_masonry ) ?>" >
                 <?php if ( $the_query->have_posts() ): ?>
                     <?php while ( $the_query->have_posts() ): $the_query->the_post();
                         $docs_type = get_post_meta( get_the_ID(), 'doc_type', true );
@@ -120,7 +119,7 @@ function fddocs_search_shortcode( $atts ) {
         'id'    => '',
         'style' => '01',
     ), $atts ) );
-
+    $placeholder = fddocs_get_option('docs_search_placeholder', __('Search for articles...', 'placeholder', 'fddocs' ));
     $search_icon = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M14.75 14.75L10.25 10.25M11.75 6.5C11.75 9.39949 9.39949 11.75 6.5 11.75C3.60051 11.75 1.25 9.39949 1.25 6.5C1.25 3.60051 3.60051 1.25 6.5 1.25C9.39949 1.25 11.75 3.60051 11.75 6.5Z" stroke="#161617" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
@@ -141,7 +140,7 @@ function fddocs_search_shortcode( $atts ) {
     $form = '<form role="search" method="get" class="search-form fddocs-search-form" action="' . esc_url( home_url( '/' ) ) . '">
     <div class="fddocs-search-input">
         <span class="screen-reader-text">' . _x( 'Search for:', 'label', 'fddocs' ) . '</span>
-        <input type="search" class="search-field" placeholder="' . esc_attr_x( 'Search for articles...', 'placeholder', 'fddocs' ) . '" value="' . get_search_query() . '" name="s" title="' . esc_attr_x( 'Search for:', 'label', 'fddocs' ) . '" />
+        <input type="search" class="search-field" placeholder="' . $placeholder . '" value="' . get_search_query() . '" name="s" title="' . esc_attr_x( 'Search for:', 'label', 'fddocs' ) . '" />
         <input type="hidden" name="post_type" value="docs" />
         <input type="hidden" name="post_id" value="'.esc_html($id).'" />
         <button class="search-submit" type="submit">'.$search_icon.'</button>

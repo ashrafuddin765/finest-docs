@@ -22,6 +22,7 @@ class Post_Types {
 
 
     public function register_post_type() {
+        $slug = fddocs_get_option('docs_root_slug', 'docs');
         $labels = array(
             'name'               => _x( 'Docs', 'post type general name', 'finest-docs' ),
             'singular_name'      => _x( 'Docs', 'post type singular name', 'finest-docs' ),
@@ -48,7 +49,7 @@ class Post_Types {
             'show_in_admin_bar'  => true,
             'query_var'          => true,
             'menu_icon'          => 'dashicons-format-gallery',
-            'rewrite'            => array( 'slug' => 'docs', 'with_front' => true, 'pages' => true, 'feeds' => true ),
+            'rewrite'            => array( 'slug' => $slug, 'with_front' => true, 'pages' => true, 'feeds' => true ),
             'capability_type'    => 'post',
             'has_archive'        => false,
             'hierarchical'       => true,
