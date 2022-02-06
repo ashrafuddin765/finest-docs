@@ -3,6 +3,8 @@
     <?php fddocs_breadcrumbs(); ?>
     <article id="post-<?php the_ID(); ?>"  >
         <?php the_title( '<h1 class="fddoc-single-title">', '</h1>' ) ?>
+
+<button class="fddoc-print"><span class="dashicons dashicons-printer"></span></button> 
         <div class="fddocs-entry-content" itemprop="articleBody">
 
             <?php

@@ -16,7 +16,6 @@
         $idd = get_the_ID(  );
         $doc_type = get_post_meta( $idd, 'doc_type', true );
         ?>
-
         <?php 
 
              if('article' == $doc_type):

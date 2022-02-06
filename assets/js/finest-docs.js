@@ -5,7 +5,7 @@
     init: function () {
       this.toc();
       $('.fddocs-container, .fddocs-container-fluid').parents('.ast-container').removeClass('ast-container');
-      $('.fddocs-footer-feedback').on('click', 'span', this.feedback);
+      $('.fddocs-footer-feedback').on('click', 'span.like, span.dislike', this.feedback);
       $('ul.fddocs-nav-list .page_item_has_children').append('<span class="toggle-menu dashicons dashicons-arrow-up-alt2"></span>');
       $('ul.fddocs-nav-list .page_item_has_children.current_page_parent').addClass('active');
 
@@ -15,8 +15,8 @@
           // event.preventDefault();
           var self = $(this),
             parent = self.closest('.page_item');
-            parent.siblings('li').removeClass('active');
-            parent.toggleClass('active');
+          parent.siblings('li').removeClass('active');
+          parent.toggleClass('active');
           parent.children('.children').slideToggle(300).parent('li').siblings('li').children('.children').slideUp();
 
         }
@@ -25,15 +25,38 @@
       // doc grid masonry 
       if ($.fn.masonry) {
         $('.fddocs-masonry').masonry({
-            // options
-            itemSelector: '.fddocs-masonry>div',
+          // options
+          itemSelector: '.fddocs-masonry>div',
 
         });
-    }
+
+        $('.fddoc-print').click(function (e) {
+          e.preventDefault();
+
+
+        }, this.docPrint)
+      }
 
 
     },
 
+    docPrint: function () {
+
+      var title = document.querySelector('.fddoc-single-title');
+      var content = document.querySelector('.fddocs-entry-content');
+      var newWin = window.open('', 'Print-Window');
+
+      newWin.document.open();
+
+      newWin.document.write('<html ><body onload="window.print()">' + title.innerHTML + content.innerHTML + '</body></html>');
+
+      newWin.document.close();
+
+      setTimeout(function () {
+        newWin.close();
+      }, 10);
+
+    },
     feedback: function (e) {
       e.preventDefault();
 
@@ -53,7 +76,8 @@
       $.post(fddocs_vars.ajaxurl, data, function (resp) {
 
         wrap.addClass('disabled');
-        // wrap.html(resp.data);
+        wrap.find('.feedback-text').html(resp.data);
+        wrap.find('span.like,span.dislike').remove();
         is_active = false;
       });
     },

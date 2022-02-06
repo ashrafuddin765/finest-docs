@@ -26,6 +26,7 @@ function fd_shortcode( $atts ) {
     $docs = get_theme_mod( 'docs_layout_design', 'docs-template-01' );
     $section = get_theme_mod( 'section_select_layout', 'section-template-01' );
     $enable_masonry = fddocs_get_option('docs_enable_masonry', true) ? 'fddocs-masonry' : '';
+
     $args = array(
         'post_type'      => 'docs',
         'posts_per_page' => $per_page,
@@ -65,7 +66,7 @@ function fd_shortcode( $atts ) {
 
     <div class="fddocs-site-main <?php echo esc_attr( $class) ?>" >
         <div class="fddocs-container" >
-            <div class="row <?php esc_attr( $enable_masonry ) ?>" >
+            <div class="row <?php echo esc_attr( $enable_masonry ) ?>" >
                 <?php if ( $the_query->have_posts() ): ?>
                     <?php while ( $the_query->have_posts() ): $the_query->the_post();
                         $docs_type = get_post_meta( get_the_ID(), 'doc_type', true );
@@ -195,6 +196,54 @@ add_shortcode('fddocs_social_share', 'fddocs_social_share');
 
 
 
+
+function fddocs_instant_answer( $atts ) {
+    
+    
+    extract( shortcode_atts( array(
+        'per_page' => 10
+    ), $atts ) );
+
+
+    $args = array(
+        'post_type'      => 'docs',
+        'posts_per_page' => $per_page,
+        'paged' => get_query_var('paged') ? get_query_var('paged') : 1
+    );
+
+    $args['meta_query'] = array(
+        'relation' => 'AND',
+        array(
+            'key'     => 'doc_type',
+            'value'   => 'article',
+            'compare' => '=',
+            'type'    => 'CHAR',
+        ),
+    );
+ 
+    // the query
+    $the_query = new WP_Query( $args );
+
+    ?>
+
+    <div class="fddocs-ia-main " >
+   
+                <?php if ( $the_query->have_posts() ): ?>
+                <?php while ( $the_query->have_posts() ): $the_query->the_post();?>
+                    <?php the_title( '<h3>', '</h3>' ) ?>
+                    <?php echo '<p>'.get_the_excerpt(  ). '</p>'; ?>
+
+                <?php endwhile;?>
+                <?php wp_reset_query(  );?>
+
+                <?php else: ?>
+                <p><?php _e( 'Sorry, no posts matched your criteria.' );?></p>
+                <?php endif;?>
+       
+    </div>
+    <?Php
+}
+add_shortcode( 'ud_ia', 'fddocs_instant_answer' );
 
 
 ?>

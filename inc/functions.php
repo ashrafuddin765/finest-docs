@@ -268,13 +268,14 @@ function fddocs_search_query( $query ) {
 }
 add_action( 'pre_get_posts', 'fddocs_search_query' );
 
-add_filter( 'template_include', 'wpa3396_page_template' );
-function wpa3396_page_template( $page_template ) {
+add_filter( 'template_include', 'fddocs_page_template' );
+function fddocs_page_template( $page_template ) {
     global $post;
     $doc_page = fddocs_get_option( 'select_doc_homepage', 0);
     if ( is_search() && 'docs' == get_query_var( 'post_type' ) ) {
         $page_template = FINEST_DOCS_DIR . 'templates/search.php';
     }
+;
 
 
     if ( $doc_page == get_the_ID(  ) ) {
@@ -313,6 +314,9 @@ function fddocs_feedback_html() {
     ob_start();?>
 <div class="fddocs-footer-feedback <?php echo esc_attr( $is_disabled ) ?>">
 
+    <?php if('disabled' == $is_disabled): ?>
+        <span class="feedback-text"><?php esc_html_e( 'Your feedback has been taken already.', 'fddocs' )?></span>
+    <?php else: ?>
     <span class="feedback-text"><?php esc_html_e( 'Rate this article', 'fddocs' )?></span>
 
     <span class="like" data-type="like" data-id="<?php the_ID()?>"><svg width="14" height="13" viewBox="0 0 14 13"
@@ -330,6 +334,7 @@ function fddocs_feedback_html() {
         </svg>
 
     </span>
+    <?php endif; ?>
 
 </div>
 <?php
@@ -438,9 +443,12 @@ function fddocs_related_article($parent_id){
 
     $args = array(
         'post_type'      => 'docs',
-        'posts_per_page' => -1,
+        'posts_per_page' => 4,
         'post__not_in' => [get_the_ID(  )],
-        'post_parent' => $parent_id
+        'post_parent' => $parent_id,
+        'orderby' => 'menu_order',
+        'order' => 'ASC'
+        
     );
 
     // the query
@@ -476,12 +484,24 @@ function fddocs_related_article($parent_id){
 
 function fddocs_post_navigation($id){
     $parent_id = wp_get_post_parent_id( $id );
-    $pagelist = get_pages("post_type=docs&child_of=".$parent_id."&parent=".$parent_id."");
+    $argc = [
+        'post_type' => 'docs',
+        'posts_per_page' => -1,
+        'child_of' => $parent_id,
+        // 'post_parent' => $parent_id,
+        'sort_column' => 'menu_order',
+        'orderby' => 'ASC'
+
+    ];
+    $pagelist = get_pages($argc);
+    // $pagelist = get_pages("post_type=docs&child_of=".$parent_id."&parent=".$parent_id."&sort_column=menu_order");
+
     $pages = array();
     foreach ($pagelist as $page) {
        $pages[] += $page->ID;
     }
     
+    // var_dump($pagelist);
     $current = array_search($id, $pages);
     $prevID = array_key_exists($current-1, $pages) ? $pages[$current-1] : false;
     $nextID = array_key_exists($current+1, $pages) ? $pages[$current+1] : false;

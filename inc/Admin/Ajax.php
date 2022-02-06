@@ -10,6 +10,7 @@ class Ajax {
      */
     public function __construct() {
         add_action( 'wp_ajax_fddocs_create_doc', [$this, 'create_doc'] );
+        add_action( 'wp_ajax_fddocs_quick_edit', [$this, 'quick_edit'] );
         add_action( 'wp_ajax_fddocs_duplicate_doc', [$this, 'duplicate_doc'] );
         add_action( 'wp_ajax_fddocs_remove_doc', [$this, 'remove_doc'] );
         add_action( 'wp_ajax_fddocs_admin_get_docs', [$this, 'get_docs'] );
@@ -63,11 +64,13 @@ class Ajax {
             wp_send_json_error();
         }
 
+        $new_post_obj = get_post( $post_id );
         wp_send_json_success( [
             'post'  => [
                 'id'     => $post_id,
                 'title'  => stripslashes( $title ),
                 'status' => $status,
+                'slug' => $new_post_obj->post_name,
                 'caps'   => [
                     'edit'   => current_user_can( $post_type_object->cap->edit_post, $post_id ),
                     'delete' => current_user_can( $post_type_object->cap->delete_post, $post_id ),
@@ -75,6 +78,46 @@ class Ajax {
             ],
             'child' => [],
         ] );
+    }
+
+    /**
+     * Create a new doc.
+     *
+     * @return void
+     */
+    public function quick_edit() {
+        check_ajax_referer( 'fddocs-admin-nonce' );
+
+        $title  = isset( $_POST['title'] ) ? trim( sanitize_text_field( $_POST['title'] ) ) : '';
+        $slug = isset( $_POST['slug'] ) ? sanitize_text_field( $_POST['slug'] ) : 'draft';
+        $post_id = isset( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
+
+
+        $post_type_object = get_post_type_object( 'docs' );
+
+        if ( '' === $title ) {
+            return wp_send_json_error();
+        }
+
+        if ( !current_user_can( $post_type_object->cap->publish_posts ) ) {
+          return wp_send_json_error();
+        }
+
+        $updated_post_id = wp_update_post( [
+            'ID' => $post_id,
+            'post_title'  => $title,
+            'post_name'=> $slug,
+            'post_type'   => 'docs',
+        ] );
+
+ 
+
+        if ( is_wp_error( $updated_post_id ) ) {
+            wp_send_json_error();
+        }
+
+
+        wp_send_json_success( );
     }
 
     /**
@@ -224,6 +267,7 @@ class Ajax {
                         'title'  => $doc->post_title,
                         'status' => $doc->post_status,
                         'order'  => $doc->menu_order,
+                        'slug' => $doc->post_name,
                         'caps'   => [
                             'edit'   => current_user_can( $post_type_object->cap->edit_post, $doc->ID ),
                             'delete' => current_user_can( $post_type_object->cap->delete_post, $doc->ID ),

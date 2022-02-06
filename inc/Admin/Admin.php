@@ -14,10 +14,9 @@ class Admin {
             return;
 
         }
-        
 
-        wp_enqueue_script('jquery-ui-core');// enqueue jQuery UI Core
-        wp_enqueue_script('jquery-ui-tabs');// enqueue jQuery UI Tabs
+        wp_enqueue_script( 'jquery-ui-core' ); // enqueue jQuery UI Core
+        wp_enqueue_script( 'jquery-ui-tabs' ); // enqueue jQuery UI Tabs
 
         wp_enqueue_style( 'admin-style', FINEST_DOCS_ASSETS_CSS . 'admin.css' );
 
@@ -31,6 +30,9 @@ class Admin {
             'editurl'             => admin_url( 'post.php?action=edit&post=' ),
             'viewurl'             => home_url( '/?p=' ),
             'enter_doc_title'     => __( 'Enter doc title', 'fddocs' ),
+            'title'               => __( 'Title', 'fddocs' ),
+            'quickedit'           => __( 'Quick Edit', 'fddocs' ),
+            'slug'                => __( 'Slug', 'fddocs' ),
             'write_something'     => __( 'Write something', 'fddocs' ),
             'enter_section_title' => __( 'Enter section title', 'fddocs' ),
             'confirmBtn'          => __( 'OK', 'fddocs' ),

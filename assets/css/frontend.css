@@ -60,7 +60,7 @@ body.fddocs-body {
 
 .fddocs-single-wrap article {
     padding: 0 0 0 45px;
-    /* width: 75%; */
+    width: 75%;
     orphans: 1;
 }
 
@@ -490,9 +490,8 @@ form.search-form.fddocs-search-form button.search-submit {
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    width: 18px;
 }
-.section-template-02 form.search-form.fddocs-search-form button.search-submit svg path {
+form.search-form.fddocs-search-form button.search-submit svg path {
     stroke: #fff;
 }
 
@@ -609,9 +608,9 @@ a {
     width: 32%;
 }
 
-/* .fddoc-single-layout-02 .fddocs-single-wrap article {
-    width: 75%;
-} */
+.fddoc-single-layout-02 .fddocs-single-wrap article {
+    width: 68%;
+}
 
 /* social share */
 
@@ -708,7 +707,7 @@ a {
 @media screen and (max-width: 991px) {
     .fddocs-sidebar #mainnav>.fddoc-sidebar-trigger {
         display: inline-flex;
-        /* position: absolute; */
+        position: fixed;
         top: 150px;
         left: 0;
         background-color: #fff;
@@ -920,6 +919,7 @@ a {
 .help-center a {
     display: inline-block;
     padding: 16px;
+    line-height: 50px;
     background: #161617;
     border-radius: 5px;
     font-style: normal;
@@ -1003,7 +1003,6 @@ a {
 
 .fddocs-site-main .content-area {
     padding: 35px 35px 25px 35px;
-    width: 100%;
 }
 
 .fddocs-site-main .docs-title h1 {
@@ -1734,24 +1733,6 @@ ul.fddocs-related-articles li:not(:last-child) {
         bottom: 30px;
         left: 18px;
     }
-    .fddocs-sidebar.left-top {
-        top: 150px;
-    }
-    .fddocs-sidebar.right-top {
-        top: 150px;
-        left: 88%;
-    }
-    .fddocs-sidebar.right-bottom {
-        left: 88%;
-        bottom: 35px;
-    }
-    .fddocs-sidebar.left-vertical-center {
-        top: 50%;
-        left: 10px;
-    }
-    .fddocs-sidebar.right-vertical-center {
-        top: 50%;
-        left: 88%;
-       
-    }
+
+
 }
