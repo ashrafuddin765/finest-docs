@@ -31,12 +31,29 @@ function fddocsTabs(evt, cityName) {
 }
 
 
+Vue.directive("click-outside", {
+  bind(el, binding, vnode) {
+    el.clickOutsideEvent = (event) => {
+      if (!(el === event.target || el.contains(event.target))) {
+        vnode.context[binding.expression](event);
+      }
+    };
+    document.body.addEventListener("click", el.clickOutsideEvent);
+  },
+  unbind(el) {
+    document.body.removeEventListener("click", el.clickOutsideEvent);
+  },
+});
+
 Vue.directive('sortable', {
   bind: function (el, binding) {
     var $el = jQuery(el);
 
     $el.sortable({
-      // handle: '.fddocs-btn-reorder',
+      items: '> li',
+      connectWith: ".sections",
+
+
       stop: function (event, ui) {
         var ids = [];
 
@@ -54,9 +71,11 @@ Vue.directive('sortable', {
       },
       cursor: 'move',
       // connectWith: ".connectedSortable"
-    });
+    }).disableSelection();;
   },
 });
+
+
 
 new Vue({
   el: '#fddocs-app',
@@ -85,8 +104,12 @@ new Vue({
         dom.find('.no-docs').removeClass('not-loaded');
 
         self.docs = data.data;
+
+
       }
     );
+
+
   },
 
   methods: {
@@ -144,7 +167,6 @@ new Vue({
         },
         success: function (res) {
           // that.docs.unshift(res);
-          console.log(res);
         },
         error: this.onError,
       });
@@ -271,6 +293,62 @@ new Vue({
       });
     },
 
+    quickEdit: function (doc, event) {
+      var parentEvent = event;
+
+      Swal.fire({
+        title: finestDocs.quickedit,
+        html: '<label class="swal2-input-label" for="fddocs-input-title">' + finestDocs.title + '</label><input name="fddocs-input-title" id="fddocs-input-title" class="swal2-input" value="' + doc.post.title + '">' +
+          '<label class="swal2-input-label" for="fddocs-input-slug">' + finestDocs.slug + '</label><input name="fddocs-input-slug" id="fddocs-input-slug" class="swal2-input" value="' + doc.post.slug + '"> ',
+        showCancelButton: true,
+        confirmButtonText: finestDocs.confirmBtn,
+        cancelButtonText: finestDocs.cancelBtn,
+        inputValidator: this.swalInputValidator,
+      }).then(function (input) {
+        if (input.isDismissed) {
+          return;
+        }
+
+        if (input.value === false || input.value === '') {
+          return false;
+        }
+        var updatedTitle = document.getElementById('fddocs-input-title').value,
+          updatedSlug = document.getElementById('fddocs-input-slug').value
+
+        wp.ajax.send({
+          data: {
+            action: 'fddocs_quick_edit',
+            title: updatedTitle,
+            slug: updatedSlug,
+            post_id: doc.post.id,
+            status: 'publish',
+            order: doc.child.length,
+            _wpnonce: finestDocs.nonce,
+          },
+          success: function (res) {
+            var articles = jQuery(parentEvent.target).parents('.fddocs-row-actions')
+              .siblings('a').find('.fddoc-title')
+            articles.text(updatedTitle);
+
+            doc.post.title = updatedTitle
+            doc.post.slug = updatedSlug
+
+            Swal.fire({
+              title: 'Updated!',
+              // text: message,
+              icon: 'success',
+            });
+            // if (articles.hasClass('collapsed')) {
+            //   articles.removeClass('collapsed');
+            // }
+          },
+          error: function (error) {
+            alert(error);
+          },
+        });
+      });
+    },
+
 
     removeArticle: function (article, articles) {
       var self = this;
@@ -316,6 +394,17 @@ new Vue({
     toggleCollapse: function (event) {
       jQuery(event.target).siblings('ul.articles').slideToggle().toggleClass('collapsed').parent('li').siblings('li').children('ul.articles').slideUp();
     },
+    actionMenu: function (event) {
+
+      jQuery('span.fddocs-row-actions li.active').removeClass('active');
+      jQuery(event.path[0]).parent('li').toggleClass('active');
+      jQuery(event.path[0]).parent().parent('li').toggleClass('active');
+      
+    },
+    onClickOutside() {
+      jQuery('span.fddocs-row-actions li.active').removeClass('active');
+      console.log('hmm');
+    },
   },
 });
 
@@ -332,4 +421,18 @@ jQuery(function ($) {
     var name = $('#name').val();
     insertShortcode(name);
   });
+
+
+  // var limen = jQuery('.fddocs-row-actions li .toggler');
+  // $(document).on('click', '.fddocs-row-actions li .toggler', function (e) {
+  //   limen.parent('li.active').removeClass('active');
+
+
+  //   jQuery(this).parent('li').toggleClass('active');
+  // })
+
+  // jQuery('body').on('click', function () {
+  //   limen.parent('li.active').removeClass('active');
+  // })
+
 });
