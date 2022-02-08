@@ -18,7 +18,11 @@ function fqv_register_script() {
     // Enqueue All Js file
     
     wp_enqueue_script( 'jquery-masonry' );
+    wp_enqueue_script( 'vue', 'https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js', [], time(), true );
     wp_enqueue_script( 'fddocs-docs-core', FINEST_DOCS_ASSETS_JS . 'finest-docs.js', array( 'jquery' ), FINEST_DOCS_VERSION, true );
+    wp_enqueue_script( 'fddocs-ia', FINEST_DOCS_ASSETS_JS . 'ia.js', array( 'vue', 'fddocs-docs-core' ), FINEST_DOCS_VERSION, true );
+
+
 
     wp_localize_script( 'fddocs-docs-core', 'fddocs_vars', [
         'nonce'   => wp_create_nonce( 'fddocs-nonce' ),

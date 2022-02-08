@@ -1677,6 +1677,97 @@ ul.fddocs-related-articles li:not(:last-child) {
     border-top: 1px solid rgba(22, 22, 23, 0.1);
 }
 
+
+/* instant answer  */
+div#fddocs-ia {
+    position: fixed;
+    padding: 20px 0;
+    right: 0;
+    bottom: 0;
+    width: 500px;
+    background: #ececec;
+    overflow: scroll;
+    height: 600px;
+    max-width: 600px;
+}
+
+.fddocs-ia-main ul.docs.loaded {
+    margin-top: 30px;
+    padding: 0 40px;
+    list-style: none;
+}
+
+.full-article {
+    background-color: #fff;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    right: 0;
+    position: fixed;
+    max-width: 500px;
+    bottom: 0;
+    height: 600px;
+    overflow: hidden auto;
+    padding: 30px;
+    background-color: #ededed;
+    display: none;
+}
+
+
+
+span.ia-article-closer {
+    position: fixed;
+    right: 19px;
+    font-size: 20px;
+    bottom: 551px;
+}
+
+strong.search-highlight {
+    background: yellow;
+}
+
+.fddocs-ia-main form.search-form.fddocs-search-form button.search-submit {
+    color: #000;
+}
+
+.fddocs-ia-search-form {
+    padding: 0 37px;
+}
+
+.fddocs-ia-main ul.docs.loaded ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.fddocs-ia-main ul.docs.loaded ul.sections {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translatex(-100%);
+    transition:.3s;
+        background-color: #ead8d8;
+    padding: 30px;
+    overflow: scroll;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+}
+
+.fddocs-ia-main ul.docs.loaded ul.sections.active {
+    visibility: visible;
+    opacity: 1;
+
+    transform:translatex(0)
+}
+
+.fddocs-ia-main ul.docs.loaded>li {
+}
+
 @media screen  and (max-width: 991px) {
     .fddocs-single-wrap .fddocs-sidebar.layout-03 {
         width: 100% !important;

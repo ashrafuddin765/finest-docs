@@ -524,3 +524,18 @@ function fddocs_post_navigation($id){
 </div>
 <?php    
 }
+
+
+
+function fddocs_post_select( $args, $select_id, $selected = [], $attr = '') {
+
+    
+
+    $posts = get_posts($args);
+    echo '<select name="'. $select_id .'" id="'.rtrim($select_id, '[]').'" '.$attr.'>';
+
+    foreach ($posts as $post) {
+        echo '<option value="', $post->ID, '"', in_array($post->ID, $selected) ? ' selected="selected"' : '', '>', $post->post_title, '</option>';
+    }
+    echo '</select>';
+}

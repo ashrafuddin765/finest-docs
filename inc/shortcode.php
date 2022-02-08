@@ -1,5 +1,5 @@
 <?php
- 
+
 function fddocs_docs_shortcode( $atts ) {
     if ( empty( $atts ) ) {
         $atts = array();
@@ -15,28 +15,27 @@ function fddocs_docs_shortcode( $atts ) {
 add_shortcode( 'fddocs-doc-toc', 'fddocs_docs_shortcode' );
 
 function fd_shortcode( $atts ) {
-    
-    
+
     extract( shortcode_atts( array(
-        'id'    => '',
-        'style' => '01',
-        'per_page' => 10
+        'id'       => '',
+        'style'    => '01',
+        'per_page' => 10,
     ), $atts ) );
-    
-    $docs = get_theme_mod( 'docs_layout_design', 'docs-template-01' );
-    $section = get_theme_mod( 'section_select_layout', 'section-template-01' );
-    $enable_masonry = fddocs_get_option('docs_enable_masonry', true) ? 'fddocs-masonry' : '';
+
+    $docs           = get_theme_mod( 'docs_layout_design', 'docs-template-01' );
+    $section        = get_theme_mod( 'section_select_layout', 'section-template-01' );
+    $enable_masonry = fddocs_get_option( 'docs_enable_masonry', true ) ? 'fddocs-masonry' : '';
 
     $args = array(
         'post_type'      => 'docs',
         'posts_per_page' => $per_page,
-        'paged' => get_query_var('paged') ? get_query_var('paged') : 1
+        'paged'          => get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1,
     );
 
     if ( !empty( $id ) ) {
-        $class = $section;
+        $class               = $section;
         $args['post_parent'] = $id;
-        $args['meta_query'] = array(
+        $args['meta_query']  = array(
             'relation' => 'AND',
             array(
                 'key'     => 'doc_type',
@@ -45,8 +44,8 @@ function fd_shortcode( $atts ) {
                 'type'    => 'CHAR',
             ),
         );
-    }else{
-        $class = $docs;
+    } else {
+        $class              = $docs;
         $args['meta_query'] = array(
             'relation' => 'AND',
             array(
@@ -58,58 +57,57 @@ function fd_shortcode( $atts ) {
         );
 
     }
- 
+
     // the query
     $the_query = new WP_Query( $args );
 
     ?>
 
-    <div class="fddocs-site-main <?php echo esc_attr( $class) ?>" >
-        <div class="fddocs-container" >
-            <div class="row <?php echo esc_attr( $enable_masonry ) ?>" >
-                <?php if ( $the_query->have_posts() ): ?>
-                    <?php while ( $the_query->have_posts() ): $the_query->the_post();
-                        $docs_type = get_post_meta( get_the_ID(), 'doc_type', true );
-            
-                        if( !empty ($id) && 'section' == $docs_type){
-                            // here will be section layout 
-                            include FINEST_DOCS_DIR .'templates/section-template/'.$section.'.php';
+<div class="fddocs-site-main <?php echo esc_attr( $class ) ?>">
+    <div class="fddocs-container">
+        <div class="row <?php echo esc_attr( $enable_masonry ) ?>">
+            <?php if ( $the_query->have_posts() ): ?>
+            <?php while ( $the_query->have_posts() ): $the_query->the_post();
+        $docs_type = get_post_meta( get_the_ID(), 'doc_type', true );
 
-                        }elseif('doc' == $docs_type){
-                            // here will show all docs 
-                            include FINEST_DOCS_DIR .'templates/docs-template/'.$docs.'.php';
-                        }
-                        
-                    ?>
+        if ( !empty( $id ) && 'section' == $docs_type ) {
+            // here will be section layout
+            include FINEST_DOCS_DIR . 'templates/section-template/' . $section . '.php';
 
-                <?php endwhile;?>
-                <?php wp_reset_query(  );
-                
-     
-                ?>
+        } elseif ( 'doc' == $docs_type ) {
+        // here will show all docs
+        include FINEST_DOCS_DIR . 'templates/docs-template/' . $docs . '.php';
+    }
 
-                <?php else: ?>
-                <p><?php _e( 'Sorry, no posts matched your criteria.' );?></p>
-                <?php endif;?>
-            </div>
-            <?php 
-            //paginations
-            echo '<div class="fddocs-paginations-wrap">';
-            $big = 999999999; // need an unlikely integer
-                echo paginate_links( array(
-                    'base' => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
-                    'format' => '?paged=%#%',
-                    'current' => max( 1, get_query_var('paged') ),
-                    'total' => $the_query->max_num_pages,
-                    'next_text' => '>',
-                    'prev_text' => '<'
-                ) );
+    ?>
 
-            echo '</div>';
-            ?>
+            <?php endwhile;?>
+            <?php wp_reset_query();
+
+    ?>
+
+            <?php else: ?>
+            <p><?php _e( 'Sorry, no posts matched your criteria.' );?></p>
+            <?php endif;?>
         </div>
+        <?php
+//paginations
+    echo '<div class="fddocs-paginations-wrap">';
+    $big = 999999999; // need an unlikely integer
+    echo paginate_links( array(
+        'base'      => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
+        'format'    => '?paged=%#%',
+        'current'   => max( 1, get_query_var( 'paged' ) ),
+        'total'     => $the_query->max_num_pages,
+        'next_text' => '>',
+        'prev_text' => '<',
+    ) );
+
+    echo '</div>';
+    ?>
     </div>
-    <?Php
+</div>
+<?Php
 }
 add_shortcode( 'ud', 'fd_shortcode' );
 
@@ -120,7 +118,7 @@ function fddocs_search_shortcode( $atts ) {
         'id'    => '',
         'style' => '01',
     ), $atts ) );
-    $placeholder = fddocs_get_option('docs_search_placeholder', __('Search for articles...', 'placeholder', 'fddocs' ));
+    $placeholder = fddocs_get_option( 'docs_search_placeholder', __( 'Search for articles...', 'placeholder', 'fddocs' ) );
     $search_icon = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M14.75 14.75L10.25 10.25M11.75 6.5C11.75 9.39949 9.39949 11.75 6.5 11.75C3.60051 11.75 1.25 9.39949 1.25 6.5C1.25 3.60051 3.60051 1.25 6.5 1.25C9.39949 1.25 11.75 3.60051 11.75 6.5Z" stroke="#161617" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
@@ -143,72 +141,63 @@ function fddocs_search_shortcode( $atts ) {
         <span class="screen-reader-text">' . _x( 'Search for:', 'label', 'fddocs' ) . '</span>
         <input type="search" class="search-field" placeholder="' . $placeholder . '" value="' . get_search_query() . '" name="s" title="' . esc_attr_x( 'Search for:', 'label', 'fddocs' ) . '" />
         <input type="hidden" name="post_type" value="docs" />
-        <input type="hidden" name="post_id" value="'.esc_html($id).'" />
-        <button class="search-submit" type="submit">'.$search_icon.'</button>
+        <input type="hidden" name="post_id" value="' . esc_html( $id ) . '" />
+        <button class="search-submit" type="submit">' . $search_icon . '</button>
     </div>
- 
+
 </form>';
     return $form;
 }
 add_shortcode( 'ud_search', 'fddocs_search_shortcode' );
 
-
 // socila share shortcode
-function fddocs_social_share()
-{ 
+function fddocs_social_share() {
     $social_title = get_theme_mod( 'social_share_ttile', 'Share this article:' );
-    $onfacebook = get_theme_mod( 'switch_facebook_share', true );
-    $ontwitter = get_theme_mod( 'enable_Twitter_sharing', true );
-    $onlinkdin = get_theme_mod( 'enable_linkedin_sharing', true );
-    $onpinterest = get_theme_mod( 'enable_pinterest_sharing', true );
+    $onfacebook   = get_theme_mod( 'switch_facebook_share', true );
+    $ontwitter    = get_theme_mod( 'enable_Twitter_sharing', true );
+    $onlinkdin    = get_theme_mod( 'enable_linkedin_sharing', true );
+    $onpinterest  = get_theme_mod( 'enable_pinterest_sharing', true );
     ?>
-	<div class="fddocs-social-share">
-		<div class="fddocs-socshare-heading">
-			<?php echo '<h5>' . esc_html( $social_title) . '</h5>'; ?>
-		</div>
-		<ul class="fddocs-social-share-links">
-            <?php if ( true == $onfacebook ): ?>
-			<li><a href="https://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>" target="_blank"><img src="<?php echo FINEST_DOCS_ASSETS_ASSETS.'facebook.svg' ?>" alt="Facebook"></a></li>
-            <?php endif; ?>
+<div class="fddocs-social-share">
+    <div class="fddocs-socshare-heading">
+        <?php echo '<strong>' . esc_html( $social_title ) . '</strong>'; ?>
+    </div>
+    <ul class="fddocs-social-share-links">
+        <?php if ( true == $onfacebook ): ?>
+        <li><a href="https://www.facebook.com/sharer.php?u=<?php the_permalink();?>" target="_blank"><img
+                    src="<?php echo FINEST_DOCS_ASSETS_ASSETS . 'facebook.svg' ?>" alt="Facebook"></a></li>
+        <?php endif;?>
 
-            <?php if ( true == $ontwitter ): ?>
-            <li><a href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>" target="_blank"><img src="<?php echo FINEST_DOCS_ASSETS_ASSETS.'twitter.svg' ?>" alt="Twitter"></a></li>
-            <?php endif; ?>
+        <?php if ( true == $ontwitter ): ?>
+        <li><a href="https://twitter.com/intent/tweet?url=<?php the_permalink();?>" target="_blank"><img
+                    src="<?php echo FINEST_DOCS_ASSETS_ASSETS . 'twitter.svg' ?>" alt="Twitter"></a></li>
+        <?php endif;?>
 
-            <?php if ( true == $onlinkdin ): ?>
-            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(); ?>" target="_blank"><img src="<?php echo FINEST_DOCS_ASSETS_ASSETS.'linkedin.svg' ?>" alt="LinkedIn"></a></li>
-            <?php endif; ?>
+        <?php if ( true == $onlinkdin ): ?>
+        <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink();?>" target="_blank"><img
+                    src="<?php echo FINEST_DOCS_ASSETS_ASSETS . 'linkedin.svg' ?>" alt="LinkedIn"></a></li>
+        <?php endif;?>
 
-            <?php if ( true == $onpinterest ): ?>
-            <li><a href="https://pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>" target="_blank"><img src="<?php echo FINEST_DOCS_ASSETS_ASSETS.'pinterest.svg' ?>" alt="Pinterest"></a></li>
-            <?php endif; ?>
-		</ul>
-	</div> 
+        <?php if ( true == $onpinterest ): ?>
+        <li><a href="https://pinterest.com/pin/create/button/?url=<?php the_permalink();?>" target="_blank"><img
+                    src="<?php echo FINEST_DOCS_ASSETS_ASSETS . 'pinterest.svg' ?>" alt="Pinterest"></a></li>
+        <?php endif;?>
+    </ul>
+</div>
 <?php }
 
-add_shortcode('fddocs_social_share', 'fddocs_social_share');
-
-
-
-
-
-
-
-
-
+add_shortcode( 'fddocs_social_share', 'fddocs_social_share' );
 
 function fddocs_instant_answer( $atts ) {
-    
-    
-    extract( shortcode_atts( array(
-        'per_page' => 10
-    ), $atts ) );
 
+    extract( shortcode_atts( array(
+        'per_page' => 10,
+    ), $atts ) );
 
     $args = array(
         'post_type'      => 'docs',
         'posts_per_page' => $per_page,
-        'paged' => get_query_var('paged') ? get_query_var('paged') : 1
+        'paged'          => get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1,
     );
 
     $args['meta_query'] = array(
@@ -220,30 +209,64 @@ function fddocs_instant_answer( $atts ) {
             'type'    => 'CHAR',
         ),
     );
- 
+
     // the query
     $the_query = new WP_Query( $args );
 
     ?>
 
-    <div class="fddocs-ia-main " >
-   
-                <?php if ( $the_query->have_posts() ): ?>
-                <?php while ( $the_query->have_posts() ): $the_query->the_post();?>
-                    <?php the_title( '<h3>', '</h3>' ) ?>
-                    <?php echo '<p>'.get_the_excerpt(  ). '</p>'; ?>
+<div class="fddocs-ia-main " id="fddocs-ia">
+    <div class="fddocs-ia-search-form">
+        <form role="search" method="get" v-on:submit.prevent="searchArticle" class="search-form fddocs-search-form"
+            action="">
+            <div class="fddocs-search-input">
+                <span class="screen-reader-text"></span>
+                <input type="search" class="search-field" placeholder="" value="" name="doc_search" title="" />
 
-                <?php endwhile;?>
-                <?php wp_reset_query(  );?>
-
-                <?php else: ?>
-                <p><?php _e( 'Sorry, no posts matched your criteria.' );?></p>
-                <?php endif;?>
-       
+                <button class="search-submit" type="submit"><span class="dashicons dashicons-search"></span></button>
+            </div>
+        </form>
     </div>
-    <?Php
+    <ul class="docs ">
+        <li class="single-doc doc-title" v-for="(doc, index) in docs" :data-id="doc.post.id">
+            <h3 v-on:click="showArticles($event)" v-html="doc.post.title">
+
+            </h3>
+
+            <ul class="sections">
+                <span v-on:click="hideArticles($event)">Back</span>
+                <form role="search" method="get" v-on:submit.prevent="searchArticle"
+                    class="search-form fddocs-search-form" action="">
+                    <div class="fddocs-search-input">
+                        <span class="screen-reader-text"></span>
+                        <input type="search" class="search-field" placeholder="" value="" name="article_search" title="" />
+
+                        <button class="search-submit" type="submit"><span
+                                class="dashicons dashicons-search"></span></button>
+                    </div>
+                </form>
+                <li v-for="(section, index) in doc.post.child">
+                    <ul class="articles">
+                        <li v-for="(article, index) in section.post.child">
+                            <h3 v-on:click="showArticle($event, doc.post.id)" v-html="article.post.title"
+                                class="fddoc-title">
+                                {{ section.post.title }}
+                            </h3>
+                            <p class="fddoc-article">{{ article.post.excerpt }}</p>
+                            <div class="full-article">
+                                <span v-on:click="hideArticle($event)" class="ia-article-closer">Back</span>
+                                <div class="entry-content"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </li>
+    </ul>
+</div>
+<?Php
 }
 add_shortcode( 'ud_ia', 'fddocs_instant_answer' );
-
 
 ?>

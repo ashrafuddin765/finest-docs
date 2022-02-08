@@ -403,7 +403,7 @@ new Vue({
     },
     onClickOutside() {
       jQuery('span.fddocs-row-actions li.active').removeClass('active');
-      console.log('hmm');
+
     },
   },
 });
