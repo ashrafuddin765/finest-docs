@@ -22,15 +22,12 @@ $checked = '';
 //     }
 // }
 
-
-
 $fields = [
     'select_doc_homepage',
     'docs_page_title',
     'docs_root_slug',
     'docs_support_page_link',
     'docs_enable_print',
-    'ia_show_all_doc',
     'ia_select_doc',
     // 'docs_enable_social_share',
     'docs_enable_feedback',
@@ -41,21 +38,39 @@ $fields = [
     'article_enable_post_count',
     'article_count_text',
     'article_count_text_singular',
+    'ia_show_all_doc',
+    'ia_name_placeholder',
+    'ia_email_placeholder',
+    'ia_subject_placeholder',
+    'ia_message_placeholder',
+    'select_ia_position',
+    'ia_doc_show_type',
 ];
 
 $options = [];
+
 if ( isset( $_POST['fddocs_save_changes'] ) ) {
     foreach ( $fields as $setting ) {
 
         if ( isset( $_POST[$setting] ) ) {
-            if(is_array($_POST[$setting])){
-                $value             =  $_POST[$setting] ;
-            }else{
+            if ( is_array( $_POST[$setting] ) ) {
 
-                $value             = sanitize_text_field( $_POST[$setting] );
+                $value = $_POST[$setting];
+
+            } else {
+
+                $value = sanitize_text_field( $_POST[$setting] );
             }
             $options[$setting] = $value;
-        }else{
+        } elseif ( 'ia_select_doc' == $setting ) {
+
+            if ( !isset( $_POST[$setting] ) ) {
+                $value = [];
+            } else {
+
+                $value = $_POST[$setting];
+            }
+        } else {
             $options[$setting] = '';
         }
     }
@@ -66,13 +81,21 @@ if ( !empty( $options ) ) {
 }
 
 $select_doc_homepage    = fddocs_get_option( 'select_doc_homepage', false );
+$ia_name_placeholder    = fddocs_get_option( 'ia_name_placeholder', 'Name' );
+$ia_email_placeholder   = fddocs_get_option( 'ia_email_placeholder', 'Email' );
+$ia_subject_placeholder = fddocs_get_option( 'ia_subject_placeholder', 'Subject' );
+$ia_message_placeholder = fddocs_get_option( 'ia_message_placeholder', 'How we can help' );
+$select_ia_position     = fddocs_get_option( 'select_ia_position', 'right' );
+$ia_doc_show_type       = fddocs_get_option( 'ia_doc_show_type', 'normal' );
+
 $docs_page_title        = fddocs_get_option( 'docs_page_title', __( 'FinestDevs Products', 'finest-docs' ) );
 $docs_root_slug         = fddocs_get_option( 'docs_root_slug', 'docs' );
 $docs_support_page_link = fddocs_get_option( 'docs_support_page_link', 'https://finestdevs.com' );
 $docs_enable_feedback   = fddocs_get_option( 'docs_enable_feedback', true );
-$ia_show_all_doc     = fddocs_get_option( 'ia_show_all_doc', true );
-$ia_select_doc          = fddocs_get_option( 'ia_select_doc', true );
-$docs_enable_print      = fddocs_get_option( 'docs_enable_print', true );
+$ia_show_all_doc        = fddocs_get_option( 'ia_show_all_doc', true );
+$ia_select_doc          = fddocs_get_option( 'ia_select_doc', [] );
+
+$docs_enable_print = fddocs_get_option( 'docs_enable_print', true );
 // $docs_enable_social_share = fddocs_get_option( 'docs_enable_social_share', true );
 // $docs_search_not_found_text  = fddocs_get_option( 'docs_search_not_found_text', __( 'Sorry nothing matched', 'finest-docs' ) );
 $docs_search_placeholder     = fddocs_get_option( 'docs_search_placeholder', __( 'Search for articles... ', 'finest-docs' ) );
@@ -286,47 +309,107 @@ wp_dropdown_pages( [
         <!-- Shortcode list -->
         <div id="fddocs-settings-ia" class="fddocs-tab-content">
 
-            <!-- Enable multidoc  -->
-            <div class="fddocs-setting-field fddocs-print-article">
-                <label for="ia_show_all_doc"><?php esc_html_e( 'Show all doc in chatbox', 'finestdocs' )?></label>
-                <div class="fddocs-setting-checkbox">
-
-                    <input type="checkbox" name="ia_show_all_doc" id="ia_show_all_doc"
-                        <?php echo $ia_show_all_doc ? 'checked' : ''; ?>>
-                    <span class="fddoc-checkmark"></span>
-                </div>
+            <!-- how to show chatbox multidoc  -->
+            <div class="fddocs-setting-field fddocs-ia-show-type">
+                <label for="ia_doc_show_type"><?php esc_html_e( 'How you want to show?', 'finestdocs' )?></label>
+                <select name="ia_doc_show_type" id="ia_doc_show_type">
+                    <option value="<?php echo esc_attr( 'normal' ) ?>"
+                        <?php echo 'normal' == $ia_doc_show_type ? 'selected' : ''; ?>>
+                        <?php esc_html_e( 'Normally', 'finest-docs' )?></option>
+                    <option value="<?php echo esc_attr( 'condition' ) ?>"
+                        <?php echo 'condition' == $ia_doc_show_type ? 'selected' : ''; ?>>
+                        <?php esc_html_e( 'Conditionally', 'finest-docs' )?></option>
+                </select>
+                <span class="fddoc-setting-info hidden ">&nbsp;
+                    <?php esc_html_e( 'You can set conditions from Docs.', 'finest-docs' )?></span>
             </div>
+
+            <div class="fddoc-setting-field-wrap ia-show-type-normal">
+                <!-- Enable multidoc  -->
+                <div class="fddocs-setting-field fddocs-ia-show-all-doc">
+                    <label for="ia_show_all_doc"><?php esc_html_e( 'Show all doc in chatbox', 'finestdocs' )?></label>
+                    <div class="fddocs-setting-checkbox">
+
+                        <input type="checkbox" name="ia_show_all_doc" id="ia_show_all_doc"
+                            <?php echo $ia_show_all_doc ? 'checked' : ''; ?>>
+                        <span class="fddoc-checkmark"></span>
+                    </div>
+                </div>
 
                 <!-- doc home  -->
                 <div class="fddocs-setting-field fddocs-ia-select-doc">
 
-                    <label
-                        for="select_ia_doc"><?php esc_html_e( 'Select Documentation Page', 'finestdocs' )?></label>
+                    <label for="select_ia_doc"><?php esc_html_e( 'Select Documentation Page', 'finestdocs' )?></label>
                     <?php
-                        $argc = [
-                            'post_type'      => 'docs',
-                            'posts_per_page' => -1,
-                            'meta_query'     => array(
-                                'relation' => 'AND',
-                                array(
-                                    'key'     => 'doc_type',
-                                    'value'   => 'doc',
-                                    'compare' => '=',
-                                    'type'    => 'CHAR',
-                                ),
-                            ),
+$argc = [
+    'post_type'      => 'docs',
+    'posts_per_page' => -1,
+    'meta_query'     => array(
+        'relation' => 'AND',
+        array(
+            'key'     => 'doc_type',
+            'value'   => 'doc',
+            'compare' => '=',
+            'type'    => 'CHAR',
+        ),
+    ),
 
-                        ];
+];
 
-                        fddocs_post_select( $argc, 'ia_select_doc[]', $ia_select_doc, 'multiple' );
-                    ?>
+fddocs_post_select( $argc, 'ia_select_doc[]', $ia_select_doc, 'multiple' );
+?>
 
                 </div>
             </div>
-            
+
+            <!--   -->
+            <div class="fddocs-setting-field fddocs-ia-position">
+
+                <label for="select_ia_position"><?php esc_html_e( 'Select Position', 'finestdocs' )?></label>
+                <select name="select_ia_position" id="select_ia_position">
+                    <option value="<?php echo esc_attr( 'left' ) ?>"
+                        <?php echo 'left' == $select_ia_position ? 'selected' : ''; ?>>
+                        <?php esc_html_e( 'Left', 'finest-docs' )?></option>
+                    <option value="<?php echo esc_attr( 'right' ) ?>"
+                        <?php echo 'right' == $select_ia_position ? 'selected' : ''; ?>>
+                        <?php esc_html_e( 'Right', 'finest-docs' )?></option>
+                </select>
+
+            </div>
+
+            <div class="fddocs-setting-field fddocs-ia-name-placeholder">
+
+                <label for="ia_name_placeholder"><?php esc_html_e( 'Name Placeholder', 'finestdocs' )?></label>
+
+                <input type="text" name="ia_name_placeholder" id="ia_name_placeholder"
+                    value="<?php echo esc_attr( $ia_name_placeholder ) ?>">
+            </div>
+            <div class="fddocs-setting-field fddocs-ia-email-placeholder">
+
+                <label for="ia_email_placeholder"><?php esc_html_e( 'email Placeholder', 'finestdocs' )?></label>
+
+                <input type="text" name="ia_email_placeholder" id="ia_email_placeholder"
+                    value="<?php echo esc_attr( $ia_email_placeholder ) ?>">
+            </div>
+            <div class="fddocs-setting-field fddocs-ia-subject-placeholder">
+
+                <label for="ia_subject_placeholder"><?php esc_html_e( 'subject Placeholder', 'finestdocs' )?></label>
+
+                <input type="text" name="ia_subject_placeholder" id="ia_subject_placeholder"
+                    value="<?php echo esc_attr( $ia_subject_placeholder ) ?>">
+            </div>
+            <div class="fddocs-setting-field fddocs-ia-message-placeholder">
+
+                <label for="ia_message_placeholder"><?php esc_html_e( 'message Placeholder', 'finestdocs' )?></label>
+
+                <input type="text" name="ia_message_placeholder" id="ia_message_placeholder"
+                    value="<?php echo esc_attr( $ia_message_placeholder ) ?>">
+            </div>
+        </div>
 
 
-            <button type="submit"
-                name="fddocs_save_changes"><?php esc_html_e( 'Save changes', 'fddocs-mini-cart-pro' )?></button>
+
+        <button type="submit"
+            name="fddocs_save_changes"><?php esc_html_e( 'Save changes', 'fddocs-mini-cart-pro' )?></button>
     </form>
 </div>

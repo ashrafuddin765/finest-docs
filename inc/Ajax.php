@@ -5,6 +5,7 @@ namespace FDDOCS;
  */
 class Ajax {
 
+    public $current_page_id;
     /**
      * Bind actions.
      */
@@ -20,6 +21,9 @@ class Ajax {
 
         add_action( 'wp_ajax_fddocs_show_article', [$this, 'show_article'] );
         add_action( 'wp_ajax_nopriv_fddocs_show_article', [$this, 'show_article'] );
+
+        add_action( 'wp_ajax_fddoc_send_mail', [$this, 'process_contact_form'] );
+        add_action( 'wp_ajax_nopriv_fddoc_send_mail', [$this, 'process_contact_form'] );
     }
 
     public function feedback_handler() {
@@ -59,31 +63,42 @@ class Ajax {
     public function get_articles() {
         check_ajax_referer( 'fddocs-nonce' );
 
-        $search_key  = false;
-        $search_type = 'doc';
-        $args        = [
+        $search_key      = false;
+        $ia_show_all_doc = fddocs_get_option( 'ia_show_all_doc', 'on' );
+        $ia_select_doc   = fddocs_get_option( 'ia_select_doc', [] );
+        if ( isset( $_POST['s'] ) ) {
+            $search_key = sanitize_text_field( $_POST['s'] );
+        }
+        if ( isset( $_POST['current_page_id'] ) ) {
+            $this->current_page_id = sanitize_text_field( $_POST['current_page_id'] );
+        }
+
+        $args = [
             'post_type'      => 'docs',
             'posts_per_page' => -1,
             'orderby'        => 'menu_order',
             'order'          => 'ASC',
         ];
 
-        if ( isset( $_POST['doc_search'] ) && !empty( $_POST['doc_search'] ) ) {
-            $search_key = sanitize_text_field( $_POST['doc_search'] );
-        }
-
-        if ( isset( $_POST['article_search'] ) && !empty( $_POST['article_search'] ) ) {
-            $search_key  = sanitize_text_field( $_POST['article_search'] );
-            $search_type = 'article';
-        }
-
         if ( false != $search_key ) {
             $args['s'] = $search_key;
         }
 
+        if ( 'on' != $ia_show_all_doc && 1 == count( $ia_select_doc ) ) {
+            $args['meta_query'] = array(
+                'relation' => 'AND',
+                array(
+                    'key'     => 'doc_type',
+                    'value'   => 'article',
+                    'compare' => '=',
+                    'type'    => 'CHAR',
+                ),
+            );
+        }
+
         $docs = get_posts( $args );
 
-        $arranged = $this->build_tree( $docs, 0, $search_key, $search_type );
+        $arranged = $this->build_tree( $docs, 0 );
         usort( $arranged, [$this, 'sort_callback'] );
         wp_send_json_success( $arranged );
     }
@@ -156,9 +171,15 @@ class Ajax {
      *
      * @return array
      */
-    public function build_tree( $docs, $parent = 0, $search_key = false, $search_type = 'dpc' ) {
-        $result = [];
-        $type   = 'docs';
+    public function build_tree( $docs, $parent = 0, $search_key = false ) {
+
+        $current_page_id  = $this->current_page_id ? $this->current_page_id : false;
+        $result           = [];
+        $type             = 'docs';
+        $ia_show_all_doc  = fddocs_get_option( 'ia_show_all_doc', 'on' );
+        $ia_select_doc    = fddocs_get_option( 'ia_select_doc', [] );
+        $ia_doc_show_type = fddocs_get_option( 'ia_doc_show_type', 'normal' );
+
         if ( !$docs ) {
             return $result;
         }
@@ -167,69 +188,101 @@ class Ajax {
             $type = 'search';
         }
 
-        $post_type_object = get_post_type_object( 'docs' );
-
         foreach ( $docs as $key => $doc ) {
+            $child            = [];
+            $section_id       = $doc->post_parent;
+            $doc_id           = wp_get_post_parent_id( $section_id );
+            $doc_type         = get_post_meta( $doc->ID, 'doc_type', true ) ? get_post_meta( $doc->ID, 'doc_type', true ) : false;
+            $ia_include_pages = get_post_meta( $doc_id, 'ia_include_pages', true ) ? get_post_meta( $doc_id, 'ia_include_pages', false )[0] : [];
+            $ia_exclude_pages = get_post_meta( $doc_id, 'ia_exclude_pages', true ) ? get_post_meta( $doc_id, 'ia_exclude_pages', false )[0] : [];
+            $excluded         = false;
+            $article_count = 'doc' == $doc_type ? fddocs_get_total_article($doc->ID) : '';
+
+            //Single article conditions
+            if ( 'article' == $doc_type && 'condition' == $ia_doc_show_type ) {
+
+                if ( $ia_exclude_pages ) {
+
+                    if ( in_array( $current_page_id, $ia_exclude_pages ) ) {
+                        $excluded = true;
+                    }
+                }
+
+                if ( !$excluded ) {
+                    if ( !in_array( $current_page_id, $ia_include_pages ) ) {
+                        continue;
+                    }
+                }
+            }
+
+            $title = $doc->post_title;
+            if ( $search_key ) {
+
+                $title = preg_replace( '/(' . $search_key . ')/iu', '<strong class="search-highlight">\0</strong>', $doc->post_title );
+            }
+
+            if ( 'on' != $ia_show_all_doc && 'normal' === $ia_doc_show_type ) {
+                if ( !in_array( $doc->ID, $ia_select_doc ) && !in_array( $section_id, $ia_select_doc ) && !in_array( $doc_id, $ia_select_doc ) ) {
+                    continue;
+                }
+
+                if ( 1 != count( $ia_select_doc ) ) {
+                    if ( !in_array( $doc->ID, $ia_select_doc ) && !in_array( $section_id, $ia_select_doc ) && !in_array( $doc_id, $ia_select_doc ) ) {
+                        continue;
+                    }
+
+                } else {
+                    if ( !in_array( $doc_id, $ia_select_doc ) ) {
+                        continue;
+                    } else {
+                        $result[] = [
+                            'post' => [
+                                'type'    => $type,
+                                'id'      => $doc->ID,
+                                'title'   => $title,
+                                'status'  => $doc->post_status,
+                                'order'   => $doc->menu_order,
+                                'slug'    => $doc->post_name,
+                                'content' => $doc->post_content,
+                                'excerpt' => wp_trim_words( $doc->post_content, 15 ),
+                                'count'   => $article_count,
+
+                            ],
+                        ];
+                        continue;
+                    }
+                }
+
+            }elseif (  'condition' === $ia_doc_show_type ) {
+
+                // single articles conditions 
+                if ( !$ia_include_pages ) {
+                    continue;
+                } else {
+                    $result[] = [
+                        'post' => [
+                            'type'    => $type,
+                            'id'      => $doc->ID,
+                            'title'   => $title,
+                            'status'  => $doc->post_status,
+                            'order'   => $doc->menu_order,
+                            'slug'    => $doc->post_name,
+                            'content' => $doc->post_content,
+                            'excerpt' => wp_trim_words( $doc->post_content, 15 ),
+                            'count'   => $article_count,
+                        ],
+                    ];
+                    continue;
+
+                }
+
+            }
             if ( $doc->post_parent == $parent ) {
                 unset( $docs[$key] );
 
                 // build tree and sort
-                if ( 'doc' == $search_type && !empty( $search_key ) ) {
-                    $articles = '';
-                    $args     = [
-                        'numberposts' => -1,
-                        'post_type'   => 'docs',
-                        'post_parent' => $doc->ID,
-                    ];
-                    $sections = get_posts( $args );
-                    foreach ( $sections as $section ) {
-                        $args = [
-                            'numberposts' => -1,
-                            'post_type'   => 'docs',
-                            'post_parent' => $section->ID,
-                        ];
-                        $articles = get_posts( $args );
-
-                        foreach ( $articles as $article ) {
-
-                            $child[] = [
-                                'post' => [
-                                    'child' => [
-                                            [
-                                            'post' => [
-                                                'type'    => 'articles',
-                                                'id'      => $article->ID,
-                                                'title'   => $article->post_title,
-                                                'status'  => $article->post_status,
-                                                'order'   => $article->menu_order,
-                                                'slug'    => $article->post_name,
-                                                'excerpt' => wp_trim_words( $article->post_content, 15 ),
-                                            ],
-                                        ],
-                                    ],
-
-                                ],
-                            ];
-                        }
-                    }
-
-                } else {
-
-                    $child = $this->build_tree( $docs, $doc->ID );
-                }
+                $child = $this->build_tree( $docs, $doc->ID );
                 usort( $child, [$this, 'sort_callback'] );
-
-                $title = $doc->post_title;
-                if ( $search_key ) {
-
-                    $title = preg_replace( '/(' . $search_key . ')/iu', '<strong class="search-highlight">\0</strong>', $doc->post_title );
-                }
-
-                $title = $doc->post_title;
-                if ( $search_key ) {
-
-                    $title = preg_replace( '/(' . $search_key . ')/iu', '<strong class="search-highlight">\0</strong>', $doc->post_title );
-                }
 
                 $result[] = [
                     'post' => [
@@ -239,43 +292,19 @@ class Ajax {
                         'status'  => $doc->post_status,
                         'order'   => $doc->menu_order,
                         'slug'    => $doc->post_name,
+                        'content' => $doc->post_content,
                         'excerpt' => wp_trim_words( $doc->post_content, 15 ),
                         'child'   => $child,
+                        'count'   => $article_count,
+
                     ],
                 ];
+
             }
+
         }
 
-        // foreach ( $docs as $key => $doc ) {
-        //     if ( $doc->post_parent == $parent ) {
-        //         unset( $docs[$key] );
-
-        //         // build tree and sort
-        //         $child = $this->build_tree( $docs, $doc->ID );
-        //         usort( $child, [$this, 'sort_callback'] );
-
-        //         $title = $doc->post_title;
-        //         if ( $search_key ) {
-
-        //             $title = preg_replace( '/(' . $search_key . ')/iu', '<strong class="search-highlight">\0</strong>', $doc->post_title );
-        //         }
-
-        //         $result[] = [
-        //             'post'  => [
-        //                 'id'     => $doc->ID,
-        //                 'title'  => $title,
-        //                 'status' => $doc->post_status,
-        //                 'order'  => $doc->menu_order,
-        //                 'slug'   => $doc->post_name,
-        //                 'caps'   => [
-        //                     'edit'   => current_user_can( $post_type_object->cap->edit_post, $doc->ID ),
-        //                     'delete' => current_user_can( $post_type_object->cap->delete_post, $doc->ID ),
-        //                 ],
-        //             ],
-        //             'child' => $child,
-        //         ];
-        //     }
-        // }
+     
 
         return $result;
     }
@@ -290,6 +319,63 @@ class Ajax {
     public function sort_callback( $a, $b ) {
         return $a['post']['order'] - $b['post']['order'];
     }
+
+    public function process_contact_form() {
+
+        $errors  = [];
+        $name    = '';
+        $email   = '';
+        $subject = '';
+        $message = '';
+        $to      = 'ashrafuddin765@gmail.com';
+
+        if ( isset( $_POST['name'] ) && !empty( $_POST['name'] ) ) {
+            $name = sanitize_text_field( $_POST['name'] );
+        }
+
+        if ( isset( $_POST['subject'] ) && !empty( $_POST['subject'] ) ) {
+            $subject = sanitize_text_field( $_POST['subject'] );
+        }
+
+        if ( isset( $_POST['email'] ) && !empty( $_POST['email'] ) && is_email( $_POST['email'] ) ) {
+            $email = sanitize_email( $_POST['email'] );
+        }
+
+        if ( isset( $_POST['message'] ) && !empty( $_POST['message'] ) ) {
+            $message = sanitize_text_field( $_POST['message'] );
+        }
+
+        if ( !empty( $name ) && !empty( $email ) && !empty( $message ) ) {
+            $headers   = [];
+            $headers[] = 'From: Me Myself <' . get_bloginfo( 'admin_email' ) . '>';
+//             $headers[] = 'Cc: John Q Codex <ashrafuddin765@gmail.com>';
+            // $headers[] = 'Cc: iluvwp@wordpress.org'; // note you can just use a simple email address
+
+            $body = "
+                Name: $name\n
+                Email: $email\n
+                Message: $message\n
+
+            ";
+
+            $attachments = "";
+            $sent        = wp_mail( $to, $subject, $message, $headers, $attachments );
+            if ( $sent ) {
+                $msg = "</br><div class='fdwc-inquiry-success'>Your request has been sent.</div>";
+                wp_send_json_success( $msg );
+            } else {
+
+                $msg = "</br><div class='fdwc-inquiry-error'>Something went wrong.</div>";
+                wp_send_json_error( $msg );
+
+            }
+        }
+
+        $msg = "</br><div class='fdwc-inquiry-error'>Something went wrong 2.</div>";
+        wp_send_json_error( $msg );
+
+    }
+
 }
 
 $ajax = new Ajax();

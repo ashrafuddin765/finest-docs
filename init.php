@@ -5,7 +5,6 @@
  *
  */
 
-use Finestics\Insights;
 
 function fqv_register_script() {
 
@@ -13,7 +12,7 @@ function fqv_register_script() {
     // Enqueue All css
     wp_enqueue_style( 'fddocs-grid', FINEST_DOCS_ASSETS_CSS . 'grid-css.css', array(), time() );
     wp_enqueue_style( 'dashicons' );
-    wp_enqueue_style( 'fddocs-quick-view', FINEST_DOCS_ASSETS_CSS . 'frontend.css', array(), time() );
+    wp_enqueue_style( 'fddocs-frontend', FINEST_DOCS_ASSETS_CSS . 'frontend.css', array(), time() );
     
     // Enqueue All Js file
     
@@ -27,9 +26,23 @@ function fqv_register_script() {
     wp_localize_script( 'fddocs-docs-core', 'fddocs_vars', [
         'nonce'   => wp_create_nonce( 'fddocs-nonce' ),
         'ajaxurl' => admin_url( 'admin-ajax.php' ),
+        'pageID' => get_the_ID(  ),
     ] );
 };
 add_action( 'wp_enqueue_scripts', 'fqv_register_script' );
+
+
+
+function fddoc_customizer_scripts() {
+    
+    wp_enqueue_style( 'fddocs-grid', FINEST_DOCS_ASSETS_CSS . 'grid.css', array(), time() );
+    $customizer_css = '
+    #customize-controls #customize-control-header_top h3 {margin-left: -12px!important;margin-right: -12px!important;}
+    ';
+    wp_add_inline_style( 'fddocs-grid', $customizer_css );
+}
+
+add_action( 'customize_controls_enqueue_scripts', 'fddoc_customizer_scripts');
 
 /*
  *
@@ -82,6 +95,7 @@ if ( file_exists( FINEST_DOCS_INC . 'customizer/config.php' ) ) {
 
 $init_finestics = new Finestics\Client( 'FinestDocs', 'FinestDocs', FINEST_DOCS_FILE );
 $init_finestics->insights()->init();
+
 
 // Register and load the widget
 function wpb_load_widget() {

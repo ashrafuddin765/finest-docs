@@ -45,7 +45,3 @@ function init() {
 if ( file_exists( FINEST_DOCS_MAIN . 'init.php' ) ) {
     require_once FINEST_DOCS_MAIN . 'init.php';
 }
-// // Load the library
-// if ( file_exists( FINEST_DOCS_MAIN . 'lib/settings.php' ) ) {
-//     require_once  FINEST_DOCS_MAIN . 'lib/settings.php';
-// }

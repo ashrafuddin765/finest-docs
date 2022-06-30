@@ -349,6 +349,107 @@ new Vue({
       });
     },
 
+    showCondition: function (doc, event) {
+      var parentEvent = event
+      that = this;
+
+      Swal.fire({
+        title: finestDocs.quickedit,
+        html: '<label class="swal2-input-label" for="include_pages">' + finestDocs.include_title + '</label>' + doc.post.include_pages +
+          '<label class="swal2-input-label" for="exclude_pages">' + finestDocs.exclude_title + '</label>' + doc.post.exclude_pages,
+        showCancelButton: true,
+        confirmButtonText: finestDocs.confirmBtn,
+        cancelButtonText: finestDocs.cancelBtn,
+        inputValidator: this.swalInputValidator,
+      }).then(function (input) {
+        if (input.isDismissed) {
+          return;
+        }
+
+        if (input.value === false || input.value === '') {
+          return false;
+        }
+
+        var include_ids = jQuery('#include_pages_' + doc.post.id + '').val(),
+          exclude_ids = jQuery('#exclude_pages_' + doc.post.id + '').val()
+
+        var found = false;
+        var current_doc = filterByProperty(that.docs, 'id', doc.post.id);
+
+        // console.log(current_doc)
+        include_ids.forEach(function (item) {
+          var page_exist = filterByProperty(that.docs, 'include_page_id', item, true)
+
+          if (0 != page_exist.length) {
+
+
+            for (var i = 0; i < page_exist.length; i++) {
+
+
+              if (page_exist[i] != current_doc[0]) {
+                found = true;
+                break;
+              }
+            }
+
+            if (found) {
+              return;
+            }
+          }
+
+        })
+
+
+        if (found) {
+          Swal.fire({
+            title: 'Error! ',
+            text: 'A page already included in antoher doc!',
+            icon: 'error',
+          });
+          return;
+        }
+        // for (var i = 0; i < include_ids.length; i++) {
+        //   var page_exist = filterByProperty(that.docs, 'include_page_id', include_ids.i)
+        //   console.log(include_ids);
+        //   if (0 != page_exist.length) {
+        //     return;
+        //   }
+        // }
+        wp.ajax.send({
+          data: {
+            action: 'fddocs_save_include_exclude',
+            include_ids: include_ids,
+            exclude_ids: exclude_ids,
+            post_id: doc.post.id,
+            order: doc.child.length,
+            _wpnonce: finestDocs.nonce,
+          },
+          success: function (res) {
+            // var articles = jQuery(parentEvent.target).parents('.fddocs-row-actions')
+            //   .siblings('a').find('.fddoc-title')
+            // articles.text(updatedTitle);
+            // console.log(res);
+            doc.post.include_pages = res.include_pages;
+            doc.post.exclude_pages = res.exclude_pages;
+
+            Swal.fire({
+              title: 'Updated!',
+              // text: message,
+              icon: 'success',
+            });
+            // if (articles.hasClass('collapsed')) {
+            //   articles.removeClass('collapsed');
+            // }
+          },
+          error: function (error) {
+            console.log(error);
+          },
+        });
+
+
+      });
+    },
+
 
     removeArticle: function (article, articles) {
       var self = this;
@@ -399,7 +500,7 @@ new Vue({
       jQuery('span.fddocs-row-actions li.active').removeClass('active');
       jQuery(event.path[0]).parent('li').toggleClass('active');
       jQuery(event.path[0]).parent().parent('li').toggleClass('active');
-      
+
     },
     onClickOutside() {
       jQuery('span.fddocs-row-actions li.active').removeClass('active');
@@ -416,10 +517,54 @@ insertShortcode = function (name) {
   win.send_to_editor(shortcode);
 }
 
-jQuery(function ($) {
+jQuery(document).ready(function ($) {
   $('#insert_shortcode').bind('click', function () {
     var name = $('#name').val();
     insertShortcode(name);
+  });
+
+
+
+  var selectedval = $('#ia_show_all_doc');
+  if (selectedval.is(':checked')) {
+    console.log('ok')
+    $('.fddocs-ia-select-doc').hide();
+  } else {
+    $('.fddocs-ia-select-doc').show();
+
+  }
+  $('#ia_show_all_doc').on('change', function () {
+    var selectedval = $(this);
+    if (selectedval.is(':checked')) {
+      $('.fddocs-ia-select-doc').hide();
+    } else {
+      $('.fddocs-ia-select-doc').show();
+
+    }
+
+  });
+
+
+  var selectedval = $('#ia_doc_show_type').val();
+  if ('condition' == selectedval) {
+    $('.fddoc-setting-info').show();
+    $('.ia-show-type-normal').hide();
+    console.log('ok');
+  } else {
+    $('.fddoc-setting-info').hide();
+    $('.ia-show-type-normal').show();
+  }
+
+
+  $('#ia_doc_show_type').on('change', function () {
+    var selectedval = $(this).val();
+    if ('condition' == selectedval) {
+      $('.fddoc-setting-info').show();
+      $('.ia-show-type-normal').hide();
+    } else {
+      $('.fddoc-setting-info').hide();
+      $('.ia-show-type-normal').show();
+    }
   });
 
 
@@ -436,3 +581,40 @@ jQuery(function ($) {
   // })
 
 });
+
+function filterByProperty(array, prop, value, third_level = false) {
+  var filtered = [];
+  for (var i = 0; i < array.length; i++) {
+
+    var obj = array[i];
+
+    for (var key in obj) {
+      if (typeof (obj[key] == "object")) {
+        var item = obj[key];
+
+
+        if (third_level && typeof (item[prop] == 'object')) {
+
+          for (var keyy in item[prop]) {
+
+
+            var itemm = item[prop][keyy];
+
+            if (itemm == value) {
+              filtered.push(item);
+            }
+
+          }
+        } else if (item[prop] == value) {
+          filtered.push(item);
+        }
+
+
+      }
+    }
+
+  }
+
+  return filtered;
+
+}

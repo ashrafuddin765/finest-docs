@@ -49,7 +49,7 @@ function fddocs_breadcrumbs() {
     $html .= fddocs_get_breadcrumb_item( $args['home'], home_url( '/' ), $breadcrumb_position );
     $html .= $args['delimiter'];
 
-    $docs_home = fddocs_get_option('select_doc_homepage');
+    $docs_home = fddocs_get_option( 'select_doc_homepage' );
 
     if ( $docs_home ) {
         ++$breadcrumb_position;
@@ -121,7 +121,7 @@ function fddocs_css_strip_whitespace( $css ) {
     return trim( $css );
 }
 
-function fd_get_posts_children( $parent_id ) {
+function fd_get_posts_children( $parent_id, $post_per_page = -1 ) {
 
     $post = get_post( $parent_id );
     if ( empty( $post ) ) {
@@ -129,7 +129,7 @@ function fd_get_posts_children( $parent_id ) {
     }
     $children = array();
     // grab the posts children
-    $posts = get_posts( array( 'numberposts' => -1, 'post_parent' => $parent_id, 'post_type' => $post->post_type, 'suppress_filters' => true ) );
+    $posts = get_posts( array( 'numberposts' => $post_per_page, 'post_parent' => $parent_id, 'post_type' => $post->post_type, 'suppress_filters' => true ) );
 
     // now grab the grand children
     foreach ( $posts as $child ) {
@@ -217,10 +217,10 @@ function fd_duplicator( $post_id ) {
 
 }
 
-function fddocs_get_option($opt_name, $default = false){
+function fddocs_get_option( $opt_name, $default = false ) {
     $fddocs_options = get_option( 'finestdocs_settings', 0 );
 
-    if(isset($fddocs_options[$opt_name])){
+    if ( isset( $fddocs_options[$opt_name] ) ) {
         return $fddocs_options[$opt_name];
     }
 
@@ -232,14 +232,13 @@ function fddocs_add_body_class( $classes ) {
     $layout = get_theme_mod( 'docs_category_layout', 'layout-01' );
 
     $classes[] = 'fddocs-body';
-    if('docs' == get_post_type() && is_single()){
-        $classes[] = 'fddoc-single-'.$layout;
+    if ( 'docs' == get_post_type() && is_single() ) {
+        $classes[] = 'fddoc-single-' . $layout;
     }
 
-    return  $classes ;
+    return $classes;
 };
-add_filter( 'body_class', 'fddocs_add_body_class');
-
+add_filter( 'body_class', 'fddocs_add_body_class' );
 
 /**
  * Register custom query vars
@@ -271,14 +270,13 @@ add_action( 'pre_get_posts', 'fddocs_search_query' );
 add_filter( 'template_include', 'fddocs_page_template' );
 function fddocs_page_template( $page_template ) {
     global $post;
-    $doc_page = fddocs_get_option( 'select_doc_homepage', 0);
+    $doc_page = fddocs_get_option( 'select_doc_homepage', 0 );
     if ( is_search() && 'docs' == get_query_var( 'post_type' ) ) {
         $page_template = FINEST_DOCS_DIR . 'templates/search.php';
     }
-;
+    ;
 
-
-    if ( $doc_page == get_the_ID(  ) ) {
+    if ( $doc_page == get_the_ID() ) {
 
         $page_template = FINEST_DOCS_DIR . '/templates/fddocs.php';
 
@@ -291,14 +289,13 @@ function fddocs_page_template( $page_template ) {
     return $page_template;
 }
 
-
 /**
  * Add "Custom" template to page attirbute template section.
  */
 function wpse_288589_add_template_to_select( $post_templates, $wp_theme, $post, $post_type ) {
 
     // Add custom template named template-with-sidebar.php to select dropdown
-    $post_templates['fddocs.php']          = __( 'Documentation Page' );
+    $post_templates['fddocs.php'] = __( 'Documentation Page' );
 
     return $post_templates;
 }
@@ -306,7 +303,7 @@ function wpse_288589_add_template_to_select( $post_templates, $wp_theme, $post, 
 add_filter( 'theme_page_templates', 'wpse_288589_add_template_to_select', 10, 4 );
 
 function fddocs_feedback_html() {
-    if( ! fddocs_get_option('docs_enable_feedback', true)){
+    if ( !fddocs_get_option( 'docs_enable_feedback', true ) ) {
         return;
     }
     $previous    = isset( $_COOKIE['fddocs_response'] ) ? explode( ',', $_COOKIE['fddocs_response'] ) : [];
@@ -314,7 +311,7 @@ function fddocs_feedback_html() {
     ob_start();?>
 <div class="fddocs-footer-feedback <?php echo esc_attr( $is_disabled ) ?>">
 
-    <?php if('disabled' == $is_disabled): ?>
+    <?php if ( 'disabled' == $is_disabled ): ?>
         <span class="feedback-text"><?php esc_html_e( 'Your feedback has been taken already.', 'fddocs' )?></span>
     <?php else: ?>
     <span class="feedback-text"><?php esc_html_e( 'Rate this article', 'fddocs' )?></span>
@@ -334,7 +331,7 @@ function fddocs_feedback_html() {
         </svg>
 
     </span>
-    <?php endif; ?>
+    <?php endif;?>
 
 </div>
 <?php
@@ -354,10 +351,10 @@ function fddocs_get_total_article( $id = '', $in_section = false ) {
     $id = '' != $id ? $id : get_the_ID();
 
     $args = array(
-        'post_type'      => 'docs',
-        'posts_per_page' => -1,
-        'post_parent'    => [$id],
-        'suppress_filters' => false ,
+        'post_type'        => 'docs',
+        'posts_per_page'   => -1,
+        'post_parent'      => [$id],
+        'suppress_filters' => false,
 
     );
 
@@ -374,10 +371,10 @@ function fddocs_get_total_article( $id = '', $in_section = false ) {
 
     } else {
         $first_parents = fd_get_posts_children( $id );
-        if($first_parents){
+        if ( $first_parents ) {
             foreach ( $first_parents as $section ) {
-                $article = fd_get_posts_children($section) ? fd_get_posts_children($section) : [];
-                $counter += count($article);
+                $article = fd_get_posts_children( $section ) ? fd_get_posts_children( $section ) : [];
+                $counter += count( $article );
             }
         }
 
@@ -386,8 +383,7 @@ function fddocs_get_total_article( $id = '', $in_section = false ) {
     return $counter;
 }
 
-
-function fddoc_update_exxisting_doc_type(){
+function fddoc_update_exxisting_doc_type() {
 
     $args = array(
         'post_type'      => 'docs',
@@ -397,39 +393,38 @@ function fddoc_update_exxisting_doc_type(){
     // the query
     $the_query = new WP_Query( $args );
 
-    if($the_query->have_posts()){
-        while($the_query->have_posts(  )){
+    if ( $the_query->have_posts() ) {
+        while ( $the_query->have_posts() ) {
             $the_query->the_post();
 
-            $idd = get_the_ID(  );
+            $idd        = get_the_ID();
             $sec_parent = wp_get_post_parent_id( $idd );
-            $type = 'doc';
-            if($sec_parent){
+            $type       = 'doc';
+            if ( $sec_parent ) {
                 $third_parent = wp_get_post_parent_id( $sec_parent );
-                $type = 'section';
-                if($third_parent){
+                $type         = 'section';
+                if ( $third_parent ) {
                     $type = 'article';
                 }
             }
 
-            update_post_meta( $idd, 'doc_type',$type );
+            update_post_meta( $idd, 'doc_type', $type );
 
         }
-        wp_reset_query(  );
+        wp_reset_query();
     }
 }
 
-
-function fddocs_redirec_section_to_article(){
+function fddocs_redirec_section_to_article() {
     global $post;
-    if(  $post && $post->ID && is_single()){
+    if ( $post && $post->ID && is_single() ) {
 
-        $first_article_id =  fd_get_posts_children($post->ID) ? fd_get_posts_children($post->ID) : [];
-        $first_article_id = array_reverse($first_article_id);
+        $first_article_id = fd_get_posts_children( $post->ID ) ? fd_get_posts_children( $post->ID ) : [];
+        $first_article_id = array_reverse( $first_article_id );
 
         $doc_type = get_post_meta( $post->ID, 'doc_type', true );
-    
-        If ('section' == $doc_type){
+
+        If ( 'section' == $doc_type ) {
             $url_to_redirect = get_the_permalink( $first_article_id[0] );
             wp_redirect( $url_to_redirect );
         }
@@ -438,104 +433,117 @@ function fddocs_redirec_section_to_article(){
 
 add_action( 'template_redirect', 'fddocs_redirec_section_to_article' );
 
-
-function fddocs_related_article($parent_id){
+function fddocs_related_article( $parent_id ) {
 
     $args = array(
         'post_type'      => 'docs',
         'posts_per_page' => 4,
-        'post__not_in' => [get_the_ID(  )],
-        'post_parent' => $parent_id,
-        'orderby' => 'menu_order',
-        'order' => 'ASC'
-        
+        'post__not_in'   => [get_the_ID()],
+        'post_parent'    => $parent_id,
+        'orderby'        => 'menu_order',
+        'order'          => 'ASC',
+
     );
 
     // the query
     $the_query = new WP_Query( $args );
 
-    if($the_query->have_posts()){
+    if ( $the_query->have_posts() ) {
         echo '<div class="fddocs-related-article-wrap">';
-        echo '<h4> '.esc_html__( 'Related Articles', 'finest-docs' ).' </h4>';
+        echo '<h4> ' . esc_html__( 'Related Articles', 'finest-docs' ) . ' </h4>';
         echo '<ul class="fddocs-related-articles">';
-        while($the_query->have_posts(  )){
+        while ( $the_query->have_posts() ) {
             $the_query->the_post();
-            $idd = get_the_ID(  );
-            $doc_type = get_post_meta( $idd,'doc_type', true);
-            if('article' == $doc_type){
+            $idd      = get_the_ID();
+            $doc_type = get_post_meta( $idd, 'doc_type', true );
+            if ( 'article' == $doc_type ) {
                 $doc_icon_meta = get_post_meta( $idd, 'fd_doc_icon', true );
-                $article_icon =   '<span class="dashicons dashicons-media-default"></span>';
-               
+                $article_icon  = '<span class="dashicons dashicons-media-default"></span>';
+
                 printf(
                     '<li><a href="%s">%s %s</a></li>',
-                    get_the_permalink(  ),
+                    get_the_permalink(),
                     $article_icon,
-                    esc_html(get_the_title(  ))
+                    esc_html( get_the_title() )
                 );
             }
         }
-        wp_reset_query(  );
+        wp_reset_query();
 
         echo '</ul>';
         echo '</div>';
     }
 }
 
-
-function fddocs_post_navigation($id){
+function fddocs_post_navigation( $id ) {
     $parent_id = wp_get_post_parent_id( $id );
-    $argc = [
-        'post_type' => 'docs',
+    $argc      = [
+        'post_type'      => 'docs',
         'posts_per_page' => -1,
-        'child_of' => $parent_id,
+        'child_of'       => $parent_id,
         // 'post_parent' => $parent_id,
-        'sort_column' => 'menu_order',
-        'orderby' => 'ASC'
+        'sort_column'    => 'menu_order',
+        'orderby'        => 'ASC',
 
     ];
-    $pagelist = get_pages($argc);
+    $pagelist = get_pages( $argc );
     // $pagelist = get_pages("post_type=docs&child_of=".$parent_id."&parent=".$parent_id."&sort_column=menu_order");
 
     $pages = array();
-    foreach ($pagelist as $page) {
-       $pages[] += $page->ID;
+    foreach ( $pagelist as $page ) {
+        $pages[] += $page->ID;
     }
-    
+
     // var_dump($pagelist);
-    $current = array_search($id, $pages);
-    $prevID = array_key_exists($current-1, $pages) ? $pages[$current-1] : false;
-    $nextID = array_key_exists($current+1, $pages) ? $pages[$current+1] : false;
+    $current = array_search( $id, $pages );
+    $prevID  = array_key_exists( $current - 1, $pages ) ? $pages[$current - 1] : false;
+    $nextID  = array_key_exists( $current + 1, $pages ) ? $pages[$current + 1] : false;
+
+
+    if(!$prevID && !$nextID){
+       return;
+    }
     ?>
 
 <div class="fddocs-navigation">
     <div class="previous">
-        <?php if (!empty($prevID)) { ?>
-        <a href="<?php echo the_permalink($prevID); ?>" title="<?php echo get_the_title($prevID); ?>"><span
+        <?php if ( !empty( $prevID ) ) {?>
+        <a href="<?php echo the_permalink( $prevID ); ?>" title="<?php echo get_the_title( $prevID ); ?>"><span
                 class="dashicons dashicons-arrow-left-alt"></span> <?php echo get_the_title( $prevID ) ?></a>
 
         <?php }?>
     </div>
     <div class="next">
-        <?php   if (!empty($nextID)) { ?>
-        <a href="<?php  the_permalink($nextID); ?>" title="<?php echo get_the_title($nextID); ?>">
+        <?php if ( !empty( $nextID ) ) {?>
+        <a href="<?php the_permalink( $nextID );?>" title="<?php echo get_the_title( $nextID ); ?>">
             <?php echo get_the_title( $nextID ) ?> <span class="dashicons dashicons-arrow-right-alt"></span></a>
-        <?php } ?>
+        <?php }?>
     </div>
 </div>
-<?php    
+<?php
+
 }
 
+function fddocs_post_select( $args, $select_id, $selected = [], $attr = '', $echo = true ) {
 
+    $posts  = get_posts( $args );
+    $select = '<select name="' . $select_id . '" id="' . rtrim( $select_id, '[]' ) . '" ' . $attr . '>';
 
-function fddocs_post_select( $args, $select_id, $selected = [], $attr = '') {
-
-    
-
-    $posts = get_posts($args);
-    echo '<select name="'. $select_id .'" id="'.rtrim($select_id, '[]').'" '.$attr.'>';
-
-    foreach ($posts as $post) {
-        echo '<option value="', $post->ID, '"', in_array($post->ID, $selected) ? ' selected="selected"' : '', '>', $post->post_title, '</option>';
+    foreach ( $posts as $post ) {
+        $selected_id = in_array( $post->ID, $selected ) ? ' selected="selected"' : '';
+        $select .= '<option value="' . $post->ID . '" ' . $selected_id . '>' . $post->post_title . '</option>';
     }
-    echo '</select>';
+    $select .= '</select>';
+
+    if ( $echo ) {
+        echo $select;
+    } else {
+        return $select;
+    }
 }
+
+// function your_function() {
+//    fddoc_ia_query('docs');
+// }
+// add_action( 'wp_footer', 'your_function' );
+

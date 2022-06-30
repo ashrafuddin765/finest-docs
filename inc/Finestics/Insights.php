@@ -170,7 +170,7 @@ class Insights {
             return;
         }
 
-        if ( ! $this->tracking_allowed() && ! $override ) {
+        if ( /* ! $this->tracking_allowed() && */ ! $override ) {
             return;
         }
 
@@ -408,7 +408,7 @@ class Insights {
         }
 
         if ( isset( $_GET[ $this->client->slug . '_tracker_optout' ] ) && $_GET[ $this->client->slug . '_tracker_optout' ] == 'true' ) {
-            $this->optout();
+            $this->optin();
 
             wp_redirect( remove_query_arg( $this->client->slug . '_tracker_optout' ) );
             exit;
@@ -439,6 +439,8 @@ class Insights {
         update_option( $this->client->slug . '_tracking_notice', 'hide' );
 
         $this->clear_schedule_event();
+        $this->schedule_event();
+        $this->send_tracking_data();
     }
 
     /**
@@ -496,7 +498,7 @@ class Insights {
         $wp_data['locale']       = get_locale();
         $wp_data['version']      = get_bloginfo( 'version' );
         $wp_data['multisite']    = is_multisite() ? 'Yes' : 'No';
-
+        $wp_data['tracking_allowed'] = get_option( $this->client->slug . '_allow_tracking' ) ? get_option( $this->client->slug . '_allow_tracking' ) : 'No';
         return $wp_data;
     }
 
@@ -592,9 +594,9 @@ class Insights {
         $allowed = get_option( $this->client->slug . '_allow_tracking', 'no' );
 
         // if it wasn't allowed before, do nothing
-        if ( 'yes' !== $allowed ) {
-            return;
-        }
+        // if ( 'yes' !== $allowed ) {
+        //     return;
+        // }
 
         // re-schedule and delete the last sent time so we could force send again
         $hook_name = $this->client->slug . '_tracker_send_event';
@@ -763,8 +765,8 @@ class Insights {
                         <?php } ?>
                     </ul>
                     <p class="wd-dr-modal-reasons-bottom">
-                        We share your data with <a href="<?php echo 'https://finestics.com'; ?>">Finestics</a> to troubleshoot problems &amp; make product improvements.
-                        <a href="<?php echo 'https://finestics.com/privacy-policy'; ?>">Learn more</a> about how Finestics handles your data.
+                    We never share your data to any third party. This data will help us to troubleshoot the problems and make product improvements. Learn more about how WPGrids handles your data
+
                     </p>
                 </div>
 

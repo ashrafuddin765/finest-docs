@@ -4,6 +4,11 @@
     <article id="post-<?php the_ID(); ?>">
 
         <?php the_title( '<h1 class="fddoc-single-title">', '</h1>' ) ?>
+        <?php
+        $docs_enable_print = fddocs_get_option( 'docs_enable_print', true );
+        if(true == $docs_enable_print ) : ?>
+        <div class="fddoc-print"><span class="dashicons dashicons-printer"></span></div>
+        <?php endif; ?>
         <div class="fddocs-autoc-wrap fddocs-auto-in-content">
             <div class="autoc" data-stopat='h2' data-offset='1'></div>
         </div>
@@ -67,10 +72,6 @@
                      ) ?>
             </span>
         </div>
-        <?php if ( comments_open() || get_comments_number() ) { ?>
-        <div class="fddocs-comments-wrap">
-            <?php comments_template(); ?>
-        </div>
-        <?php } ?>
+
     </article><!-- #post-## -->
 </div><!-- .fddocs-single-content -->

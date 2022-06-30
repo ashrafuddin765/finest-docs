@@ -273,7 +273,7 @@ Kirki::add_field( 'fddocs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.fddocs-site-main',
+			'element'  => '.fddoc-main .fddocs-site-main',
 			'function' => 'css',
 			'property' => 'background-color',
 		],
@@ -314,7 +314,7 @@ Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'custom',
 	'settings'    => 'docs_column_settings',
 	'section'     => 'docs_page',
-		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 12px; background:#ddd; color:#222; margin:0;">' . __( 'CATEGORY COLUMN SETTINGS
+		'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 12px; background:#ddd; color:#222; margin:0;">' . __( 'Item Settings
         ', 'fddocs-mini-cart' ) . '</h3>',
 	'priority'    => 10,
 	'active_callback'  => [
@@ -351,7 +351,7 @@ Kirki::add_field( 'fddocs_panel', [
 Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'column_background_color',
-	'label'       => __( 'Column Background Color', 'finest-docs' ),
+	'label'       => __( 'Item Background Color', 'finest-docs' ),
 	'section'     => 'docs_page',
 	'default'     => '#ffffff',
 	'choices'     => [
@@ -383,13 +383,39 @@ Kirki::add_field( 'fddocs_panel', [
 Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'dimensions',
 	'settings'    => 'column_normal_padding',
-	'label'       => esc_html__( 'Column Padding', 'finest-docs' ),
+	'label'       => esc_html__( 'Item Padding', 'finest-docs' ),
 	'section'     => 'docs_page',
 	'default'     => [
 		'padding-top'    => '0px',
 		'padding-left' => '0px',
 		'padding-bottom'   => '0px',
 		'padding-right'  => '0px',
+	],
+    'active_callback'  => [
+		[
+			'setting'  => 'column_hover_normal',
+			'operator' => '===',
+			'value'    => 'normal',
+		],
+		[
+			'setting'  => 'docs_design_layout',
+			'operator' => '===',
+			'value'    => 'general',
+		],
+	],
+] );
+
+// column padding
+Kirki::add_field( 'fddocs_panel', [
+	'type'        => 'dimensions',
+	'settings'    => 'column_normal_margin',
+	'label'       => esc_html__( 'Item Margin', 'finest-docs' ),
+	'section'     => 'docs_page',
+	'default'     => [
+		'margin-top'    => '',
+		'margin-left' => '',
+		'margin-bottom'   => '',
+		'margin-right'  => '',
 	],
     'active_callback'  => [
 		[
@@ -587,32 +613,6 @@ Kirki::add_field( 'fddocs_panel', [
 	],
 ] );
 
-// column padding
-Kirki::add_field( 'fddocs_panel', [
-	'type'        => 'dimensions',
-	'settings'    => 'column_hover_padding',
-	'label'       => esc_html__( 'Column Padding', 'finest-docs' ),
-	'section'     => 'docs_page',
-	'default'     => [
-		'padding-top'    => '0px',
-		'padding-left' => '0px',
-		'padding-bottom'   => '0px',
-		'padding-right'  => '0px',
-	],
-    'active_callback'  => [
-		[
-			'setting'  => 'column_hover_normal',
-			'operator' => '===',
-			'value'    => 'hover',
-		],
-		[
-			'setting'  => 'docs_design_layout',
-			'operator' => '===',
-			'value'    => 'general',
-		],
-	],
-] );
-
 // column border
 
 Kirki::add_field( 'fddocs_panel', array(
@@ -620,12 +620,6 @@ Kirki::add_field( 'fddocs_panel', array(
 	'settings'    => 'hover_border_width_setting',
 	'label'       => esc_attr__( 'Border Width', 'textdomain' ),
 	'section'     => 'docs_page',
-	'default'     => [
-		'top-width'    => '1px',
-		'right-width'  => '1px',
-		'bottom-width' => '1px',
-		'left-width'   => '1px',
-	],
 	'choices'     => [
 		'top-width'    => esc_attr__( 'Top', 'textdomain' ),
 		'right-width'  => esc_attr__( 'Bottom', 'textdomain' ),
@@ -653,7 +647,6 @@ Kirki::add_field( 'fddocs_panel', [
 	'settings'    => 'hover_border_type',
 	'label'       => esc_html__( 'Border Type', 'kirki' ),
 	'section'     => 'docs_page',
-	'default'     => 'solid',
 	'priority'    => 10,
 	'multiple'    => 1,
 	'choices'     => [
@@ -699,7 +692,6 @@ Kirki::add_field( 'fddocs_panel', [
 	'settings'    => 'hover_border_color',
 	'label'       => __( 'Border Color', 'finest-docs' ),
 	'section'     => 'docs_page',
-	'default'     => 'rgba(45, 45, 49, 0.12)',
 	'choices'     => [
 		'alpha' => true,
 	],
@@ -732,7 +724,6 @@ Kirki::add_field( 'fddocs_panel', [
 	'settings'    => 'hover_border_radius',
 	'label'       => esc_html__( 'Border Radius', 'finest-docs' ),
 	'section'     => 'docs_page',
-	'default'     => 5,
 	'choices'     => [
 		'min'  => 0,
 		'max'  => 100,
@@ -790,7 +781,7 @@ Kirki::add_field( 'fddocs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.fddocs-site-main .card-top .card-title img',
+			'element'  => '.fddocs-site-main .docs-wraper .card-top img',
 			'function' => 'css',
 			'property' => 'width',
 			'units'    => '%',
@@ -819,7 +810,7 @@ Kirki::add_field( 'fddocs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.fddocs-site-main .card-top .card-title img',
+			'element'  => '.fddocs-site-main .docs-wraper .card-top img',
 			'function' => 'css',
 			'property' => 'height',
 			'units'    => 'px',
@@ -841,7 +832,6 @@ Kirki::add_field( 'fddocs_panel', [
 	'settings'    => 'contetn_column_hover_normal',
 	'label'       => esc_html__( 'Doc Content', 'finest-docs' ),
 	'section'     => 'docs_page',
-	'default'     => 'normal',
 	'priority'    => 10,
 	'choices'     => [
 		'normal'   => esc_html__( 'Normal', 'finest-docs' ),
@@ -929,7 +919,7 @@ Kirki::add_field( 'fddocs_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.fddocs-site-main .card-bottom .card-content-title h1',
+			'element'  => '.doc-header-title h1',
 			'function' => 'css',
 			'property' => 'font-size',
 			'units'    => 'px',
@@ -1087,7 +1077,6 @@ Kirki::add_field( 'fddocs_panel', [
 	'settings'    => 'doc_hover_content_area_bg',
 	'label'       => __( 'Content Background Color', 'finest-docs' ),
 	'section'     => 'docs_page',
-	'default'     => '#ffffff',
 	'choices'     => [
 		'alpha' => true,
 	],
@@ -1118,12 +1107,6 @@ Kirki::add_field( 'fddocs_panel', [
 	'settings'    => 'text_hover_padding',
 	'label'       => esc_html__( 'Contnet Padding', 'finest-docs' ),
 	'section'     => 'docs_page',
-	'default'     => [
-		'padding-top'    => '25px',
-		'padding-left' => '35px',
-		'padding-bottom'   => '40px',
-		'padding-right'  => '35px',
-	],
     'active_callback'  => [
 		[
 			'setting'  => 'contetn_column_hover_normal',
@@ -1355,7 +1338,7 @@ Kirki::add_field( 'fddocs_panel', [
 		[
 			'element'  => '.fddocs-site-main .card-bottom .card-button a',
 			'function' => 'css',
-			'property' => 'color',
+			'property' => 'background-color',
 		],
 	],
     'active_callback'  => [
@@ -1504,11 +1487,7 @@ Kirki::add_field( 'fddocs_panel', [
 		],
 	],
     'active_callback'  => [
-		[
-			'setting'  => 'doc_button_normal',
-			'operator' => '===',
-			'value'    => 'normal',
-		],
+
 		[
 			'setting'  => 'docs_design_layout',
 			'operator' => '===',
@@ -1519,8 +1498,6 @@ Kirki::add_field( 'fddocs_panel', [
 
 
 // button hover
-
-
 Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'color',
 	'settings'    => 'hover_doc_font_color',
@@ -1693,7 +1670,6 @@ Kirki::add_field( 'fddocs_panel', [
 ] );
 
 //colum radius
-
 Kirki::add_field( 'fddocs_panel', [
 	'type'        => 'slider',
 	'settings'    => 'button_hover_border_radius',

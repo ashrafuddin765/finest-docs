@@ -8,6 +8,8 @@
     $colum_bg_color = get_theme_mod( 'column_background_color', '#ffffff' );
     $column_normal_padding = get_theme_mod( 'column_normal_padding' ) != ' ' ? get_theme_mod( 'column_normal_padding' ) : '' ;
     $columnpadding = is_array($column_normal_padding ) ?  implode(' ', $column_normal_padding) : '';
+    $column_normal_margin = get_theme_mod( 'column_normal_margin' ) != ' ' ? get_theme_mod( 'column_normal_margin' ) : '' ;
+    $column_margin = is_array($column_normal_margin ) ?  implode(' ', $column_normal_margin) : '';
     $column_border = get_theme_mod( 'border_width_setting', '' );
     $column_border_type = get_theme_mod( 'select_border_type', 'solid' );
     $column_border_color = get_theme_mod( 'column_border_color', 'rgba(45, 45, 49, 0.12)' );
@@ -105,12 +107,12 @@
 
 
     if ( $docs_bg_color) {
-        $fmc_dynamic_css .= '.fddocs-site-main  { background-color:' . esc_attr( $docs_bg_color ) .' } ';
+        $fmc_dynamic_css .= '.fddoc-main .fddocs-site-main  { background-color:' . esc_attr( $docs_bg_color ) .' } ';
         $fmc_dynamic_css .= "\n";
     }
 
     if( $docspadding ){
-        $fmc_dynamic_css .= '.fddocs-site-main {padding: ' . esc_attr( $docspadding ) . ' } ';
+        $fmc_dynamic_css .= '.fddoc-main .fddocs-site-main {padding: ' . esc_attr( $docspadding ) . ' } ';
         $fmc_dynamic_css .= "\n";
     }
 
@@ -120,6 +122,10 @@
     }
     if( $columnpadding ){
         $fmc_dynamic_css .= '.fddocs-site-main .docs-wraper {padding: ' . esc_attr( $columnpadding ) . ' } ';
+        $fmc_dynamic_css .= "\n";
+    }
+    if( $column_margin ){
+        $fmc_dynamic_css .= '.fddocs-site-main .docs-wraper {margin: ' . esc_attr( $column_margin ) . ' } ';
         $fmc_dynamic_css .= "\n";
     }
     if( $column_border ){

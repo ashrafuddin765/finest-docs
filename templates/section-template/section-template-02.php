@@ -3,22 +3,24 @@
 ?>
 
 <div class="col-12">
-    <div class="wraper template-scnd">
-        <div class="icon scnd-icon">
-            <?php 
+
+    <a href="<?php echo get_the_permalink(  ) ?>">
+        <div class="wraper template-scnd">
+            <div class="icon scnd-icon">
+                <?php 
             if ( has_post_thumbnail() ) {
                 the_post_thumbnail();
             }
         ?>
-        </div>
-        <div class="content-area">
-            <div class="docs-title">
-                <a href="<?php echo get_the_permalink(  ) ?>">
-                    <h1><?php echo get_the_title(); ?></h1>
             </div>
-            <div class="total-article">
-                <span class="article-total">
-            <?php 
+            <div class="content-area">
+                <div class="docs-title">
+                    <h1><?php echo get_the_title(); ?></h1>
+
+                </div>
+                <div class="total-article">
+                    <span class="article-total">
+                        <?php 
                 $enable_article_count = fddocs_get_option('article_enable_post_count', true);
                 $article_count_text = fddocs_get_option('article_count_text', 'Articles');
                 $article_count_text_singular = fddocs_get_option('article_count_text_singular', 'Article');
@@ -34,7 +36,8 @@
 
                 }
                 ?> </span>
+                </div>
             </div>
         </div>
-    </div>
+    </a>
 </div>

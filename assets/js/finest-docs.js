@@ -9,15 +9,31 @@
       $('ul.fddocs-nav-list .page_item_has_children').append('<span class="toggle-menu dashicons dashicons-arrow-up-alt2"></span>');
       $('ul.fddocs-nav-list .page_item_has_children.current_page_parent').addClass('active');
 
-      $('ul.fddocs-nav-list .page_item_has_children').on(
-        'click',
+      $('ul.fddocs-nav-list').on(
+        'click', '.page_item_has_children',
         function (event) {
+
+          if ( $(event.target).hasClass('toggle-menu')) {
+
+            var parent = $(event.target).parent('li').closest('.page_item');
+            parent.siblings('li.page_item_has_children').removeClass('active');
+            parent.toggleClass('active');
+            parent.children('.children').slideToggle(300).parent('li').siblings('li').children('.children').slideUp();
+          }
           // event.preventDefault();
-          var self = $(this),
-            parent = self.closest('.page_item');
-          parent.siblings('li').removeClass('active');
-          parent.toggleClass('active');
-          parent.children('.children').slideToggle(300).parent('li').siblings('li').children('.children').slideUp();
+          
+          if (event.target.className.indexOf('page_item_has_children') === -1) {
+            return;
+          }
+          var self = $(this);
+          if ($(event.target).hasClass('toggle-menu')) {
+
+          } else {
+            var parent = self.closest('.page_item');
+            parent.siblings('li.page_item_has_children').removeClass('active');
+            parent.toggleClass('active');
+            parent.children('.children').slideToggle(300).parent('li').siblings('li').children('.children').slideUp();
+          }
 
         }
       );
@@ -30,10 +46,8 @@
 
         });
 
-        $('.fddoc-print').click(function (e) {
+        $('.fddoc-print').on('click', function (e) {
           e.preventDefault();
-
-
         }, this.docPrint)
       }
 
@@ -46,9 +60,11 @@
       var content = document.querySelector('.fddocs-entry-content');
       var newWin = window.open('', 'Print-Window');
 
+
+
       newWin.document.open();
 
-      newWin.document.write('<html ><body onload="window.print()">' + title.innerHTML + content.innerHTML + '</body></html>');
+      newWin.document.write('<html ><body onload="window.print()"><h1>' + title.innerHTML + '</h1>' + content.innerHTML + '</body></html>');
 
       newWin.document.close();
 
@@ -142,6 +158,9 @@
       .replace(/^-+/, "") // Trim - from start of text
       .replace(/-+$/, ""); // Trim - from end of text
   }
+
+
+
   $(function () {
     finestDocs.init();
   });
@@ -159,3 +178,26 @@
   });
 
 })(jQuery);
+
+function fddocsTabs(evt, cityName) {
+  evt.preventDefault();
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("fddocs-tab-content");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("fddocs-tab-link");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+
+}

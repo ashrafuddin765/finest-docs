@@ -11,6 +11,7 @@ class Ajax {
     public function __construct() {
         add_action( 'wp_ajax_fddocs_create_doc', [$this, 'create_doc'] );
         add_action( 'wp_ajax_fddocs_quick_edit', [$this, 'quick_edit'] );
+        add_action( 'wp_ajax_fddocs_save_include_exclude', [$this, 'include_exclude_rules'] );
         add_action( 'wp_ajax_fddocs_duplicate_doc', [$this, 'duplicate_doc'] );
         add_action( 'wp_ajax_fddocs_remove_doc', [$this, 'remove_doc'] );
         add_action( 'wp_ajax_fddocs_admin_get_docs', [$this, 'get_docs'] );
@@ -57,7 +58,7 @@ class Ajax {
         // }else{
         //     $doc_type = 'section';
         // }
-        
+
         // update_post_meta( $post_id, 'doc_type', $doc_type );
 
         if ( is_wp_error( $post_id ) ) {
@@ -70,7 +71,7 @@ class Ajax {
                 'id'     => $post_id,
                 'title'  => stripslashes( $title ),
                 'status' => $status,
-                'slug' => $new_post_obj->post_name,
+                'slug'   => $new_post_obj->post_name,
                 'caps'   => [
                     'edit'   => current_user_can( $post_type_object->cap->edit_post, $post_id ),
                     'delete' => current_user_can( $post_type_object->cap->delete_post, $post_id ),
@@ -88,10 +89,9 @@ class Ajax {
     public function quick_edit() {
         check_ajax_referer( 'fddocs-admin-nonce' );
 
-        $title  = isset( $_POST['title'] ) ? trim( sanitize_text_field( $_POST['title'] ) ) : '';
-        $slug = isset( $_POST['slug'] ) ? sanitize_text_field( $_POST['slug'] ) : 'draft';
+        $title   = isset( $_POST['title'] ) ? trim( sanitize_text_field( $_POST['title'] ) ) : '';
+        $slug    = isset( $_POST['slug'] ) ? sanitize_text_field( $_POST['slug'] ) : 'draft';
         $post_id = isset( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
-
 
         $post_type_object = get_post_type_object( 'docs' );
 
@@ -100,24 +100,75 @@ class Ajax {
         }
 
         if ( !current_user_can( $post_type_object->cap->publish_posts ) ) {
-          return wp_send_json_error();
+            return wp_send_json_error();
         }
 
         $updated_post_id = wp_update_post( [
-            'ID' => $post_id,
-            'post_title'  => $title,
-            'post_name'=> $slug,
-            'post_type'   => 'docs',
+            'ID'         => $post_id,
+            'post_title' => $title,
+            'post_name'  => $slug,
+            'post_type'  => 'docs',
         ] );
-
- 
 
         if ( is_wp_error( $updated_post_id ) ) {
             wp_send_json_error();
         }
 
+        wp_send_json_success();
+    }
 
-        wp_send_json_success( );
+    /**
+     * Create a new doc.
+     *
+     * @return void
+     */
+    public function include_exclude_rules() {
+        check_ajax_referer( 'fddocs-admin-nonce' );
+
+        $include_ids = isset( $_POST['include_ids'] ) ? $_POST['include_ids'] : [];
+        $exclude_ids = isset( $_POST['exclude_ids'] ) ? $_POST['exclude_ids'] : [];
+        $post_id     = isset( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
+
+        $post_type_object = get_post_type_object( 'docs' );
+
+        if ( empty( $include_ids ) && empty( $exclude_ids ) ) {
+            // return wp_send_json_error();
+        }
+
+        if ( !current_user_can( $post_type_object->cap->publish_posts ) ) {
+            return wp_send_json_error();
+        }
+
+        // $updated_post_id = wp_update_post( [
+        //     'ID' => $post_id,
+        //     'post_title'  => $title,
+        //     'post_name'=> $slug,
+        //     'post_type'   => 'docs',
+        // ] );
+
+        
+        $argc = [
+            'post_type'      => 'page',
+            'posts_per_page' => -1,
+        ];
+        
+        $update_include_rules = update_post_meta( $post_id, 'ia_include_pages', $include_ids );
+        $update_exclude_rules = update_post_meta( $post_id, 'ia_exclude_pages', $exclude_ids );
+        
+        if ( is_wp_error( $update_include_rules ) || is_wp_error( $update_exclude_rules ) ) {
+            wp_send_json_error();
+        }
+        $include_slected_ids = get_post_meta( $post_id, 'ia_include_pages', false ) ? get_post_meta( $post_id, 'ia_include_pages', false ) : [];
+        $exclude_slected_ids = get_post_meta( $post_id, 'ia_exclude_pages', false ) ? get_post_meta( $post_id, 'ia_exclude_pages', false ) : [];
+
+        $include_pages = fddocs_post_select( $argc, 'include_pages_' . $post_id . '[]', $include_slected_ids[0], 'multiple', false );
+        $exclude_pages = fddocs_post_select( $argc, 'exclude_pages_' . $post_id . '[]', $exclude_slected_ids[0], 'multiple', false );
+
+        wp_send_json_success( [
+            'include_pages' => $include_pages,
+            'exclude_pages' => $exclude_pages,
+            'res'           => $include_slected_ids[0],
+        ] );
     }
 
     /**
@@ -136,7 +187,6 @@ class Ajax {
         }
 
         $new_post_id = fd_duplicator( $post_id );
-        
 
         if ( is_wp_error( $new_post_id ) ) {
             wp_send_json_error();
@@ -212,8 +262,6 @@ class Ajax {
         wp_send_json_success( $arranged );
     }
 
-  
-
     /**
      * Sort docs.
      *
@@ -261,14 +309,29 @@ class Ajax {
                 $child = $this->build_tree( $docs, $doc->ID );
                 usort( $child, [$this, 'sort_callback'] );
 
+                $argc = [
+                    'post_type'      => 'page',
+                    'posts_per_page' => -1,
+                ];
+
+                $include_slected_ids = get_post_meta( $doc->ID, 'ia_include_pages', false ) ? get_post_meta( $doc->ID, 'ia_include_pages', false )[0] : [];
+                $exclude_slected_ids = get_post_meta( $doc->ID, 'ia_exclude_pages', false ) ? get_post_meta( $doc->ID, 'ia_exclude_pages', false )[0] : [];
+
+                $include_pages = fddocs_post_select( $argc, 'include_pages_' . $doc->ID . '[]', $include_slected_ids, 'multiple', false );
+                $exclude_pages = fddocs_post_select( $argc, 'exclude_pages_' . $doc->ID . '[]', $exclude_slected_ids, 'multiple', false );
+
                 $result[] = [
                     'post'  => [
-                        'id'     => $doc->ID,
-                        'title'  => $doc->post_title,
-                        'status' => $doc->post_status,
-                        'order'  => $doc->menu_order,
-                        'slug' => $doc->post_name,
-                        'caps'   => [
+                        'id'            => $doc->ID,
+                        'title'         => $doc->post_title,
+                        'status'        => $doc->post_status,
+                        'order'         => $doc->menu_order,
+                        'slug'          => $doc->post_name,
+                        'include_pages' => $include_pages,
+                        'exclude_pages' => $exclude_pages,
+                        'include_page_id' => $include_slected_ids,
+                        'exclude_page_id' => $exclude_slected_ids,
+                        'caps'          => [
                             'edit'   => current_user_can( $post_type_object->cap->edit_post, $doc->ID ),
                             'delete' => current_user_can( $post_type_object->cap->delete_post, $doc->ID ),
                         ],

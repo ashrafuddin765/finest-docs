@@ -1,6 +1,8 @@
-<div class="wrap" id="fddocs-app"  v-click-outside="onClickOutside">
+<?php
+$ia_doc_show_type = fddocs_get_option( 'ia_doc_show_type', 'normal' );
 
-
+?>
+<div class="wrap" id="fddocs-app" v-click-outside="onClickOutside">
     <h1 class="fddocs-page-title"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path d="M5 5C5 3.89543 5.89543 3 7 3H17C18.1046 3 19 3.89543 19 5V21L12 17.5L5 21V5Z" stroke="#4B3BFD"
@@ -46,8 +48,8 @@
                 <span class="fddocs-row-actions">
                     <ul class="actions-menu">
                         <li>
-                            <span class="toggler" v-on:click="actionMenu"><svg width="12" height="4" viewBox="0 0 12 4" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
+                            <span class="toggler" v-on:click="actionMenu"><svg width="12" height="4" viewBox="0 0 12 4"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M1.91671 1.99999H1.92254M6.00004 1.99999H6.00587M10.0834 1.99999H10.0892M2.50004 1.99999C2.50004 2.32216 2.23887 2.58332 1.91671 2.58332C1.59454 2.58332 1.33337 2.32216 1.33337 1.99999C1.33337 1.67782 1.59454 1.41666 1.91671 1.41666C2.23887 1.41666 2.50004 1.67782 2.50004 1.99999ZM6.58337 1.99999C6.58337 2.32216 6.32221 2.58332 6.00004 2.58332C5.67787 2.58332 5.41671 2.32216 5.41671 1.99999C5.41671 1.67782 5.67787 1.41666 6.00004 1.41666C6.32221 1.41666 6.58337 1.67782 6.58337 1.99999ZM10.6667 1.99999C10.6667 2.32216 10.4055 2.58332 10.0834 2.58332C9.76121 2.58332 9.50004 2.32216 9.50004 1.99999C9.50004 1.67782 9.76121 1.41666 10.0834 1.41666C10.4055 1.41666 10.6667 1.67782 10.6667 1.99999Z"
                                         stroke="#111827" stroke-linecap="round" stroke-linejoin="round" />
@@ -73,10 +75,19 @@
                                     <a href="" v-on:click="copyDoc(doc,$event)"
                                         class="copy"><?php esc_html_e( 'Duplicate', 'fddocs' )?></a>
                                 </li>
+                                <?php if('condition' == $ia_doc_show_type): ?>
+                                <li>
+                                    <a href="" v-on:click.prevent="showCondition(doc,$event)"
+                                        class="copy"><?php esc_html_e( 'Conditions', 'fddocs' )?></a>
+                                </li>
+
+                                <?php endif; ?>
                                 <li>
                                     <span v-if="doc.post.caps.delete" class="fddocs-btn-remove"
                                         v-on:click="removeDoc(index, docs)"
                                         title="<?php esc_attr_e( 'Delete this doc', 'fddocs' );?>"><?php esc_html_e( 'Delete', 'fddocs' )?></span>
+
+
                                 </li>
                             </ul>
                         </li>
@@ -113,8 +124,8 @@
                             <span class="fddocs-row-actions">
                                 <ul class="actions-menu">
                                     <li>
-                                        <span class="toggler" v-on:click="actionMenu"><svg width="12" height="4" viewBox="0 0 12 4" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
+                                        <span class="toggler" v-on:click="actionMenu"><svg width="12" height="4"
+                                                viewBox="0 0 12 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="M1.91671 1.99999H1.92254M6.00004 1.99999H6.00587M10.0834 1.99999H10.0892M2.50004 1.99999C2.50004 2.32216 2.23887 2.58332 1.91671 2.58332C1.59454 2.58332 1.33337 2.32216 1.33337 1.99999C1.33337 1.67782 1.59454 1.41666 1.91671 1.41666C2.23887 1.41666 2.50004 1.67782 2.50004 1.99999ZM6.58337 1.99999C6.58337 2.32216 6.32221 2.58332 6.00004 2.58332C5.67787 2.58332 5.41671 2.32216 5.41671 1.99999C5.41671 1.67782 5.67787 1.41666 6.00004 1.41666C6.32221 1.41666 6.58337 1.67782 6.58337 1.99999ZM10.6667 1.99999C10.6667 2.32216 10.4055 2.58332 10.0834 2.58332C9.76121 2.58332 9.50004 2.32216 9.50004 1.99999C9.50004 1.67782 9.76121 1.41666 10.0834 1.41666C10.4055 1.41666 10.6667 1.67782 10.6667 1.99999Z"
                                                     stroke="#111827" stroke-linecap="round" stroke-linejoin="round" />
@@ -177,8 +188,9 @@
 
                                         <ul class="actions-menu">
                                             <li>
-                                                <span class="toggler" v-on:click="actionMenu"><svg width="12" height="4" viewBox="0 0 12 4"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <span class="toggler" v-on:click="actionMenu"><svg width="12" height="4"
+                                                        viewBox="0 0 12 4" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
                                                         <path
                                                             d="M1.91671 1.99999H1.92254M6.00004 1.99999H6.00587M10.0834 1.99999H10.0892M2.50004 1.99999C2.50004 2.32216 2.23887 2.58332 1.91671 2.58332C1.59454 2.58332 1.33337 2.32216 1.33337 1.99999C1.33337 1.67782 1.59454 1.41666 1.91671 1.41666C2.23887 1.41666 2.50004 1.67782 2.50004 1.99999ZM6.58337 1.99999C6.58337 2.32216 6.32221 2.58332 6.00004 2.58332C5.67787 2.58332 5.41671 2.32216 5.41671 1.99999C5.41671 1.67782 5.67787 1.41666 6.00004 1.41666C6.32221 1.41666 6.58337 1.67782 6.58337 1.99999ZM10.6667 1.99999C10.6667 2.32216 10.4055 2.58332 10.0834 2.58332C9.76121 2.58332 9.50004 2.32216 9.50004 1.99999C9.50004 1.67782 9.76121 1.41666 10.0834 1.41666C10.4055 1.41666 10.6667 1.67782 10.6667 1.99999Z"
                                                             stroke="#111827" stroke-linecap="round"

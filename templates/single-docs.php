@@ -7,6 +7,7 @@
 <?php 
     $layout = get_theme_mod( 'docs_category_layout', 'layout-01' );
     $class = 'fddocs-container';
+    
     if ( 'layout-01' == $layout) {
         $class = 'fddocs-container-fluid';
     }
@@ -24,7 +25,10 @@
                     <div class="<?php echo esc_attr( $class. ' '. $layout ) ?>" >
                         <div class="fddocs-single-wrap">
                         <?php 
-                                include FINEST_DOCS_DIR.'templates/single-layout/' . $layout .'.php';
+                               $template = apply_filters( 'fddocs_include_single_template', FINEST_DOCS_DIR.'templates/single-layout/' . $layout .'.php' );
+                               if($template){
+                                   include $template;
+                               }
                         ?>  
                         </div><!-- .fddocs-single-wrap -->
                     </div>

@@ -1,10 +1,18 @@
-<?php fddocs_get_template_part( 'finest-docs', 'sidebar' );?> 
+<?php fddocs_get_template_part( 'finest-docs', 'sidebar' );?>
 <div class="fddocs-single-content layout-03">
     <?php fddocs_breadcrumbs(); ?>
-    <article id="post-<?php the_ID(); ?>" >
+    <article id="post-<?php the_ID(); ?>">
 
-    <?php the_title( '<h1 class="fddoc-single-title">', '</h1>' ) ?>
+        <?php the_title( '<h1 class="fddoc-single-title">', '</h1>' ) ?>
+        <?php
+        $docs_enable_print = fddocs_get_option( 'docs_enable_print', true );
+        if(true == $docs_enable_print ) : ?>
+        <div class="fddoc-print"><span class="dashicons dashicons-printer"></span></div>
+        <?php endif; ?>
         <div class="fddocs-entry-content" itemprop="articleBody">
+            <div class="fddocs-autoc-wrap fddocs-auto-in-content <?php echo $class; ?>">
+                <div class="autoc" data-stopat='h2' data-offset='1'></div>
+            </div>
             <?php
                 the_content( sprintf(
                     /* translators: %s: Name of current post. */
@@ -14,7 +22,7 @@
             ?>
         </div>
         <div class="fddocs-article-footer">
-            <div class="fddocs-meta-area" >
+            <div class="fddocs-meta-area">
                 <div class="fddocs-footer-meta">
                     <?php printf('%s %s',
                             esc_html__( 'Updated on ', 'fddocs'),
@@ -31,7 +39,7 @@
             ?>
         </div>
         <div class="fdocs-single-post-navigation">
-           <?php fddocs_post_navigation(get_the_ID(  ));?>
+            <?php fddocs_post_navigation(get_the_ID(  ));?>
         </div>
         <div class="fddocs-related-articles">
             <?php fddocs_related_article(wp_get_post_parent_id( get_the_ID() )) ?>
@@ -43,12 +51,12 @@
             $cta_text = get_theme_mod( 'cta_button_text', 'Contact support' );
         ?>
         <div class="help-center fdocs-cta">
-            <p class="help-text" ><?php echo esc_html(  $cta_title ) ?></p>
+            <p class="help-text"><?php echo esc_html(  $cta_title ) ?></p>
             <?php printf('<a href="%s">%s</a>',esc_url_raw($supporturl), esc_html( $cta_text)); ?>
-            <p class="contact-text" ><?php echo esc_html( $cta_description ); ?></p>
+            <p class="contact-text"><?php echo esc_html( $cta_description ); ?></p>
         </div>
         <div class="fdoc-powered">
-        <span class="fddoc-copyright" >
+            <span class="fddoc-copyright">
                 <?php printf('%s <a href="%s">%s</a>', 
                         esc_html( 'Powered by '),
                         esc_url( 'https://finestdevs.com' ),
@@ -56,11 +64,5 @@
                      ) ?>
             </span>
         </div>
-        <?php if ( comments_open() || get_comments_number() ) { ?>
-                <div class="fddocs-comments-wrap">
-                    <?php comments_template(); ?>
-                </div>
-        <?php } ?>
     </article><!-- #post-## -->
 </div><!-- .fddocs-single-content -->
- 

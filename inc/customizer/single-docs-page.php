@@ -280,7 +280,7 @@ Kirki::add_field( 'fddocs_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.fddocs-single-content .fddocs-entry-content h2',
+            'element'  => '.fddocs-single-content .fddocs-entry-content h2, .fddoc-single-title',
             'function' => 'css',
             'property' => 'color',
 
@@ -296,25 +296,25 @@ Kirki::add_field( 'fddocs_panel', [
 ] );
 
 // title margin
-Kirki::add_field( 'fddocs_panel', [
-    'type'            => 'dimensions',
-    'settings'        => 'post_title_margin',
-    'label'           => esc_html__( 'Margin', 'finest-docs' ),
-    'section'         => 'single_page',
-    'default'         => [
-        'margin-top'    => '0px',
-        'margin-right'  => '0px',
-        'margin-bottom' => '0px',
-        'margin-left'   => '0px',
-    ],
-    'active_callback' => [
-        [
-            'setting'  => 'single_layout_design',
-            'operator' => '===',
-            'value'    => 'general',
-        ],
-    ],
-] );
+// Kirki::add_field( 'fddocs_panel', [
+//     'type'            => 'dimensions',
+//     'settings'        => 'post_title_margin',
+//     'label'           => esc_html__( 'Margin', 'finest-docs' ),
+//     'section'         => 'single_page',
+//     'default'         => [
+//         'margin-top'    => '0px',
+//         'margin-right'  => '0px',
+//         'margin-bottom' => '0px',
+//         'margin-left'   => '0px',
+//     ],
+//     'active_callback' => [
+//         [
+//             'setting'  => 'single_layout_design',
+//             'operator' => '===',
+//             'value'    => 'general',
+//         ],
+//     ],
+// ] );
 
 Kirki::add_field( 'fddocs_panel', [
     'type'            => 'slider',
@@ -680,7 +680,7 @@ Kirki::add_field( 'fddocs_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.fddocs-autoc-wrap',
+            'element'  => '.fddocs-single-wrap .fddocs-auto-in-content.fddocs-autoc-wrap,  .fddocs-autoc-wrap',
             'function' => 'css',
             'property' => 'background-color',
         ],
@@ -728,7 +728,7 @@ Kirki::add_field( 'fddocs_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.fddocs-autoc-wrap',
+            'element'  => '.fddocs-single-wrap .fddocs-auto-in-content.fddocs-autoc-wrap,  .fddocs-autoc-wrap',
             'function' => 'css',
             'property' => 'border-radius',
             'units'    => 'px',
@@ -843,7 +843,7 @@ Kirki::add_field( 'fddocs_panel', [
         [
             'element'  => '.fddocs-autoc-wrap .autoc ul li a',
             'function' => 'css',
-            'property' => 'TOC Font Size',
+            'property' => 'font-size',
             'units'    => 'px',
         ],
     ],
@@ -1000,7 +1000,7 @@ Kirki::add_field( 'fddocs_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.fddocs-socshare-heading h5',
+            'element'  => '.fddocs-socshare-heading strong',
             'function' => 'css',
             'property' => 'color',
         ],
@@ -1027,7 +1027,7 @@ Kirki::add_field( 'fddocs_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.fddocs-socshare-heading h5',
+            'element'  => '.fddocs-socshare-heading strong',
             'function' => 'css',
             'property' => 'font-size',
             'units'    => 'px',
@@ -1055,7 +1055,7 @@ Kirki::add_field( 'fddocs_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.fddocs-socshare-heading h5',
+            'element'  => '.fddocs-socshare-heading strong',
             'function' => 'css',
             'property' => 'margin-bottom',
             'units'    => 'px',
@@ -1187,7 +1187,7 @@ Kirki::add_field( 'fddocs_panel', [
     'type'            => 'custom',
     'settings'        => 'footer_box',
     'section'         => 'single_page',
-    'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'CTA Button', 'fddocs-mini-cart' ) . '</h3>',
+    'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'CTA', 'fddocs-mini-cart' ) . '</h3>',
     'priority'        => 10,
     'active_callback' => [
         [
@@ -1355,7 +1355,7 @@ Kirki::add_field( 'fddocs_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.fdocs-cta a',
+            'element'  => '.fdocs-ctn .footer-button a',
             'function' => 'css',
             'property' => 'background-color',
         ],
@@ -1383,7 +1383,7 @@ Kirki::add_field( 'fddocs_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.fdocs-cta a',
+            'element'  => '.fdocs-ctn .footer-button a',
             'function' => 'css',
             'property' => 'font-size',
             'units'    => 'px',
@@ -1410,7 +1410,7 @@ Kirki::add_field( 'fddocs_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.fdocs-cta a',
+            'element'  => '.fdocs-ctn .footer-button a',
             'function' => 'css',
             'property' => 'color',
         ],
@@ -1426,7 +1426,7 @@ Kirki::add_field( 'fddocs_panel', [
 
 Kirki::add_field( 'fddocs_panel', [
     'type'            => 'slider',
-    'settings'        => 'fbutton_border_radius',
+    'settings'        => 'button_border_radius',
     'label'           => esc_html__( 'Button Border Radius', 'finest-docs' ),
     'section'         => 'single_page',
     'default'         => 5,
@@ -1438,7 +1438,7 @@ Kirki::add_field( 'fddocs_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.fdocs-cta a',
+            'element'  => '.fdocs-ctn .footer-button a',
             'function' => 'css',
             'property' => 'border-radius',
             'units'    => 'px',

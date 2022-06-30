@@ -10,9 +10,7 @@ class Admin {
     public function admin_scripts( $hook ) {
 
         if ( 'toplevel_page_finest-docs' != $hook && 'finestdocs_page_fddocs-settings' != $hook ) {
-
             return;
-
         }
 
         wp_enqueue_script( 'jquery-ui-core' ); // enqueue jQuery UI Core
@@ -25,6 +23,9 @@ class Admin {
         wp_enqueue_script( 'jquery-ui-tabs' );
         wp_enqueue_script( 'fddocs-frontentd-script', FINEST_DOCS_ASSETS_JS . 'finest-docs.js', ['jquery', 'jquery-ui-sortable', 'wp-util'], time(), true );
         wp_enqueue_script( 'fddocs-admin-script', FINEST_DOCS_ASSETS_JS . 'admin-script.js', ['jquery', 'jquery-ui-sortable', 'wp-util'], time(), true );
+
+
+
         wp_localize_script( 'fddocs-admin-script', 'finestDocs', [
             'nonce'               => wp_create_nonce( 'fddocs-admin-nonce' ),
             'editurl'             => admin_url( 'post.php?action=edit&post=' ),
@@ -40,6 +41,9 @@ class Admin {
             'cancelBtn'           => __( 'Cancel', 'fddocs' ),
             'delConfirm'          => __( 'Are you sure?', 'fddocs' ),
             'delConfirmTxt'       => __( 'Are you sure to delete the entire section? Articles inside this section will be deleted too!', 'fddocs' ),
+            'include_title'       => __( 'Include Pages', 'fddocs' ),
+            'exclude_title'       => __( 'Exclude Pages', 'fddocs' ),
+
         ] );
 
     }
